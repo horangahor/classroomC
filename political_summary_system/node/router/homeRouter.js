@@ -4,6 +4,7 @@ const router = express.Router();
 // test
 router.get('/' , (req, res)=>{
     console.log("hi");
+    res.send("hello from server!");
 })
 
 
