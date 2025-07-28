@@ -4,7 +4,7 @@ const path = require("path");
 
 const politician = path.join(__dirname, "..", "dataset", "politician_data.csv");
 
-// 파일을 읽어서 csvToArray에 전달
+// 파일을 읽어서 배열로 바꾸고 반환
 const readFile = async () => {
     
     const data = await fs.readFile(file=politician, "utf8");
@@ -50,6 +50,14 @@ function csvToArray(str , delimiter = ","){
     
     return arr;
 }
+
+async function insertAll(file){
+    const csvData = await csvReader.readFile(file);
+    for(i=0;i<csvData.length;i++){
+        insertMember(csvData[i].name,csvData[i].age,csvData[i].position,csvData[i].politics );
+    }
+}
+
 
 // const csvReader = {
 //     greeting : "hello",

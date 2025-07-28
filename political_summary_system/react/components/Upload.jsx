@@ -38,7 +38,7 @@ const FileUpload = () => {
     try {
       // Axios를 사용하여 파일 업로드 요청을 서버로 보냅니다.
       // 'http://localhost:5000/upload'는 실제 백엔드 API 주소로 변경해야 합니다.
-      const response = await axios.post('http://your-server.com/api/upload', formData, {
+      const response = await axios.post('http://localhost:8000/admin/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data', // 파일 업로드 시 필수 헤더
         },
