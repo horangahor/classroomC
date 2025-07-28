@@ -1,0 +1,15 @@
+{
+  "files.exclude": {
+    "**/.DS_Store": true,
+    "**/._*": true,
+    "**/.AppleDouble": true,
+    "**/.LSOverride": true,
+    "**/.DocumentRevisions-V100": true,
+    "**/.fseventsd": true,
+    "**/.Spotlight-V100": true,
+    "**/.TemporaryItems": true,
+    "**/.Trashes": true,
+    "**/.VolumeIcon.icns": true,
+    "**/.com.apple.timemachine.donotpresent": true
+  }
+}
