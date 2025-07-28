@@ -51,12 +51,12 @@ function csvToArray(str , delimiter = ","){
     return arr;
 }
 
-async function insertAll(file){
-    const csvData = await csvReader.readFile(file);
-    for(i=0;i<csvData.length;i++){
-        insertMember(csvData[i].name,csvData[i].age,csvData[i].position,csvData[i].politics );
-    }
-}
+// async function insertAll(file){
+//     const csvData = await csvReader.readFile(file);
+//     for(i=0;i<csvData.length;i++){
+//         insertMember(csvData[i].name,csvData[i].age,csvData[i].position,csvData[i].politics );
+//     }
+// }
 
 
 // const csvReader = {

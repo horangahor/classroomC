@@ -2,7 +2,7 @@ const express = require('express');
 const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
-const {insertMember} = require('../database/query');
+const {insertMember, } = require('../database/query');
 const router = express.Router();
 
 
@@ -49,7 +49,7 @@ router.post('/upload',upload.single('file'), async(req, res)=>{
                 error(err);
             }
         });
-        res.send("upload good");
+        res.status(200).json({ message: "파일 업로드 및 처리 성공", status: "ok" });
     }
 })
 
