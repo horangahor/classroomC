@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import '../style/Upload.css'
 
 // FileUpload 컴포넌트는 파일 업로드 기능을 제공합니다.
 const FileUpload = () => {
@@ -62,25 +63,27 @@ const FileUpload = () => {
 
   return (
     // 전체 페이지 레이아웃
-    <div>
+    <div className="upload-page-container">
       {/* 파일 업로드 카드 */}
-      <div>
-        <h2>파일 업로드</h2>
+      <div className="upload-card">
+        <h2 className="upload-title">파일 업로드</h2>
 
         {/* 파일 선택 input 필드 */}
-        <div>
-          <label htmlFor="file-input">
+        <div className="input-margin-bottom">
+          <label htmlFor="file-input" className="file-label">
             파일 선택:
-          </label>
+          </label >
           <input
             id="file-input"
             type="file"
+            className="file-input"
             onChange={handleFileChange}
           />
         </div>
 
         {/* 업로드 버튼 */}
         <button
+          className="upload-button"
           onClick={handleFileUpload}
           disabled={!selectedFile} // 파일이 선택되지 않으면 버튼 비활성화
         >
