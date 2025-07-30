@@ -7,8 +7,11 @@ async function insertMember(name, age, position, politics){
         const [result] = await conn.execute("insert into members(name,age,position,politics) values(?,?,?,?)", 
             [name, age, position, politics]
         );
-        console.log(result);
+        // console.log(result);
         return result.affectedRows;
+    }
+    catch{
+        
     }
     finally{
         conn.release();
