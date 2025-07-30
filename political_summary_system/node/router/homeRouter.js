@@ -23,23 +23,28 @@ router.get('/join', async (req, res) => {
 
     res.send("회원가입 페이지입니다.");
 })
+
 // 로그인
 router.get('/login', async (req, res) => {
 
     res.send("로그인 페이지입니다.");
 })
+
 // 마이페이지
 router.get('/mypage', async (req, res) => {
 
     res.send("마이페이지입니다.");
 })
+
 // 회원 정보 수정
 router.get('/updateuser', async (req, res) => {
 
     res.send("회원 정보 수정 페이지입니다.");
 })
+
 // 회원 탈퇴
 router.get('/deleteuser', async (req, res) => {
     res.send("회원 탈퇴 페이지입니다.");
 })
+
 module.exports = router;
