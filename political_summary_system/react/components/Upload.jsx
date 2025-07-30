@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import '../style/Upload.css';
 
 // FileUpload 컴포넌트는 파일 업로드 기능을 제공합니다.
 const FileUpload = () => {
