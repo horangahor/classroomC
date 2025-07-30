@@ -5,6 +5,8 @@ import News from '../page/News'
 import People from '../page/People'
 import Politics from '../page/Politics'
 import MainPage from '../page/MainPage'
+import Join from '../page/Join'
+import Login from '../page/Login'
 
 
 function App() {
@@ -18,6 +20,8 @@ function App() {
           <Route path="/news" element={<News />} />
           <Route path="/people" element={<People />} />
           <Route path="/politics" element={<Politics />} />
+          <Route path="/join" element={<Join />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </div>
     </BrowserRouter>

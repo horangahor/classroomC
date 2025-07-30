@@ -1,7 +1,17 @@
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'pretendard-regular', sans-serif;
+    font-style: normal;
 }
 
 #header {
@@ -9,16 +19,20 @@
     align-items: center;
     padding: 10px 20px;
     border-bottom: 1px solid #eee;
-    /* justify-content: space-between; */ /* Temporarily remove or modify this if you want more precise control */
-    /* Instead, we'll align items and control spacing with margins */
+    justify-content: space-between; /* 양 끝 정렬로 변경 */
 }
 
 .logo {
-    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 5px 10px;
-    font-weight: bold; 
-    margin-right: 20px;
-    margin-left: 20px;
+    font-weight: bold;
+    font-size: 26px;
+    height: 60px;
+    width: 110px;
+    font-family: 'pretendard-regular', sans-serif;
+    font-style : bold;
 }
 
 .search-container {
@@ -27,10 +41,12 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     overflow: hidden;
-    flex-grow: 1; /* Allow the search container to take up available space */
-    max-width: 400px; /* Limit the max-width of the search bar */
-    margin-right: 40px; /* Add some space to the right of the search bar */
-    margin-left: 40px;
+    width: 600px;
+    /* 중앙 정렬을 위한 절대 위치 */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    /* margin 제거 */
 }
 
 .search-input {
@@ -55,9 +71,7 @@
 .nav-menu {
     display: flex;
     list-style: none;
-    /* margin-left: auto; */ /* Remove or comment out this line */
-    margin-left: 600px; /* Adjust this value to move it further left or right */
-    /* You can also use margin-right on the search-container to push the nav-menu */
+    /* margin-left 제거 */
 }
 
 .nav-menu li {
