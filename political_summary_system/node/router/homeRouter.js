@@ -17,9 +17,8 @@ router.get('/' , async (req, res)=>{
     res.send("hello from server!");
 })
 
-// 회원가입 
-
-
+// 회원가입
+router.get('/join', async (req, res) => {
 
     res.send("회원가입 페이지입니다.");
 })
