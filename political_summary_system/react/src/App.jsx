@@ -1,18 +1,26 @@
-import { useState } from 'react'
-import {Route , Routes} from 'react-router-dom'
-import Home from '../components/Home'
-import './App.css'
-import '../components/Upload'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Upload from '../components/Upload'
-function App() {
+import Header from '../components/Header'
+import News from '../page/News'
+import People from '../page/People'
+import Politics from '../page/Politics'
+import MainPage from '../page/MainPage'
 
+
+function App() {
   return (
-    <>
-      <Routes>
-        <Route path='/' element={<Home />}></Route>  
-        <Route path='/upload' element={<Upload/>}></Route>
-      </Routes>
-    </>
+    <BrowserRouter>
+      <Header />
+      <div id="body">
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/upload" element={<Upload />} />
+          <Route path="/news" element={<News />} />
+          <Route path="/people" element={<People />} />
+          <Route path="/politics" element={<Politics />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   )
 }
 
