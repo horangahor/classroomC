@@ -17,18 +17,17 @@ router.get('/' , async (req, res)=>{
     res.send("hello from server!");
 })
 
-// 회원가입 
+// 회원가입
+// router.get('/join', async (req, res) => {
 
+//     res.send("회원가입 페이지입니다.");
+// })
 
+// // 로그인
+// router.get('/login', async (req, res) => {
 
-    res.send("회원가입 페이지입니다.");
-})
-
-// 로그인
-router.get('/login', async (req, res) => {
-
-    res.send("로그인 페이지입니다.");
-})
+//     res.send("로그인 페이지입니다.");
+// })
 
 // 마이페이지
 router.get('/mypage', async (req, res) => {
