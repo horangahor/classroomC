@@ -11,7 +11,7 @@ const Header = () => {
 
 
   return (
-    <header id="header">
+    <header id="header" >
       {/* 로고를 클릭하면 onClick으로 이동 */}
       <div className="logo" onClick={handleLogoClick} style={{ cursor: 'pointer' }}>
         정리소
