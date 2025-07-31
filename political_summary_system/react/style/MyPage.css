@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.mypage-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    padding: 20px;
+}
+
+.mypage-card {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.mypage-card h2 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.subtitle {
+    color: #6c757d;
+    margin-bottom: 30px;
+    font-size: 1rem;
+}
+
+.menu-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.menu-btn {
+    display: block;
+    padding: 15px 20px;
+    background: #667eea;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.menu-btn:hover {
+    background: #5a6fd8;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+.menu-btn.danger {
+    background: #dc3545;
+}
+
+.menu-btn.danger:hover {
+    background: #c82333;
+    box-shadow: 0 8px 25px rgba(220, 53, 69, 0.3);
+}
+
+.back-link {
+    margin-top: 20px;
+}
+
+.back-link a {
+    color: #667eea;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.back-link a:hover {
+    color: #5a6fd8;
+    text-decoration: underline;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 480px) {
+    .mypage-container {
+        padding: 15px;
+    }
+    
+    .mypage-card {
+        padding: 30px 25px;
+    }
+    
+    .mypage-card h2 {
+        font-size: 1.5rem;
+    }
+    
+    .menu-btn {
+        padding: 12px 15px;
+        font-size: 0.9rem;
+    }
+}

@@ -2,15 +2,16 @@ const { error } = require("console");
 const fs  = require("fs").promises;
 const path = require("path");
 
+// 테스트용 파일 경로
 const politician = path.join(__dirname, "..", "dataset", "politician_data.csv");
 
-// 파일을 읽어서 csvToArray에 전달
-const readFile = async () => {
+// 파일을 읽어서 배열로 바꾸고 반환
+const readFile = async (file) => {
     
-    const data = await fs.readFile(file=politician, "utf8");
+    const data = await fs.readFile(file, "utf8");
     // console.log("readFile : " , data);
     const csvData = csvToArray(data);
-    console.log("readFile의 csvData :" , csvData); // 여기까진 값이 잘 전달됨
+    // console.log("readFile의 csvData :" , csvData); // 여기까진 값이 잘 전달됨
     
     return csvData;
 
@@ -50,6 +51,14 @@ function csvToArray(str , delimiter = ","){
     
     return arr;
 }
+
+// async function insertAll(file){
+//     const csvData = await csvReader.readFile(file);
+//     for(i=0;i<csvData.length;i++){
+//         insertMember(csvData[i].name,csvData[i].age,csvData[i].position,csvData[i].politics );
+//     }
+// }
+
 
 // const csvReader = {
 //     greeting : "hello",

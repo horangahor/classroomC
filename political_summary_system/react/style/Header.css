@@ -1,0 +1,82 @@
+@font-face {
+    font-family: 'NEXON Lv1 Gothic OTF';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'NEXON Lv1 Gothic OTF', sans-serif;
+    font-style: normal;
+}
+
+#header {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    justify-content: space-between;
+}
+
+.logo {
+    border: 1px solid black;
+    padding: 5px 10px;
+    height: 50px;
+    width: 100px;
+    font-family: 'NEXON Lv1 Gothic OTF', sans-serif;
+    font-weight: bold;
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 50px;
+    width: 400px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.search-input {
+    border: none;
+    padding: 8px 10px;
+    outline: none;
+    font-size: 16px;
+    width: 100%; 
+}
+
+.search-icon {
+    padding: 8px 10px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    border-left: 1px solid #ccc;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+}
+
+.nav-menu li {
+    margin-left: 40px;
+    font-size: 16px;
+    cursor: pointer;
+}
