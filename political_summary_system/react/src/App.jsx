@@ -5,10 +5,14 @@ import News from '../page/News'
 import People from '../page/People'
 import Politics from '../page/Politics'
 import MainPage from '../page/MainPage'
-
+import Join from '../page/Join'
+import Login from '../page/Login'
+import MyPage from '../page/MyPage'
+import UpdateUser from '../page/UpdateUser'
+import DeleteUser from '../page/DeleteUser'
 
 function App() {
-  return (
+  return (  
     <BrowserRouter>
       <Header />
       <div id="body">
@@ -18,6 +22,11 @@ function App() {
           <Route path="/news" element={<News />} />
           <Route path="/people" element={<People />} />
           <Route path="/politics" element={<Politics />} />
+          <Route path="/join" element={<Join />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/mypage" element={<MyPage />} />
+          <Route path="/updateuser" element={<UpdateUser />} />
+          <Route path="/deleteuser" element={<DeleteUser />} />
         </Routes>
       </div>
     </BrowserRouter>

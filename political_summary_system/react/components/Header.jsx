@@ -1,14 +1,14 @@
 import React from 'react'
-import {  useNavigate  } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../style/Header.css';
 
 const Header = () => {
-   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleLogoClick = () => {
     navigate('/'); // 홈으로 이동
   };
-   
+
 
   return (
     <header id="header">
@@ -26,6 +26,7 @@ const Header = () => {
         <li onClick={() => navigate('/news')} style={{ cursor: 'pointer' }}>뉴스</li>
         <li onClick={() => navigate('/people')} style={{ cursor: 'pointer' }}>인물</li>
         <li onClick={() => navigate('/politics')} style={{ cursor: 'pointer' }}>정치</li>
+        <li onClick={() => navigate('/mypage')} style={{ cursor: 'pointer' }}>마이페이지</li>
       </ul>
     </header>
   );
