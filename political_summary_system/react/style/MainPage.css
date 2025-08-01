@@ -6,10 +6,14 @@
     box-sizing: border-box;
 }
 
+.mainpage-title {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    text-align: center;
+}
+
 .mainpage-container {
     padding: 20px;
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     min-height: 100vh;
     display: flex;
     gap: 30px;
