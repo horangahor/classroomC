@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import '../style/DeleteUser.css'
+import axios from 'axios'
 
 const DeleteUser = () => {
     const navigate = useNavigate()
@@ -35,9 +36,19 @@ const DeleteUser = () => {
 
         // 최종 확인
         if (window.confirm('정말로 탈퇴하시겠습니까? 이 작업은 되돌릴 수 없습니다.')) {
-            // 탈퇴 처리 로직 (실제로는 API 호출)
-            alert('회원탈퇴가 완료되었습니다.')
-            navigate('/') // 메인 페이지로 이동
+            axios
+            .post('http://localhost:8000/deleteuser', {
+                id : formData.email,
+                pw : formData.password,
+            })
+            .then ((res) =>{
+              console.log("이건은 response",res);
+                alert('회원탈퇴가 완료되었습니다.');
+                nav('/');
+            })
+            .catch((err)=>{
+                console.error(err);
+            })
         }
     }
 

@@ -50,4 +50,4 @@ async function remove(req, res) {
     }
 }
 
-module.exports = {join, login};
+module.exports = {join, login, remove};
