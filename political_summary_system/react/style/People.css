@@ -11,7 +11,7 @@
 .person-card {
   border: 1px solid #e5e7eb;
   border-radius: 0.75rem;
-  padding: 1.5rem;
+  padding: 1rem;
   background: #fff;
   width: 220px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.05);
@@ -23,10 +23,10 @@
 .person-img {
   
     width: 200px;
-  height: 200px;
+  height: 220px;
   object-fit: cover;
-  border-radius: 0%;
-  margin-bottom: 1rem;
+  border-radius: 0.75rem;
+  margin-bottom: 0.5rem;
   
 }
 

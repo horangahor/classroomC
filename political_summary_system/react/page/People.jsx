@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import '../style/People.css'
 
 const dummyPeople = [
-  { id: 1, name: '이재명', job: '대통령', img: 'https://i.namu.wiki/i/gw4e7BU5tD3vqOwhH52Pj7P82VX0Gfcm8Vi6jTjnVw8-Y9bpg_nzjUMr8_NObnsEh9EhfFx6MmaA3G46R3aRNshi-M90KnFiByBHk6zBEtBdrILw-RrTRNFU2o637OATYPRg3-rvFSSSqKaiaIvwCw.webp' },
-  { id: 2, name: '오세훈', job: '서울시장', img: 'https://i.namu.wiki/i/z8-mvsdlLFGa98K6LLs4EnZt3FyDAHDA88U0sIuc8z0XGfBalz4b1WTkgF-W8n_yPfxYRuLkDHRu1cyxXtI4rUt7HwftIZ0iRNx6VEEvDJiJJ-mwckL4ejSgHwJsTjTK6ezXCw_-SZLzc5FBzdDqHw.webp'},
+  { id: 1, name: '이재명', content: '',job: '대통령', img: 'https://search.pstatic.net/common?type=b&size=216&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2F5f6c9c3e-ec97-4a6f-8435-500d64bdb83d.jpg'},
+  { id: 2, name: '오세훈', content: '',job: '서울시장', img: 'https://search.pstatic.net/common?type=b&size=216&expire=1&refresh=true&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2F741375bb-aeb9-4c71-8f84-3bc72273e4dc.jpg'},
 ]
 
 const People = () => {
