@@ -70,8 +70,8 @@ const DeleteUser = () => {
                             required
                         />
                     </div>
-
-                    <div className="form-group">
+        
+                    {/* <div className="form-group">
                         <label htmlFor="reason">탈퇴 사유 (선택사항)</label>
                         <textarea
                             id="reason"
@@ -81,7 +81,7 @@ const DeleteUser = () => {
                             placeholder="탈퇴 사유를 알려주시면 서비스 개선에 도움이 됩니다"
                             rows="4"
                         />
-                    </div>
+                    </div> */}
 
                     <div className="form-group">
                         <label htmlFor="confirmText">확인 문구 *</label>
