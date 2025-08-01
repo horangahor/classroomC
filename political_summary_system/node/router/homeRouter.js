@@ -1,5 +1,5 @@
 const express = require('express');
-const {join , login} = require("../function/manageUser");
+const {join , login, remove} = require("../function/manageUser");
 const router = express.Router();
 
 // main 페이지
@@ -17,7 +17,9 @@ router.get('/' , async (req, res)=>{
     res.send("hello from server!");
 })
 
+// 회원가입
 router.post('/join', async (req, res) => {
+
     await join(req);
     
     res.send("회원가입 페이지입니다.");
@@ -25,6 +27,7 @@ router.post('/join', async (req, res) => {
 
 // 로그인
 router.post('/login', async (req, res) => {
+
     const result = await login(req);
     const nick = result.uname;
     res.json({nick : nick});
@@ -45,6 +48,7 @@ router.get('/updateuser', async (req, res) => {
 
 // 회원 탈퇴
 router.get('/deleteuser', async (req, res) => {
+    await remove(req);
     res.send("회원 탈퇴 페이지입니다.");
 })
 

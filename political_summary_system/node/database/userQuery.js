@@ -29,4 +29,7 @@ async function registerUser(id, pw, name, phnum){
     }
 }
 
+
+
+
 module.exports = {loginUser, registerUser};
