@@ -23,7 +23,7 @@ const Join = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
+        
         // 간단한 유효성 검사
         if (formData.password !== formData.confirmPassword) {
             alert('비밀번호가 일치하지 않습니다.')
@@ -34,25 +34,25 @@ const Join = () => {
             alert('필수 항목을 모두 입력해주세요.')
             return
         }
-        
+
         // 서버에 회원가입 요청 보내기
-        // axios
-        //     .post('http://localhost:8000/join', {
-        //         id : formData.email,
-        //         pw : formData.password,
-        //         name : formData.name,
-        //         phnum : formData.phone
-        //     })
-        //     .then ((res) =>{
-        //         console.log('회원가입 데이터:', formData)
-        //         alert('회원가입이 완료되었습니다!');
-        //         nav('/');
-        //     })
-        //     .catch((err)=>{
-        //         console.error(err);
+        axios
+            .post('http://localhost:8000/join', {
+                id : formData.email,
+                pw : formData.password,
+                name : formData.name,
+                phnum : formData.phone
+            })
+            .then ((res) =>{
+                console.log('회원가입 데이터:', formData)
+                alert('회원가입이 완료되었습니다!');
+                nav('/');
+            })
+            .catch((err)=>{
+                console.error(err);
                 
-        //     })
-        nav('/');
+            })
+
 
     }
 

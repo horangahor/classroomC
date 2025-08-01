@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import '../style/Login.css'
+import axios from 'axios'
 
 const Login = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   })
+
+  const nav = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -24,8 +27,19 @@ const Login = () => {
       return
     }
 
-    console.log('로그인 데이터:', formData)
-    alert('로그인 성공!')
+    axios
+            .post('http://localhost:8000/login', {
+                id : formData.email,
+                pw : formData.password,
+            })
+            .then ((res) =>{
+              console.log("이건은 response",res);
+                alert(`${res.data.nick} 로그인 성공!`)
+                nav('/');
+            })
+            .catch((err)=>{
+                console.error(err);
+            })
   }
 
   return (
