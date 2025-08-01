@@ -1,8 +1,8 @@
 const express = require('express');
-const {insertMember} = require('../database/query');
+const {join , login} = require("../function/manageUser");
 const router = express.Router();
 
-// test
+// main 페이지
 router.get('/' , async (req, res)=>{
     
     // const csvData = await csvReader.readFile();
@@ -17,17 +17,18 @@ router.get('/' , async (req, res)=>{
     res.send("hello from server!");
 })
 
-// 회원가입
-// router.get('/join', async (req, res) => {
+router.post('/join', async (req, res) => {
+    await join(req);
+    
+    res.send("회원가입 페이지입니다.");
+})
 
-//     res.send("회원가입 페이지입니다.");
-// })
-
-// // 로그인
-// router.get('/login', async (req, res) => {
-
-//     res.send("로그인 페이지입니다.");
-// })
+// 로그인
+router.post('/login', async (req, res) => {
+    const result = await login(req);
+    const nick = result.uname;
+    res.json({nick : nick});
+})
 
 // 마이페이지
 router.get('/mypage', async (req, res) => {

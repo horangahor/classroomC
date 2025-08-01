@@ -2,7 +2,7 @@ const express = require('express');
 const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
-const {insertMember, } = require('../database/query');
+const {insertMember, } = require('../database/memberQuery');
 const router = express.Router();
 
 
