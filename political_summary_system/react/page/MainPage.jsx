@@ -11,7 +11,7 @@ const MainPage = () => {
       // SVG 내부의 모든 path 요소 찾기
       const paths = svgRef.current.querySelectorAll('path')
       
-      console.log(`총 ${paths.length}개의 지역을 찾았습니다.`)
+      // console.log(`총 ${paths.length}개의 지역을 찾았습니다.`)
       
       paths.forEach((path, index) => {
         // 각 path의 식별자 확인
@@ -20,11 +20,11 @@ const MainPage = () => {
                         path.className.baseVal || 
                         `region-${index}`
         
-        console.log(`지역 ${index}:`, {
-          id: path.id,
-          className: path.className.baseVal,
-          dataName: path.getAttribute('data-name')
-        })
+        // console.log(`지역 ${index}:`, {
+        //   id: path.id,
+        //   className: path.className.baseVal,
+        //   dataName: path.getAttribute('data-name')
+        // })
 
         // CSS 클래스 적용
         path.classList.add('region-path')

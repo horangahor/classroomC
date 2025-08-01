@@ -47,7 +47,7 @@ const DeleteUser = () => {
                 <h2>회원탈퇴</h2>
                 <p className="subtitle danger">계정을 영구적으로 삭제합니다</p>
                 
-                <div className="warning-box">
+                {/* <div className="warning-box">
                     <h3>⚠️ 주의사항</h3>
                     <ul>
                         <li>탈퇴 후 모든 개인정보가 삭제됩니다</li>
@@ -55,7 +55,7 @@ const DeleteUser = () => {
                         <li>탈퇴 후 30일간 재가입이 제한됩니다</li>
                         <li>이 작업은 되돌릴 수 없습니다</li>
                     </ul>
-                </div>
+                </div> */}
 
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
@@ -70,7 +70,7 @@ const DeleteUser = () => {
                             required
                         />
                     </div>
-        
+
                     {/* <div className="form-group">
                         <label htmlFor="reason">탈퇴 사유 (선택사항)</label>
                         <textarea
