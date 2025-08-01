@@ -123,6 +123,7 @@
 /* 지도 컨테이너 */
 .map-container {
     width: 100%;
+    height: 800px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -132,7 +133,7 @@
 
 .korea-map {
     width: 100%;
-    max-width: 600px;
+    max-width: 800px;
     height: auto;
     border: 3px solid #e9ecef;
     border-radius: 20px;
@@ -184,8 +185,13 @@
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* 반응형 디자인 */
@@ -194,23 +200,23 @@
         flex-direction: column;
         gap: 20px;
     }
-    
+
     .left-content,
     .right-content {
-        flex : 1;
+        flex: 1;
         min-width: auto;
         width: 100%;
     }
-    
+
     .mainpage-title {
         text-align: center;
         font-size: 2.2rem;
     }
-    
+
     .mainpage-subtitle {
         text-align: center;
     }
-    
+
     .map-container {
         position: static;
     }
@@ -220,23 +226,23 @@
     .mainpage-container {
         padding: 15px;
     }
-    
+
     .mainpage-title {
         font-size: 2rem;
     }
-    
+
     .mainpage-subtitle {
         font-size: 1rem;
     }
-    
+
     .region-info-box {
         padding: 20px;
     }
-    
+
     .region-info-title {
         font-size: 1.2rem;
     }
-    
+
     .korea-map {
         border-width: 2px;
         border-radius: 15px;
@@ -248,20 +254,20 @@
     .mainpage-container {
         padding: 10px;
     }
-    
+
     .mainpage-title {
         font-size: 1.7rem;
     }
-    
+
     .region-info-box {
         padding: 15px;
     }
-    
+
     .korea-map {
         border-radius: 10px;
         max-width: 400px;
     }
-    
+
     .left-content {
         min-width: auto;
     }
@@ -277,6 +283,7 @@
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -292,6 +299,7 @@
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -307,6 +315,7 @@
         opacity: 0;
         transform: translateX(-30px);
     }
+
     to {
         opacity: 1;
         transform: translateX(0);
