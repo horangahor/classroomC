@@ -34,7 +34,6 @@ const Join = () => {
             alert('필수 항목을 모두 입력해주세요.')
             return
         }
-
         // 서버에 회원가입 요청 보내기
         axios
             .post('http://localhost:8000/join', {
@@ -52,7 +51,6 @@ const Join = () => {
                 console.error(err);
                 
             })
-
 
     }
 
