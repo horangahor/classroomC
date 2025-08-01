@@ -25,7 +25,7 @@ const Header = () => {
       <ul className="nav-menu">
         <li onClick={() => navigate('/news')} style={{ cursor: 'pointer' }}>뉴스</li>
         <li onClick={() => navigate('/people')} style={{ cursor: 'pointer' }}>인물</li>
-        <li onClick={() => navigate('/politics')} style={{ cursor: 'pointer' }}>정치</li>
+        {/* <li onClick={() => navigate('/politics')} style={{ cursor: 'pointer' }}>정치</li> */}
         <li onClick={() => navigate('/mypage')} style={{ cursor: 'pointer' }}>마이페이지</li>
       </ul>
     </header>
