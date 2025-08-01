@@ -19,7 +19,7 @@ const Header = () => {
 
       <div className="search-container">
         <input type="text" className="search-input" placeholder="검색어 입력" />
-        <div className="search-icon">🔍</div>
+        <img src="../images/search-icon.ico" alt="검색" className='search-icon'/>
       </div>
 
       <ul className="nav-menu">

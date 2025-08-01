@@ -4,7 +4,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'NEXON Lv1 Gothic OTF', sans-serif;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
     font-style: normal;
 }
 
@@ -49,15 +49,14 @@
     padding: 8px 10px;
     outline: none;
     font-size: 16px;
-    width: 100%; 
+    width: 100%;
 }
 
 .search-icon {
     padding: 8px 10px;
-    background-color: #f0f0f0;
     cursor: pointer;
-    border-left: 1px solid #ccc;
-    font-size: 18px;
+    width: 42px;
+    height: 38px;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -1,17 +1,29 @@
 import React, { useRef, useEffect, useState } from 'react'
 import { ReactComponent as KrMap } from '../assets/kr.svg'
+import { useNavigate } from 'react-router-dom'
 import '../style/MainPage.css'
+import '../style/People.css'
 
 const MainPage = () => {
   const svgRef = useRef(null)
   const [selectedRegion, setSelectedRegion] = useState(null)
+  const [people, setPeople] = useState([])
+  const navigate = useNavigate()
+
+  // 인물 더미 데이터
+  const dummyPeople = [
+    { id: 1, name: '이재명', job: '대통령', img: 'https://search.pstatic.net/common?type=b&size=3000&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2F5f6c9c3e-ec97-4a6f-8435-500d64bdb83d.jpg' },
+    { id: 2, name: '오세훈', job: '서울시장', img: 'https://search.pstatic.net/common?type=b&size=3000&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2F741375bb-aeb9-4c71-8f84-3bc72273e4dc.jpg' },
+  ]
+
+  useEffect(() => {
+    setPeople(dummyPeople)
+  }, [])
 
   useEffect(() => {
     if (svgRef.current) {
       // SVG 내부의 모든 path 요소 찾기
       const paths = svgRef.current.querySelectorAll('path')
-      
-      // console.log(`총 ${paths.length}개의 지역을 찾았습니다.`)
       
       paths.forEach((path, index) => {
         // 각 path의 식별자 확인
@@ -19,12 +31,6 @@ const MainPage = () => {
                         path.getAttribute('data-name') || 
                         path.className.baseVal || 
                         `region-${index}`
-        
-        // console.log(`지역 ${index}:`, {
-        //   id: path.id,
-        //   className: path.className.baseVal,
-        //   dataName: path.getAttribute('data-name')
-        // })
 
         // CSS 클래스 적용
         path.classList.add('region-path')
@@ -56,7 +62,7 @@ const MainPage = () => {
   // 지역 클릭 처리 함수
   const handleRegionClick = (regionId, pathElement) => {
     console.log('클릭된 지역:', regionId)
-    
+
     // 모든 지역에서 selected 클래스 제거
     if (svgRef.current) {
       const allPaths = svgRef.current.querySelectorAll('path')
@@ -117,28 +123,48 @@ const MainPage = () => {
   }
 
   return (
-    <div className="mainpage-container">
-      {/* 좌측 콘텐츠 영역 */}
-      <div className="left-content">
-        <h1 className="mainpage-title">지도로 확인하는 지역 정치 이슈</h1>
-        <p className="mainpage-subtitle">지도의 각 지역을 클릭하여 정치인 정보를 확인하세요</p>
-        
-        {selectedRegion && (
-          <div className="region-info-box fade-in">
-            <h3 className="region-info-title">선택된 지역</h3>
-            <p className="region-info-name">{selectedRegion}</p>
-            <small className="region-info-desc">클릭한 지역의 정보가 여기에 표시됩니다.</small>
+    <div className="mainpage-background">
+      <h1 className="mainpage-title">지도로 확인하는 지역 정치 이슈</h1>
+      <div className="mainpage-container">
+        {/* 좌측 콘텐츠 영역 */}
+        <div className="left-content">
+          <div className="people-container">
+            {people.map(person => (
+              <div className="person-card" key={person.id}>
+                <img
+                  className="person-img"
+                  src={person.img}
+                  alt={person.name}
+                  onClick={() => navigate(`/people/${person.id}`)}
+                />
+                <button
+                  className="person-name-btn"
+                  onClick={() => navigate(`/people/${person.id}`)}
+                >
+                  {person.name}
+                </button>
+                <p className="person-job">{person.job}</p>
+              </div>
+            ))}
           </div>
-        )}
-      </div>
 
-      {/* 우측 지도 영역 */}
-      <div className="right-content">
-        <div className="map-container">
-          <KrMap 
-            ref={svgRef}
-            className="korea-map slide-up"
-          />
+          {selectedRegion && (
+            <div className="region-info-box fade-in">
+              <h3 className="region-info-title">선택된 지역</h3>
+              <p className="region-info-name">{selectedRegion}</p>
+              <small className="region-info-desc">클릭한 지역의 정보가 여기에 표시됩니다.</small>
+            </div>
+          )}
+        </div>
+
+        {/* 우측 지도 영역 */}
+        <div className="right-content">
+          <div className="map-container">
+            <KrMap
+              ref={svgRef}
+              className="korea-map slide-up"
+            />
+          </div>
         </div>
       </div>
     </div>
