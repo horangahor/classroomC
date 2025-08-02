@@ -1,0 +1,327 @@
+@import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.mainpage-title {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    text-align: center;
+}
+
+.mainpage-container {
+    padding: 20px;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    gap: 30px;
+}
+
+/* 좌측 콘텐츠 영역 */
+.left-content {
+    flex: 1;
+    min-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* 우측 지도 영역 */
+.right-content {
+    flex: 1;
+    min-width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.mainpage-title {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-weight: 700;
+    text-align: left;
+}
+
+.mainpage-subtitle {
+    color: #6c757d;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+    text-align: left;
+    line-height: 1.6;
+}
+
+/* 선택된 지역 정보 박스 */
+.region-info-box {
+    padding: 25px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+    transform: translateY(0);
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.region-info-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+}
+
+.region-info-title {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.region-info-name {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.region-info-desc {
+    font-size: 1rem;
+    opacity: 0.9;
+    line-height: 1.5;
+}
+
+/* 추가 정보 영역 */
+.additional-info {
+    padding: 20px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.additional-info h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.additional-info p {
+    color: #6c757d;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.info-list {
+    list-style: none;
+    padding: 0;
+}
+
+.info-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    color: #495057;
+}
+
+.info-list li:last-child {
+    border-bottom: none;
+}
+
+/* 지도 컨테이너 */
+.map-container {
+    width: 100%;
+    height: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    top: 20px;
+}
+
+.korea-map {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    border: 3px solid #e9ecef;
+    border-radius: 20px;
+    background: white;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.korea-map:hover {
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+/* SVG path 기본 스타일 */
+.region-path {
+    fill: #e8f4f8;
+    stroke: #2c3e50;
+    stroke-width: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.region-path:hover {
+    fill: #74b9ff;
+    stroke-width: 2px;
+}
+
+.region-path.selected {
+    fill: #00b894;
+    stroke: #00a085;
+    stroke-width: 3px;
+}
+
+/* 로딩 상태 */
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #667eea;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1024px) {
+    .mainpage-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .left-content,
+    .right-content {
+        flex: 1;
+        min-width: auto;
+        width: 100%;
+    }
+
+    .mainpage-title {
+        text-align: center;
+        font-size: 2.2rem;
+    }
+
+    .mainpage-subtitle {
+        text-align: center;
+    }
+
+    .map-container {
+        position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .mainpage-container {
+        padding: 15px;
+    }
+
+    .mainpage-title {
+        font-size: 2rem;
+    }
+
+    .mainpage-subtitle {
+        font-size: 1rem;
+    }
+
+    .region-info-box {
+        padding: 20px;
+    }
+
+    .region-info-title {
+        font-size: 1.2rem;
+    }
+
+    .korea-map {
+        border-width: 2px;
+        border-radius: 15px;
+        max-width: 500px;
+    }
+}
+
+@media (max-width: 480px) {
+    .mainpage-container {
+        padding: 10px;
+    }
+
+    .mainpage-title {
+        font-size: 1.7rem;
+    }
+
+    .region-info-box {
+        padding: 15px;
+    }
+
+    .korea-map {
+        border-radius: 10px;
+        max-width: 400px;
+    }
+
+    .left-content {
+        min-width: auto;
+    }
+}
+
+/* 애니메이션 효과 */
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.slide-up {
+    animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.slide-left {
+    animation: slideLeft 0.6s ease-out;
+}
+
+@keyframes slideLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

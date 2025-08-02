@@ -1,0 +1,124 @@
+/* 전체 뉴스 영역에 패딩을 줌 */
+.news-container {
+  padding: 20px;
+  text-align: center; /* h2 제목을 가운데 정렬 */
+}
+
+/* 제목 텍스트 (예: "주요 정치 이슈 정리") */
+.news-container h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center; /* 제목 가운데 정렬 */
+}
+
+/* 뉴스 카드 전체를 가운데로 정렬하기 위한 래퍼 */
+.news-grid-wrapper {
+  display: flex;
+  justify-content: center; /* 가운데 정렬 */
+}
+
+/* 카드들을 격자(grid)로 배치 */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* 카드 너비 지정 */
+  gap: 20px;
+  max-width: 1000px; /* 카드 그리드의 최대 너비 */
+  width: 100%;
+  justify-items: center; /* 카드 개별 요소 가운데 정렬 */
+}
+
+/* 뉴스 카드 디자인 */
+.news-card {
+  width: 100%; /* 카드 너비 100% (부모 grid 기준) */
+  max-width: 250px; /* 카드 최대 너비 */
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 15px;
+  background-color: #fff;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left; /* 카드 내부 텍스트 왼쪽 정렬 */
+}
+
+/* 카드 내 이미지 */
+.news-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* 제목 */
+.news-card h4 {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+/* 요약 문구 */
+.news-card p {
+  font-size: 0.9rem;
+  color: #555;
+  flex-grow: 1;
+  margin-bottom: 10px;
+}
+
+/* 더보기 버튼 */
+.news-card button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.news-card button:hover {
+  background-color: #0056b3;
+}
+
+/* 페이지네이션 */
+.pagination {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.pagination button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: 1px solid #ddd;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.pagination button:hover {
+  background-color: #eee;
+}
+
+/* 정당 버튼 영역 */
+.party-buttons {
+  margin-top: 30px;
+  text-align: center;
+}
+
+/* 정당 버튼 */
+.party-buttons button {
+  margin: 5px;
+  padding: 8px 12px;
+  background-color: #444;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.party-buttons button:hover {
+  background-color: #222;
+}
