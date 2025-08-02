@@ -38,16 +38,8 @@ async function update(req, res) {
 }
 
 // 회원탈퇴 기능
-async function remove(req, res) {
+async function remove(req) {
     
-    const { id } = req.query;
-    const result = await removeMember(id);
-
-    if (result > 0) {
-        res.redirect('/join');
-    } else {
-        res.redirect('/');
-    }
 }
 
 module.exports = {join, login, remove};

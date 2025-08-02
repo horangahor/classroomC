@@ -4,7 +4,7 @@ async function insertMember(name, age, position, politics){
     const conn = await pool.getConnection();
 
     try{
-        const [result] = await conn.execute("insert into members(name,age,position,politics) values(?,?,?,?)", 
+        const [result] = await conn.execute("insert into member(name,age,position,politics) values(?,?,?,?)", 
             [name, age, position, politics]
         );
         // console.log(result);
@@ -22,7 +22,7 @@ async function removeMember(name){
     const conn = await pool.getConnection();
     try {
         const [result] = await conn.execute(
-            "delete from members where name = ?",
+            "delete from member where name = ?",
             [name]
         );
         console.log(result);
@@ -37,7 +37,7 @@ async function getMemberByName(name) {
     const conn = await pool.getConnection();
     try {
         const [results] = await conn.execute(
-            "select * from members where name = ?",
+            "select * from member where name = ?",
             [name]
         );
         return results;
