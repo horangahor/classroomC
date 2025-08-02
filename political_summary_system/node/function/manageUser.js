@@ -37,6 +37,7 @@ async function remove(req) {
     const result = await deleteUser(pw);
     
     return result;
+
 }
 
 module.exports = {join, login, remove};
