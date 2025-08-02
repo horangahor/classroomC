@@ -47,7 +47,7 @@ router.get('/updateuser', async (req, res) => {
 })
 
 // 회원 탈퇴
-router.get('/deleteuser', async (req, res) => {
+router.post('/deleteuser', async (req, res) => {
     await remove(req);
     res.send("회원 탈퇴 페이지입니다.");
 })

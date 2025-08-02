@@ -29,7 +29,19 @@ async function registerUser(id, pw, name, phnum){
     }
 }
 
+async function deleteUser(pw) {
+    const conn = await pool.getConnection();
+    try{
+        const [results] = await conn.execute(
+            "delete from user where upw = ?",
+            [pw]
+        );
+        return results;
+    }
+    finally {
+        conn.release();
+    }
+}
 
 
-
-module.exports = {loginUser, registerUser};
+module.exports = {loginUser, registerUser, deleteUser};

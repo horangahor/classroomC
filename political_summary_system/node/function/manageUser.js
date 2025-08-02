@@ -1,4 +1,4 @@
-const { loginUser, registerUser } = require('../database/userQuery');
+const { loginUser, registerUser, deleteUser } = require('../database/userQuery');
 
 // 회원가입
 async function join(req) {
@@ -27,19 +27,17 @@ async function login(req) {
 
 // 회원정보 수정 기능
 async function update(req, res) {
-    const { id, pw } = req.body;
-    const result = await updateMember(id, pw);
     
-    if (result > 0) {
-        res.redirect('/');
-    } else {
-        res.redirect('/update');
-    }
 }
 
 // 회원탈퇴 기능
 async function remove(req) {
     
+    const { pw } = req.body;
+    const result = await deleteUser(pw);
+    
+    return result;
+
 }
 
 module.exports = {join, login, remove};
