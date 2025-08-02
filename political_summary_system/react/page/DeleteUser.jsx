@@ -37,18 +37,18 @@ const DeleteUser = () => {
         // 최종 확인
         if (window.confirm('정말로 탈퇴하시겠습니까? 이 작업은 되돌릴 수 없습니다.')) {
             axios
-            .post('http://localhost:8000/deleteuser', {
-                id : formData.email,
-                pw : formData.password,
-            })
-            .then ((res) =>{
-              console.log("이건은 response",res);
-                alert('회원탈퇴가 완료되었습니다.');
-                nav('/');
-            })
-            .catch((err)=>{
-                console.error(err);
-            })
+                .post('http://localhost:8000/deleteuser', {
+                    id: formData.email,
+                    pw: formData.password,
+                })
+                .then((res) => {
+                    console.log("이건은 response", res);
+                    alert('회원탈퇴가 완료되었습니다.');
+                    navigate('/');
+                })
+                .catch((err) => {
+                    console.error(err);
+                })
         }
     }
 
@@ -57,7 +57,7 @@ const DeleteUser = () => {
             <div className="delete-card">
                 <h2>회원탈퇴</h2>
                 <p className="subtitle danger">계정을 영구적으로 삭제합니다</p>
-                
+
                 {/* <div className="warning-box">
                     <h3>⚠️ 주의사항</h3>
                     <ul>
