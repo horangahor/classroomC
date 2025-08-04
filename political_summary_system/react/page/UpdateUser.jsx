@@ -2,8 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import '../style/UpdateUser.css'
+<<<<<<< HEAD
 import { getSession } from '../auth/auth'
 import axios from 'axios'
+=======
+
+>>>>>>> 20a1c81 (문제가 생겼어요.)
 
 const UpdateUser = () => {
     const navigate = useNavigate()
