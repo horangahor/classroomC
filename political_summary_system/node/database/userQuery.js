@@ -31,6 +31,7 @@ async function registerUser(id, pw, name, phnum){
     }
 }
 
+<<<<<<< HEAD
 async function updateuser(id, name, phnum, cpw, npw) {
     const conn = await pool.getConnection();
     try{
@@ -39,6 +40,16 @@ async function updateuser(id, name, phnum, cpw, npw) {
             [npw, id, name, phnum, cpw]
         );
         return results;
+=======
+async function deleteuser(pw) {
+    const conn = await pool.getConnection();
+    try {
+        const [result] = await conn.execute(
+            "delete from user where upw = ?",
+            [pw]
+        );
+        return result;
+>>>>>>> 405ce95 (회원 정보 수정 기능 추가)
     } finally {
         conn.release();
     }
@@ -57,4 +68,21 @@ async function deleteuser(pw) {
     }
 }
 
+<<<<<<< HEAD
 module.exports = { loginUser, registerUser, updateuser, deleteuser };
+=======
+async function updateuser(id, name, phnum, cpw, npw) {
+    const conn = await pool.getConnection();
+    try{
+        const [results] = await conn.execute(
+            "update user set upw = ? WHERE uid = ? and uname = ? and uphnum = ? and upw = ?",
+            [npw, id, name, phnum, cpw]
+        );
+        return results;
+    } finally {
+        conn.release();
+    }
+}
+
+module.exports = { loginUser, registerUser, updateuser, deleteuser };
+>>>>>>> 405ce95 (회원 정보 수정 기능 추가)

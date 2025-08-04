@@ -1,5 +1,8 @@
 const { loginUser, registerUser, updateuser, deleteuser } = require('../database/userQuery');
+<<<<<<< HEAD
 const jwt = require("jsonwebtoken");
+=======
+>>>>>>> 405ce95 (회원 정보 수정 기능 추가)
 
 // 회원가입
 async function join(req) {
@@ -72,4 +75,8 @@ async function remove(req) {
     }
 }
 
+<<<<<<< HEAD
 module.exports = {join, login, update, remove};
+=======
+module.exports = {join, login, update, remove};
+>>>>>>> 405ce95 (회원 정보 수정 기능 추가)
