@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import '../style/UpdateUser.css'
+import axios from 'axios'
 
 const UpdateUser = () => {
     const navigate = useNavigate()
@@ -70,60 +71,30 @@ const UpdateUser = () => {
             return
         }
 
-        // 새 비밀번호 길이 검증
-        if (formData.newPassword && formData.newPassword.length < 2) {
-            alert('새 비밀번호는 2자 이상이어야 합니다.')
-            return
-        }
-
-        try {
-            setLoading(true)
-
-            // 서버로 보낼 데이터 준비
-            const updateData = {
-                id: formData.email,
-                pw: formData.currentPassword,
-                name: formData.name,
-                phone: formData.phone
-            }
-
-            // 새 비밀번호가 있을 때만 추가
-            if (formData.newPassword) {
-                updateData.newPw = formData.newPassword
-            }
-
-            // 서버로 업데이트 요청
-            await axios.post('http://localhost:8000/updateuser', updateData)
-                .then((res) => {
-                    console.log("response", res);
-                    alert('회원정보가 성공적으로 수정되었습니다!')
-                    navigate('/mypage')
-                })
-                .catch((err) => {
-                    console.error(err)
-                    alert('정보 수정에 실패했습니다.')
-                })
-
-        } catch (error) {
-            console.error('회원정보 수정 실패:', error)
-            alert('서버와의 연결에 실패했습니다.')
-        } finally {
-            setLoading(false)
-        }
+        // 디버깅: formData와 axios 요청 데이터 콘솔 출력
+        console.log('formData:', formData);
+        const requestData = {
+            email: formData.email,
+            name: formData.name,
+            phone: formData.phone,
+            currentPassword: formData.currentPassword,
+            newPassword: formData.newPassword,
+        };
+        console.log('axios 요청 데이터:', requestData);
+        
+        axios
+            .post('http://localhost:8000/updateuser', requestData)
+            .then ((res) =>{
+                // 수정 처리 로직 (실제로는 API 호출)
+                alert(res.data.message || '회원정보가 수정되었습니다!')
+                navigate('/mypage')
+            })
+            .catch((err)=>{
+                console.error(err);
+                alert(err.response?.data?.message || "회원정보 수정에 실패했습니다.")
+            })
     }
 
-    // 로딩 중 화면
-    if (loading && !formData.name) {
-        return (
-            <div className="update-container">
-                <div className="update-card">
-                    <div className="loading-spinner">
-                        <p>사용자 정보를 불러오는 중...</p>
-                    </div>
-                </div>
-            </div>
-        )
-    }
 
     return (
         <div className="update-container">

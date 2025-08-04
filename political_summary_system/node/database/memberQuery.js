@@ -1,3 +1,5 @@
+// 정치인 인물들의 정보를 관리하는 페이지 입니다
+
 const pool = require("./db");
 
 async function insertMember(name, age, position, politics){

@@ -1,5 +1,5 @@
 const express = require('express');
-const {join , login, remove} = require("../function/manageUser");
+const {join , login, update, remove} = require("../function/manageUser");
 const router = express.Router();
 
 // main 페이지
@@ -41,15 +41,41 @@ router.get('/mypage', async (req, res) => {
 })
 
 // 회원 정보 수정
-router.get('/updateuser', async (req, res) => {
+router.post('/updateuser', async (req, res) => {
+    // 디버깅: req.body 전체 출력
+    console.log('req.body:', req.body);
+    const { id, name, phnum, cpw, npw } = req.body;
 
-    res.send("회원 정보 수정 페이지입니다.");
-})
+    try {
+        // manageUser.js의 update 함수를 호출하고, 반환된 결과를 받습니다.
+        const result = await update(id, name, phnum, cpw, npw);
+
+        // if (result.success) {
+        //     // 성공했을 때의 응답 처리
+        //     res.redirect('/mypage');
+        // } else {
+        //     // 실패했을 때의 응답 처리
+        //     // res.status(400).send(result.message);
+        //     res.redirect('/updateuser?error=' + encodeURIComponent(result.message));
+        // }
+    } catch (err) {
+        console.error("라우터에서 회원정보 수정 오류:", err);
+        res.status(500).send("서버 오류가 발생했습니다.");
+    }
+});
 
 // 회원 탈퇴
-router.post('/deleteuser', async (req, res) => {
-    await remove(req);
-    res.send("회원 탈퇴 페이지입니다.");
-})
+router.get('/deleteuser', async (req, res) => {
+    // const { password, confirmText } = req.body;
+
+    // if (!password || confirmText !== "회원탈퇴") {
+    //     return res.status(400).json({ message: "입력값이 올바르지 않습니다." });
+    // }
+
+    // res.json({ message: "회원 탈퇴가 완료되었습니다." });
+
+        await remove(req);
+        res.send("회원 탈퇴 페이지입니다.");
+});
 
 module.exports = router;
