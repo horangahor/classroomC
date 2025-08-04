@@ -73,7 +73,7 @@ const MainPage = () => {
       // SVG 내부의 모든 path 요소 찾기
       const paths = svgRef.current.querySelectorAll('path')
       
-      console.log(`총 ${paths.length}개의 지역을 찾았습니다.`)
+      // console.log(`총 ${paths.length}개의 지역을 찾았습니다.`)
       
       paths.forEach((path, index) => {
         // 각 path의 식별자 확인
@@ -82,13 +82,13 @@ const MainPage = () => {
                         path.className.baseVal || 
                         `region-${index}`
 
-        console.log(`지역 ${index}:`, {
-          id: path.id,
-          className: path.className.baseVal,
-          dataName: path.getAttribute('data-name'),
-          tagName: path.tagName,
-          allAttributes: Array.from(path.attributes).map(attr => `${attr.name}="${attr.value}"`).join(', ')
-        })
+        // console.log(`지역 ${index}:`, {
+        //   id: path.id,
+        //   className: path.className.baseVal,
+        //   dataName: path.getAttribute('data-name'),
+        //   tagName: path.tagName,
+        //   allAttributes: Array.from(path.attributes).map(attr => `${attr.name}="${attr.value}"`).join(', ')
+        // })
 
         // CSS 클래스 적용
         path.classList.add('region-path')
@@ -119,14 +119,14 @@ const MainPage = () => {
 
   // 지역 클릭 처리 함수
   const handleRegionClick = (regionId, pathElement) => {
-    console.log('클릭된 지역:', regionId)
+    // console.log('클릭된 지역:', regionId)
 
     // 이미 선택된 지역을 다시 클릭하면 선택 해제
     if (selectedRegion === regionId) {
       pathElement.classList.remove('selected')
       setSelectedRegion(null)
       setPeople([])
-      console.log('지역 선택 해제됨')
+      // console.log('지역 선택 해제됨')
       return
     }
 
@@ -148,9 +148,9 @@ const MainPage = () => {
 
   // 지역별 액션 처리
   const handleRegionAction = (regionId) => {
-    console.log('🔍 디버깅 시작!')
-    console.log('원본 regionId:', regionId)
-    console.log('소문자 변환:', regionId.toLowerCase())
+    // console.log('🔍 디버깅 시작!')
+    // console.log('원본 regionId:', regionId)
+    // console.log('소문자 변환:', regionId.toLowerCase())
     
     // 더 포괄적인 키 매핑 (SVG의 실제 ID와 매칭 - kr.svg 파일 기반)
     const keyMapping = {
@@ -241,7 +241,7 @@ const MainPage = () => {
       for (const keyword of regionKeywords) {
         if (lowerRegionId.includes(keyword)) {
           mappedKey = keyword
-          console.log(`🎯 부분 문자열로 찾음: ${lowerRegionId} → ${keyword}`)
+          // console.log(`🎯 부분 문자열로 찾음: ${lowerRegionId} → ${keyword}`)
           break
         }
       }
@@ -250,22 +250,22 @@ const MainPage = () => {
     // 그래도 안 되면 기본값 사용
     if (!mappedKey) {
       mappedKey = regionId.toLowerCase()
-      console.log(`⚠️ 매핑 실패, 원본 사용: ${mappedKey}`)
+      // console.log(`⚠️ 매핑 실패, 원본 사용: ${mappedKey}`)
     }
     
-    console.log('🎯 최종 매핑된 키:', mappedKey)
-    console.log('🎯 사용 가능한 키들:', Object.keys(regionPeople))
+    // console.log('🎯 최종 매핑된 키:', mappedKey)
+    // console.log('🎯 사용 가능한 키들:', Object.keys(regionPeople))
     
     const regionName = regionNames[mappedKey] || regionId
-    console.log(`${regionName} 선택됨!`)
+    // console.log(`${regionName} 선택됨!`)
     
     // 인물 데이터 찾기
     const regionPeopleData = regionPeople[mappedKey] || []
-    console.log('🎯 찾은 인물 데이터:', regionPeopleData)
-    console.log('🎯 인물 수:', regionPeopleData.length)
+    // console.log('🎯 찾은 인물 데이터:', regionPeopleData)
+    // console.log('🎯 인물 수:', regionPeopleData.length)
     
     setPeople(regionPeopleData)
-    console.log(`${regionName}의 정치인 ${regionPeopleData.length}명을 불러왔습니다!`)
+    // console.log(`${regionName}의 정치인 ${regionPeopleData.length}명을 불러왔습니다!`)
   }
 
   return (
