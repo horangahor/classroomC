@@ -28,19 +28,23 @@ const Login = () => {
     }
 
     axios
-      .post('http://localhost:8000/login', {
-        id: formData.email,
-        pw: formData.password,
-      })
-      .then((res) => {
-        // console.log("이건은 response", res);
-        alert(`${res.data.nick} 로그인 성공!`)
-        nav('/');
-      })
-      .catch((err) => {
-        console.error(err);
-        alert('로그인 실패');
-      })
+            .post('http://localhost:8000/login', {
+                id : formData.email,
+                pw : formData.password,
+            },
+           {withCredentials : true}
+          )
+            .then ((res) =>{
+              console.log("이건은 response",res);
+                alert(` 로그인 성공!`)
+                nav('/');
+            })
+            .catch((err)=>{
+                if(err.status== 401){
+                  alert(`로그인 실패`);
+                }
+                console.error(err);
+            })
   }
 
   return (

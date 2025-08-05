@@ -25,10 +25,38 @@ router.post('/join', async (req, res) => {
 
 // 로그인
 router.post('/login', async (req, res) => {
+
     const result = await login(req);
-    const nick = result.uname;
-    res.json({nick : nick});
+
+    console.log(result);
+    
+    if(result){
+    req.session.user = {
+            id : result.uid,
+            name : result.uname
+        }
+        res.status(200).send('로그인 성공');
+    }
+    else {
+        res.status(401).send("사용자 정보 없음");
+    }
+    
+    // 토큰 보내기. 보류
+    // const token = await login(req);
+    // if(token){
+    //     res.state(200).json({message : '로그인 성공' , token : token});
+    // }
+    // else {
+    //     res.state(401).send("사용자 정보 없음");
+    // }
 })
+
+// router.get('/', getSession);
+
+function getSession(req, res){
+    res.json(req.session.user);
+}
+
 
 // 마이페이지
 router.get('/mypage', async (req, res) => {
