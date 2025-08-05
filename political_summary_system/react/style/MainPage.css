@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
+@import './colors.css';
 
 * {
     margin: 0;
@@ -6,7 +7,11 @@
     box-sizing: border-box;
 }
 
+.mainpage-background {
+    margin-top: 90px;
+}
 
+/* MainPage 컨테이너 - Header 높이만큼 상단 패딩 추가 */
 .mainpage-container {
     padding: 20px;
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -37,10 +42,12 @@
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     font-size: 2.5rem;
     color: #2c3e50;
-    margin-bottom: 10px;
+    margin-bottom: var(--space-lg);
     font-weight: 700;
     text-align: center;
-    align-items: center;
+    padding: var(--space-lg);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
 }
 
 .mainpage-subtitle {

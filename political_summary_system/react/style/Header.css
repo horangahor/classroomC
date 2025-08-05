@@ -77,15 +77,20 @@
     font-style: normal;
 }
 
-/* Header 스타일 */
+/* Header 스타일 - 고정 위치 */
 #header {
     display: flex;
     align-items: center;
     padding: 12px 24px;
     background: var(--bg-primary);
     border-bottom: 1px solid var(--border-light);
-    box-shadow: var(--shadow-sm);
-    position: relative;
+    box-shadow: var(--shadow-md); /* 그림자 강화 */
+    position: fixed; /* fixed로 변경 */
+    top: 0; /* 상단에 고정 */
+    left: 0; /* 좌측부터 시작 */
+    right: 0; /* 우측까지 확장 */
+    width: 100%; /* 전체 너비 */
+    z-index: 1000; /* 다른 요소들 위에 표시 */
     justify-content: space-between;
     transition: all 0.2s ease;
 }
@@ -202,14 +207,14 @@
 .nav-menu li.active {
     color: var(--active-text);
     background: var(--active-bg);
-    border: 1px solid var(--bg-tertiary);
+    border: 2px solid var(--active-border);
     font-weight: 600;
     box-shadow: 0 2px 8px rgba(59, 130, 246, 0.15);
 }
 
 /* 활성 상태일 때는 호버 효과 약간 다르게 */
 .nav-menu li.active:hover {
-    background: var(--border-dark);
+    background: var(--active-bg);
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
 }
