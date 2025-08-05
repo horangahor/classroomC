@@ -72,15 +72,15 @@ const MainPage = () => {
     if (svgRef.current) {
       // SVG 내부의 모든 path 요소 찾기
       const paths = svgRef.current.querySelectorAll('path')
-      
+
       // console.log(`총 ${paths.length}개의 지역을 찾았습니다.`)
-      
+
       paths.forEach((path, index) => {
         // 각 path의 식별자 확인
-        const regionId = path.id || 
-                        path.getAttribute('data-name') || 
-                        path.className.baseVal || 
-                        `region-${index}`
+        const regionId = path.id ||
+          path.getAttribute('data-name') ||
+          path.className.baseVal ||
+          `region-${index}`
 
         // console.log(`지역 ${index}:`, {
         //   id: path.id,
@@ -151,61 +151,61 @@ const MainPage = () => {
     // console.log('🔍 디버깅 시작!')
     // console.log('원본 regionId:', regionId)
     // console.log('소문자 변환:', regionId.toLowerCase())
-    
+
     // 더 포괄적인 키 매핑 (SVG의 실제 ID와 매칭 - kr.svg 파일 기반)
     const keyMapping = {
       // 서울 - path id="KR11"
       'seoul': 'seoul', 'kr11': 'seoul', 'KR11': 'seoul', 'Seoul': 'seoul', '서울': 'seoul',
-      
+
       // 부산 - path id="KR26"
       'busan': 'busan', 'kr26': 'busan', 'KR26': 'busan', 'Busan': 'busan', '부산': 'busan',
-      
+
       // 대구 - path id="KR27"
       'daegu': 'daegu', 'kr27': 'daegu', 'KR27': 'daegu', 'Daegu': 'daegu', '대구': 'daegu',
-      
+
       // 인천 - path id="KR28"
       'incheon': 'incheon', 'kr28': 'incheon', 'KR28': 'incheon', 'Incheon': 'incheon', '인천': 'incheon',
-      
+
       // 광주 - path id="KR29"
       'gwangju': 'gwangju', 'kr29': 'gwangju', 'KR29': 'gwangju', 'Gwangju': 'gwangju', '광주': 'gwangju',
-      
+
       // 대전 - path id="KR30"
       'daejeon': 'daejeon', 'kr30': 'daejeon', 'KR30': 'daejeon', 'Daejeon': 'daejeon', '대전': 'daejeon',
-      
+
       // 울산 - path id="KR31"
       'ulsan': 'ulsan', 'kr31': 'ulsan', 'KR31': 'ulsan', 'Ulsan': 'ulsan', '울산': 'ulsan',
-      
+
       // 세종 - path id="KR50"
       'sejong': 'sejong', 'kr50': 'sejong', 'KR50': 'sejong', 'Sejong': 'sejong', '세종': 'sejong',
-      
+
       // 경기 - path id="KR41"
       'gyeonggi': 'gyeonggi', 'kr41': 'gyeonggi', 'KR41': 'gyeonggi', 'Gyeonggi': 'gyeonggi', '경기': 'gyeonggi',
-      
+
       // 강원 - path id="KR42"
       'gangwon': 'gangwon', 'kr42': 'gangwon', 'KR42': 'gangwon', 'Gangwon': 'gangwon', '강원': 'gangwon',
-      
+
       // 충북 - path id="KR43"
       'chungbuk': 'chungbuk', 'kr43': 'chungbuk', 'KR43': 'chungbuk', 'North Chungcheong': 'chungbuk', '충북': 'chungbuk',
-      
+
       // 충남 - path id="KR44"
       'chungnam': 'chungnam', 'kr44': 'chungnam', 'KR44': 'chungnam', 'South Chungcheong': 'chungnam', '충남': 'chungnam',
-      
+
       // 전북 - path id="KR45"
       'jeonbuk': 'jeonbuk', 'kr45': 'jeonbuk', 'KR45': 'jeonbuk', 'North Jeolla': 'jeonbuk', '전북': 'jeonbuk',
-      
+
       // 전남 - path id="KR46"
       'jeonnam': 'jeonnam', 'kr46': 'jeonnam', 'KR46': 'jeonnam', 'South Jeolla': 'jeonnam', '전남': 'jeonnam',
-      
+
       // 경북 - path id="KR47"
       'gyeongbuk': 'gyeongbuk', 'kr47': 'gyeongbuk', 'KR47': 'gyeongbuk', 'North Gyeongsang': 'gyeongbuk', '경북': 'gyeongbuk',
-      
+
       // 경남 - path id="KR48"
       'gyeongnam': 'gyeongnam', 'kr48': 'gyeongnam', 'KR48': 'gyeongnam', 'South Gyeongsang': 'gyeongnam', '경남': 'gyeongnam',
-      
+
       // 제주 - path id="KR49"
       'jeju': 'jeju', 'kr49': 'jeju', 'KR49': 'jeju', 'Jeju': 'jeju', '제주': 'jeju',
     }
-    
+
     // 지역명 매핑
     const regionNames = {
       'seoul': '서울특별시',
@@ -229,15 +229,15 @@ const MainPage = () => {
 
     // 키 찾기 - 더 스마트한 매칭
     let mappedKey = keyMapping[regionId.toLowerCase()]
-    
+
     // 직접 매핑이 안 되면 부분 문자열로 찾기
     if (!mappedKey) {
-      const regionKeywords = ['seoul', 'busan', 'gyeonggi', 'daegu', 'incheon', 'gwangju', 
-                             'daejeon', 'ulsan', 'sejong', 'gangwon', 'chungbuk', 'chungnam', 
-                             'jeonbuk', 'jeonnam', 'gyeongbuk', 'gyeongnam', 'jeju']
-      
+      const regionKeywords = ['seoul', 'busan', 'gyeonggi', 'daegu', 'incheon', 'gwangju',
+        'daejeon', 'ulsan', 'sejong', 'gangwon', 'chungbuk', 'chungnam',
+        'jeonbuk', 'jeonnam', 'gyeongbuk', 'gyeongnam', 'jeju']
+
       const lowerRegionId = regionId.toLowerCase()
-      
+
       for (const keyword of regionKeywords) {
         if (lowerRegionId.includes(keyword)) {
           mappedKey = keyword
@@ -246,24 +246,24 @@ const MainPage = () => {
         }
       }
     }
-    
+
     // 그래도 안 되면 기본값 사용
     if (!mappedKey) {
       mappedKey = regionId.toLowerCase()
       // console.log(`⚠️ 매핑 실패, 원본 사용: ${mappedKey}`)
     }
-    
+
     // console.log('🎯 최종 매핑된 키:', mappedKey)
     // console.log('🎯 사용 가능한 키들:', Object.keys(regionPeople))
-    
+
     const regionName = regionNames[mappedKey] || regionId
     // console.log(`${regionName} 선택됨!`)
-    
+
     // 인물 데이터 찾기
     const regionPeopleData = regionPeople[mappedKey] || []
     // console.log('🎯 찾은 인물 데이터:', regionPeopleData)
     // console.log('🎯 인물 수:', regionPeopleData.length)
-    
+
     setPeople(regionPeopleData)
     // console.log(`${regionName}의 정치인 ${regionPeopleData.length}명을 불러왔습니다!`)
   }
@@ -271,7 +271,7 @@ const MainPage = () => {
   return (
     <div className="mainpage-background">
       <h1 className="mainpage-title">지도로 확인하는 지역 정치 이슈</h1>
-      
+
       {/* 🧪 테스트 버튼들 추가 */}
       {/* <div style={{ padding: '10px', background: '#f0f0f0', margin: '10px 0', textAlign: 'center', borderRadius: '5px' }}>
         <h4>🧪 테스트 버튼 (인물 데이터 확인용):</h4>
@@ -329,7 +329,7 @@ const MainPage = () => {
             ) : (
               <div className="no-people">
                 <h3>🗺️ 지역을 선택해주세요</h3>
-                <p>지도에서 원하는 지역을 클릭하면<br/>해당 지역의 정치인 정보를 확인할 수 있습니다.</p>
+                <p>지도에서 원하는 지역을 클릭하면<br />해당 지역의 정치인 정보를 확인할 수 있습니다.</p>
               </div>
             )}
           </div>
