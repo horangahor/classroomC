@@ -32,7 +32,9 @@ const Login = () => {
                 id : formData.email,
                 pw : formData.password,
             },
-           {withCredentials : true}
+           {
+            withCredentials : true // 쿠키를 가지고 있으면 요청을 보낼 때 자동으로 해당 쿠키를 포함
+           }
           )
             .then ((res) =>{
               console.log("이건은 response",res);

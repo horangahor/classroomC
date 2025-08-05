@@ -40,7 +40,8 @@ const DeleteUser = () => {
                 .post('http://localhost:8000/deleteuser', {
                     id: formData.email,
                     pw: formData.password,
-                })
+                },
+                {withCredentials : true})
                 .then((res) => {
                     console.log("이건은 response", res);
                     alert('회원탈퇴가 완료되었습니다.');
