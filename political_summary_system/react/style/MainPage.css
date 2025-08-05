@@ -6,10 +6,6 @@
     box-sizing: border-box;
 }
 
-.mainpage-title {
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    text-align: center;
-}
 
 .mainpage-container {
     padding: 20px;
@@ -38,11 +34,13 @@
 }
 
 .mainpage-title {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     font-size: 2.5rem;
     color: #2c3e50;
     margin-bottom: 10px;
     font-weight: 700;
-    text-align: left;
+    text-align: center;
+    align-items: center;
 }
 
 .mainpage-subtitle {

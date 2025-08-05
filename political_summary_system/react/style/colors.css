@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
+
+:root {
+    /* Primary Colors - 메인 컬러 */
+    --primary-light: #BCCCDC;       /* 밝은 회색 파랑 느낌 */
+    --primary: #D9EAFD;             /* 연한 푸른빛 */
+    --primary-medium: #F8FAFC;      /* 중간 회색 */
+    --primary-dark: #EEEEEE;        /* 어두운 블루-그레이 */
+
+    /* Secondary Colors - 보조 컬러 */
+    --secondary-green: #059669;     /* 초록색 (승인, 성공) */
+    --secondary-red: #dc2626;       /* 빨간색 (경고, 오류) */
+    --secondary-orange: #ea580c;    /* 주황색 (알림, 강조) */
+    --secondary-purple: #7c3aed;    /* 보라색 (특별, VIP) */
+    --secondary-yellow: #eab308;    /* 노란색 (주의, 경고) */
+    --secondary-cyan: #06b6d4;      /* 시안색 (정보, 링크) */
+    --secondary-pink: #ec4899;      /* 분홍색 (특별, 이벤트) */
+    --secondary-indigo: #6366f1;    /* 인디고 (프리미엄, 고급) */
+    
+    /* Neutral Colors - 중성 컬러 */
+    --gray-50: #f9fafb;             /* 가장 밝은 회색 */
+    --gray-100: #f3f4f6;            /* 배경용 */
+    --gray-200: #e5e7eb;            /* 테두리 */
+    --gray-300: #d1d5db;            /* 비활성 */
+    --gray-400: #9ca3af;            /* 보조 텍스트 */
+    --gray-500: #6b7280;            /* 일반 텍스트 */
+    --gray-600: #4b5563;            /* 진한 텍스트 */
+    --gray-700: #374151;            /* 제목 */
+    --gray-800: #1f2937;            /* 헤딩 */
+    --gray-900: #111827;            /* 가장 진한 */
+    
+    /* Political Colors - 정치 관련 컬러 */
+    --political-blue: #1e40af;      /* 보수 정당 */
+    --political-red: #dc2626;       /* 진보 정당 */
+    --political-green: #16a34a;     /* 환경 정당 */
+    --political-purple: #7c2d12;    /* 중도 정당 */
+    --political-orange: #ea580c;    /* 개혁 정당 */
+    --political-navy: #1e3a8a;      /* 전통 보수 */
+    --political-crimson: #991b1b;   /* 진보 좌파 */
+    --political-emerald: #047857;   /* 녹색 정당 */
+    
+    /* Background Colors - 배경 컬러 */
+    --bg-primary: #ffffff;          /* 메인 배경 */
+    --bg-secondary: #f8fafc;        /* 보조 배경 */
+    --bg-tertiary: #f1f5f9;         /* 3차 배경 */
+    --bg-accent: #eff6ff;           /* 강조 배경 */
+    --bg-muted: #f9fafb;            /* 비활성 배경 */
+    --bg-overlay: rgba(15, 23, 42, 0.8); /* 오버레이 배경 */
+    
+    /* Text Colors - 텍스트 컬러 */
+    --text-primary: #0f172a;        /* 주 텍스트 */
+    --text-secondary: #475569;      /* 보조 텍스트 */
+    --text-tertiary: #64748b;       /* 3차 텍스트 */
+    --text-accent: #1e40af;         /* 강조 텍스트 */
+    --text-muted: #94a3b8;          /* 비활성 텍스트 */
+    --text-inverse: #ffffff;        /* 역방향 텍스트 */
+    --text-link: #2563eb;           /* 링크 텍스트 */
+    --text-link-hover: #1d4ed8;     /* 링크 호버 */
+    
+    /* Border Colors - 테두리 컬러 */
+    --border-light: #e2e8f0;        /* 밝은 테두리 */
+    --border-medium: #cbd5e1;       /* 중간 테두리 */
+    --border-dark: #94a3b8;         /* 진한 테두리 */
+    --border-accent: #3b82f6;       /* 강조 테두리 */
+    --border-success: #10b981;      /* 성공 테두리 */
+    --border-warning: #f59e0b;      /* 경고 테두리 */
+    --border-error: #ef4444;        /* 오류 테두리 */
+    
+    /* Shadow Colors - 그림자 컬러 */
+    --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+    
+    /* Hover & Focus States - 상호작용 컬러 */
+    --hover-bg: #f8fafc;            /* 호버 배경 */
+    --hover-accent: #1d4ed8;        /* 호버 강조 */
+    --focus-ring: #3b82f6;          /* 포커스 링 */
+    --focus-ring-offset: #ffffff;   /* 포커스 링 오프셋 */
+    --active-bg: #e2e8f0;           /* 활성 배경 */
+    
+    /* Status Colors - 상태 컬러 */
+    --success: #10b981;             /* 성공 */
+    --success-light: #d1fae5;       /* 성공 밝음 */
+    --success-dark: #047857;        /* 성공 어둠 */
+    --warning: #f59e0b;             /* 경고 */
+    --warning-light: #fef3c7;       /* 경고 밝음 */
+    --warning-dark: #d97706;        /* 경고 어둠 */
+    --error: #ef4444;               /* 오류 */
+    --error-light: #fee2e2;         /* 오류 밝음 */
+    --error-dark: #dc2626;          /* 오류 어둠 */
+    --info: #06b6d4;                /* 정보 */
+    --info-light: #cffafe;          /* 정보 밝음 */
+    --info-dark: #0891b2;           /* 정보 어둠 */
+    
+    /* Gradient Colors - 그라데이션 */
+    --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --gradient-success: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --gradient-warning: linear-gradient(135deg, #fdbb2d 0%, #22c1c3 100%);
+    --gradient-political: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+    
+    /* Spacing - 간격 (rem 단위) */
+    --space-xs: 0.25rem;    /* 4px */
+    --space-sm: 0.5rem;     /* 8px */
+    --space-md: 1rem;       /* 16px */
+    --space-lg: 1.5rem;     /* 24px */
+    --space-xl: 2rem;       /* 32px */
+    --space-2xl: 3rem;      /* 48px */
+    --space-3xl: 4rem;      /* 64px */
+    
+    /* Border Radius - 모서리 둥글기 */
+    --radius-xs: 0.125rem;  /* 2px */
+    --radius-sm: 0.25rem;   /* 4px */
+    --radius-md: 0.375rem;  /* 6px */
+    --radius-lg: 0.5rem;    /* 8px */
+    --radius-xl: 0.75rem;   /* 12px */
+    --radius-2xl: 1rem;     /* 16px */
+    --radius-full: 9999px;  /* 완전한 원 */
+    
+    /* Typography - 타이포그래피 */
+    --font-size-xs: 0.75rem;    /* 12px */
+    --font-size-sm: 0.875rem;   /* 14px */
+    --font-size-base: 1rem;     /* 16px */
+    --font-size-lg: 1.125rem;   /* 18px */
+    --font-size-xl: 1.25rem;    /* 20px */
+    --font-size-2xl: 1.5rem;    /* 24px */
+    --font-size-3xl: 1.875rem;  /* 30px */
+    --font-size-4xl: 2.25rem;   /* 36px */
+    
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extrabold: 800;
+    
+    --line-height-tight: 1.25;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.75;
+    
+    /* Transitions - 전환 효과 */
+    --transition-fast: 150ms ease;
+    --transition-normal: 300ms ease;
+    --transition-slow: 500ms ease;
+    
+    /* Z-index - 레이어 순서 */
+    --z-dropdown: 1000;
+    --z-sticky: 1020;
+    --z-fixed: 1030;
+    --z-modal-backdrop: 1040;
+    --z-modal: 1050;
+    --z-popover: 1060;
+    --z-tooltip: 1070;
+    --z-toast: 1080;
+}
+
+/* 기본 폰트 설정 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    font-style: normal;
+}
+
+/* 다크모드 지원 */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-primary: #0f172a;
+        --bg-secondary: #1e293b;
+        --bg-tertiary: #334155;
+        --text-primary: #f8fafc;
+        --text-secondary: #cbd5e1;
+        --text-tertiary: #94a3b8;
+        --border-light: #334155;
+        --border-medium: #475569;
+        --border-dark: #64748b;
+    }
+}

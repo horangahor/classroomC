@@ -1,6 +1,18 @@
+@import './colors.css';
+
+.background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .people-container {
+  width: 60%;
   display: flex;
   flex-wrap: wrap;
+  border-radius: 20px;
+  background-color: var(--bg-secondary);
+  margin-top: 20px;
   gap: 1.5rem;
   justify-content: center;
   padding: 2rem 0;
