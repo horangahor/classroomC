@@ -1,4 +1,5 @@
 const { loginUser, registerUser, updateuser, deleteuser } = require('../database/userQuery');
+const jwt = require("jsonwebtoken");
 
 // 회원가입
 async function join(req) {
