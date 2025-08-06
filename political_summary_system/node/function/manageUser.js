@@ -1,4 +1,5 @@
 const { loginUser, registerUser, updateuser, deleteuser } = require('../database/userQuery');
+const jwt = require("jsonwebtoken");
 
 // 회원가입
 async function join(req) {
@@ -8,12 +9,6 @@ async function join(req) {
         const result = await registerUser(id, pw, name, phnum);
 
         console.log('result : ', result);
-    
-        // if (result > 0) {
-        // res.redirect('/login');
-        // } else {
-        // res.redirect('/join');
-        // }
 }
 
 // 로그인 기능 + 캐시 기능 추가 예정
@@ -21,8 +16,23 @@ async function login(req) {
     
     const { id, pw } = req.body;
     const [result] = await loginUser(id, pw);
-    console.log(result);
+    // console.log(result);
+
+
     return result;
+
+
+    // 토큰 발급
+    // if (result){
+    //     const token = jwt.sign(
+    //         { id : result.uid , name : result.uname , phnum : result.uphnum },
+    //         "mysecretkey",
+    //         { expiresIn : "5m" });
+    //     return token;
+    // }
+    // else{
+    //     return result;
+    // }
 }
 
 // 회원정보 수정 기능

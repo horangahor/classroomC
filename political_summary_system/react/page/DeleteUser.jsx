@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import '../style/DeleteUser.css'
 import axios from 'axios'
+import { getSession } from '../auth/auth'
 
 const DeleteUser = () => {
     const navigate = useNavigate()
@@ -40,7 +41,9 @@ const DeleteUser = () => {
                 .post('http://localhost:8000/deleteuser', {
                     id: formData.email,
                     pw: formData.password,
-                })
+                },
+                // {withCredentials : true}
+                )
                 .then((res) => {
                     console.log("이건은 response", res);
                     alert('회원탈퇴가 완료되었습니다.');
