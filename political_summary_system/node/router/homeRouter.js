@@ -1,21 +1,17 @@
 const express = require('express');
 const {join , login, update, remove} = require("../function/manageUser");
+const sessionStore = require("../server");
 const router = express.Router();
 
+function getSession(req, res){
+    console.log(req.session.user);
+    res.status(200).json(req.session.user);
+}
+
+
 // main 페이지
-router.get('/' , async (req, res)=>{
-    
-    // const csvData = await csvReader.readFile();
-    // console.log("get : ", csvData);
+router.get('/' , getSession);
 
-
-    // for(i=0;i<csvData.length;i++){
-    //     insertMember(csvData[i].name,csvData[i].age,csvData[i].position,csvData[i].politics );
-    // }
-
-
-    res.send("hello from server!");
-})
 
 router.post('/join', async (req, res) => {
     await join(req);
@@ -33,8 +29,11 @@ router.post('/login', async (req, res) => {
     if(result){
     req.session.user = {
             id : result.uid,
-            name : result.uname
+            name : result.uname,
+            isLogin : true // 필요한가 ?
         }
+        console.log(req.session.user);
+        
         res.status(200).send('로그인 성공');
     }
     else {
@@ -52,11 +51,6 @@ router.post('/login', async (req, res) => {
 })
 
 // router.get('/', getSession);
-
-function getSession(req, res){
-    res.json(req.session.user);
-}
-
 
 // 마이페이지
 router.get('/mypage', async (req, res) => {
