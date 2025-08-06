@@ -50,6 +50,17 @@ router.post('/login', async (req, res) => {
     // }
 })
 
+router.post('/logout', async (req,res)=>{
+    req.session.destroy(err => {
+        if(err) {
+            return res.status(500).send("이유 모름");
+        }
+        res.clearCookie('connect.sid');
+        res.status(200).send("성공");
+    })
+})
+
+
 // router.get('/', getSession);
 
 // 마이페이지

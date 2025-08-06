@@ -13,6 +13,7 @@ export async function getSession() {
 // 로그아웃 함수 추가
 export async function logout() {
     try {
+        // 라우터가 받아서 session 정보를 보내줘야함 ?
         const response = await axios.post('http://localhost:8000/logout', {}, {
             withCredentials: true
         });
