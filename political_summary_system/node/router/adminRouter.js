@@ -1,3 +1,6 @@
+// 프론트 서버의 /upload를 통해 접근
+
+
 const express = require('express');
 const multer = require('multer');
 const fs = require('fs');
