@@ -1,3 +1,5 @@
+@import '../style/colors.css';
+
 /* 전체 페이지 레이아웃 스타일 */
 .upload-page-container {
   display: flex;
@@ -5,9 +7,8 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-color: #f3f4f6; /* bg-gray-100 */
-  padding: 1rem; /* p-4 */
-  /* font-family: 'Inter', sans-serif; 폰트 임포트와 함께 제거됨 */
+  background-color: var(--bg-secondary);
+  padding: var(--space-md);
 }
 
 /* 파일 업로드 카드 스타일 */

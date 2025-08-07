@@ -16,11 +16,11 @@
 
 /* 뉴스 제목 */
 .news-h1 {
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  font-size: 2.5rem;
-  color: #2c3e50;
+  background: var(--gradient-secondary);
+  font-size: var(--font-size-4xl);
+  color: var(--text-primary);
   margin-bottom: var(--space-lg);
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   text-align: center;
   padding: var(--space-lg);
   border-radius: var(--radius-xl);

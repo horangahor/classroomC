@@ -1,3 +1,5 @@
+@import './colors.css';
+
 * {
     margin: 0;
     padding: 0;
@@ -14,144 +16,144 @@
 }
 
 .delete-card {
-    background: white;
-    padding: 40px;
-    border-radius: 20px;
+    background: var(--bg-primary);
+    padding: var(--space-2xl);
+    border-radius: var(--radius-2xl);
     /* box-shadow 제거 */
     width: 100%;
     max-width: 500px;
 }
 
 .delete-card h2 {
-    font-size: 2rem;
-    color: #dc3545;
-    margin-bottom: 10px;
-    font-weight: 700;
+    font-size: var(--font-size-3xl);
+    color: var(--error);
+    margin-bottom: var(--space-sm);
+    font-weight: var(--font-weight-bold);
     text-align: center;
 }
 
 .subtitle {
-    color: #6c757d;
-    margin-bottom: 30px;
-    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-2xl);
+    font-size: var(--font-size-base);
     text-align: center;
 }
 
 .subtitle.danger {
-    color: #dc3545;
-    font-weight: 500;
+    color: var(--error);
+    font-weight: var(--font-weight-medium);
 }
 
 .warning-box {
-    background: #fff3cd;
-    border: 2px solid #ffeaa7;
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 30px;
+    background: var(--warning-light);
+    border: 2px solid var(--warning);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-2xl);
 }
 
 .warning-box h3 {
-    color: #856404;
-    margin-bottom: 15px;
-    font-size: 1.1rem;
+    color: var(--warning-dark);
+    margin-bottom: var(--space-lg);
+    font-size: var(--font-size-lg);
 }
 
 .warning-box ul {
-    color: #856404;
-    padding-left: 20px;
+    color: var(--warning-dark);
+    padding-left: var(--space-lg);
 }
 
 .warning-box li {
-    margin-bottom: 8px;
-    line-height: 1.5;
+    margin-bottom: var(--space-sm);
+    line-height: var(--line-height-normal);
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: var(--space-lg);
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 8px;
-    color: #2c3e50;
-    font-weight: 500;
-    font-size: 0.9rem;
+    margin-bottom: var(--space-sm);
+    color: var(--text-primary);
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-sm);
 }
 
 .form-group input,
 .form-group textarea {
     width: 100%;
-    padding: 12px 15px;
-    border: 2px solid #e9ecef;
-    border-radius: 10px;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    background-color: #f8f9fa;
+    padding: var(--space-md) var(--space-lg);
+    border: 2px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    font-size: var(--font-size-base);
+    transition: all var(--transition-normal);
+    background-color: var(--bg-muted);
     font-family: inherit;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #dc3545;
-    background-color: white;
+    border-color: var(--error);
+    background-color: var(--bg-primary);
     /* box-shadow 제거 */
 }
 
 .form-group small {
     display: block;
-    margin-top: 5px;
-    color: #6c757d;
-    font-size: 0.8rem;
+    margin-top: var(--space-xs);
+    color: var(--text-secondary);
+    font-size: var(--font-size-xs);
 }
 
 .form-group small strong {
-    color: #dc3545;
+    color: var(--error);
 }
 
 .button-group {
     display: flex;
-    gap: 15px;
-    margin-top: 30px;
+    gap: var(--space-lg);
+    margin-top: var(--space-2xl);
 }
 
 .delete-btn {
     flex: 1;
-    padding: 15px;
-    background: #dc3545;
-    color: white;
+    padding: var(--space-lg);
+    background: var(--error);
+    color: var(--text-inverse);
     border: none;
-    border-radius: 10px;
-    font-size: 1rem;
-    font-weight: 500;
+    border-radius: var(--radius-lg);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all var(--transition-normal);
 }
 
 .delete-btn:hover {
-    background: #c82333;
+    background: var(--error-dark);
     transform: translateY(-2px);
     /* box-shadow 제거 */
 }
 
 .cancel-btn {
     flex: 1;
-    padding: 15px;
-    background: #6c757d;
-    color: white;
+    padding: var(--space-lg);
+    background: var(--gray-500);
+    color: var(--text-inverse);
     text-decoration: none;
-    border-radius: 10px;
-    font-size: 1rem;
-    font-weight: 500;
+    border-radius: var(--radius-lg);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
     text-align: center;
-    transition: all 0.3s ease;
+    transition: all var(--transition-normal);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .cancel-btn:hover {
-    background: #5a6268;
+    background: var(--gray-600);
     transform: translateY(-2px);
     /* box-shadow 제거 */
 }

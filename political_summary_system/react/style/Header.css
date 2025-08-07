@@ -207,8 +207,8 @@
 /* 다크모드 지원 */
 @media (prefers-color-scheme: dark) {
     :root {
-        --active-bg: #1e3a8a;
-        --active-border: #3b82f6;
-        --active-text: #93c5fd;
+        --active-bg: var(--political-navy);
+        --active-border: var(--political-blue);
+        --active-text: var(--primary);
     }
 }
