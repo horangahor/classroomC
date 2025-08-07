@@ -71,19 +71,16 @@ const UpdateUser = () => {
             return
         }
 
-        // 디버깅: formData와 axios 요청 데이터 콘솔 출력
-        console.log('formData:', formData);
-        const requestData = {
-            email: formData.email,
-            name: formData.name,
-            phone: formData.phone,
-            currentPassword: formData.currentPassword,
-            newPassword: formData.newPassword,
-        };
-        console.log('axios 요청 데이터:', requestData);
         
         axios
-            .post('http://localhost:8000/updateuser', requestData)
+            .post('http://localhost:8000/updateuser', {
+                // 데이터 감싸서 보낼 때 변수명 통일이 안되어있는 문제
+                id : formData.email,
+                name : formData.name,
+                phnum : formData.phone,
+                cpw: formData.currentPassword,
+                npw: formData.newPassword,
+            })
             .then ((res) =>{
                 // 수정 처리 로직 (실제로는 API 호출)
                 alert(res.data.message || '회원정보가 수정되었습니다!')
