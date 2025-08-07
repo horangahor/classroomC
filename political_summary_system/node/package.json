@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {
   "name": "node",
   "version": "1.0.0",
@@ -20,27 +19,3 @@
     "nodemon": "^3.1.10"
   }
 }
-=======
-{
-  "name": "node",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "dev": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "csv-parser": "^3.2.0",
-    "express": "^5.1.0",
-    "multer": "^2.0.2",
-    "mysql2": "^3.14.2",
-    "nodemon": "^3.1.10"
-  },
-  "keywords": [],
-  "description": ""
-}
->>>>>>> 1e8e7ab (임시)

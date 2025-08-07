@@ -1,10 +1,7 @@
 const express = require('express');
 const {join , login, update, remove} = require("../function/manageUser");
-<<<<<<< HEAD
 const {getNewsList} = require("../database/newsQuery");
 const sessionStore = require("../server");
-=======
->>>>>>> 405ce95 (회원 정보 수정 기능 추가)
 const router = express.Router();
 
 function getSession(req, res){
