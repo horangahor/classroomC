@@ -5,7 +5,7 @@ const sessionStore = require("../server");
 const router = express.Router();
 
 function getSession(req, res){
-    console.log("homeRouter의 getSession 함수 :" + req.session.user);
+    // console.log("homeRouter의 getSession 함수 :" + req.session.user);
     res.status(200).json(req.session.user);
 }
 

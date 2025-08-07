@@ -2,6 +2,6 @@ const express = require("express");
 const router = express.Router();
 const { getMemberInfo } = require("../function/manageMember");
 
-router.get("/member/:id", getMemberInfo);
+router.get("/members", getMemberInfo);
 
 module.exports = router;
