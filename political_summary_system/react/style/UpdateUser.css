@@ -101,7 +101,8 @@
 .cancel-btn {
     flex: 1;
     padding: var(--space-lg);
-    background: var(--custom-color-white);
+    background: var(--custom-color-white) !important;
+    color: black !important;
     text-decoration: none;
     border: 2px solid var(--border-light);
     border-radius: var(--radius-lg);
