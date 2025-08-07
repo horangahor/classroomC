@@ -18,7 +18,6 @@
     padding: 12px 24px;
     background: var(--bg-primary);
     border-bottom: 2px solid var(--border-light);
-    /* box-shadow 제거 */
     position: fixed; /* fixed로 변경 */
     top: 0; /* 상단에 고정 */
     left: 0; /* 좌측부터 시작 */
