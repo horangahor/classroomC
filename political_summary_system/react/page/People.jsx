@@ -59,7 +59,7 @@ const People = () => {
         </div>
       </div>
     </div>
-  )
+  ) 
 }
 
 export default People
