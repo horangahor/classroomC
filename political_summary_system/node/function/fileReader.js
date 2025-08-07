@@ -40,10 +40,13 @@ function csvToArray(str , delimiter = ","){
     for(i = 0 ; i< rows.length; i++){
         const record =rows[i].split(delimiter);
         const obj = {
-            name : record[0],
-            age : record[1],
-            position : record[2],
-            politics : record[3]
+            id : record[0],
+            name : record[1],
+            age : record[2],
+            location : record[3],
+            affiliation : record[4],
+            profile_image_url : record[5],
+            pledge : record[6]
         }
         arr.push(obj);
     }
