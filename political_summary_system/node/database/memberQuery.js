@@ -1,13 +1,15 @@
 const pool = require("./db");
 
-async function insertMember(name, age, position, politics){
+async function insertMember(id, name, age, location, affiliation, profile_image_url, pledge){
     const conn = await pool.getConnection();
 
     try{
-        const [result] = await conn.execute("insert into member(name,age,position,politics) values(?,?,?,?)", 
-            [name, age, position, politics]
+        const [result] = await conn.execute("insert into member(id,name,age,location, affiliation, profile_image_url, pledge) values(?, ?, ?, ?, ?, ?, ?)", 
+            [id, name, age, location, affiliation, profile_image_url, pledge]
         );
-        // console.log(result);
+        console.log("insertMember의");
+        console.log(result);
+        
         return result.affectedRows;
     }
     catch{

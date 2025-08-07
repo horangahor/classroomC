@@ -85,6 +85,7 @@ import { getNews } from '../auth/newsreq';
 //     }
 // ];
 
+
 // 정당 정보 (간단하게)
 const partyList = [
     { name: '더불어민주당', url: 'https://theminjoo.kr/main/' },
