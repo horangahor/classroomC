@@ -73,7 +73,6 @@ router.get('/mypage', async (req, res) => {
 
 // 회원 정보 수정
 router.post('/updateuser', async (req, res) => {
-<<<<<<< HEAD
     // 이름이 달라서 안받아짐
     const { id, name, phnum, cpw, npw } = req.body;
     
@@ -84,25 +83,6 @@ router.post('/updateuser', async (req, res) => {
         res.send("hi");
         }
     catch (err) {
-=======
-    // 디버깅: req.body 전체 출력
-    console.log('req.body:', req.body);
-    const { id, name, phnum, cpw, npw } = req.body;
-
-    try {
-        // manageUser.js의 update 함수를 호출하고, 반환된 결과를 받습니다.
-        const result = await update(id, name, phnum, cpw, npw);
-
-        // if (result.success) {
-        //     // 성공했을 때의 응답 처리
-        //     res.redirect('/mypage');
-        // } else {
-        //     // 실패했을 때의 응답 처리
-        //     // res.status(400).send(result.message);
-        //     res.redirect('/updateuser?error=' + encodeURIComponent(result.message));
-        // }
-    } catch (err) {
->>>>>>> 405ce95 (회원 정보 수정 기능 추가)
         console.error("라우터에서 회원정보 수정 오류:", err);
         res.status(500).send("서버 오류가 발생했습니다.");
     }
@@ -121,15 +101,12 @@ router.get('/deleteuser', async (req, res) => {
         await remove(req);
         res.send("회원 탈퇴 페이지입니다.");
 });
-<<<<<<< HEAD
 
 
 router.get('/getNews', async (req,res)=> {
     const newsList = await getNewsList(req.query.page);
     res.json(newsList);
 })
-=======
->>>>>>> 405ce95 (회원 정보 수정 기능 추가)
 
 
 module.exports = router;
