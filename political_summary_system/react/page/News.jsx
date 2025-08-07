@@ -1,99 +1,192 @@
-import React, { useState } from 'react';
-import '../style/News.css'; // 스타일 파일 불러오기
+import React, { useEffect, useState } from 'react';
+import '../style/News.css';
+import { getNews } from '../auth/newsreq';
 
-// 예시 뉴스 데이터 (나중엔 서버에서 받아올 수 있음)
-const newsData = [
-    {
-        title: '정치 뉴스 제목 1',
-        summary: '요약된 뉴스 내용입니다.',
-        imageUrl: 'https://via.placeholder.com/150',
-        link: 'https://www.google.com/'
-    },
-    {
-        title: '정치 뉴스 제목 2',
-        summary: '요약된 뉴스 내용입니다.',
-        imageUrl: 'https://via.placeholder.com/150',
-        link: 'https://www.google.com/'
-    },
-    
-    // ... 더 많은 뉴스들이 여기에 들어감
+// 예시 뉴스 데이터
+
+// getNews와 page 번호 아래 useState currentPage를 인수로 주면 해당페이지 1 ~ 9 , 10 ~ 18 이런식으로 불러옴
+// const newsList = getNews(1);
+// console.log(newsList);
+
+
+
+// const newsData = [
+//     {
+//         title: '정치 뉴스 제목 1',
+//         summary: '요약된 뉴스 내용입니다.',
+//         imageUrl: 'https://via.placeholder.com/150',
+//         link: 'https://www.google.com/'
+//     },
+//     {
+//         title: '정치 뉴스 제목 2',
+//         summary: '요약된 뉴스 내용입니다.',
+//         imageUrl: 'https://via.placeholder.com/150',
+//         link: 'https://www.google.com/'
+//     },
+//     {
+//         title: '정치 뉴스 제목 3',
+//         summary: '요약된 뉴스 내용입니다. 더 긴 요약 내용으로 테스트해보겠습니다.',
+//         imageUrl: 'https://via.placeholder.com/150',
+//         link: 'https://www.google.com/'
+//     },
+//     {
+//         title: '정치 뉴스 제목 4',
+//         summary: '요약된 뉴스 내용입니다.',
+//         imageUrl: 'https://via.placeholder.com/150',
+//         link: 'https://www.google.com/'
+//     },
+//     {
+//         title: '정치 뉴스 제목 5',
+//         summary: '요약된 뉴스 내용입니다.',
+//         imageUrl: 'https://via.placeholder.com/150',
+//         link: 'https://www.google.com/'
+//     },
+//     {
+//         title: '정치 뉴스 제목 6',
+//         summary: '요약된 뉴스 내용입니다.',
+//         imageUrl: 'https://via.placeholder.com/150',
+//         link: 'https://www.google.com/'
+//     },
+//     {
+//         title: '정치 뉴스 제목 7',
+//         summary: '요약된 뉴스 내용입니다.',
+//         imageUrl: 'https://via.placeholder.com/150',
+//         link: 'https://www.google.com/'
+//     },
+//     {
+//         title: '정치 뉴스 제목 8',
+//         summary: '요약된 뉴스 내용입니다.',
+//         imageUrl: 'https://via.placeholder.com/150',
+//         link: 'https://www.google.com/'
+//     },
+//     {
+//         title: '정치 뉴스 제목 9',
+//         summary: '요약된 뉴스 내용입니다.',
+//         imageUrl: 'https://via.placeholder.com/150',
+//         link: 'https://www.google.com/'
+//     },
+//     {
+//         title: '정치 뉴스 제목 10',
+//         summary: '요약된 뉴스 내용입니다.',
+//         imageUrl: 'https://via.placeholder.com/150',
+//         link: 'https://www.google.com/'
+//     },
+//     {
+//         title: '정치 뉴스 제목 11',
+//         summary: '요약된 뉴스 내용입니다.',
+//         imageUrl: 'https://via.placeholder.com/150',
+//         link: 'https://www.google.com/'
+//     },
+//     {
+//         title: '정치 뉴스 제목 12',
+//         summary: '요약된 뉴스 내용입니다.',
+//         imageUrl: 'https://via.placeholder.com/150',
+//         link: 'https://www.google.com/'
+//     }
+// ];
+
+
+// 정당 정보 (간단하게)
+const partyList = [
+    { name: '더불어민주당', url: 'https://theminjoo.kr/main/' },
+    { name: '국민의힘', url: 'https://www.peoplepowerparty.kr/' },
+    { name: '개혁신당', url: 'https://rallypoint.kr/main' },
+    { name: '진보당', url: 'https://jinboparty.com/main/' },
+    { name: '조국혁신당', url: 'https://rebuildingkoreaparty.kr/' },
+    { name: '기본소득당', url: 'https://www.basicincomeparty.kr/' },
+    { name: '사회민주당', url: 'https://www.samindang.kr/' }
 ];
 
 const News = () => {
-    const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태 관리
-    const newsPerPage = 6; // 한 페이지에 보여줄 뉴스 개수
+    const [newsData, setNewsData] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const newsPerPage = 9; // 6 → 9로 변경! 🎯
 
-    // 현재 페이지에서 보여줄 뉴스의 시작과 끝 인덱스 계산
+    useEffect(() => {
+        getNews(1).then(setNewsData);
+    }, []);
+
+    // 현재 페이지에서 보여줄 뉴스 계산
     const indexOfLastNews = currentPage * newsPerPage;
     const indexOfFirstNews = indexOfLastNews - newsPerPage;
-    const currentNews = newsData.slice(indexOfFirstNews, indexOfLastNews); // 현재 페이지 뉴스 배열
+    const currentNews = newsData.slice(indexOfFirstNews, indexOfLastNews);
 
-    const totalPages = Math.ceil(newsData.length / newsPerPage); // 전체 페이지 수 계산
+    const totalPages = Math.ceil(newsData.length / newsPerPage);
 
-    // 페이지 버튼 클릭 시 페이지 번호 변경
+    // 페이지 버튼 클릭
     const handleClick = (pageNum) => setCurrentPage(pageNum);
 
-    // 정당별 버튼 클릭 시 해당 정당 공식 홈페이지 새 탭으로 열기
+    // 정당 공식 홈페이지 이동
     const handlePartyClick = (url) => {
         window.open(url, '_blank');
     };
 
+    // 뉴스 카드 클릭
+    const handleNewsClick = (url) => {
+        window.open(url, '_blank');
+    };
+
     return (
-        <div className='news-container'>
-            <h2 className='news-container h2'>주요 정치 이슈 정리</h2>
-            <div className="news-grid-wrapper">
-                {/* 뉴스 카드 리스트 */}
-                <div className="news-grid">
-                    {currentNews.map((news, idx) => (
-                        <div className="news-card" key={idx}>
-                            <img src={news.imageUrl} alt="썸네일" />
-                            <h4>{news.title}</h4>
-                            <p>{news.summary}</p>
+        <div className="news-page">
+            <h1 className='news-h1'>주요 정치 이슈 정리</h1>
+            
+            <div className="news-layout">
+                {/* 메인 콘텐츠 영역 - 뉴스 카드들 */}
+                <div className="news-main-content">
+                    {/* 뉴스 카드 그리드 - 3×3 = 9개 */}
+                    <div className="news-grid">
+                        {currentNews.map((news, idx) => (
+                            <div 
+                                className="news-card" 
+                                key={idx}
+                                onClick={() => handleNewsClick(news.link)}
+                                style={{ cursor: 'pointer' }}
+                            >
+                                {/* 좌측: 제목과 요약 */}
+                                <div className="news-content">
+                                    <h4 className="news-title">{news.title}</h4>
+                                    <p className="news-summary">{news.summary}</p>
+                                </div>
+                                
+                                {/* 우측: 이미지 */}
+                                <div className="news-image">
+                                    <img src={news.imageUrl} alt="뉴스 썸네일" />
+                                </div>
+                            </div>
+                        ))}
+                    </div>
 
-                            {/* 더보기 클릭 시 기사 원문 링크로 이동 */}
-                            <button onClick={() => window.open(news.link, '_blank')}>
-                                더보기
-                            </button>
+                    {/* 페이지네이션 */}
+                    {totalPages > 1 && (
+                        <div className="pagination">
+                            {Array.from({ length: totalPages }, (_, i) => (
+                                <button
+                                    key={i}
+                                    onClick={() => handleClick(i + 1)}
+                                    className={currentPage === i + 1 ? 'active' : ''}
+                                >
+                                    {i + 1}
+                                </button>
+                            ))}
                         </div>
-                    ))}
+                    )}
                 </div>
-            </div>
-            {/* 페이지네이션 */}
-            <div className="pagination">
-                {Array.from({ length: totalPages }, (_, i) => (
-                    <button
-                        key={i}
-                        onClick={() => handleClick(i + 1)}
-                        style={{ fontWeight: currentPage === i + 1 ? 'bold' : 'normal' }}
-                    >
-                        {i + 1}
-                    </button>
-                ))}
-            </div>
 
-            {/* 정당 버튼: 클릭하면 해당 정당 공식 홈페이지로 이동 */}
-            <div className="party-buttons">
-                <button onClick={() => handlePartyClick('https://theminjoo.kr/main/')}>
-                    더불어민주당
-                </button>
-                <button onClick={() => handlePartyClick('https://www.peoplepowerparty.kr/')}>
-                    국민의힘
-                </button>
-                <button onClick={() => handlePartyClick('https://rallypoint.kr/main')}>
-                    개혁신당
-                </button>
-                <button onClick={() => handlePartyClick('https://jinboparty.com/main/')}>
-                    진보당
-                </button>
-                 <button onClick={() => handlePartyClick('https://rebuildingkoreaparty.kr/')}>
-                    조국혁신당
-                </button>
-                 <button onClick={() => handlePartyClick('https://www.basicincomeparty.kr/')}>
-                    기본소득당
-                </button>
-                 <button onClick={() => handlePartyClick('https://www.samindang.kr/')}>
-                    사회민주당
-                </button>
+                {/* 우측 사이드바 - 정당 목록만 단순하게 */}
+                <div className="party-sidebar">
+                    <h3 className="sidebar-title">정당 목록</h3>
+                    <div className="party-simple-list">
+                        {partyList.map((party, idx) => (
+                            <button 
+                                key={idx}
+                                className="party-simple-btn"
+                                onClick={() => handlePartyClick(party.url)}
+                            >
+                                {party.name}
+                            </button>
+                        ))}
+                    </div>
+                </div>
             </div>
         </div>
     );

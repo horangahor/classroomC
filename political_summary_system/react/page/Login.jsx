@@ -1,12 +1,18 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import '../style/Login.css'
+import axios from 'axios'
+import { getSession } from '../auth/auth'
+import { useAuth } from '../contexts/AuthContext'
 
 const Login = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   })
+
+  const nav = useNavigate();
+  const { login, loading } = useAuth();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -16,16 +22,22 @@ const Login = () => {
     }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    
+
     if (!formData.email || !formData.password) {
       alert('이메일과 비밀번호를 모두 입력해주세요.')
       return
     }
+    const result = await login(formData)
 
-    console.log('로그인 데이터:', formData)
-    alert('로그인 성공!')
+    if (result.success) {
+      alert(result.message)
+      nav('/')
+    } else {
+      alert(result.message)
+    }
+
   }
 
   return (
@@ -57,8 +69,8 @@ const Login = () => {
             />
           </div>
 
-          <button type="submit" className="login-button">
-            로그인
+          <button type="submit" className="login-button" disabled={loading}>
+            {loading ? '로그인 중...' : '로그인'}
           </button>
         </form>
 

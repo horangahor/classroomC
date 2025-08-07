@@ -1,25 +1,26 @@
-@font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
+@import './colors.css';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     min-height: 100vh;
-    background-color: #f5f5f5;
-    font-family: 'Pretendard-Regular', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-secondary);
     padding: 20px;
+    padding-top: 90px;
 }
 
 .login-form {
-    background: white;
+    background: var(--bg-primary);
     padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--border-light);
     width: 100%;
     max-width: 400px;
 }
@@ -27,9 +28,9 @@
 .login-form h2 {
     text-align: center;
     margin-bottom: 30px;
-    color: #333;
-    font-size: 28px;
-    font-weight: 600;
+    color: var(--text-primary);
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
 }
 
 .input-group {
@@ -39,71 +40,54 @@
 .input-group label {
     display: block;
     margin-bottom: 8px;
-    color: #555;
-    font-weight: 500;
-    font-size: 14px;
+    color: var(--text-secondary);
+    font-weight: var(--font-weight-medium);
 }
 
 .input-group input {
     width: 100%;
-    padding: 12px 15px;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    font-size: 16px;
-    transition: all 0.3s ease;
-    box-sizing: border-box;
+    padding: 12px;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    transition: border-color 0.2s ease;
 }
 
 .input-group input:focus {
     outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
-}
-
-.input-group input::placeholder {
-    color: #aaa;
+    border-color: var(--political-blue);
+    /* box-shadow 제거 */
 }
 
 .login-button {
     width: 100%;
-    padding: 15px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 600;
+    padding: 12px;
+    border: 2px solid var(--border-light);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
     cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 10px;
+    background: var(--custom-color-white)
 }
 
 .login-button:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
-}
-
-.login-button:active {
-    transform: translateY(0);
+    background: var(--primary-light);
 }
 
 .join-link {
     text-align: center;
-    margin-top: 25px;
-    padding-top: 20px;
-    border-top: 1px solid #eee;
+    margin-top: 20px;
 }
 
 .join-link p {
-    color: #666;
-    font-size: 14px;
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
 }
 
 .join-link a {
-    color: #007bff;
+    color: var(--political-blue);
     text-decoration: none;
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
 }
 
 .join-link a:hover {
@@ -111,26 +95,13 @@
 }
 
 /* 반응형 디자인 */
-@media screen and (max-width: 480px) {
+@media (max-width: 768px) {
     .login-container {
-        padding: 10px;
+        padding: 16px;
+        padding-top: 100px; /* 모바일에서 조금 더 여유 */
     }
     
     .login-form {
-        padding: 30px 20px;
-    }
-    
-    .login-form h2 {
-        font-size: 24px;
-    }
-    
-    .input-group input {
-        padding: 10px 12px;
-        font-size: 14px;
-    }
-    
-    .login-button {
-        padding: 12px;
-        font-size: 14px;
+        padding: 24px;
     }
 }

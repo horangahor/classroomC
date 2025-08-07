@@ -1,8 +1,11 @@
+// 프론트 서버의 /upload를 통해 접근
+
+
 const express = require('express');
 const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
-const {insertMember, } = require('../database/query');
+const {insertMember, } = require('../database/memberQuery');
 const router = express.Router();
 
 
@@ -41,7 +44,7 @@ router.post('/upload',upload.single('file'), async(req, res)=>{
         // console.log("get : ", csvData);
 
 
-        const insertionPromises = csvData.map(data => insertMember(data.name, data.age, data.position, data.politics));
+        const insertionPromises = csvData.map(data => insertMember(data.id, data.name, data.age, data.location, data.affiliation, data.profile_image_url, data.pledge));
         await Promise.all(insertionPromises);
 
         // for(i=0;i<csvData.length;i++){

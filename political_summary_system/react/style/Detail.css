@@ -1,26 +1,21 @@
+@import './colors.css';
+
 .detail-container {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 3rem;
-  padding: 2rem;
-  min-height: 400px;
-}
-
-.detail-img-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  height: 100%;
+  align-items: flex-start;
+  gap: var(--space-2xl);
+  padding: var(--space-2xl);
+  min-height: 300px;
 }
 
 .detail-img {
   width: 300px;
   height: 400px;
   object-fit: cover;
-  border-radius: 1rem;
-  border: 2px solid #2563eb;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border-radius: var(--radius-2xl);
+  margin-bottom: 0;
+  border: 2px solid var(--bg-primary);
+  flex-shrink: 0;
 }
 
 .detail-info-card {

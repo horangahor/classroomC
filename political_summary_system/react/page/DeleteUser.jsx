@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import '../style/DeleteUser.css'
+import axios from 'axios'
+import { getSession } from '../auth/auth'
 
 const DeleteUser = () => {
     const navigate = useNavigate()
@@ -35,9 +37,21 @@ const DeleteUser = () => {
 
         // 최종 확인
         if (window.confirm('정말로 탈퇴하시겠습니까? 이 작업은 되돌릴 수 없습니다.')) {
-            // 탈퇴 처리 로직 (실제로는 API 호출)
-            alert('회원탈퇴가 완료되었습니다.')
-            navigate('/') // 메인 페이지로 이동
+            axios
+                .post('http://localhost:8000/deleteuser', {
+                    id: formData.email,
+                    pw: formData.password,
+                },
+                // {withCredentials : true}
+                )
+                .then((res) => {
+                    console.log("이건은 response", res);
+                    alert('회원탈퇴가 완료되었습니다.');
+                    navigate('/');
+                })
+                .catch((err) => {
+                    console.error(err);
+                })
         }
     }
 
@@ -46,8 +60,8 @@ const DeleteUser = () => {
             <div className="delete-card">
                 <h2>회원탈퇴</h2>
                 <p className="subtitle danger">계정을 영구적으로 삭제합니다</p>
-                
-                <div className="warning-box">
+
+                {/* <div className="warning-box">
                     <h3>⚠️ 주의사항</h3>
                     <ul>
                         <li>탈퇴 후 모든 개인정보가 삭제됩니다</li>
@@ -55,7 +69,7 @@ const DeleteUser = () => {
                         <li>탈퇴 후 30일간 재가입이 제한됩니다</li>
                         <li>이 작업은 되돌릴 수 없습니다</li>
                     </ul>
-                </div>
+                </div> */}
 
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
@@ -71,7 +85,7 @@ const DeleteUser = () => {
                         />
                     </div>
 
-                    <div className="form-group">
+                    {/* <div className="form-group">
                         <label htmlFor="reason">탈퇴 사유 (선택사항)</label>
                         <textarea
                             id="reason"
@@ -81,7 +95,7 @@ const DeleteUser = () => {
                             placeholder="탈퇴 사유를 알려주시면 서비스 개선에 도움이 됩니다"
                             rows="4"
                         />
-                    </div>
+                    </div> */}
 
                     <div className="form-group">
                         <label htmlFor="confirmText">확인 문구 *</label>

@@ -1,0 +1,332 @@
+@import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
+@import './colors.css';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.mainpage-background {
+    margin-top: 90px;
+}
+
+/* MainPage 컨테이너 - Header 높이만큼 상단 패딩 추가 */
+.mainpage-container {
+    padding: 20px;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    gap: 30px;
+}
+
+/* 좌측 콘텐츠 영역 */
+.left-content {
+    flex: 1;
+    min-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* 우측 지도 영역 */
+.right-content {
+    flex: 1;
+    min-width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.mainpage-title {
+    background: var(--secondary-indigo);
+    font-size: var(--font-size-4xl);
+    color: var(--text-primary);
+    margin-bottom: var(--space-lg);
+    font-weight: var(--font-weight-bold);
+    text-align: center;
+    padding: var(--space-lg);
+    border-radius: var(--radius-xl);
+    /* box-shadow 제거 */
+}
+
+.mainpage-subtitle {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-2xl);
+    font-size: var(--font-size-lg);
+    text-align: left;
+    line-height: var(--line-height-relaxed);
+}
+
+/* 선택된 지역 정보 박스 */
+.region-info-box {
+    padding: var(--space-xl);
+    background: var(--gradient-primary);
+    color: var(--text-inverse);
+    border-radius: var(--radius-lg);
+    /* box-shadow 제거 */
+    transform: translateY(0);
+    transition: all var(--transition-normal);
+    width: 100%;
+}
+
+.region-info-box:hover {
+    transform: translateY(-5px);
+    /* box-shadow 제거 */
+}
+
+.region-info-title {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.region-info-name {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.region-info-desc {
+    font-size: 1rem;
+    opacity: 0.9;
+    line-height: 1.5;
+}
+
+/* 추가 정보 영역 */
+.additional-info {
+    padding: 20px;
+    background: white;
+    border-radius: 15px;
+    /* box-shadow 제거 */
+    margin-top: 20px;
+}
+
+.additional-info h3 {
+    color: var(--text-primary);
+    margin-bottom: var(--space-lg);
+    font-size: var(--font-size-xl);
+}
+
+.additional-info p {
+    color: var(--text-secondary);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-sm);
+}
+
+.info-list {
+    list-style: none;
+    padding: 0;
+}
+
+.info-list li {
+    padding: var(--space-sm) 0;
+    border-bottom: 1px solid var(--border-light);
+    color: var(--text-secondary);
+}
+
+.info-list li:last-child {
+    border-bottom: none;
+}
+
+/* 지도 컨테이너 */
+.map-container {
+    width: 100%;
+    height: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    top: 20px;
+}
+
+.korea-map {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    border: 3px solid var(--border-light);
+    border-radius: var(--radius-2xl);
+    background: var(--bg-primary);
+    /* box-shadow 제거 */
+    transition: all var(--transition-normal);
+}
+
+.korea-map:hover {
+    /* box-shadow 제거 */
+    transform: translateY(-2px);
+}
+
+/* SVG path 기본 스타일 */
+.region-path {
+    fill: var(--primary);
+    stroke: var(--text-primary);
+    stroke-width: 1px;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+}
+
+.region-path:hover {
+    fill: var(--political-blue);
+    stroke-width: 2px;
+}
+
+.region-path.selected {
+    fill: var(--secondary-green);
+    stroke: var(--secondary-green);
+    stroke-width: 3px;
+}
+
+/* 로딩 상태 */
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--border-light);
+    border-top: 4px solid var(--secondary-indigo);
+    border-radius: var(--radius-full);
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1024px) {
+    .mainpage-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .left-content,
+    .right-content {
+        flex: 1;
+        min-width: auto;
+        width: 100%;
+    }
+
+    .mainpage-title {
+        text-align: center;
+        font-size: 2.2rem;
+    }
+
+    .mainpage-subtitle {
+        text-align: center;
+    }
+
+    .map-container {
+        position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .mainpage-container {
+        padding: 15px;
+    }
+
+    .mainpage-title {
+        font-size: 2rem;
+    }
+
+    .mainpage-subtitle {
+        font-size: 1rem;
+    }
+
+    .region-info-box {
+        padding: 20px;
+    }
+
+    .region-info-title {
+        font-size: 1.2rem;
+    }
+
+    .korea-map {
+        border-width: 2px;
+        border-radius: 15px;
+        max-width: 500px;
+    }
+}
+
+@media (max-width: 480px) {
+    .mainpage-container {
+        padding: 10px;
+    }
+
+    .mainpage-title {
+        font-size: 1.7rem;
+    }
+
+    .region-info-box {
+        padding: 15px;
+    }
+
+    .korea-map {
+        border-radius: 10px;
+        max-width: 400px;
+    }
+
+    .left-content {
+        min-width: auto;
+    }
+}
+
+/* 애니메이션 효과 */
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.slide-up {
+    animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.slide-left {
+    animation: slideLeft 0.6s ease-out;
+}
+
+@keyframes slideLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

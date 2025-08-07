@@ -1,13 +1,15 @@
 const pool = require("./db");
 
-async function insertMember(name, age, position, politics){
+async function insertMember(id, name, age, location, affiliation, profile_image_url, pledge){
     const conn = await pool.getConnection();
 
     try{
-        const [result] = await conn.execute("insert into members(name,age,position,politics) values(?,?,?,?)", 
-            [name, age, position, politics]
+        const [result] = await conn.execute("insert into member(id,name,age,location, affiliation, profile_image_url, pledge) values(?, ?, ?, ?, ?, ?, ?)", 
+            [id, name, age, location, affiliation, profile_image_url, pledge]
         );
-        // console.log(result);
+        console.log("insertMember의");
+        console.log(result);
+        
         return result.affectedRows;
     }
     catch{
@@ -22,10 +24,10 @@ async function removeMember(name){
     const conn = await pool.getConnection();
     try {
         const [result] = await conn.execute(
-            "delete from members where name = ?",
+            "delete from member where name = ?",
             [name]
         );
-        console.log(result);
+        console.log("memberQUery, removeMemeber 결과 " + result);
         return result.affectedRows;
     } 
     finally {
@@ -36,14 +38,16 @@ async function removeMember(name){
 async function getMemberByName(name) {
     const conn = await pool.getConnection();
     try {
-        const [rows] = await conn.execute(
-            "select * from members where name = ?",
+        const [results] = await conn.execute(
+            "select * from member where name = ?",
             [name]
         );
-        return rows;
+        return results;
     } finally {
         conn.release();
     }
 }
+
+
 
 module.exports = { insertMember, removeMember, getMemberByName };
