@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const express = require("express");
 const cors = require("cors"); // CORS 정책 관련 HTTP 헤더를 자동으로 설정
 const session = require('express-session') // 세션을 사용하기 위한 모듈
@@ -41,4 +42,29 @@ homeRouter.get('/sessions', (req, res)=>{
 app.use('/', homeRouter);
 app.use('/admin', adminRouter);
 
+=======
+const express = require("express");
+const cors = require("cors"); // CORS 정책 관련 HTTP 헤더를 자동으로 설정
+const app = express();
+
+// 인물 정보 관련 라우터와 데이터 로딩 함수 추가
+const homeRouter = require("./router/homeRouter.js");
+const adminRouter = require("./router/adminRouter.js");
+
+const memberRouter = require("./router/memberRouter.js")
+const { loadMembers } = require("./database/memberQuery.js")
+
+app.use(express.urlencoded({extended : true}))
+
+app.use(express.json());
+
+app.use(cors());
+
+app.use('/', homeRouter);
+app.use('/admin', adminRouter);
+
+// 인물 정보 라우터 연결
+app.use("/api/members", memberRouter);
+
+>>>>>>> 1e8e7ab (임시)
 app.listen(8000);
