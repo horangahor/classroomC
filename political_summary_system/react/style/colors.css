@@ -106,6 +106,7 @@
 
     /* Custom Color - 커스텀 컬러 */
     --custom-color-white: #ffffff;
+    --custom-color-black: #000000;
 
     /* Spacing - 간격 (rem 단위) */
     --space-xs: 0.25rem;    /* 4px */
