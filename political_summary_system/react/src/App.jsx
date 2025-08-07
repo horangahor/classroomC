@@ -25,7 +25,7 @@ function App() {
           <Route path="/upload" element={<Upload />} />
           <Route path="/news" element={<News />} />
           <Route path="/people" element={<People />} />
-          <Route path="/politics" element={<Politics />} />
+          {/* <Route path="/politics" element={<Politics />} /> */}
 
           <Route path="/join" element={<Join />} />
           <Route path="/login" element={<Login />} />
