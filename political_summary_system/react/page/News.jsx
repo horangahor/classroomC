@@ -1,82 +1,90 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../style/News.css';
 import { getNews } from '../auth/newsreq';
 
 // 예시 뉴스 데이터
-const newsData = [
-    {
-        title: '정치 뉴스 제목 1',
-        summary: '요약된 뉴스 내용입니다.',
-        imageUrl: 'https://via.placeholder.com/150',
-        link: 'https://www.google.com/'
-    },
-    {
-        title: '정치 뉴스 제목 2',
-        summary: '요약된 뉴스 내용입니다.',
-        imageUrl: 'https://via.placeholder.com/150',
-        link: 'https://www.google.com/'
-    },
-    {
-        title: '정치 뉴스 제목 3',
-        summary: '요약된 뉴스 내용입니다. 더 긴 요약 내용으로 테스트해보겠습니다.',
-        imageUrl: 'https://via.placeholder.com/150',
-        link: 'https://www.google.com/'
-    },
-    {
-        title: '정치 뉴스 제목 4',
-        summary: '요약된 뉴스 내용입니다.',
-        imageUrl: 'https://via.placeholder.com/150',
-        link: 'https://www.google.com/'
-    },
-    {
-        title: '정치 뉴스 제목 5',
-        summary: '요약된 뉴스 내용입니다.',
-        imageUrl: 'https://via.placeholder.com/150',
-        link: 'https://www.google.com/'
-    },
-    {
-        title: '정치 뉴스 제목 6',
-        summary: '요약된 뉴스 내용입니다.',
-        imageUrl: 'https://via.placeholder.com/150',
-        link: 'https://www.google.com/'
-    },
-    {
-        title: '정치 뉴스 제목 7',
-        summary: '요약된 뉴스 내용입니다.',
-        imageUrl: 'https://via.placeholder.com/150',
-        link: 'https://www.google.com/'
-    },
-    {
-        title: '정치 뉴스 제목 8',
-        summary: '요약된 뉴스 내용입니다.',
-        imageUrl: 'https://via.placeholder.com/150',
-        link: 'https://www.google.com/'
-    },
-    {
-        title: '정치 뉴스 제목 9',
-        summary: '요약된 뉴스 내용입니다.',
-        imageUrl: 'https://via.placeholder.com/150',
-        link: 'https://www.google.com/'
-    },
-    {
-        title: '정치 뉴스 제목 10',
-        summary: '요약된 뉴스 내용입니다.',
-        imageUrl: 'https://via.placeholder.com/150',
-        link: 'https://www.google.com/'
-    },
-    {
-        title: '정치 뉴스 제목 11',
-        summary: '요약된 뉴스 내용입니다.',
-        imageUrl: 'https://via.placeholder.com/150',
-        link: 'https://www.google.com/'
-    },
-    {
-        title: '정치 뉴스 제목 12',
-        summary: '요약된 뉴스 내용입니다.',
-        imageUrl: 'https://via.placeholder.com/150',
-        link: 'https://www.google.com/'
-    }
-];
+
+// getNews와 page 번호 아래 useState currentPage를 인수로 주면 해당페이지 1 ~ 9 , 10 ~ 18 이런식으로 불러옴
+// const newsList = getNews(1);
+// console.log(newsList);
+
+
+
+// const newsData = [
+//     {
+//         title: '정치 뉴스 제목 1',
+//         summary: '요약된 뉴스 내용입니다.',
+//         imageUrl: 'https://via.placeholder.com/150',
+//         link: 'https://www.google.com/'
+//     },
+//     {
+//         title: '정치 뉴스 제목 2',
+//         summary: '요약된 뉴스 내용입니다.',
+//         imageUrl: 'https://via.placeholder.com/150',
+//         link: 'https://www.google.com/'
+//     },
+//     {
+//         title: '정치 뉴스 제목 3',
+//         summary: '요약된 뉴스 내용입니다. 더 긴 요약 내용으로 테스트해보겠습니다.',
+//         imageUrl: 'https://via.placeholder.com/150',
+//         link: 'https://www.google.com/'
+//     },
+//     {
+//         title: '정치 뉴스 제목 4',
+//         summary: '요약된 뉴스 내용입니다.',
+//         imageUrl: 'https://via.placeholder.com/150',
+//         link: 'https://www.google.com/'
+//     },
+//     {
+//         title: '정치 뉴스 제목 5',
+//         summary: '요약된 뉴스 내용입니다.',
+//         imageUrl: 'https://via.placeholder.com/150',
+//         link: 'https://www.google.com/'
+//     },
+//     {
+//         title: '정치 뉴스 제목 6',
+//         summary: '요약된 뉴스 내용입니다.',
+//         imageUrl: 'https://via.placeholder.com/150',
+//         link: 'https://www.google.com/'
+//     },
+//     {
+//         title: '정치 뉴스 제목 7',
+//         summary: '요약된 뉴스 내용입니다.',
+//         imageUrl: 'https://via.placeholder.com/150',
+//         link: 'https://www.google.com/'
+//     },
+//     {
+//         title: '정치 뉴스 제목 8',
+//         summary: '요약된 뉴스 내용입니다.',
+//         imageUrl: 'https://via.placeholder.com/150',
+//         link: 'https://www.google.com/'
+//     },
+//     {
+//         title: '정치 뉴스 제목 9',
+//         summary: '요약된 뉴스 내용입니다.',
+//         imageUrl: 'https://via.placeholder.com/150',
+//         link: 'https://www.google.com/'
+//     },
+//     {
+//         title: '정치 뉴스 제목 10',
+//         summary: '요약된 뉴스 내용입니다.',
+//         imageUrl: 'https://via.placeholder.com/150',
+//         link: 'https://www.google.com/'
+//     },
+//     {
+//         title: '정치 뉴스 제목 11',
+//         summary: '요약된 뉴스 내용입니다.',
+//         imageUrl: 'https://via.placeholder.com/150',
+//         link: 'https://www.google.com/'
+//     },
+//     {
+//         title: '정치 뉴스 제목 12',
+//         summary: '요약된 뉴스 내용입니다.',
+//         imageUrl: 'https://via.placeholder.com/150',
+//         link: 'https://www.google.com/'
+//     }
+// ];
+
 
 // 정당 정보 (간단하게)
 const partyList = [
@@ -90,8 +98,13 @@ const partyList = [
 ];
 
 const News = () => {
+    const [newsData, setNewsData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const newsPerPage = 9; // 6 → 9로 변경! 🎯
+
+    useEffect(() => {
+        getNews(1).then(setNewsData);
+    }, []);
 
     // 현재 페이지에서 보여줄 뉴스 계산
     const indexOfLastNews = currentPage * newsPerPage;
