@@ -1,10 +1,11 @@
 const express = require('express');
 const {join , login, update, remove} = require("../function/manageUser");
+const {getNewsList} = require("../database/newsQuery");
 const sessionStore = require("../server");
 const router = express.Router();
 
 function getSession(req, res){
-    console.log(req.session.user);
+    console.log("homeRouter의 getSession 함수 :" + req.session.user);
     res.status(200).json(req.session.user);
 }
 
@@ -24,7 +25,7 @@ router.post('/login', async (req, res) => {
 
     const result = await login(req);
 
-    console.log(result);
+    console.log("homeRouter의 /login 결과 : " + result);
     
     if(result){
     req.session.user = {
@@ -32,7 +33,7 @@ router.post('/login', async (req, res) => {
             name : result.uname,
             isLogin : true // 필요한가 ?
         }
-        console.log(req.session.user);
+        console.log("homeRouter의 /login 만들어 낸 세션" +req.session.user);
         
         res.status(200).send('로그인 성공');
     }
@@ -100,5 +101,12 @@ router.get('/deleteuser', async (req, res) => {
         await remove(req);
         res.send("회원 탈퇴 페이지입니다.");
 });
+
+
+router.get('/getNews', async (req,res)=> {
+    const newsList = await getNewsList(req.query.page);
+    res.json(newsList);
+})
+
 
 module.exports = router;

@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
 import '../style/News.css';
+import { getNews } from '../auth/newsreq';
 
 // 예시 뉴스 데이터
+
+// getNews와 page 번호 아래 useState currentPage를 인수로 주면 해당페이지 1 ~ 9 , 10 ~ 18 이런식으로 불러옴
+const newsList = getNews(1);
+console.log(newsList);
+
+
+
 const newsData = [
     {
         title: '정치 뉴스 제목 1',

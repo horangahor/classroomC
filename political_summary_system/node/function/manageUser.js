@@ -8,7 +8,7 @@ async function join(req) {
     const { id, pw, name, phnum } = req.body;
         const result = await registerUser(id, pw, name, phnum);
 
-        console.log('result : ', result);
+        console.log('manageUser의 join 함수 result : ', result);
 }
 
 // 로그인 기능 + 캐시 기능 추가 예정

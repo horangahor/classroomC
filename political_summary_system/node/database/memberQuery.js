@@ -25,7 +25,7 @@ async function removeMember(name){
             "delete from member where name = ?",
             [name]
         );
-        console.log(result);
+        console.log("memberQUery, removeMemeber 결과 " + result);
         return result.affectedRows;
     } 
     finally {
