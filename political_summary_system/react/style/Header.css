@@ -225,24 +225,42 @@
 /* 모바일: 768px 이하 */
 @media (max-width: 768px) {
     #header {
-        padding: 8px 8px;
+        display: flex;
         flex-wrap: wrap;
+        align-items: flex-start;
+        padding: 4px 2px;
+    }
+    .logo {
+        flex: 0 0 auto;
+        width: auto;
+        order: 0;
+        font-size: 24px;
+        height: 36px;
+        padding: 4px 6px;
+    }
+    .nav-menu {
+        flex: 0 0 auto;
+        width: auto;
+        order: 1;
+        justify-content: flex-end;
+        margin-left: 0 !important; /* auto 해제! */
+        gap: 2px;
     }
     .search-container {
+        display: block;
+        flex-basis: 100% !important;   /* 한 줄 전체 차지 */
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        margin: 8px 0 0 0;
+        order: 2;
         position: static;
         transform: none;
-        width: 90%;
-        min-width: 180px;
-        margin: 8px 0;
-        order: 3;
     }
     .search-icon {
         width: 24px;
         height: 24px;
         margin-right: 4px;
-    }
-    .nav-menu {
-        gap: 2px;
     }
     .nav-menu li {
         padding: 7px 6px;
@@ -251,52 +269,36 @@
     .nav-menu li.active {
         border: 1px solid var(--active-border);
     }
-    .logo {
-        font-size: 24px;
-        width: 90px;
-        height: 36px;
-        padding: 4px 6px;
-    }
 }
 
 /* 초소형 모바일: 480px 이하 */
 @media (max-width: 480px) {
     #header {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
         padding: 4px 2px;
     }
-    .search-container {
-        flex-basis: 100%;
-        width: 200vw;      /* 또는 100% */
-        min-width: 250px;  /* 로고+메뉴보다 더 크게! */
-        max-width: 200vw;
-        height: 40px;
-        padding: 0 4px;
-        margin: 8px 0 0 0; /* 위에 여백 */
-        order: 2; /* 로고, 메뉴 다음에 오도록 */
-    }
-    .search-input {
-        font-size: 14px;
-        padding: 6px 4px;
-    }
-    .search-icon {
-        width: 20px;
-        height: 20px;
-        margin-right: 2px;
+    .logo {
+        flex: 0 0 auto;
+        width: auto;
+        order: 0;
     }
     .nav-menu {
+        flex: 0 0 auto;
+        width: auto;
         order: 1;
-        gap: 2px;
+        justify-content: flex-end;
+        margin-left: 0 !important; /* auto 해제! */
     }
-    .nav-menu li {
-        font-size: 11px;
-        padding: 5px 2px;
-    }
-    .logo {
-        order: 0;
-        font-size: 18px;
-        width: 60px;
-        height: 28px;
-        padding: 2px 2px;
+    .search-container {
+        display: block;
+        flex-basis: 100% !important;   /* 한 줄 전체 차지 */
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        margin: 8px 0 0 0;
+        order: 2;
     }
 }
 
