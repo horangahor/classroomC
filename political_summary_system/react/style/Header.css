@@ -2,72 +2,6 @@
 /* 컬러 변수 파일 import */
 @import './colors.css';
 
-:root {
-    --primary-light: #BCCCDC;  /* 밝은 회색 파랑 느낌 */
-    --primary: #D9EAFD;        /* 연한 푸른빛 */
-    --primary-medium: #F8FAFC; /* 중간 회색 */
-    --primary-dark: #EEEEEE;   /* 어두운 블루-그레이 */
-
-    /* Secondary Colors - 보조 컬러 */
-    --secondary-green: #059669;     /* 초록색 (승인, 성공) */
-    --secondary-red: #dc2626;       /* 빨간색 (경고, 오류) */
-    --secondary-orange: #ea580c;    /* 주황색 (알림, 강조) */
-    --secondary-purple: #7c3aed;    /* 보라색 (특별, VIP) */
-    
-    /* Neutral Colors - 중성 컬러 */
-    --gray-50: #f9fafb;             /* 가장 밝은 회색 */
-    --gray-100: #f3f4f6;            /* 배경용 */
-    --gray-200: #e5e7eb;            /* 테두리 */
-    --gray-300: #d1d5db;            /* 비활성 */
-    --gray-400: #9ca3af;            /* 보조 텍스트 */
-    --gray-500: #6b7280;            /* 일반 텍스트 */
-    --gray-600: #4b5563;            /* 진한 텍스트 */
-    --gray-700: #374151;            /* 제목 */
-    --gray-800: #1f2937;            /* 헤딩 */
-    --gray-900: #111827;            /* 가장 진한 */
-    
-    /* Political Colors - 정치 관련 컬러 */
-    --political-blue: #1e40af;      /* 보수 정당 */
-    --political-red: #dc2626;       /* 진보 정당 */
-    --political-green: #16a34a;     /* 환경 정당 */
-    --political-purple: #7c2d12;    /* 중도 정당 */
-    
-    /* Background Colors - 배경 컬러 */
-    --bg-primary: #ffffff;          /* 메인 배경 */
-    --bg-secondary: #f8fafc;        /* 보조 배경 */
-    --bg-tertiary: #f1f5f9;         /* 3차 배경 */
-    
-    /* Text Colors - 텍스트 컬러 */
-    --text-primary: #0f172a;        /* 주 텍스트 */
-    --text-secondary: #475569;      /* 보조 텍스트 */
-    --text-tertiary: #64748b;       /* 3차 텍스트 */
-    --text-accent: var(--primary-blue); /* 강조 텍스트 */
-    
-    /* Border Colors - 테두리 컬러 */
-    --border-light: #e2e8f0;        /* 밝은 테두리 */
-    --border-medium: #cbd5e1;       /* 중간 테두리 */
-    --border-dark: #94a3b8;         /* 진한 테두리 */
-    
-    /* Shadow Colors - 그림자 컬러 */
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-    
-    /* Hover & Focus States - 상호작용 컬러 */
-    --hover-bg: #f8fafc;            /* 호버 배경 */
-    --focus-ring: #3b82f6;          /* 포커스 링 */
-    
-    /* Status Colors - 상태 컬러 */
-    --success: #10b981;             /* 성공 */
-    --warning: #f59e0b;             /* 경고 */
-    --error: #ef4444;               /* 오류 */
-    --info: #06b6d4;                /* 정보 */
-    
-    /* Active States - 활성 상태 컬러 */
-    --active-bg: #eff6ff;           /* 활성 배경 */
-    --active-border: #3b82f6;       /* 활성 테두리 */
-    --active-text: #1e40af;         /* 활성 텍스트 */
-}
 
 * {
     margin: 0;
@@ -83,8 +17,7 @@
     align-items: center;
     padding: 12px 24px;
     background: var(--bg-primary);
-    border-bottom: 1px solid var(--border-light);
-    box-shadow: var(--shadow-md); /* 그림자 강화 */
+    border-bottom: 2px solid var(--border-light);
     position: fixed; /* fixed로 변경 */
     top: 0; /* 상단에 고정 */
     left: 0; /* 좌측부터 시작 */
@@ -98,9 +31,9 @@
 .logo {
     padding: 8px 12px;
     height: 50px;
-    width: 100px;
+    width: 130px;
     font-weight: 700;
-    font-size: 25px;
+    font-size: 35px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -112,7 +45,6 @@
 
 .logo:hover {
     background: var(--primary);
-    transform: translateY(-1px);
 }
 
 .logo > span:first-child {
@@ -122,34 +54,34 @@
 .search-container {
     display: flex;
     align-items: center;
-    border: 1px solid var(--border-light);
+    border: 2px solid var(--border-light);
     border-radius: 12px;
     overflow: hidden;
-    height: 50px;
-    width: 400px;
+    height: 55px;
+    width: 600px;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     background: var(--bg-primary);
-    box-shadow: var(--shadow-sm);
+    /* box-shadow 제거 */
     transition: all 0.2s ease;
 }
 
 .search-container:hover {
     border-color: var(--political-blue);
-    box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+    /* box-shadow 제거 */
 }
 
 .search-container:focus-within {
     border-color: var(--political-blue);
-    box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.15);
+    /* box-shadow 제거 */
 }
 
 .search-input {
     border: none;
     padding: 12px 16px;
     outline: none;
-    font-size: 14px;
+    font-size: 18px;
     width: 100%;
     color: var(--text-primary);
     background: transparent;
@@ -167,14 +99,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--primary-light);
     border-radius: 8px;
     margin: 2px;
     transition: all 0.2s ease;
+    margin-right: 10px;
 }
 
 .search-icon:hover {
-    background: var(--info);
     transform: scale(1.05);
 }
 
@@ -186,7 +117,7 @@
 
 .nav-menu li {
     padding: 10px 16px;
-    font-size: 15px;
+    font-size: 20px;
     font-weight: 500;
     cursor: pointer;
     color: var(--text-secondary);
@@ -209,14 +140,14 @@
     background: var(--active-bg);
     border: 2px solid var(--active-border);
     font-weight: 600;
-    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.15);
+    /* box-shadow 제거 */
 }
 
 /* 활성 상태일 때는 호버 효과 약간 다르게 */
 .nav-menu li.active:hover {
     background: var(--active-bg);
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+    /* box-shadow 제거 */
 }
 
 /* 메뉴 아이템 하단 인디케이터 - 일반 상태 */
@@ -276,8 +207,8 @@
 /* 다크모드 지원 */
 @media (prefers-color-scheme: dark) {
     :root {
-        --active-bg: #1e3a8a;
-        --active-border: #3b82f6;
-        --active-text: #93c5fd;
+        --active-bg: var(--political-navy);
+        --active-border: var(--political-blue);
+        --active-text: var(--primary);
     }
 }

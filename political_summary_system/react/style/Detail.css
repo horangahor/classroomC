@@ -1,8 +1,10 @@
+@import './colors.css';
+
 .detail-container {
   display: flex;
   align-items: flex-start;
-  gap: 2rem;
-  padding: 2rem;
+  gap: var(--space-2xl);
+  padding: var(--space-2xl);
   min-height: 300px;
 }
 
@@ -10,9 +12,9 @@
   width: 300px;
   height: 400px;
   object-fit: cover;
-  border-radius: 1rem;
+  border-radius: var(--radius-2xl);
   margin-bottom: 0;
-  border: 2px solid #ffffff;
+  border: 2px solid var(--bg-primary);
   flex-shrink: 0;
 }
 

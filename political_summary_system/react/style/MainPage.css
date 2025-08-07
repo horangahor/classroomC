@@ -39,40 +39,40 @@
 }
 
 .mainpage-title {
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    font-size: 2.5rem;
-    color: #2c3e50;
+    background: var(--secondary-indigo);
+    font-size: var(--font-size-4xl);
+    color: var(--text-primary);
     margin-bottom: var(--space-lg);
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
     text-align: center;
     padding: var(--space-lg);
     border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-sm);
+    /* box-shadow 제거 */
 }
 
 .mainpage-subtitle {
-    color: #6c757d;
-    margin-bottom: 30px;
-    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-2xl);
+    font-size: var(--font-size-lg);
     text-align: left;
-    line-height: 1.6;
+    line-height: var(--line-height-relaxed);
 }
 
 /* 선택된 지역 정보 박스 */
 .region-info-box {
-    padding: 25px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    border-radius: 15px;
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+    padding: var(--space-xl);
+    background: var(--gradient-primary);
+    color: var(--text-inverse);
+    border-radius: var(--radius-lg);
+    /* box-shadow 제거 */
     transform: translateY(0);
-    transition: all 0.3s ease;
+    transition: all var(--transition-normal);
     width: 100%;
 }
 
 .region-info-box:hover {
     transform: translateY(-5px);
-    box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+    /* box-shadow 제거 */
 }
 
 .region-info-title {
@@ -98,20 +98,20 @@
     padding: 20px;
     background: white;
     border-radius: 15px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    /* box-shadow 제거 */
     margin-top: 20px;
 }
 
 .additional-info h3 {
-    color: #2c3e50;
-    margin-bottom: 15px;
-    font-size: 1.3rem;
+    color: var(--text-primary);
+    margin-bottom: var(--space-lg);
+    font-size: var(--font-size-xl);
 }
 
 .additional-info p {
-    color: #6c757d;
-    line-height: 1.6;
-    margin-bottom: 10px;
+    color: var(--text-secondary);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-sm);
 }
 
 .info-list {
@@ -120,9 +120,9 @@
 }
 
 .info-list li {
-    padding: 8px 0;
-    border-bottom: 1px solid #eee;
-    color: #495057;
+    padding: var(--space-sm) 0;
+    border-bottom: 1px solid var(--border-light);
+    color: var(--text-secondary);
 }
 
 .info-list li:last-child {
@@ -144,35 +144,35 @@
     width: 100%;
     max-width: 800px;
     height: auto;
-    border: 3px solid #e9ecef;
-    border-radius: 20px;
-    background: white;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    border: 3px solid var(--border-light);
+    border-radius: var(--radius-2xl);
+    background: var(--bg-primary);
+    /* box-shadow 제거 */
+    transition: all var(--transition-normal);
 }
 
 .korea-map:hover {
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+    /* box-shadow 제거 */
     transform: translateY(-2px);
 }
 
 /* SVG path 기본 스타일 */
 .region-path {
-    fill: #e8f4f8;
-    stroke: #2c3e50;
+    fill: var(--primary);
+    stroke: var(--text-primary);
     stroke-width: 1px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all var(--transition-normal);
 }
 
 .region-path:hover {
-    fill: #74b9ff;
+    fill: var(--political-blue);
     stroke-width: 2px;
 }
 
 .region-path.selected {
-    fill: #00b894;
-    stroke: #00a085;
+    fill: var(--secondary-green);
+    stroke: var(--secondary-green);
     stroke-width: 3px;
 }
 
@@ -187,9 +187,9 @@
 .loading-spinner {
     width: 50px;
     height: 50px;
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid #667eea;
-    border-radius: 50%;
+    border: 4px solid var(--border-light);
+    border-top: 4px solid var(--secondary-indigo);
+    border-radius: var(--radius-full);
     animation: spin 1s linear infinite;
 }
 

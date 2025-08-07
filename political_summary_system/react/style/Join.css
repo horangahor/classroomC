@@ -1,3 +1,5 @@
+@import './colors.css';
+
 * {
     margin: 0;
     padding: 0;
@@ -7,103 +9,100 @@
 .join-container {
     display: flex;
     justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #f5f5f5;
+    align-items: flex-start;
+    min-height: calc(100vh - 90px);
+    background: var(--bg-secondary);
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
-    padding: 20px;
-    margin-top: 90px;
+    padding: var(--space-lg);
+    padding-top: 110px;
 }
 
 .join-form {
-    background: white;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    background: var(--bg-primary);
+    padding: var(--space-2xl);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-light);
     width: 100%;
     max-width: 400px;
 }
 
 .join-form h2 {
     text-align: center;
-    margin-bottom: 30px;
-    color: #333;
-    font-size: 28px;
-    font-weight: 600;
+    margin-bottom: var(--space-2xl);
+    color: var(--text-primary);
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-semibold);
 }
 
 .input-group {
-    margin-bottom: 20px;
+    margin-bottom: var(--space-lg);
 }
 
 .input-group label {
     display: block;
-    margin-bottom: 8px;
-    color: #555;
-    font-weight: 500;
-    font-size: 14px;
+    margin-bottom: var(--space-sm);
+    color: var(--text-secondary);
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-sm);
 }
 
 .input-group input {
     width: 100%;
-    padding: 12px 15px;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    font-size: 16px;
-    transition: all 0.3s ease;
+    padding: var(--space-md) var(--space-lg);
+    border: 2px solid var(--border-light);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-base);
+    transition: all var(--transition-normal);
     box-sizing: border-box;
 }
 
 .input-group input:focus {
     outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+    border-color: var(--political-blue);
+    /* box-shadow 제거 */
 }
 
 .input-group input::placeholder {
-    color: #aaa;
+    color: var(--text-muted);
 }
 
 .join-button {
-    width: 100%;
-    padding: 15px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 600;
+    display: flex;
+    width: 300px;
+    height: 50px;
+    padding: var(--space-lg);
+    border: 2px solid var(--border-light);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
     cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 10px;
+    margin-top: var(--space-sm);
+    background: var(--custom-color-white);
+    align-items: center;
+    justify-content: center;
 }
 
 .join-button:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+    background: var(--primary-light);
 }
 
-.join-button:active {
-    transform: translateY(0);
-}
 
 .login-link {
     text-align: center;
-    margin-top: 25px;
-    padding-top: 20px;
-    border-top: 1px solid #eee;
+    margin-top: var(--space-xl);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--border-light);
 }
 
 .login-link p {
-    color: #666;
-    font-size: 14px;
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
 }
 
 .login-link a {
-    color: #007bff;
+    color: var(--political-blue);
     text-decoration: none;
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
 }
 
 .login-link a:hover {
