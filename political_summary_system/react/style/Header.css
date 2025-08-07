@@ -266,9 +266,9 @@
     }
     .search-container {
         flex-basis: 100%;
-        width: 100vw;      /* 또는 100% */
+        width: 200vw;      /* 또는 100% */
         min-width: 250px;  /* 로고+메뉴보다 더 크게! */
-        max-width: 100vw;
+        max-width: 200vw;
         height: 40px;
         padding: 0 4px;
         margin: 8px 0 0 0; /* 위에 여백 */
