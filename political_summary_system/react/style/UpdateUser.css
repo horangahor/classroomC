@@ -17,7 +17,7 @@
     background: white;
     padding: 40px;
     border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    /* box-shadow 제거 */
     width: 100%;
     max-width: 500px;
 }
@@ -63,7 +63,7 @@
     outline: none;
     border-color: #667eea;
     background-color: white;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    /* box-shadow 제거 */
 }
 
 .divider {
@@ -95,7 +95,7 @@
 .submit-btn:hover {
     background: #5a6fd8;
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+    /* box-shadow 제거 */
 }
 
 .cancel-btn {
@@ -117,7 +117,7 @@
 .cancel-btn:hover {
     background: #5a6268;
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(108, 117, 125, 0.3);
+    /* box-shadow 제거 */
 }
 
 /* 반응형 디자인 */

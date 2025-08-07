@@ -39,7 +39,7 @@
 }
 
 .mainpage-title {
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background: var(--secondary-indigo);
     font-size: 2.5rem;
     color: #2c3e50;
     margin-bottom: var(--space-lg);
@@ -47,7 +47,7 @@
     text-align: center;
     padding: var(--space-lg);
     border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-sm);
+    /* box-shadow 제거 */
 }
 
 .mainpage-subtitle {
@@ -64,7 +64,7 @@
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
     border-radius: 15px;
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+    /* box-shadow 제거 */
     transform: translateY(0);
     transition: all 0.3s ease;
     width: 100%;
@@ -72,7 +72,7 @@
 
 .region-info-box:hover {
     transform: translateY(-5px);
-    box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+    /* box-shadow 제거 */
 }
 
 .region-info-title {
@@ -98,7 +98,7 @@
     padding: 20px;
     background: white;
     border-radius: 15px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    /* box-shadow 제거 */
     margin-top: 20px;
 }
 
@@ -147,12 +147,12 @@
     border: 3px solid #e9ecef;
     border-radius: 20px;
     background: white;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    /* box-shadow 제거 */
     transition: all 0.3s ease;
 }
 
 .korea-map:hover {
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+    /* box-shadow 제거 */
     transform: translateY(-2px);
 }
 

@@ -19,7 +19,7 @@
     background: white;
     padding: 40px;
     border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    /* box-shadow 제거 */
     width: 100%;
     max-width: 400px;
 }
@@ -57,7 +57,7 @@
 .input-group input:focus {
     outline: none;
     border-color: #007bff;
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+    /* box-shadow 제거 */
 }
 
 .input-group input::placeholder {
@@ -81,7 +81,7 @@
 .join-button:hover {
     background-color: #0056b3;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+    /* box-shadow 제거 */
 }
 
 .join-button:active {

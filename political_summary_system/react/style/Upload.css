@@ -14,7 +14,7 @@
   background-color: white;
   padding: 2rem; /* p-8 */
   border-radius: 0.75rem; /* rounded-xl */
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+  /* box-shadow 제거 */
   width: 100%;
   max-width: 28rem; /* max-w-md */
 }
@@ -50,7 +50,7 @@
 
 /* 파일 입력 포커스 시 스타일 */
 .file-input:focus {
-  box-shadow: 0 0 0 2px #3b82f6; /* focus:ring-2 focus:ring-blue-500 */
+  border-color: #3b82f6; /* focus border color 유지 */
 }
 
 /* 파일 입력 내부 버튼 (file::file-selector-button) 스타일 */
@@ -82,7 +82,7 @@
   font-weight: 600; /* font-semibold */
   font-size: 1.125rem; /* text-lg */
   transition: background-color 0.3s ease-in-out; /* transition duration-300 ease-in-out */
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); /* shadow-md */
+  /* box-shadow 제거 */
   cursor: pointer;
 }
 

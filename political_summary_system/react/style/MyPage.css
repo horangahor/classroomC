@@ -17,7 +17,7 @@
     background: white;
     padding: 40px;
     border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    /* box-shadow 제거 */
     width: 100%;
     max-width: 400px;
     text-align: center;
@@ -60,7 +60,7 @@
 .menu-btn:hover {
     background: #5a6fd8;
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+    /* box-shadow 제거 */
 }
 
 .menu-btn.danger {
@@ -69,7 +69,7 @@
 
 .menu-btn.danger:hover {
     background: #c82333;
-    box-shadow: 0 8px 25px rgba(220, 53, 69, 0.3);
+    /* box-shadow 제거 */
 }
 
 .back-link {

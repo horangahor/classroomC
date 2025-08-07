@@ -24,7 +24,7 @@
   text-align: center;
   padding: var(--space-lg);
   border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-sm);
+  /* box-shadow 제거 */
 }
 
 /* 메인 레이아웃 - 좌측 콘텐츠 + 우측 사이드바 */
@@ -55,7 +55,7 @@
   background: var(--bg-primary);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
+  /* box-shadow 제거 */
   transition: all 0.3s ease;
   padding: var(--space-md);
   min-height: 120px;
@@ -63,7 +63,7 @@
 
 .news-card:hover {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  /* box-shadow 제거 */
   border-color: var(--political-blue);
 }
 
@@ -164,7 +164,7 @@
   background: var(--bg-primary);
   border-radius: var(--radius-lg);
   padding: var(--space-md);
-  box-shadow: var(--shadow-md);
+  /* box-shadow 제거 */
   height: fit-content;
   position: sticky;
   top: 90px; /* Header 높이만큼 아래에서 시작 */
@@ -207,7 +207,7 @@
   color: white;
   border-color: var(--political-blue);
   transform: translateY(-1px);
-  box-shadow: var(--shadow-xs);
+  /* box-shadow 제거 */
 }
 
 /* 반응형 디자인 */
