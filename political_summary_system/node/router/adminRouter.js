@@ -44,7 +44,7 @@ router.post('/upload',upload.single('file'), async(req, res)=>{
         // console.log("get : ", csvData);
 
 
-        const insertionPromises = csvData.map(data => insertMember(data.name, data.age, data.position, data.politics));
+        const insertionPromises = csvData.map(data => insertMember(data.id, data.name, data.age, data.location, data.affiliation, data.profile_image_url, data.pledge));
         await Promise.all(insertionPromises);
 
         // for(i=0;i<csvData.length;i++){
