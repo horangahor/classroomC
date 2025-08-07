@@ -33,7 +33,8 @@ app.use(cors(
 homeRouter.get('/sessions', (req, res)=>{
     const allSessions = sessionStore.sessions;
 
-    console.log("세션 리스트 가져오기의 (/sessions) : " + allSessions);
+    console.log("세션 리스트 가져오기의 ");
+    console.log(allSessions);
     res.send("hi");
 })
 
