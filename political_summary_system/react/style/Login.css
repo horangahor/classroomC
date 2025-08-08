@@ -1,11 +1,17 @@
+/* 폰트 및 컬러 변수 불러오기 */
+@import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
 @import './colors.css';
 
+/* 전역 스타일 초기화 및 기본 폰트 설정 */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    font-style: normal;
 }
 
+/* 로그인 페이지 전체 컨테이너 - 전체 화면을 차지하는 중앙 정렬 레이아웃 */
 .login-container {
     min-height: 100vh;
     display: flex;
@@ -13,9 +19,10 @@
     justify-content: center;
     background: var(--bg-secondary);
     padding: 20px;
-    padding-top: 90px;
+    padding-top: 90px; /* 헤더 높이만큼 상단 여백 추가 */
 }
 
+/* 로그인 폼 카드 - 실제 로그인 양식을 담는 흰색 카드 */
 .login-form {
     background: var(--bg-primary);
     padding: 40px;

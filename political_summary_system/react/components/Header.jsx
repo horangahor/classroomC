@@ -38,17 +38,14 @@ const Header = () => {
 
   return (
     <header id="header">
-      {/* 로고를 클릭하면 onClick으로 이동 */}
       <div className="logo" onClick={handleLogoClick} style={{ cursor: 'pointer' }}>
         <span>정</span>
         <span>리소</span>
       </div>
-
-      <div className="search-container">
+      <div className="search-container" style={{ flex: 1, margin: '0 24px' }}>
         <input type="text" className="search-input" placeholder="검색어 입력" />
         <img src="../images/search-icon.ico" alt="검색" className='search-icon' />
       </div>
-
       <ul className="nav-menu">
         <li
           onClick={() => nav('/news')}

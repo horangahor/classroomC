@@ -1,6 +1,14 @@
+/* 폰트 및 컬러 변수 불러오기 */
+@import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
 @import '../style/colors.css';
 
-/* 전체 페이지 레이아웃 스타일 */
+/* 전역 폰트 설정 */
+* {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    font-style: normal;
+}
+
+/* 업로드 페이지 전체 컨테이너 - 중앙 정렬 레이아웃 */
 .upload-page-container {
   display: flex;
   flex-direction: column;
@@ -11,7 +19,7 @@
   padding: var(--space-md);
 }
 
-/* 파일 업로드 카드 스타일 */
+/* 파일 업로드 메인 카드 - 업로드 폼을 담는 흰색 카드 */
 .upload-card {
   background-color: white;
   padding: 2rem; /* p-8 */
