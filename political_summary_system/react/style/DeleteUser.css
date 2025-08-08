@@ -1,11 +1,17 @@
+/* 폰트 및 컬러 변수 불러오기 */
+@import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
 @import './colors.css';
 
+/* 전역 스타일 초기화 및 기본 폰트 설정 */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    font-style: normal;
 }
 
+/* 회원 탈퇴 페이지 전체 컨테이너 - 전체 화면을 차지하는 중앙 정렬 레이아웃 */
 .delete-container {
     min-height: 100vh;
     display: flex;
@@ -15,6 +21,7 @@
     padding: 20px;
 }
 
+/* 회원 탈퇴 메인 카드 - 폼이 포함된 중앙 컨테이너 */
 .delete-card {
     background: var(--bg-primary);
     padding: var(--space-2xl);
@@ -24,6 +31,7 @@
     max-width: 500px;
 }
 
+/* 페이지 제목 스타일 - "회원 탈퇴" 메인 타이틀 */
 .delete-card h2 {
     font-size: var(--font-size-3xl);
     color: var(--error);
@@ -32,6 +40,7 @@
     text-align: center;
 }
 
+/* 페이지 부제목 - 설명 텍스트 스타일 */
 .subtitle {
     color: var(--text-secondary);
     margin-bottom: var(--space-2xl);
@@ -39,11 +48,13 @@
     text-align: center;
 }
 
+/* 위험 경고 부제목 - 주의사항을 강조하는 빨간색 텍스트 */
 .subtitle.danger {
     color: var(--error);
     font-weight: var(--font-weight-medium);
 }
 
+/* 경고 메시지 박스 - 회원 탈퇴 시 주의사항을 담은 노란색 경고 영역 */
 .warning-box {
     background: var(--warning-light);
     border: 2px solid var(--warning);
@@ -52,26 +63,31 @@
     margin-bottom: var(--space-2xl);
 }
 
+/* 경고 박스 제목 - "주의사항" 등의 헤딩 */
 .warning-box h3 {
     color: var(--warning-dark);
     margin-bottom: var(--space-lg);
     font-size: var(--font-size-lg);
 }
 
+/* 경고 박스 내 목록 - 주의사항 리스트 */
 .warning-box ul {
     color: var(--warning-dark);
     padding-left: var(--space-lg);
 }
 
+/* 경고 박스 내 각 항목 - 개별 주의사항 스타일 */
 .warning-box li {
     margin-bottom: var(--space-sm);
     line-height: var(--line-height-normal);
 }
 
+/* 폼 그룹 컨테이너 - 각 입력 필드와 라벨을 감싸는 영역 */
 .form-group {
     margin-bottom: var(--space-lg);
 }
 
+/* 폼 라벨 - 입력 필드 설명 텍스트 */
 .form-group label {
     display: block;
     margin-bottom: var(--space-sm);
@@ -80,6 +96,7 @@
     font-size: var(--font-size-sm);
 }
 
+/* 입력 필드 공통 스타일 - 텍스트 입력창과 텍스트 영역 */
 .form-group input,
 .form-group textarea {
     width: 100%;
@@ -92,6 +109,7 @@
     font-family: inherit;
 }
 
+/* 입력 필드 포커스 상태 - 클릭했을 때의 강조 효과 */
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
@@ -100,6 +118,7 @@
     /* box-shadow 제거 */
 }
 
+/* 폼 도움말 텍스트 - 입력 필드 아래의 작은 안내 문구 */
 .form-group small {
     display: block;
     margin-top: var(--space-xs);
@@ -107,16 +126,19 @@
     font-size: var(--font-size-xs);
 }
 
+/* 폼 도움말 내 강조 텍스트 - 중요한 부분을 빨간색으로 강조 */
 .form-group small strong {
     color: var(--error);
 }
 
+/* 버튼 그룹 컨테이너 - 탈퇴/취소 버튼을 나란히 배치하는 영역 */
 .button-group {
     display: flex;
     gap: var(--space-lg);
     margin-top: var(--space-2xl);
 }
 
+/* 회원 탈퇴 확정 버튼 - 빨간색 위험 버튼 */
 .delete-btn {
     flex: 1;
     padding: var(--space-lg);
@@ -130,12 +152,14 @@
     transition: all var(--transition-normal);
 }
 
+/* 탈퇴 버튼 호버 효과 - 마우스를 올렸을 때의 상호작용 */
 .delete-btn:hover {
     background: var(--error-dark);
     transform: translateY(-2px);
     /* box-shadow 제거 */
 }
 
+/* 취소 버튼 - 회색 버튼으로 이전 페이지로 돌아가기 */
 .cancel-btn {
     flex: 1;
     padding: var(--space-lg);
@@ -152,30 +176,37 @@
     justify-content: center;
 }
 
+/* 취소 버튼 호버 효과 - 마우스를 올렸을 때의 상호작용 */
 .cancel-btn:hover {
     background: var(--gray-600);
     transform: translateY(-2px);
     /* box-shadow 제거 */
 }
 
-/* 반응형 디자인 */
+/* ===== 반응형 디자인 - 모바일 화면 대응 ===== */
+/* 480px 이하 모바일 기기용 스타일 조정 */
 @media (max-width: 480px) {
+    /* 모바일에서 컨테이너 패딩 축소 */
     .delete-container {
         padding: 15px;
     }
     
+    /* 모바일에서 카드 패딩 축소 */
     .delete-card {
         padding: 30px 25px;
     }
     
+    /* 모바일에서 제목 크기 축소 */
     .delete-card h2 {
         font-size: 1.5rem;
     }
     
+    /* 모바일에서 버튼을 세로로 배치 */
     .button-group {
         flex-direction: column;
     }
     
+    /* 모바일에서 경고 박스 패딩 축소 */
     .warning-box {
         padding: 15px;
     }

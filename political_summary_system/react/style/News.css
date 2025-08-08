@@ -1,12 +1,17 @@
+/* 폰트 및 컬러 변수 불러오기 */
+@import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
 @import './colors.css';
 
+/* 전역 스타일 초기화 및 기본 폰트 설정 */
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  font-style: normal;
 }
 
-/* 전체 페이지 레이아웃 - Header 높이만큼 상단 패딩 추가 */
+/* 뉴스 페이지 전체 컨테이너 - 헤더 높이만큼 상단 패딩 추가 */
 .news-page {
   min-height: 100vh;
   background: var(--bg-secondary);
@@ -14,7 +19,7 @@
   padding-top: 90px; /* Header 높이(74px) + 여유공간(16px) */
 }
 
-/* 뉴스 제목 */
+/* 뉴스 페이지 메인 제목 - "정치 뉴스" 타이틀 */
 .news-h1 {
   background: var(--gradient-secondary);
   font-size: var(--font-size-4xl);
@@ -27,7 +32,7 @@
   /* box-shadow 제거 */
 }
 
-/* 메인 레이아웃 - 좌측 콘텐츠 + 우측 사이드바 */
+/* 뉴스 페이지 메인 레이아웃 - 좌측 뉴스 목록 + 우측 사이드바 */
 .news-layout {
   display: flex;
   gap: var(--space-lg);

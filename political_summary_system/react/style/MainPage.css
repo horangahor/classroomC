@@ -1,17 +1,20 @@
+/* 폰트 및 컬러 변수 불러오기 */
 @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
 @import './colors.css';
 
+/* 전역 스타일 초기화 */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* 메인페이지 배경 컨테이너 - 헤더 높이만큼 상단 여백 */
 .mainpage-background {
     margin-top: 90px;
 }
 
-/* MainPage 컨테이너 - Header 높이만큼 상단 패딩 추가 */
+/* 메인페이지 전체 컨테이너 - 좌우 콘텐츠를 나누는 플렉스 레이아웃 */
 .mainpage-container {
     padding: 20px;
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -20,7 +23,7 @@
     gap: 30px;
 }
 
-/* 좌측 콘텐츠 영역 */
+/* 좌측 콘텐츠 영역 - 제목, 검색, 정치인 리스트 등을 담는 영역 */
 .left-content {
     flex: 1;
     min-width: 400px;
@@ -29,7 +32,7 @@
     gap: 20px;
 }
 
-/* 우측 지도 영역 */
+/* 우측 지도 영역 - 한국 지도를 표시하는 영역 */
 .right-content {
     flex: 1;
     min-width: 500px;
@@ -38,6 +41,7 @@
     align-items: flex-start;
 }
 
+/* 메인페이지 제목 - "정치인 정보 시스템" 등의 메인 타이틀 */
 .mainpage-title {
     background: var(--secondary-indigo);
     font-size: var(--font-size-4xl);

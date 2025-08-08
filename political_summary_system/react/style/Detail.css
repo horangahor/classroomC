@@ -1,5 +1,14 @@
+/* 폰트 및 컬러 변수 불러오기 */
+@import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
 @import './colors.css';
 
+/* 전역 폰트 설정 */
+* {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    font-style: normal;
+}
+
+/* 상세 페이지 메인 컨테이너 - 이미지와 정보를 가로로 배치하는 플렉스 레이아웃 */
 .detail-container {
   display: flex;
   align-items: flex-start;
@@ -8,6 +17,7 @@
   min-height: 300px;
 }
 
+/* 상세 페이지 이미지 - 정치인 프로필 사진 */
 .detail-img {
   width: 300px;
   height: 400px;
@@ -18,6 +28,7 @@
   flex-shrink: 0;
 }
 
+/* 상세 정보 영역 - 정치인의 텍스트 정보를 담는 컨테이너 */
 .detail-info {
   flex: 1;
   display: flex;
