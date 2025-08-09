@@ -42,7 +42,7 @@ const DeleteUser = () => {
                     id: formData.email,
                     pw: formData.password,
                 },
-                // {withCredentials : true}
+                 {withCredentials : true}
                 )
                 .then((res) => {
                     console.log("이건은 response", res);
