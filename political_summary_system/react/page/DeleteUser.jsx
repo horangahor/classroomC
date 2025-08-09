@@ -45,7 +45,7 @@ const DeleteUser = () => {
                 // {withCredentials : true}
                 )
                 .then((res) => {
-                    console.log("이건은 response", res);
+                    console.log("이건 response", res);
                     alert('회원탈퇴가 완료되었습니다.');
                     navigate('/');
                 })

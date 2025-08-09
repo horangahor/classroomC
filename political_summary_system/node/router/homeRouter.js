@@ -89,7 +89,7 @@ router.post('/updateuser', async (req, res) => {
 });
 
 // 회원 탈퇴
-router.get('/deleteuser', async (req, res) => {
+router.post('/deleteuser', async (req, res) => {
     // const { password, confirmText } = req.body;
 
     // if (!password || confirmText !== "회원탈퇴") {

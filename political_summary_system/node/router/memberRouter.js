@@ -9,21 +9,36 @@ router.get("/members", getMemberInfo);
 // DELETE: 세션 기반 회원 삭제
 router.delete("/members", async (req, res) => {
     const user = req.session?.user;
+    const { password } = req.body;
 
-    if (!user || (!user.nickname && !user.name)) {
-        return res.status(401).json({ message: "로그인된 사용자 정보가 없습니다." });
+    if (!user || (!user.nickname && !user.name) || !password) {
+        return res.status(400).json({ message: "로그인된 사용자 정보가 없습니다." });
     }
 
-    const identifier = user.nickname || user.name;
+    const identifierName = user.name || '';
+    const identifierid = user.id || '';
 
     try {
+        // 회원 정보 확인
+        const [rows] = await pool.execute(
+            `select * from users
+             where name = ? and id = ? and password = ?`,
+            [identifiername, identifierid, password]
+        );
+
+        if (rows.length === 0) {
+            return res.status(401).json({ message: "해당 사용자를 찾을 수 없습니다." });
+        }
+
+        // 삭제
         const [result] = await pool.execute(
-            "delete from users where nickname = ? or name = ?",
-            [identifier, identifier]
+            `delete from users 
+             where name = ? and id = ? and password = ?`,
+            [identifiername, identifierId, password]
         );
 
         if (result.affectedRows === 0) {
-            return res.status(404).json({ message: "해당 사용자를 찾을 수 없습니다." });
+            return res.status(500).json({ message: "삭제 실패: 사용자 없음" })
         }
 
         // 세션 제거
@@ -31,6 +46,7 @@ router.delete("/members", async (req, res) => {
             res.clearCookie("connect.sid");
             res.json({ message: "회원 정보가 삭제되었습니다." });
         });
+
     } catch (err) {
         console.error("회원 삭제 실패:", err);
         res.status(500).json({ message: "서버 오류: 삭제 실패" });

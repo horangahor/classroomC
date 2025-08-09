@@ -58,11 +58,19 @@ async function update(id, name, phnum, cpw, npw) { // req, res를 제거하고 �
 
 // 회원탈퇴 기능
 async function remove(req) {
-    // const { pw } = req.body;
+    const { pw } = req.body;
     try {
         const result = await deleteuser(pw);
+<<<<<<< HEAD
 
         
+=======
+        if (result.affectedRows > 0) {
+
+        } else {
+ 
+        }
+>>>>>>> e0351d7 (8/8 햇던 것 커밋)
     } catch (err) {
         console.error("회원탈퇴 중 오류", err);
         res.redirect('/remove');
