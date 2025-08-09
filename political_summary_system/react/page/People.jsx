@@ -10,21 +10,25 @@ const dummyPeople = [
 
 const fetchMember = async () => {
   console.log("패치멤버가 실행됨");
-            
-                const response = await axios
-                .get('http://localhost:8000/members',
 
-                )
-                .then ((res) => {
-                  console.log(res.data);
-                  return [res.data];
-                })
-                .catch ((err) => {
-                  console.error(err);
-                });
+    const response = await axios
+    .get('http://localhost:8000/members',
+
+    )
+    .then ((res) => {
+      console.log(res.data);
+      return res.data;
+    })
+    .catch ((err) => {
+      console.error(err);
+    });
  };
 
+<<<<<<< HEAD
  /// fetchmemberㅓ로 인물 데이터 가져오기
+=======
+ /// fetchmemberㅓ로 인물 데이터 가져오기 --> 이거 외부여서 무슨 창을 열든 인물 정  
+>>>>>>> f99ff6a (데이터 인물 페이지로  불러오기 수정)
 //  const dummydata = fetchMember ()
 
 const People = () => {
@@ -32,7 +36,10 @@ const People = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    setPeople(dummyPeople)
+    const fetchData = async () => {
+      const result = await fetchMember()
+    }
+    fetchData()
   }, [])
 
   return (
