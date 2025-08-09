@@ -61,11 +61,8 @@ async function remove(req) {
     // const { pw } = req.body;
     try {
         const result = await deleteuser(pw);
-        if (result.affectedRows > 0) {
-            res.redirect('/bye');
-        } else {
-            res.redirect('/remove');
-        }
+
+        
     } catch (err) {
         console.error("회원탈퇴 중 오류", err);
         res.redirect('/remove');

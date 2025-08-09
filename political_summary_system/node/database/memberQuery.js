@@ -35,7 +35,7 @@ async function removeMember(name){
     }
 }
 
-async function getMembefr() {
+async function getMember() {
     const conn = await pool.getConnection();
     try {
         const [results] = await conn.execute(
@@ -49,4 +49,4 @@ async function getMembefr() {
 
 
 
-module.exports = { insertMember, removeMember, getMembefr };
+module.exports = { insertMember, removeMember, getMember };
