@@ -44,12 +44,12 @@ async function updateuser(id, name, phnum, cpw, npw) {
     }
 }
 
-async function deleteuser(pw) {
+async function deleteuser(id, name ,pw) {
     const conn = await pool.getConnection();
     try {
         const [result] = await conn.execute(
-            "delete from user where upw = ?",
-            [pw]
+            "delete from user where uid = ? and uname = ? and upw = ?",
+            [id,name, pw]
         );
         return result;
     } finally {

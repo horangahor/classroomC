@@ -10,6 +10,18 @@ function getSession(req, res){
 }
 
 
+// delete 세션인데 쓸까말까
+function deleteSession(req,res){
+    req.session.destroy(err => {
+        if(err) {
+            return res.status(500).send("이유 모름");
+        }
+        res.clearCookie('connect.sid');
+        res.status(200).send("성공");
+    })
+}
+
+
 // main 페이지
 router.get('/' , getSession);
 
@@ -52,13 +64,7 @@ router.post('/login', async (req, res) => {
 })
 
 router.post('/logout', async (req,res)=>{
-    req.session.destroy(err => {
-        if(err) {
-            return res.status(500).send("이유 모름");
-        }
-        res.clearCookie('connect.sid');
-        res.status(200).send("성공");
-    })
+    deleteSession(req,res);
 })
 
 
@@ -89,7 +95,7 @@ router.post('/updateuser', async (req, res) => {
 });
 
 // 회원 탈퇴
-router.get('/deleteuser', async (req, res) => {
+router.post('/deleteuser', async (req, res) => {
     // const { password, confirmText } = req.body;
 
     // if (!password || confirmText !== "회원탈퇴") {
@@ -97,9 +103,10 @@ router.get('/deleteuser', async (req, res) => {
     // }
 
     // res.json({ message: "회원 탈퇴가 완료되었습니다." });
-
-        await remove(req);
-        res.send("회원 탈퇴 페이지입니다.");
+        const user = await req.session.user;
+        console.log(user);
+         await remove(req , user);
+         deleteSession(req,res);
 });
 
 
