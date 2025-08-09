@@ -35,12 +35,11 @@ async function removeMember(name){
     }
 }
 
-async function getMemberByName(name) {
+async function getMembefr() {
     const conn = await pool.getConnection();
     try {
         const [results] = await conn.execute(
-            "select * from member where name = ?",
-            [name]
+            "select * from member",
         );
         return results;
     } finally {
@@ -50,4 +49,4 @@ async function getMemberByName(name) {
 
 
 
-module.exports = { insertMember, removeMember, getMemberByName };
+module.exports = { insertMember, removeMember, getMembefr };
