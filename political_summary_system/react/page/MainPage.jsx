@@ -11,62 +11,62 @@ const MainPage = () => {
   const navigate = useNavigate()
 
   // 지역별 인물 데이터
-  const regionPeople = {
-    seoul: [
-      { id: 1, name: '오세훈', job: '서울시장', img: 'https://via.placeholder.com/150x150/4A90E2/FFFFFF?text=오세훈' },
-      { id: 2, name: '김철수', job: '서울시의원', img: 'https://via.placeholder.com/150x150/50C878/FFFFFF?text=김철수' },
-    ],
-    busan: [
-      { id: 3, name: '박형준', job: '부산시장', img: 'https://via.placeholder.com/150x150/FF6B6B/FFFFFF?text=박형준' },
-      { id: 4, name: '이영희', job: '부산시의원', img: 'https://via.placeholder.com/150x150/FFD93D/000000?text=이영희' },
-    ],
-    gyeonggi: [
-      { id: 5, name: '김동연', job: '경기도지사', img: 'https://via.placeholder.com/150x150/6BCF7F/FFFFFF?text=김동연' },
-      { id: 6, name: '박민수', job: '경기도의원', img: 'https://via.placeholder.com/150x150/4ECDC4/FFFFFF?text=박민수' },
-    ],
-    daegu: [
-      { id: 7, name: '홍준표', job: '대구시장', img: 'https://via.placeholder.com/150x150/96CEB4/FFFFFF?text=홍준표' },
-    ],
-    incheon: [
-      { id: 8, name: '유정복', job: '인천시장', img: 'https://via.placeholder.com/150x150/FECA57/000000?text=유정복' },
-    ],
-    gwangju: [
-      { id: 9, name: '강기정', job: '광주시장', img: 'https://via.placeholder.com/150x150/FF9FF3/000000?text=강기정' },
-    ],
-    daejeon: [
-      { id: 10, name: '이장우', job: '대전시장', img: 'https://via.placeholder.com/150x150/54A0FF/FFFFFF?text=이장우' },
-    ],
-    ulsan: [
-      { id: 11, name: '김두겸', job: '울산시장', img: 'https://via.placeholder.com/150x150/5F27CD/FFFFFF?text=김두겸' },
-    ],
-    sejong: [
-      { id: 12, name: '최민호', job: '세종시장', img: 'https://via.placeholder.com/150x150/00D2D3/FFFFFF?text=최민호' },
-    ],
-    gangwon: [
-      { id: 13, name: '김진태', job: '강원도지사', img: 'https://via.placeholder.com/150x150/FF6348/FFFFFF?text=김진태' },
-    ],
-    chungbuk: [
-      { id: 14, name: '김영환', job: '충북도지사', img: 'https://via.placeholder.com/150x150/2ED573/FFFFFF?text=김영환' },
-    ],
-    chungnam: [
-      { id: 15, name: '김태흠', job: '충남도지사', img: 'https://via.placeholder.com/150x150/FFA502/FFFFFF?text=김태흠' },
-    ],
-    jeonbuk: [
-      { id: 16, name: '김관영', job: '전북도지사', img: 'https://via.placeholder.com/150x150/3742FA/FFFFFF?text=김관영' },
-    ],
-    jeonnam: [
-      { id: 17, name: '김영록', job: '전남도지사', img: 'https://via.placeholder.com/150x150/2F3542/FFFFFF?text=김영록' },
-    ],
-    gyeongbuk: [
-      { id: 18, name: '이철우', job: '경북도지사', img: 'https://via.placeholder.com/150x150/F97F51/FFFFFF?text=이철우' },
-    ],
-    gyeongnam: [
-      { id: 19, name: '박완수', job: '경남도지사', img: 'https://via.placeholder.com/150x150/1DD1A1/FFFFFF?text=박완수' },
-    ],
-    jeju: [
-      { id: 20, name: '오영훈', job: '제주도지사', img: 'https://via.placeholder.com/150x150/F8B500/000000?text=오영훈' },
-    ]
-  }
+  // const regionPeople = {
+  //   seoul: [
+  //     { id: 1, name: '오세훈', job: '서울시장', img: 'https://via.placeholder.com/150x150/4A90E2/FFFFFF?text=오세훈' },
+  //     { id: 2, name: '김철수', job: '서울시의원', img: 'https://via.placeholder.com/150x150/50C878/FFFFFF?text=김철수' },
+  //   ],
+  //   busan: [
+  //     { id: 3, name: '박형준', job: '부산시장', img: 'https://via.placeholder.com/150x150/FF6B6B/FFFFFF?text=박형준' },
+  //     { id: 4, name: '이영희', job: '부산시의원', img: 'https://via.placeholder.com/150x150/FFD93D/000000?text=이영희' },
+  //   ],
+  //   gyeonggi: [
+  //     { id: 5, name: '김동연', job: '경기도지사', img: 'https://via.placeholder.com/150x150/6BCF7F/FFFFFF?text=김동연' },
+  //     { id: 6, name: '박민수', job: '경기도의원', img: 'https://via.placeholder.com/150x150/4ECDC4/FFFFFF?text=박민수' },
+  //   ],
+  //   daegu: [
+  //     { id: 7, name: '홍준표', job: '대구시장', img: 'https://via.placeholder.com/150x150/96CEB4/FFFFFF?text=홍준표' },
+  //   ],
+  //   incheon: [
+  //     { id: 8, name: '유정복', job: '인천시장', img: 'https://via.placeholder.com/150x150/FECA57/000000?text=유정복' },
+  //   ],
+  //   gwangju: [
+  //     { id: 9, name: '강기정', job: '광주시장', img: 'https://via.placeholder.com/150x150/FF9FF3/000000?text=강기정' },
+  //   ],
+  //   daejeon: [
+  //     { id: 10, name: '이장우', job: '대전시장', img: 'https://via.placeholder.com/150x150/54A0FF/FFFFFF?text=이장우' },
+  //   ],
+  //   ulsan: [
+  //     { id: 11, name: '김두겸', job: '울산시장', img: 'https://via.placeholder.com/150x150/5F27CD/FFFFFF?text=김두겸' },
+  //   ],
+  //   sejong: [
+  //     { id: 12, name: '최민호', job: '세종시장', img: 'https://via.placeholder.com/150x150/00D2D3/FFFFFF?text=최민호' },
+  //   ],
+  //   gangwon: [
+  //     { id: 13, name: '김진태', job: '강원도지사', img: 'https://via.placeholder.com/150x150/FF6348/FFFFFF?text=김진태' },
+  //   ],
+  //   chungbuk: [
+  //     { id: 14, name: '김영환', job: '충북도지사', img: 'https://via.placeholder.com/150x150/2ED573/FFFFFF?text=김영환' },
+  //   ],
+  //   chungnam: [
+  //     { id: 15, name: '김태흠', job: '충남도지사', img: 'https://via.placeholder.com/150x150/FFA502/FFFFFF?text=김태흠' },
+  //   ],
+  //   jeonbuk: [
+  //     { id: 16, name: '김관영', job: '전북도지사', img: 'https://via.placeholder.com/150x150/3742FA/FFFFFF?text=김관영' },
+  //   ],
+  //   jeonnam: [
+  //     { id: 17, name: '김영록', job: '전남도지사', img: 'https://via.placeholder.com/150x150/2F3542/FFFFFF?text=김영록' },
+  //   ],
+  //   gyeongbuk: [
+  //     { id: 18, name: '이철우', job: '경북도지사', img: 'https://via.placeholder.com/150x150/F97F51/FFFFFF?text=이철우' },
+  //   ],
+  //   gyeongnam: [
+  //     { id: 19, name: '박완수', job: '경남도지사', img: 'https://via.placeholder.com/150x150/1DD1A1/FFFFFF?text=박완수' },
+  //   ],
+  //   jeju: [
+  //     { id: 20, name: '오영훈', job: '제주도지사', img: 'https://via.placeholder.com/150x150/F8B500/000000?text=오영훈' },
+  //   ]
+  // }
 
   useEffect(() => {
     if (svgRef.current) {
