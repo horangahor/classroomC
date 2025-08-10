@@ -213,14 +213,13 @@ const News = () => {
                     {/* 페이지네이션 */}
                     {totalPages > 1 && !loading && (
                         <div className="pagination">
-                            {currentPage > 1 && (
-                                <button
-                                    onClick={() => handleClick(currentPage - 1)}
-                                    aria-label="이전 페이지"
-                                >
-                                    &#60;
-                                </button>
-                            )}
+                            <button
+                                onClick={() => handleClick(currentPage - 1)}
+                                disabled={currentPage === 1}
+                                aria-label="이전 페이지"
+                            >
+                                &#60;
+                            </button>
                             {getPageList(currentPage, totalPages).map((page, idx) =>
                                 page === '...' ? (
                                     <span key={idx} className="pagination-ellipsis">...</span>
@@ -234,14 +233,13 @@ const News = () => {
                                     </button>
                                 )
                             )}
-                            {currentPage < totalPages && (
-                                <button
-                                    onClick={() => handleClick(currentPage + 1)}
-                                    aria-label="다음 페이지"
-                                >
-                                    &#62;
-                                </button>
-                            )}
+                            <button
+                                onClick={() => handleClick(currentPage + 1)}
+                                disabled={currentPage === totalPages}
+                                aria-label="다음 페이지"
+                            >
+                                &#62;
+                            </button>
                         </div>
                     )}
                 </div>
