@@ -270,7 +270,7 @@ const MainPage = () => {
 
   return (
     <div className="mainpage-background">
-      <h1 className="mainpage-title">지역 정치 이슈</h1>
+      {/* <h1 className="mainpage-title">지역 정치 이슈</h1> */}
 
       {/* 🧪 테스트 버튼들 추가 */}
       {/* <div style={{ padding: '10px', background: '#f0f0f0', margin: '10px 0', textAlign: 'center', borderRadius: '5px' }}>
@@ -328,8 +328,8 @@ const MainPage = () => {
               ))
             ) : (
               <div className="no-people">
-                <h3>🗺️ 지역을 선택해주세요</h3>
-                <p>지도에서 원하는 지역을 클릭하면<br />해당 지역의 정치인 정보를 확인할 수 있습니다.</p>
+                {/* <h3>🗺️ 지역을 선택해주세요</h3> */}
+                {/* <p>지도에서 원하는 지역을 클릭하면<br />해당 지역의 정치인 정보를 확인할 수 있습니다.</p> */}
               </div>
             )}
           </div>
