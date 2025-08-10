@@ -270,7 +270,7 @@ const MainPage = () => {
 
   return (
     <div className="mainpage-background">
-      <h1 className="mainpage-title">지역 정치 이슈</h1>
+      {/* <h1 className="mainpage-title">지역 정치 이슈</h1> */}
 
       {/* 🧪 테스트 버튼들 추가 */}
       {/* <div style={{ padding: '10px', background: '#f0f0f0', margin: '10px 0', textAlign: 'center', borderRadius: '5px' }}>
@@ -348,10 +348,42 @@ const MainPage = () => {
         {/* 우측 지도 영역 */}
         <div className="right-content">
           <div className="map-container">
-            <KrMap
-              ref={svgRef}
-              className="korea-map slide-up"
-            />
+            {/* 좌측: 뉴스/정치인 카드 */}
+            <div className="map-left-content">
+                <div className="map-left-header">
+                    <h3 className="map-left-title">실시간 정치 소식</h3>
+                    <p className="map-left-subtitle">최신 뉴스와 정치인 정보</p>
+                </div>
+                
+                <div className="info-card news-card">
+                    <div className="info-card-header">
+                        <div className="info-card-icon">📰</div>
+                        <div>
+                            <div className="info-card-title">국정감사 시작</div>
+                            <div className="info-card-subtitle">정치부</div>
+                        </div>
+                    </div>
+                    <div className="info-card-content">
+                        2024년 국정감사가 본격 시작되었습니다...
+                    </div>
+                    <div className="info-card-footer">
+                        <span className="info-card-date">1시간 전</span>
+                        <span className="info-card-category">정치</span>
+                    </div>
+                </div>
+            </div>
+            
+            {/* 우측: SVG 지도 */}
+            <div className="map-right-content">
+                <div className="map-header">
+                    <h3 className="map-title">대한민국 지도</h3>
+                    <p className="map-description">지역을 선택하여 정치인 정보를 확인하세요</p>
+                </div>
+                <KrMap
+                  ref={svgRef}
+                  className="korea-map slide-up"
+                />
+            </div>
           </div>
         </div>
       </div>
