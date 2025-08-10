@@ -11,62 +11,62 @@ const MainPage = () => {
   const navigate = useNavigate()
 
   // 지역별 인물 데이터
-  // const regionPeople = {
-  //   seoul: [
-  //     { id: 1, name: '오세훈', job: '서울시장', img: 'https://via.placeholder.com/150x150/4A90E2/FFFFFF?text=오세훈' },
-  //     { id: 2, name: '김철수', job: '서울시의원', img: 'https://via.placeholder.com/150x150/50C878/FFFFFF?text=김철수' },
-  //   ],
-  //   busan: [
-  //     { id: 3, name: '박형준', job: '부산시장', img: 'https://via.placeholder.com/150x150/FF6B6B/FFFFFF?text=박형준' },
-  //     { id: 4, name: '이영희', job: '부산시의원', img: 'https://via.placeholder.com/150x150/FFD93D/000000?text=이영희' },
-  //   ],
-  //   gyeonggi: [
-  //     { id: 5, name: '김동연', job: '경기도지사', img: 'https://via.placeholder.com/150x150/6BCF7F/FFFFFF?text=김동연' },
-  //     { id: 6, name: '박민수', job: '경기도의원', img: 'https://via.placeholder.com/150x150/4ECDC4/FFFFFF?text=박민수' },
-  //   ],
-  //   daegu: [
-  //     { id: 7, name: '홍준표', job: '대구시장', img: 'https://via.placeholder.com/150x150/96CEB4/FFFFFF?text=홍준표' },
-  //   ],
-  //   incheon: [
-  //     { id: 8, name: '유정복', job: '인천시장', img: 'https://via.placeholder.com/150x150/FECA57/000000?text=유정복' },
-  //   ],
-  //   gwangju: [
-  //     { id: 9, name: '강기정', job: '광주시장', img: 'https://via.placeholder.com/150x150/FF9FF3/000000?text=강기정' },
-  //   ],
-  //   daejeon: [
-  //     { id: 10, name: '이장우', job: '대전시장', img: 'https://via.placeholder.com/150x150/54A0FF/FFFFFF?text=이장우' },
-  //   ],
-  //   ulsan: [
-  //     { id: 11, name: '김두겸', job: '울산시장', img: 'https://via.placeholder.com/150x150/5F27CD/FFFFFF?text=김두겸' },
-  //   ],
-  //   sejong: [
-  //     { id: 12, name: '최민호', job: '세종시장', img: 'https://via.placeholder.com/150x150/00D2D3/FFFFFF?text=최민호' },
-  //   ],
-  //   gangwon: [
-  //     { id: 13, name: '김진태', job: '강원도지사', img: 'https://via.placeholder.com/150x150/FF6348/FFFFFF?text=김진태' },
-  //   ],
-  //   chungbuk: [
-  //     { id: 14, name: '김영환', job: '충북도지사', img: 'https://via.placeholder.com/150x150/2ED573/FFFFFF?text=김영환' },
-  //   ],
-  //   chungnam: [
-  //     { id: 15, name: '김태흠', job: '충남도지사', img: 'https://via.placeholder.com/150x150/FFA502/FFFFFF?text=김태흠' },
-  //   ],
-  //   jeonbuk: [
-  //     { id: 16, name: '김관영', job: '전북도지사', img: 'https://via.placeholder.com/150x150/3742FA/FFFFFF?text=김관영' },
-  //   ],
-  //   jeonnam: [
-  //     { id: 17, name: '김영록', job: '전남도지사', img: 'https://via.placeholder.com/150x150/2F3542/FFFFFF?text=김영록' },
-  //   ],
-  //   gyeongbuk: [
-  //     { id: 18, name: '이철우', job: '경북도지사', img: 'https://via.placeholder.com/150x150/F97F51/FFFFFF?text=이철우' },
-  //   ],
-  //   gyeongnam: [
-  //     { id: 19, name: '박완수', job: '경남도지사', img: 'https://via.placeholder.com/150x150/1DD1A1/FFFFFF?text=박완수' },
-  //   ],
-  //   jeju: [
-  //     { id: 20, name: '오영훈', job: '제주도지사', img: 'https://via.placeholder.com/150x150/F8B500/000000?text=오영훈' },
-  //   ]
-  // }
+  const regionPeople = {
+    seoul: [
+      { id: 1, name: '오세훈', job: '서울시장', img: 'https://via.placeholder.com/150x150/4A90E2/FFFFFF?text=오세훈' },
+      { id: 2, name: '김철수', job: '서울시의원', img: 'https://via.placeholder.com/150x150/50C878/FFFFFF?text=김철수' },
+    ],
+    busan: [
+      { id: 3, name: '박형준', job: '부산시장', img: 'https://via.placeholder.com/150x150/FF6B6B/FFFFFF?text=박형준' },
+      { id: 4, name: '이영희', job: '부산시의원', img: 'https://via.placeholder.com/150x150/FFD93D/000000?text=이영희' },
+    ],
+    gyeonggi: [
+      { id: 5, name: '김동연', job: '경기도지사', img: 'https://via.placeholder.com/150x150/6BCF7F/FFFFFF?text=김동연' },
+      { id: 6, name: '박민수', job: '경기도의원', img: 'https://via.placeholder.com/150x150/4ECDC4/FFFFFF?text=박민수' },
+    ],
+    daegu: [
+      { id: 7, name: '홍준표', job: '대구시장', img: 'https://via.placeholder.com/150x150/96CEB4/FFFFFF?text=홍준표' },
+    ],
+    incheon: [
+      { id: 8, name: '유정복', job: '인천시장', img: 'https://via.placeholder.com/150x150/FECA57/000000?text=유정복' },
+    ],
+    gwangju: [
+      { id: 9, name: '강기정', job: '광주시장', img: 'https://via.placeholder.com/150x150/FF9FF3/000000?text=강기정' },
+    ],
+    daejeon: [
+      { id: 10, name: '이장우', job: '대전시장', img: 'https://via.placeholder.com/150x150/54A0FF/FFFFFF?text=이장우' },
+    ],
+    ulsan: [
+      { id: 11, name: '김두겸', job: '울산시장', img: 'https://via.placeholder.com/150x150/5F27CD/FFFFFF?text=김두겸' },
+    ],
+    sejong: [
+      { id: 12, name: '최민호', job: '세종시장', img: 'https://via.placeholder.com/150x150/00D2D3/FFFFFF?text=최민호' },
+    ],
+    gangwon: [
+      { id: 13, name: '김진태', job: '강원도지사', img: 'https://via.placeholder.com/150x150/FF6348/FFFFFF?text=김진태' },
+    ],
+    chungbuk: [
+      { id: 14, name: '김영환', job: '충북도지사', img: 'https://via.placeholder.com/150x150/2ED573/FFFFFF?text=김영환' },
+    ],
+    chungnam: [
+      { id: 15, name: '김태흠', job: '충남도지사', img: 'https://via.placeholder.com/150x150/FFA502/FFFFFF?text=김태흠' },
+    ],
+    jeonbuk: [
+      { id: 16, name: '김관영', job: '전북도지사',img: 'https://via.placeholder.com/150x150/3742FA/FFFFFF?text=김관영' },
+    ],
+    jeonnam: [
+      { id: 17, name: '김영록', job: '전남도지사', img: 'https://via.placeholder.com/150x150/2F3542/FFFFFF?text=김영록' },
+    ],
+    gyeongbuk: [
+      { id: 18, name: '이철우', job: '경북도지사', img: 'https://via.placeholder.com/150x150/F97F51/FFFFFF?text=이철우' },
+    ],
+    gyeongnam: [
+      { id: 19, name: '박완수', job: '경남도지사', img: 'https://via.placeholder.com/150x150/1DD1A1/FFFFFF?text=박완수' },
+    ],
+    jeju: [
+      { id: 20, name: '오영훈', job: '제주도지사', img: 'https://via.placeholder.com/150x150/F8B500/000000?text=오영훈' },
+    ]
+  }
 
   useEffect(() => {
     if (svgRef.current) {
@@ -270,120 +270,60 @@ const MainPage = () => {
 
   return (
     <div className="mainpage-background">
-      {/* <h1 className="mainpage-title">지역 정치 이슈</h1> */}
-
-      {/* 🧪 테스트 버튼들 추가 */}
-      {/* <div style={{ padding: '10px', background: '#f0f0f0', margin: '10px 0', textAlign: 'center', borderRadius: '5px' }}>
-        <h4>🧪 테스트 버튼 (인물 데이터 확인용):</h4>
-        <button 
-          onClick={() => handleRegionAction('seoul')} 
-          style={{ margin: '5px', padding: '5px 10px', backgroundColor: '#007bff', color: 'white', border: 'none', borderRadius: '3px' }}
-        >
-          서울 테스트
-        </button>
-        <button 
-          onClick={() => handleRegionAction('busan')} 
-          style={{ margin: '5px', padding: '5px 10px', backgroundColor: '#007bff', color: 'white', border: 'none', borderRadius: '3px' }}
-        >
-          부산 테스트
-        </button>
-        <button 
-          onClick={() => handleRegionAction('gyeonggi')} 
-          style={{ margin: '5px', padding: '5px 10px', backgroundColor: '#007bff', color: 'white', border: 'none', borderRadius: '3px' }}
-        >
-          경기 테스트
-        </button>
-        <button 
-          onClick={() => {
-            console.log('🎯 regionPeople 전체:', regionPeople)
-            console.log('🎯 people state:', people)
-          }} 
-          style={{ margin: '5px', padding: '5px 10px', backgroundColor: '#28a745', color: 'white', border: 'none', borderRadius: '3px' }}
-        >
-          데이터 확인
-        </button>
+      {/* 히어로 영역 */}
+      <div className="mainpage-hero">
+        <h1 className="mainpage-title">대한민국 정치 정보 한눈에</h1>
+        {/* <p className="mainpage-subtitle">지도를 클릭하면 지역별 정치인과 최신 뉴스를 볼 수 있습니다.</p> */}
       </div>
-       */}
-      <div className="mainpage-container">
-        {/* 좌측 콘텐츠 영역 */}
-        <div className="left-content">
-          <div className="people-container">
-            {people.length > 0 ? (
-              people.map(person => (
-                <div className="person-card" key={person.id}>
-                  <img
-                    className="person-img"
-                    src={person.img}
-                    alt={person.name}
-                    onClick={() => navigate(`/people/${person.id}`)}
-                  />
-                  <button
-                    className="person-name-btn"
-                    onClick={() => navigate(`/people/${person.id}`)}
-                  >
-                    {person.name}
-                  </button>
-                  <p className="person-job">{person.job}</p>
+      {/* 2분할 레이아웃 - 지도 테두리 안에 좌우 컬럼 */}
+      <div className="mainpage-2col">
+        <div className="map-container">
+          {/* 좌측: 정치인 정보 */}
+          <div className="mainpage-people-col">
+            <h3 className="mainpage-section-title">정치인 정보</h3>
+            <div className="people-container">
+              {people.length > 0 ? (
+                people.map(person => (
+                  <div className="person-card" key={person.id}>
+                    <img
+                      className="person-img"
+                      src={person.img}
+                      alt={person.name}
+                      onClick={() => navigate(`/people/${person.id}`)}
+                    />
+                    <button
+                      className="person-name-btn"
+                      onClick={() => navigate(`/people/${person.id}`)}
+                    >
+                      {person.name}
+                    </button>
+                    <p className="person-job">{person.job}</p>
+                  </div>
+                ))
+              ) : (
+                <div className="no-people">
+                  <h3>🗺️ 지역을 선택해주세요</h3>
+                  <p>지도를 클릭하면 해당 지역의 정치인 정보를 볼 수 있습니다.</p>
                 </div>
-              ))
-            ) : (
-              <div className="no-people">
-                <h3>🗺️ 지역을 선택해주세요</h3>
-                <p>지도에서 원하는 지역을 클릭하면<br />해당 지역의 정치인 정보를 확인할 수 있습니다.</p>
+              )}
+            </div>
+            {selectedRegion && (
+              <div className="region-info-box fade-in">
+                <h3 className="region-info-title">선택된 지역</h3>
+                <p className="region-info-name">{selectedRegion}</p>
+                <small className="region-info-desc">
+                  {people.length}명의 정치인이 표시되고 있습니다.
+                </small>
               </div>
             )}
           </div>
-
-          {selectedRegion && (
-            <div className="region-info-box fade-in">
-              <h3 className="region-info-title">선택된 지역</h3>
-              <p className="region-info-name">{selectedRegion}</p>
-              <small className="region-info-desc">
-                {people.length}명의 정치인이 표시되고 있습니다.
-              </small>
+          {/* 우측: 지도 */}
+          <div className="mainpage-map-col">
+            <div className="map-header">
+              <h3 className="map-title">대한민국 지도</h3>
+              <p className="map-description">지역을 선택하세요</p>
             </div>
-          )}
-        </div>
-
-        {/* 우측 지도 영역 */}
-        <div className="right-content">
-          <div className="map-container">
-            {/* 좌측: 뉴스/정치인 카드 */}
-            <div className="map-left-content">
-                <div className="map-left-header">
-                    <h3 className="map-left-title">실시간 정치 소식</h3>
-                    <p className="map-left-subtitle">최신 뉴스와 정치인 정보</p>
-                </div>
-                
-                <div className="info-card news-card">
-                    <div className="info-card-header">
-                        <div className="info-card-icon">📰</div>
-                        <div>
-                            <div className="info-card-title">국정감사 시작</div>
-                            <div className="info-card-subtitle">정치부</div>
-                        </div>
-                    </div>
-                    <div className="info-card-content">
-                        2024년 국정감사가 본격 시작되었습니다...
-                    </div>
-                    <div className="info-card-footer">
-                        <span className="info-card-date">1시간 전</span>
-                        <span className="info-card-category">정치</span>
-                    </div>
-                </div>
-            </div>
-            
-            {/* 우측: SVG 지도 */}
-            <div className="map-right-content">
-                <div className="map-header">
-                    <h3 className="map-title">대한민국 지도</h3>
-                    <p className="map-description">지역을 선택하여 정치인 정보를 확인하세요</p>
-                </div>
-                <KrMap
-                  ref={svgRef}
-                  className="korea-map slide-up"
-                />
-            </div>
+            <KrMap ref={svgRef} className="korea-map slide-up" />
           </div>
         </div>
       </div>

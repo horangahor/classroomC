@@ -23,6 +23,70 @@
     gap: 30px;
 }
 
+/* 메인페이지 2분할 레이아웃 - 지도 테두리 안에 좌우 컬럼 배치 */
+.mainpage-2col {
+    /* 테두리, 배경 제거: map-container가 감쌈 */
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 40px;
+}
+
+.mainpage-people-col {
+    flex: 1.2;
+    min-width: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* map-container 내부에 맞게 여백 조정 */
+    margin-right: 24px;
+}
+
+.mainpage-map-col {
+    flex: 1;
+    min-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 지도 컨테이너 - 테두리/배경/라운드, 좌우 컬럼 포함 */
+.map-container {
+    width: 100%;
+    min-height: 800px;
+    display: flex;
+    gap: 40px;
+    background: white;
+    border-radius: var(--radius-2xl);
+    border: 2.5px solid var(--border-light);
+    box-shadow: 0 6px 32px rgba(0, 0, 0, 0.07);
+    padding: 40px 32px;
+    position: relative;
+}
+
+@media (max-width: 1024px) {
+    .map-container {
+        flex-direction: column;
+        gap: 24px;
+        padding: 24px 10px;
+        min-height: auto;
+    }
+
+    .mainpage-people-col,
+    .mainpage-map-col {
+        min-width: 0;
+        margin-right: 0;
+        align-items: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .map-container {
+        padding: 12px 2px;
+        gap: 12px;
+    }
+}
+
 /* 좌측 콘텐츠 영역 - 제목, 검색, 정치인 리스트 등을 담는 영역 */
 .left-content {
     flex: 1;
@@ -212,17 +276,18 @@
 
 .korea-map {
     width: 100%;
-    max-width: 450px;
+    max-width: 800px;
     height: auto;
     border: 3px solid var(--border-light);
-    border-radius: var(--radius-xl);
+    border-radius: var(--radius-2xl);
     background: var(--bg-primary);
+    /* box-shadow 제거 */
     transition: all var(--transition-normal);
 }
 
 .korea-map:hover {
-    transform: scale(1.02);
-    border-color: var(--political-blue);
+    /* box-shadow 제거 */
+    transform: translateY(-2px);
 }
 
 /* SVG path 기본 스타일 */
@@ -255,7 +320,7 @@
 
 .loading-spinner {
     width: 50px;
-    height: 50px; 
+    height: 50px;
     border: 4px solid var(--border-light);
     border-top: 4px solid var(--secondary-indigo);
     border-radius: var(--radius-full);
@@ -285,7 +350,7 @@
 .info-card:hover {
     transform: translateY(-3px);
     border-color: var(--political-blue);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .info-card-header {
@@ -469,18 +534,18 @@
         min-height: auto;
         gap: 15px;
     }
-    
+
     .map-left-content {
         max-width: none;
         max-height: 400px;
         order: 2;
     }
-    
+
     .map-right-content {
         order: 1;
         min-width: auto;
     }
-    
+
     .korea-map {
         max-width: 600px;
     }
@@ -490,16 +555,16 @@
     .map-container {
         padding: 15px;
     }
-    
+
     .map-left-content {
         max-height: 300px;
         gap: 12px;
     }
-    
+
     .info-card {
         padding: 12px;
     }
-    
+
     .korea-map {
         max-width: 100%;
     }
