@@ -63,19 +63,8 @@ router.post('/login', async (req, res) => {
     // }
 })
 
-<<<<<<< HEAD
-router.post('/logout', async (req, res) => {
-    req.session.destroy(err => {
-        if (err) {
-            return res.status(500).send("이유 모름");
-        }
-        res.clearCookie('connect.sid');
-        res.status(200).send("성공");
-    })
-=======
 router.post('/logout', async (req,res)=>{
     deleteSession(req,res);
->>>>>>> 88a7c5ab126a2ebd07e9a0e6515a66879dfc80d5
 })
 
 

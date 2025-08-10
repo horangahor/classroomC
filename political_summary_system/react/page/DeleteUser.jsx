@@ -44,11 +44,7 @@ const DeleteUser = () => {
                 .post('http://localhost:8000/deleteuser', {
                     upw: formData.password,
                 },
-<<<<<<< HEAD
-                {withCredentials : true}
-=======
                     { withCredentials: true }
->>>>>>> 88a7c5ab126a2ebd07e9a0e6515a66879dfc80d5
                 )
                 .then(async(res) => {
                     console.log("이건은 response", res);
