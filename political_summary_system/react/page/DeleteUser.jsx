@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import '../style/DeleteUser.css'
 import axios from 'axios'
 import { getSession } from '../auth/auth'
+import { useAuth } from '../contexts/AuthContext'
 
 const DeleteUser = () => {
     const navigate = useNavigate()
@@ -20,7 +21,9 @@ const DeleteUser = () => {
         }))
     }
 
-    const handleSubmit = (e) => {
+    const { logout } = useAuth()
+
+    const handleSubmit = async (e) => {
         e.preventDefault()
 
         // 비밀번호 확인
@@ -41,11 +44,16 @@ const DeleteUser = () => {
                 .post('http://localhost:8000/deleteuser', {
                     upw: formData.password,
                 },
+<<<<<<< HEAD
                 {withCredentials : true}
+=======
+                    { withCredentials: true }
+>>>>>>> 88a7c5ab126a2ebd07e9a0e6515a66879dfc80d5
                 )
-                .then((res) => {
+                .then(async(res) => {
                     console.log("이건은 response", res);
                     alert('회원탈퇴가 완료되었습니다.');
+                    await logout();
                     navigate('/');
                 })
                 .catch((err) => {

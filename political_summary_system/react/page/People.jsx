@@ -25,7 +25,7 @@ const fetchMember = async () => {
  };
 
  /// fetchmemberㅓ로 인물 데이터 가져오기
- const dummydata = fetchMember ()
+//  const dummydata = fetchMember ()
 
 const People = () => {
   const [people, setPeople] = useState([])
