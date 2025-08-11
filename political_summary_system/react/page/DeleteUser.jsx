@@ -64,7 +64,7 @@ const DeleteUser = () => {
                 <p className="subtitle danger">계정을 영구적으로 삭제합니다</p>
 
                 {/* <div className="warning-box">
-                    <h3>⚠️ 주의사항</h3>
+                    <h3>⚠️ 주의사항</h3> 
                     <ul>
                         <li>탈퇴 후 모든 개인정보가 삭제됩니다</li>
                         <li>작성한 글과 댓글은 유지됩니다</li>
