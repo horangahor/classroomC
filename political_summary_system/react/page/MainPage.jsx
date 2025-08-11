@@ -270,45 +270,10 @@ const MainPage = () => {
 
   return (
     <div className="mainpage-background">
-<<<<<<< HEAD
-      {/* <h1 className="mainpage-title">지역 정치 이슈</h1> */}
-
-      {/* 🧪 테스트 버튼들 추가 */}
-      {/* <div style={{ padding: '10px', background: '#f0f0f0', margin: '10px 0', textAlign: 'center', borderRadius: '5px' }}>
-        <h4>🧪 테스트 버튼 (인물 데이터 확인용):</h4>
-        <button 
-          onClick={() => handleRegionAction('seoul')} 
-          style={{ margin: '5px', padding: '5px 10px', backgroundColor: '#007bff', color: 'white', border: 'none', borderRadius: '3px' }}
-        >
-          서울 테스트
-        </button>
-        <button 
-          onClick={() => handleRegionAction('busan')} 
-          style={{ margin: '5px', padding: '5px 10px', backgroundColor: '#007bff', color: 'white', border: 'none', borderRadius: '3px' }}
-        >
-          부산 테스트
-        </button>
-        <button 
-          onClick={() => handleRegionAction('gyeonggi')} 
-          style={{ margin: '5px', padding: '5px 10px', backgroundColor: '#007bff', color: 'white', border: 'none', borderRadius: '3px' }}
-        >
-          경기 테스트
-        </button>
-        <button 
-          onClick={() => {
-            console.log('🎯 regionPeople 전체:', regionPeople)
-            console.log('🎯 people state:', people)
-          }} 
-          style={{ margin: '5px', padding: '5px 10px', backgroundColor: '#28a745', color: 'white', border: 'none', borderRadius: '3px' }}
-        >
-          데이터 확인
-        </button>
-=======
       {/* 히어로 영역 */}
       <div className="mainpage-hero">
         <h1 className="mainpage-title">대한민국 정치 정보 한눈에</h1>
         {/* <p className="mainpage-subtitle">지도를 클릭하면 지역별 정치인과 최신 뉴스를 볼 수 있습니다.</p> */}
->>>>>>> ac5401dc0667940510ec6ee7df1e215ed3f9c8a9
       </div>
       {/* 2분할 레이아웃 - 지도 테두리 안에 좌우 컬럼 */}
       <div className="mainpage-2col">
@@ -340,13 +305,6 @@ const MainPage = () => {
                   <h3>🗺️ 지역을 선택해주세요</h3>
                   <p>지도를 클릭하면 해당 지역의 정치인 정보를 볼 수 있습니다.</p>
                 </div>
-<<<<<<< HEAD
-              ))
-            ) : (
-              <div className="no-people">
-                {/* <h3>🗺️ 지역을 선택해주세요</h3> */}
-                {/* <p>지도에서 원하는 지역을 클릭하면<br />해당 지역의 정치인 정보를 확인할 수 있습니다.</p> */}
-=======
               )}
             </div>
             {selectedRegion && (
@@ -356,7 +314,6 @@ const MainPage = () => {
                 <small className="region-info-desc">
                   {people.length}명의 정치인이 표시되고 있습니다.
                 </small>
->>>>>>> ac5401dc0667940510ec6ee7df1e215ed3f9c8a9
               </div>
             )}
           </div>
