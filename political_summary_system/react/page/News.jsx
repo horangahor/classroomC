@@ -132,9 +132,9 @@ const News = () => {
 
     // 더미 메타 정보 생성
     const getMeta = (idx) => {
-        const date = `2025-08-${String((idx%28)+1).padStart(2,'0')}`;
-        const source = ['연합뉴스','KBS','MBC','SBS','JTBC','한겨레','조선일보'][idx%7];
-        const category = ['정치','국회','선거','정책','사회'][idx%5];
+        const date = `2025-08-${String((idx % 28) + 1).padStart(2, '0')}`;
+        const source = ['연합뉴스', 'KBS', 'MBC', 'SBS', 'JTBC', '한겨레', '조선일보'][idx % 7];
+        const category = ['정치', '국회', '선거', '정책', '사회'][idx % 5];
         return { date, source, category };
     };
 
@@ -166,97 +166,96 @@ const News = () => {
 
     return (
         <div className="news-page">
-            <h1 className='news-h1'>주요 정치 이슈 정리</h1>
-            <div className="news-layout">
-                {/* 메인 콘텐츠 영역 - 뉴스 카드들 */}
-                <div className="news-main-content">
-                    {/* 로딩/빈 상태 안내 */}
-                    {loading ? (
-                        <div className="loading-container" style={{minHeight:200}}>
-                            <div className="loading-spinner" />
-                        </div>
-                    ) : currentNews.length === 0 ? (
-                        <div className="no-news">
-                            <h3>정치 뉴스가 없습니다</h3>
-                            <p>잠시 후 다시 시도해 주세요.</p>
-                        </div>
-                    ) : (
-                    <div className="news-grid">
-                        {currentNews.map((news, idx) => {
-                            const meta = getMeta(idx+indexOfFirstNews);
-                            return (
-                                <div 
-                                    className="news-card" 
-                                    key={idx}
-                                    onClick={() => handleNewsClick(news.link)}
-                                    style={{ cursor: 'pointer' }}
-                                >
-                                    {/* 좌측: 제목/요약/메타 */}
-                                    <div className="news-content">
-                                        <div className="news-meta">
-                                            <span className="news-meta-date">{meta.date}</span>
-                                            <span className="news-meta-source">{meta.source}</span>
-                                            <span className="news-meta-category">{meta.category}</span>
+            <div className="bg-con news-main-bg">
+                <div className="news-layout">
+                    <div className="news-main-content">
+                        {/* 로딩/빈 상태 안내 */}
+                        {loading ? (
+                            <div className="loading-container" style={{ minHeight: 200 }}>
+                                <div className="loading-spinner" />
+                            </div>
+                        ) : currentNews.length === 0 ? (
+                            <div className="no-news">
+                                <h3>정치 뉴스가 없습니다</h3>
+                                <p>잠시 후 다시 시도해 주세요.</p>
+                            </div>
+                        ) : (
+                            <div className="news-grid">
+                                {currentNews.map((news, idx) => {
+                                    const meta = getMeta(idx + indexOfFirstNews);
+                                    return (
+                                        <div
+                                            className="news-card"
+                                            key={idx}
+                                            onClick={() => handleNewsClick(news.link)}
+                                            style={{ cursor: 'pointer' }}
+                                        >
+                                            {/* 좌측: 제목/요약/메타 */}
+                                            <div className="news-content">
+                                                <div className="news-meta">
+                                                    <span className="news-meta-date">{meta.date}</span>
+                                                    <span className="news-meta-source">{meta.source}</span>
+                                                    <span className="news-meta-category">{meta.category}</span>
+                                                </div>
+                                                <h4 className="news-title">{news.title}</h4>
+                                                <p className="news-summary">{news.summary}</p>
+                                            </div>
+                                            {/* 우측: 이미지 */}
+                                            <div className="news-image">
+                                                <img src={news.imageUrl} alt="뉴스 썸네일" />
+                                            </div>
                                         </div>
-                                        <h4 className="news-title">{news.title}</h4>
-                                        <p className="news-summary">{news.summary}</p>
-                                    </div>
-                                    {/* 우측: 이미지 */}
-                                    <div className="news-image">
-                                        <img src={news.imageUrl} alt="뉴스 썸네일" />
-                                    </div>
-                                </div>
-                            )
-                        })}
+                                    )
+                                })}
+                            </div>
+                        )}
+                        {/* 페이지네이션 */}
+                        {totalPages > 1 && !loading && (
+                            <div className="pagination">
+                                <button
+                                    onClick={() => handleClick(currentPage - 1)}
+                                    disabled={currentPage === 1}
+                                    aria-label="이전 페이지"
+                                >
+                                    &#60;
+                                </button>
+                                {getPageList(currentPage, totalPages).map((page, idx) =>
+                                    page === '...' ? (
+                                        <span key={idx} className="pagination-ellipsis">...</span>
+                                    ) : (
+                                        <button
+                                            key={idx}
+                                            onClick={() => handleClick(page)}
+                                            className={currentPage === page ? 'active' : ''}
+                                        >
+                                            {page}
+                                        </button>
+                                    )
+                                )}
+                                <button
+                                    onClick={() => handleClick(currentPage + 1)}
+                                    disabled={currentPage === totalPages}
+                                    aria-label="다음 페이지"
+                                >
+                                    &#62;
+                                </button>
+                            </div>
+                        )}
                     </div>
-                    )}
-                    {/* 페이지네이션 */}
-                    {totalPages > 1 && !loading && (
-                        <div className="pagination">
-                            <button
-                                onClick={() => handleClick(currentPage - 1)}
-                                disabled={currentPage === 1}
-                                aria-label="이전 페이지"
-                            >
-                                &#60;
-                            </button>
-                            {getPageList(currentPage, totalPages).map((page, idx) =>
-                                page === '...' ? (
-                                    <span key={idx} className="pagination-ellipsis">...</span>
-                                ) : (
-                                    <button
-                                        key={idx}
-                                        onClick={() => handleClick(page)}
-                                        className={currentPage === page ? 'active' : ''}
-                                    >
-                                        {page}
-                                    </button>
-                                )
-                            )}
-                            <button
-                                onClick={() => handleClick(currentPage + 1)}
-                                disabled={currentPage === totalPages}
-                                aria-label="다음 페이지"
-                            >
-                                &#62;
-                            </button>
+                    <div className="party-sidebar">
+                        <h3 className="sidebar-title">정당 목록</h3>
+                        <div className="party-simple-list">
+                            {partyList.map((party, idx) => (
+                                <button
+                                    key={idx}
+                                    className="party-simple-btn"
+                                    onClick={() => handlePartyClick(party.url)}
+                                    title={party.name}
+                                >
+                                    {party.name}
+                                </button>
+                            ))}
                         </div>
-                    )}
-                </div>
-                {/* 우측 사이드바 - 정당 목록(아이콘 없이 텍스트만) */}
-                <div className="party-sidebar">
-                    <h3 className="sidebar-title">정당 목록</h3>
-                    <div className="party-simple-list">
-                        {partyList.map((party, idx) => (
-                            <button 
-                                key={idx}
-                                className="party-simple-btn"
-                                onClick={() => handlePartyClick(party.url)}
-                                title={party.name}
-                            >
-                                {party.name}
-                            </button>
-                        ))}
                     </div>
                 </div>
             </div>

@@ -16,10 +16,31 @@
   min-height: 100vh;
   background: var(--bg-secondary);
   padding: var(--space-lg);
-  padding-top: 90px; /* Header 높이(74px) + 여유공간(16px) */
+  padding-top: 90px;
+  position: relative;
 }
 
-/* 뉴스 페이지 메인 제목 - "정치 뉴스" 타이틀 */
+.bg-con {
+  background: var(--bg-primary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  border: 2px solid var(--border-light);
+}
+
+.bg-con.news-main-bg {
+  background: var(--bg-primary, #fff);
+  border-radius: 24px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  padding: 48px 32px 40px 32px;
+  max-width: 1840px;
+  margin: 0 auto 40px auto;
+  margin-top: 30px;
+  border: 1.5px solid var(--border-light, #e2e8f0);
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* 뉴스 페이지 메인 제목 */
 .news-h1 {
   background: var(--gradient-secondary);
   font-size: var(--font-size-4xl);
@@ -29,55 +50,84 @@
   text-align: center;
   padding: var(--space-lg);
   border-radius: var(--radius-xl);
-  /* box-shadow 제거 */
 }
 
-/* 뉴스 페이지 메인 레이아웃 - 좌측 뉴스 목록 + 우측 사이드바 */
+/* 뉴스 페이지 메인 레이아웃 */
 .news-layout {
   display: flex;
-  gap: var(--space-lg);
-  max-width: 1400px;
+  gap: 40px;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.news-layout {
+  display: flex;
+  gap: 80px; /* 사이드바와 카드 영역 사이 넉넉한 간격 */
+  width: 100%;
   margin: 0 auto;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+/* 배경 컨테이너가 전체를 감싸도록 */
+.news-main-bg {
+  padding: 40px;
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--border-light);
+  background: var(--bg-primary);
+  max-width: 1800px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+  box-sizing: border-box;
 }
 
 /* 메인 콘텐츠 영역 */
 .news-main-content {
-  flex: 1;
+  flex: 1 1 0;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  background: none;
+  border: none;
 }
 
-/* 뉴스 그리드 - 3×3 = 9개 */
-.news-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-md);
-  margin-bottom: var(--space-lg);
+.news-main-content {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  background: none;
+  border: none;
 }
 
-/* 뉴스 카드 - 크기 최적화 */
+/* 뉴스 카드 영역 */
 .news-card {
+  width: 100%;
+  max-width: 500px;
+  min-width: 0;
   border: 1px solid var(--border-light);
   background: var(--bg-primary);
   border-radius: 12px;
-  transition: none;
-  box-shadow: none;
   padding: var(--space-md);
-  min-height: 120px;
-  display: flex;             /* 좌: 텍스트 / 우: 이미지 나란히 */
+  min-height: 150px;
+  height: 180px;
+  display: flex;
   flex-direction: row;
   align-items: stretch;
 }
 
 .news-card:hover {
   border-color: var(--border-light);
-  transform: none;
-  box-shadow: none;
 }
 
 /* 카드 내부 좌측 텍스트 영역 */
 .news-content {
   flex: 1;
-  min-width: 0;              /* 긴 텍스트 줄바꿈 */
+  min-width: 0;
   padding-right: var(--space-sm);
   display: flex;
   flex-direction: column;
@@ -87,23 +137,22 @@
 /* 카드 내부 우측 이미지 영역 */
 .news-image {
   border-radius: 8px;
-  box-shadow: none;
   overflow: hidden;
-  width: 130px;              /* 고정 너비로 우측 영역 확보 */
-  flex-shrink: 0;            /* 줄어들지 않도록 */
+  width: 170px;
+  flex-shrink: 0;
   margin-left: var(--space-sm);
   display: flex;
   align-items: center;
   justify-content: center;
-  aspect-ratio: 4 / 3;       /* 일정 비율 유지 */
-  background: #f5f5f5;       /* 이미지 없을 때 배경 */
+  aspect-ratio: 4 / 3;
+  background: #f5f5f5;
 }
 
 .news-image img {
   border-radius: 8px;
   width: 100%;
   height: 100%;
-  object-fit: cover;         /* 꽉 차게 */
+  object-fit: cover;
   display: block;
 }
 
@@ -140,17 +189,26 @@
   font-weight: 500;
 }
 
-/* 정당 이니셜/로고 제거: party-logo-circle, party-logo-btn 관련 모두 삭제 */
-.party-logo-circle { display: none; }
-
-/* 사이드바/버튼/카드 등 그림자, 애니메이션, hover 강조 모두 제거 */
+/* 정당 목록 사이드바 */
 .party-sidebar {
-  box-shadow: none;
+  width: 220px;
+  min-width: 180px;
+  max-width: 260px;
   background: var(--bg-primary);
   border-radius: 12px;
-  padding: var(--space-md);
+  border: 2px solid var(--border-light);
+  padding: 5px;
+  height: fit-content;
+  box-sizing: border-box;
+  position: sticky;
+  top: 90px;
+  margin-left: 0;
+  margin-right: 10px; /* 추가 여백 */
+  z-index: 2;
+  flex-shrink: 0;
 }
 
+/* 정당 목록 사이드바 내부 스타일 복구 */
 .sidebar-title {
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-bold);
@@ -161,14 +219,12 @@
   padding-bottom: var(--space-sm);
 }
 
-/* 단순한 정당 목록 */
 .party-simple-list {
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
 }
 
-/* 단순한 정당 버튼 - 크기 줄임 */
 .party-simple-btn {
   border: 1px solid var(--border-light);
   background: var(--bg-primary);
@@ -179,16 +235,23 @@
   font-weight: var(--font-weight-medium);
   text-align: center;
   width: 100%;
-  transition: none;
-  box-shadow: none;
+  padding: 8px 0;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
 }
 
 .party-simple-btn:hover {
-  background: var(--bg-primary);
-  color: var(--text-primary);
-  border-color: var(--border-light);
-  transform: none;
-  box-shadow: none;
+  background: #f2f3fa;
+  color: var(--political-blue);
+  border-color: var(--political-blue);
+}
+
+/* 뉴스 그리드 */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+  width: 100%;
+  justify-content: center;
 }
 
 /* 페이지네이션 */
@@ -207,15 +270,6 @@
   border-radius: var(--radius-md);
   cursor: pointer;
   font-size: var(--font-size-sm);
-  transition: none;
-  box-shadow: none;
-}
-
-.pagination button:hover,
-.pagination button.active {
-  background: var(--bg-primary);
-  color: var(--text-primary);
-  border-color: var(--border-light);
 }
 
 .pagination button.active {
@@ -239,58 +293,6 @@
   border-color: var(--political-blue);
 }
 
-/* 우측 사이드바 - 너비 대폭 줄임 */
-.party-sidebar {
-  width: 180px;
-  background: var(--bg-primary);
-  border-radius: var(--radius-lg);
-  padding: var(--space-md);
-  /* box-shadow 제거 */
-  height: fit-content;
-  position: sticky;
-  top: 90px; /* Header 높이만큼 아래에서 시작 */
-}
-
-.sidebar-title {
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-bold);
-  color: var(--text-primary);
-  margin-bottom: var(--space-md);
-  text-align: center;
-  border-bottom: 2px solid var(--border-light);
-  padding-bottom: var(--space-sm);
-}
-
-/* 단순한 정당 목록 */
-.party-simple-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xs);
-}
-
-/* 단순한 정당 버튼 - 크기 줄임 */
-.party-simple-btn {
-  border: 1px solid var(--border-light);
-  background: var(--bg-primary);
-  color: var(--text-primary);
-  border-radius: var(--radius-md);
-  cursor: pointer;
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-medium);
-  text-align: center;
-  width: 100%;
-  transition: none;
-  box-shadow: none;
-}
-
-.party-simple-btn:hover {
-  background: var(--bg-primary);
-  color: var(--text-primary);
-  border-color: var(--border-light);
-  transform: none;
-  box-shadow: none;
-}
-
 /* 빈 뉴스/로딩 안내 */
 .no-news {
   text-align: center;
@@ -303,62 +305,62 @@
 }
 
 /* 반응형 디자인 */
+@media (max-width: 1700px) {
+  .news-main-content {
+    width: 1032px; /* 500*2 + 32*1 + 2*15 */
+  }
+  .news-grid {
+    grid-template-columns: repeat(2, 500px);
+  }
+}
 @media (max-width: 1200px) {
+  .news-main-bg {
+    padding: 16px;
+  }
   .news-layout {
     flex-direction: column;
+    gap: 32px;
+    align-items: stretch;
   }
-  
   .party-sidebar {
     width: 100%;
+    max-width: 100%;
+    margin-top: 32px;
     position: static;
-    order: -1;
-    top: auto; /* sticky 해제 */
+    top: auto;
+    padding: 0;
   }
-  
-  .party-simple-list {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: var(--space-sm);
+  .news-main-content {
+    width: 100%;
+    padding: 0;
   }
-  
-  .party-simple-btn {
-    flex: 1;
-    min-width: 100px;
-  }
-  
   .news-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
+    width: 100%;
   }
 }
 
 @media (max-width: 768px) {
   .news-page {
-    padding-top: 100px; /* 모바일에서 Header가 더 높을 수 있음 */
+    padding-top: 100px;
   }
-  
-  .news-grid {
-    grid-template-columns: 1fr;
-  }
-  
   .news-card {
     flex-direction: column;
     min-height: auto;
+    width: 100%;
+    max-width: 100%;
   }
-  
   .news-content {
     padding-right: 0;
     margin-bottom: var(--space-sm);
   }
-  
   .news-image {
     width: 100%;
     height: 140px;
   }
-  
   .party-simple-list {
     flex-direction: column;
   }
-  
   .party-simple-btn {
     min-width: auto;
   }
@@ -369,16 +371,13 @@
     padding: var(--space-md);
     padding-top: 100px;
   }
-  
   .news-h1 {
     font-size: 1.6rem;
     padding: var(--space-md);
   }
-  
   .party-sidebar {
     padding: var(--space-sm);
   }
-  
   .news-card {
     padding: var(--space-sm);
     min-height: 100px;
