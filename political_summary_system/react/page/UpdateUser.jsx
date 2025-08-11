@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import '../style/UpdateUser.css'
-import { getSession } from '../auth/auth'
+import {getSession} from '../auth/auth'
 
 const UpdateUser = () => {
     const navigate = useNavigate()

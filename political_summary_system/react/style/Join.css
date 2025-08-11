@@ -1,11 +1,17 @@
+/* 폰트 및 컬러 변수 불러오기 */
+@import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
 @import './colors.css';
 
+/* 전역 스타일 초기화 및 기본 폰트 설정 */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    font-style: normal;
 }
 
+/* 회원가입 페이지 전체 컨테이너 - 헤더 아래 중앙 정렬 레이아웃 */
 .join-container {
     display: flex;
     justify-content: center;
@@ -14,9 +20,10 @@
     background: var(--bg-secondary);
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
     padding: var(--space-lg);
-    padding-top: 110px;
+    padding-top: 110px; /* 헤더 높이 + 추가 여백 */
 }
 
+/* 회원가입 폼 카드 - 실제 가입 양식을 담는 흰색 카드 */
 .join-form {
     background: var(--bg-primary);
     padding: var(--space-2xl);

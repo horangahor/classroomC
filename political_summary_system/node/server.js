@@ -6,6 +6,7 @@ const MemoryStore = require('express-session').MemoryStore;
 
 const homeRouter = require("./router/homeRouter.js");
 const adminRouter = require("./router/adminRouter.js");
+const memberRouter = require("./router/memberRouter.js")
 
 const sessionStore = new MemoryStore();
 
@@ -37,9 +38,10 @@ homeRouter.get('/sessions', (req, res)=>{
     console.log(allSessions);
     res.send("hi");
 })
-
+ 
 
 app.use('/', homeRouter);
 app.use('/admin', adminRouter);
+app.use('/', memberRouter)
 
 app.listen(8000);

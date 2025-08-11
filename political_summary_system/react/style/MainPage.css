@@ -1,17 +1,20 @@
+/* 폰트 및 컬러 변수 불러오기 */
 @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
 @import './colors.css';
 
+/* 전역 스타일 초기화 */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* 메인페이지 배경 컨테이너 - 헤더 높이만큼 상단 여백 */
 .mainpage-background {
     margin-top: 90px;
 }
 
-/* MainPage 컨테이너 - Header 높이만큼 상단 패딩 추가 */
+/* 메인페이지 전체 컨테이너 - 좌우 콘텐츠를 나누는 플렉스 레이아웃 */
 .mainpage-container {
     padding: 20px;
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -20,7 +23,77 @@
     gap: 30px;
 }
 
-/* 좌측 콘텐츠 영역 */
+/* 메인페이지 2분할 레이아웃 - 지도 테두리 안에 좌우 컬럼 배치 */
+.mainpage-2col {
+    /* 테두리, 배경 제거: map-container가 감쌈 */
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 40px;
+}
+
+.mainpage-people-col {
+    flex: 1.2;
+    min-width: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* map-container 내부에 맞게 여백 조정 */
+    margin-right: 24px;
+}
+
+.mainpage-map-col {
+    flex: 1;
+    min-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 지도 컨테이너 - 테두리/배경/라운드, 좌우 컬럼 포함 */
+.map-container {
+    width: 100%;
+    max-width: 1840px;
+    align-items: center;
+    min-height: 800px;
+    display: flex;
+    gap: 40px;
+    background: white;
+    border-radius: var(--radius-2xl);
+    border: 2.5px solid var(--border-light);
+    box-shadow: 0 6px 32px rgba(0, 0, 0, 0.07);
+    padding: 40px 32px;
+    position: relative;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+}
+
+@media (max-width: 1024px) {
+    .map-container {
+        flex-direction: column;
+        gap: 24px;
+        padding: 24px 10px;
+        min-height: auto;
+    }
+
+    .mainpage-people-col,
+    .mainpage-map-col {
+        min-width: 0;
+        margin-right: 0;
+        align-items: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .map-container {
+        padding: 12px 2px;
+        gap: 12px;
+    }
+}
+
+/* 좌측 콘텐츠 영역 - 제목, 검색, 정치인 리스트 등을 담는 영역 */
 .left-content {
     flex: 1;
     min-width: 400px;
@@ -29,7 +102,7 @@
     gap: 20px;
 }
 
-/* 우측 지도 영역 */
+/* 우측 지도 영역 - 한국 지도를 표시하는 영역 */
 .right-content {
     flex: 1;
     min-width: 500px;
@@ -38,6 +111,7 @@
     align-items: flex-start;
 }
 
+/* 메인페이지 제목 - "정치인 정보 시스템" 등의 메인 타이틀 */
 .mainpage-title {
     background: var(--secondary-indigo);
     font-size: var(--font-size-4xl);
@@ -61,8 +135,8 @@
 /* 선택된 지역 정보 박스 */
 .region-info-box {
     padding: var(--space-xl);
-    background: #F4F4F6; /* 뉴트럴한 밝은 회색 */
-    color: #222831; /* 진한 회색 텍스트 */
+    background: var(--border-light);
+    color: var(--text-primary);
     border-radius: var(--radius-lg);
     /* box-shadow 제거 */
     transform: translateY(0);
@@ -129,31 +203,92 @@
     border-bottom: none;
 }
 
-/* 지도 컨테이너 */
+/* 지도 컨테이너 - 좌우 분할 레이아웃 */
 .map-container {
     width: 100%;
-    height: 800px;
+    min-height: 800px;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    gap: 20px;
     position: sticky;
     top: 20px;
+    background: white;
+    border-radius: var(--radius-2xl);
+    padding: 20px;
+    border: 2px solid var(--border-light);
+}
 
+/* 지도 컨테이너 좌측 - 카드/뉴스 영역 */
+.map-left-content {
+    flex: 1;
+    min-width: 300px;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-height: 760px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+/* 지도 컨테이너 우측 - SVG 지도 영역 */
+.map-right-content {
+    flex: 1;
+    min-width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/* 좌측 섹션 헤더 */
+.map-left-header {
+    margin-bottom: 20px;
+}
+
+.map-left-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.map-left-subtitle {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* 지도 헤더 */
+.map-header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    width: 100%;
+}
+
+.map-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.map-description {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
 }
 
 .korea-map {
     width: 100%;
-    max-width: 800px;
+    max-width: 1200px;
     height: auto;
-    
     border-radius: var(--radius-2xl);
     background: var(--bg-primary);
-    /* box-shadow 제거 */
     transition: all var(--transition-normal);
 }
 
 .korea-map:hover {
-    /* box-shadow 제거 */
     transform: translateY(-2px);
 }
 
@@ -204,83 +339,144 @@
     }
 }
 
-/* 반응형 디자인 */
-@media (max-width: 1024px) {
-    .mainpage-container {
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .left-content,
-    .right-content {
-        flex: 1;
-        min-width: auto;
-        width: 100%;
-    }
-
-    .mainpage-title {
-        text-align: center;
-        font-size: 2.2rem;
-    }
-
-    .mainpage-subtitle {
-        text-align: center;
-    }
-
-    .map-container {
-        position: static;
-    }
+/* 뉴스/정치인 카드 스타일 */
+.info-card {
+    background: var(--bg-primary);
+    border: 2px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 16px;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
-@media (max-width: 768px) {
-    .mainpage-container {
-        padding: 15px;
-    }
-
-    .mainpage-title {
-        font-size: 2rem;
-    }
-
-    .mainpage-subtitle {
-        font-size: 1rem;
-    }
-
-    .region-info-box {
-        padding: 20px;
-    }
-
-    .region-info-title {
-        font-size: 1.2rem;
-    }
-
-    .korea-map {
-        border-width: 2px;
-        border-radius: 15px;
-        max-width: 500px;
-    }
+.info-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--political-blue);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
-@media (max-width: 480px) {
-    .mainpage-container {
-        padding: 10px;
-    }
+.info-card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
 
-    .mainpage-title {
-        font-size: 1.7rem;
-    }
+.info-card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-full);
+    background: var(--political-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    margin-right: 12px;
+    font-size: 1.2rem;
+}
 
-    .region-info-box {
-        padding: 15px;
-    }
+.info-card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
 
-    .korea-map {
-        border-radius: 10px;
-        max-width: 400px;
-    }
+.info-card-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
 
-    .left-content {
-        min-width: auto;
-    }
+.info-card-content {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 12px;
+}
+
+.info-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.info-card-date {
+    color: var(--text-tertiary);
+}
+
+.info-card-category {
+    background: var(--secondary-indigo);
+    color: white;
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+}
+
+/* 뉴스 카드 전용 스타일 */
+.news-card {
+    border-left: 4px solid var(--secondary-green);
+}
+
+.news-card:hover {
+    border-left-color: var(--political-blue);
+}
+
+/* 정치인 카드 전용 스타일 */
+.politician-card-mini {
+    border-left: 4px solid var(--political-blue);
+}
+
+.politician-card-mini:hover {
+    border-left-color: var(--secondary-green);
+}
+
+.politician-avatar-mini {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-full);
+    background: var(--gradient-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    margin-right: 12px;
+}
+
+/* 스크롤바 스타일링 */
+.map-left-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.map-left-content::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+    border-radius: 3px;
+}
+
+.map-left-content::-webkit-scrollbar-thumb {
+    background: var(--border-medium);
+    border-radius: 3px;
+}
+
+.map-left-content::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+}
+
+.korea-map {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    border-radius: var(--radius-2xl);
+    background: var(--bg-primary);
+    /* box-shadow 제거 */
+    transition: all var(--transition-normal);
+}
+
+.korea-map:hover {
+    /* box-shadow 제거 */
+    transform: translateY(-2px);
 }
 
 /* 애니메이션 효과 */
@@ -330,4 +526,131 @@
         opacity: 1;
         transform: translateX(0);
     }
+}
+
+/* People(인물) 카드 스타일 */
+.people-container {
+    display: flex;
+    flex-direction: row;   /* ← row로 변경 */
+    gap: 18px;
+    width: 100%;
+    flex-wrap: wrap;       /* 여러 줄로 넘칠 때 자동 줄바꿈 */
+    justify-content: flex-start; /* 필요시 center로 변경 가능 */
+    background: #f4f4f6
+}
+
+.person-card {
+    display: flex;
+    align-items: center;
+    height: 200px;
+    width: 150px;
+    margin-left: 10px;
+    gap: 10px;
+    background: var(--bg-primary, #fff);
+    border: 1px solid var(--border-light, #e2e8f0);
+    border-radius: var(--radius-lg, 16px);
+    box-shadow: var(--shadow-sm, 0 1px 2px 0 rgb(0 0 0 / 0.05));
+    padding: 16px 20px;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.person-card:hover {
+    box-shadow: var(--shadow-md, 0 4px 6px -1px rgb(0 0 0 / 0.1));
+    transform: translateY(-2px) scale(1.01);
+}
+
+.person-img {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--political-blue, #1e40af);
+    background: #f1f5f9;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.person-img:hover {
+    border-color: var(--political-red, #dc2626);
+}
+
+.person-name-btn {
+    background: none;
+    border: none;
+    color: var(--text-primary, #0f172a);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    transition: color 0.2s;
+}
+
+.person-name-btn:hover {
+    color: var(--political-blue, #1e40af);
+    text-decoration: underline;
+}
+
+.person-job {
+    color: var(--text-secondary, #475569);
+    font-size: 0.95rem;
+    margin-left: auto;
+    font-weight: 400;
+}
+
+.no-people {
+    text-align: center;
+    color: var(--text-secondary, #64748b);
+    padding: 40px 0 20px 0;
+}
+
+/* region-info-box, region-info-title, region-info-name, region-info-desc는 이미 위에서 정의되어 있으므로 중복 정의 삭제 */
+
+/* @keyframes fadeIn은 region-info-box에서 사용하므로 유지 */
+
+/* 지도 컨테이너 반응형 추가 */
+@media (max-width: 1024px) {
+    .map-container {
+        flex-direction: column;
+        min-height: auto;
+        gap: 15px;
+    }
+
+    .map-left-content {
+        max-width: none;
+        max-height: 400px;
+        order: 2;
+    }
+
+    .map-right-content {
+        order: 1;
+        min-width: auto;
+    }
+
+    .korea-map {
+        max-width: 600px;
+    }
+}
+
+@media (max-width: 768px) {
+    .map-container {
+        padding: 15px;
+    }
+
+    .map-left-content {
+        max-height: 300px;
+        gap: 12px;
+    }
+
+    .info-card {
+        padding: 12px;
+    }
+
+    .korea-map {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    /* 추가적인 스타일 조정이 필요할 경우 여기에 작성 */
 }

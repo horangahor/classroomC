@@ -8,7 +8,7 @@ async function getNewsList(page) {
         const [results] = await conn.execute(
             "select * from news"
         );
-        console.log("newsQueyr의" +results);
+        // console.log("newsQueyr의" +results);
         return results;
     }
     finally{
