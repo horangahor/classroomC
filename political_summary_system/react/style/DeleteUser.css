@@ -120,20 +120,19 @@
 .delete-btn {
     flex: 1;
     padding: var(--space-lg);
-    background: var(--error);
-    color: var(--text-inverse);
-    border: none;
+    background: var(--custom-color-white);
+    color: var(--text-primary);
     border-radius: var(--radius-lg);
     font-size: var(--font-size-base);
     font-weight: var(--font-weight-medium);
     cursor: pointer;
     transition: all var(--transition-normal);
+    border: 2px solid var(--border-light); 
 }
 
 .delete-btn:hover {
-    background: var(--error-dark);
-    transform: translateY(-2px);
-    /* box-shadow 제거 */
+   background: var(--primary-light)
+    
 }
 
 .cancel-btn {
@@ -147,15 +146,14 @@
     font-weight: var(--font-weight-medium);
     text-align: center;
     transition: all var(--transition-normal);
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .cancel-btn:hover {
-    background: var(--gray-600);
-    transform: translateY(-2px);
-    /* box-shadow 제거 */
+    background: var(--primary-light)
 }
 
 /* 반응형 디자인 */

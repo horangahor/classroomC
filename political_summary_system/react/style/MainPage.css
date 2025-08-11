@@ -61,8 +61,8 @@
 /* 선택된 지역 정보 박스 */
 .region-info-box {
     padding: var(--space-xl);
-    background: var(--gradient-primary);
-    color: var(--text-inverse);
+    background: #F4F4F6; /* 뉴트럴한 밝은 회색 */
+    color: #222831; /* 진한 회색 텍스트 */
     border-radius: var(--radius-lg);
     /* box-shadow 제거 */
     transform: translateY(0);
@@ -138,13 +138,14 @@
     align-items: center;
     position: sticky;
     top: 20px;
+
 }
 
 .korea-map {
     width: 100%;
     max-width: 800px;
     height: auto;
-    border: 3px solid var(--border-light);
+    
     border-radius: var(--radius-2xl);
     background: var(--bg-primary);
     /* box-shadow 제거 */
