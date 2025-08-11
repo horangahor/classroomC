@@ -52,7 +52,7 @@ const MainPage = () => {
       { id: 15, name: '김태흠', job: '충남도지사', img: 'https://via.placeholder.com/150x150/FFA502/FFFFFF?text=김태흠' },
     ],
     jeonbuk: [
-      { id: 16, name: '김관영', job: '전북도지사', img: 'https://via.placeholder.com/150x150/3742FA/FFFFFF?text=김관영' },
+      { id: 16, name: '김관영', job: '전북도지사',img: 'https://via.placeholder.com/150x150/3742FA/FFFFFF?text=김관영' },
     ],
     jeonnam: [
       { id: 17, name: '김영록', job: '전남도지사', img: 'https://via.placeholder.com/150x150/2F3542/FFFFFF?text=김영록' },
@@ -270,6 +270,7 @@ const MainPage = () => {
 
   return (
     <div className="mainpage-background">
+<<<<<<< HEAD
       {/* <h1 className="mainpage-title">지역 정치 이슈</h1> */}
 
       {/* 🧪 테스트 버튼들 추가 */}
@@ -302,56 +303,70 @@ const MainPage = () => {
         >
           데이터 확인
         </button>
+=======
+      {/* 히어로 영역 */}
+      <div className="mainpage-hero">
+        <h1 className="mainpage-title">대한민국 정치 정보 한눈에</h1>
+        {/* <p className="mainpage-subtitle">지도를 클릭하면 지역별 정치인과 최신 뉴스를 볼 수 있습니다.</p> */}
+>>>>>>> ac5401dc0667940510ec6ee7df1e215ed3f9c8a9
       </div>
-       */}
-      <div className="mainpage-container">
-        {/* 좌측 콘텐츠 영역 */}
-        <div className="left-content">
-          <div className="people-container">
-            {people.length > 0 ? (
-              people.map(person => (
-                <div className="person-card" key={person.id}>
-                  <img
-                    className="person-img"
-                    src={person.img}
-                    alt={person.name}
-                    onClick={() => navigate(`/people/${person.id}`)}
-                  />
-                  <button
-                    className="person-name-btn"
-                    onClick={() => navigate(`/people/${person.id}`)}
-                  >
-                    {person.name}
-                  </button>
-                  <p className="person-job">{person.job}</p>
+      {/* 2분할 레이아웃 - 지도 테두리 안에 좌우 컬럼 */}
+      <div className="mainpage-2col">
+        <div className="map-container">
+          {/* 좌측: 정치인 정보 */}
+          <div className="mainpage-people-col">
+            <h3 className="mainpage-section-title">정치인 정보</h3>
+            <div className="people-container">
+              {people.length > 0 ? (
+                people.map(person => (
+                  <div className="person-card" key={person.id}>
+                    <img
+                      className="person-img"
+                      src={person.img}
+                      alt={person.name}
+                      onClick={() => navigate(`/people/${person.id}`)}
+                    />
+                    <button
+                      className="person-name-btn"
+                      onClick={() => navigate(`/people/${person.id}`)}
+                    >
+                      {person.name}
+                    </button>
+                    <p className="person-job">{person.job}</p>
+                  </div>
+                ))
+              ) : (
+                <div className="no-people">
+                  <h3>🗺️ 지역을 선택해주세요</h3>
+                  <p>지도를 클릭하면 해당 지역의 정치인 정보를 볼 수 있습니다.</p>
                 </div>
+<<<<<<< HEAD
               ))
             ) : (
               <div className="no-people">
                 {/* <h3>🗺️ 지역을 선택해주세요</h3> */}
                 {/* <p>지도에서 원하는 지역을 클릭하면<br />해당 지역의 정치인 정보를 확인할 수 있습니다.</p> */}
+=======
+              )}
+            </div>
+            {selectedRegion && (
+              <div className="region-info-box fade-in">
+                <h3 className="region-info-title">선택된 지역</h3>
+                <p className="region-info-name">{selectedRegion}</p>
+                <small className="region-info-desc">
+                  {people.length}명의 정치인이 표시되고 있습니다.
+                </small>
+>>>>>>> ac5401dc0667940510ec6ee7df1e215ed3f9c8a9
               </div>
             )}
           </div>
-
-          {selectedRegion && (
-            <div className="region-info-box fade-in">
-              <h3 className="region-info-title">선택된 지역</h3>
-              <p className="region-info-name">{selectedRegion}</p>
-              <small className="region-info-desc">
-                {people.length}명의 정치인이 표시되고 있습니다.
-              </small>
+          {/* 우측: 지도 */}
+          <div className="mainpage-map-col">
+            <div className="map-header">
+              <h3 className="map-title">대한민국 지도</h3>
+              <p className="map-description">지역을 선택하세요</p>
             </div>
-          )}
-        </div>
-
-        {/* 우측 지도 영역 */}
-        <div className="right-content">
-          <div className="map-container">
-            <KrMap
-              ref={svgRef}
-              className="korea-map slide-up"
-            />
+            <KrMap ref={svgRef} className="korea-map slide-up" />
           </div>
         </div>
       </div>
