@@ -38,7 +38,7 @@ homeRouter.get('/sessions', (req, res)=>{
     console.log(allSessions);
     res.send("hi");
 })
-
+ 
 
 app.use('/', homeRouter);
 app.use('/admin', adminRouter);
