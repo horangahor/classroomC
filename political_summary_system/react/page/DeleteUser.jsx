@@ -32,7 +32,6 @@ const DeleteUser = () => {
             return
         }
 
-        // 확인 텍스트 검증
         if (formData.confirmText !== '회원탈퇴') {
             alert('"회원탈퇴"를 정확히 입력해주세요.')
             return
