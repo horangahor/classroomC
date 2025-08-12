@@ -8,6 +8,7 @@ const MainPage = () => {
   const svgRef = useRef(null)
   const [selectedRegion, setSelectedRegion] = useState(null)
   const [people, setPeople] = useState([])
+  const [news, setNews] = useState([])
   const navigate = useNavigate()
 
   // 지역별 인물 더미 데이터 (실제 사용 안 함)
@@ -24,6 +25,12 @@ const MainPage = () => {
       .finally(() => setLoading(false))
   }, [])
 
+  // 백엔드에서 전체 뉴스 데이터 받아오기
+  useEffect(() => {
+    axios.get('http://localhost:8000/getNews')
+      .then(res => setNews(res.data))
+      .catch(err => console.error('뉴스 데이터 fetch 실패', err))
+  }, [])
 
   // 로딩 끝 디버깅
   useEffect(() => {
@@ -236,6 +243,44 @@ const MainPage = () => {
     setPeople(regionPeopleData)
   }, [allMembers])
 
+  // 지역명 한글→영문 매핑 테이블 (인물/뉴스 공통)
+  const locationToKey = {
+    '서울특별시': 'seoul', '서울': 'seoul',
+    '부산광역시': 'busan', '부산': 'busan',
+    '대구광역시': 'daegu', '대구': 'daegu',
+    '인천광역시': 'incheon', '인천': 'incheon',
+    '광주광역시': 'gwangju', '광주': 'gwangju',
+    '대전광역시': 'daejeon', '대전': 'daejeon',
+    '울산광역시': 'ulsan', '울산': 'ulsan',
+    '세종특별자치시': 'sejong', '세종': 'sejong',
+    '경기도': 'gyeonggi', '경기': 'gyeonggi',
+    '강원도': 'gangwon', '강원': 'gangwon',
+    '충청북도': 'chungbuk', '충북': 'chungbuk',
+    '충청남도': 'chungnam', '충남': 'chungnam',
+    '전라북도': 'jeonbuk', '전북': 'jeonbuk',
+    '전라남도': 'jeonnam', '전남': 'jeonnam',
+    '경상북도': 'gyeongbuk', '경북': 'gyeongbuk',
+    '경상남도': 'gyeongnam', '경남': 'gyeongnam',
+    '제주특별자치도': 'jeju', '제주': 'jeju'
+  };
+
+  // 지역별 뉴스 필터링 (selectedRegion이 있을 때만)
+  const regionKey = (() => {
+    if (people.length > 0 && people[0].location) {
+      const loc = people[0].location?.trim();
+      return locationToKey[loc] || loc?.toLowerCase().replace(/\s/g, '');
+    }
+    // people이 없을 때는 selectedRegion(영문) 사용
+    return selectedRegion ? selectedRegion.toLowerCase() : null;
+  })();
+  const regionNews = Array.isArray(news) && regionKey ?
+    news.filter(item => {
+      const rawLoc = item.location || item.region;
+      const trimmedLoc = rawLoc?.trim();
+      const key = locationToKey[trimmedLoc] || trimmedLoc?.toLowerCase().replace(/\s/g, '');
+      return key === regionKey;
+    }) : [];
+
   // 최신 handleRegionAction을 ref에 저장
   useEffect(() => {
     handleRegionActionRef.current = handleRegionAction;
@@ -293,6 +338,42 @@ const MainPage = () => {
       }
     }
   }, []);
+
+  // 한글 지역명 매핑 (지도/뉴스/표시용 공통)
+  const regionNames = {
+    'seoul': '서울특별시',
+    'busan': '부산광역시',
+    'daegu': '대구광역시',
+    'incheon': '인천광역시',
+    'gwangju': '광주광역시',
+    'daejeon': '대전광역시',
+    'ulsan': '울산광역시',
+    'sejong': '세종특별자치시',
+    'gyeonggi': '경기도',
+    'gangwon': '강원도',
+    'chungbuk': '충청북도',
+    'chungnam': '충청남도',
+    'jeonbuk': '전라북도',
+    'jeonnam': '전라남도',
+    'gyeongbuk': '경상북도',
+    'gyeongnam': '경상남도',
+    'jeju': '제주특별자치도'
+  };
+
+  // 선택된 지역 한글명 반환 함수
+  const getRegionName = (regionId) => {
+    if (!regionId) return '';
+    // regionId가 KR42 등 코드면 keyMapping으로 변환
+    const keyMapping = {
+      'kr11': 'seoul', 'kr26': 'busan', 'kr27': 'daegu', 'kr28': 'incheon', 'kr29': 'gwangju',
+      'kr30': 'daejeon', 'kr31': 'ulsan', 'kr50': 'sejong', 'kr41': 'gyeonggi', 'kr42': 'gangwon',
+      'kr43': 'chungbuk', 'kr44': 'chungnam', 'kr45': 'jeonbuk', 'kr46': 'jeonnam', 'kr47': 'gyeongbuk',
+      'kr48': 'gyeongnam', 'kr49': 'jeju'
+    };
+    const lower = regionId.toLowerCase();
+    const mapped = keyMapping[lower] || lower;
+    return regionNames[mapped] || regionId;
+  };
 
   return (
     <div className="mainpage-background">
@@ -353,10 +434,36 @@ const MainPage = () => {
             {selectedRegion && (
               <div className="region-info-box fade-in">
                 <h3 className="region-info-title">선택된 지역</h3>
-                <p className="region-info-name">{selectedRegion}</p>
+                <p className="region-info-name">{getRegionName(selectedRegion)}</p>
                 <small className="region-info-desc">
                   {people.length}명의 정치인이 표시되고 있습니다.
                 </small>
+                {/* 지역별 뉴스 출력 */}
+                <div className="region-news-list">
+                  <h4 className="region-news-title">지역 뉴스</h4>
+                  {regionNews.length > 0 ? (
+                    regionNews.slice(0, 5).map(newsItem => {
+                      // 내용 필드 추출: description, summary, content, body 등 우선순위
+                      const content = newsItem.description || newsItem.summary || newsItem.content || newsItem.body || '';
+                      return (
+                        <div key={newsItem.id} className="region-news-card">
+                          <a href={newsItem.url} target="_blank" rel="noopener noreferrer" className="region-news-link">
+                            <div className="region-news-meta">
+                              <span className="region-news-source">{newsItem.source || newsItem.media}</span>
+                              <span className="region-news-date">{newsItem.date || newsItem.pubDate}</span>
+                            </div>
+                            <div className="region-news-title-txt">{newsItem.title}</div>
+                            {content && (
+                              <div className="region-news-content">{content}</div>
+                            )}
+                          </a>
+                        </div>
+                      )
+                    })
+                  ) : (
+                    <div className="region-news-none">해당 지역 뉴스가 없습니다.</div>
+                  )}
+                </div>
               </div>
             )}
           </div>
