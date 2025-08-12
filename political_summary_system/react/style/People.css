@@ -22,21 +22,27 @@
 }
 
 .people-main-bg {
-  background: var(--bg-primary, #fff);
+  background: var(--bg-primary, #fff) ;
   border-radius: 24px;
   max-width: 1200px;
   margin: 0 auto 40px auto;
   padding: 40px 32px 32px 32px;
-  border: 1.5px solid var(--border-light, #e2e8f0);
+  border: none;
   box-sizing: border-box;
 }
 
 .people-title {
   font-size: 2rem;
   font-weight: 700;
-  color: var(--text-primary, #22223b);
+  color: #ffffff;
   margin-bottom: 32px;
   text-align: center;
+  /* 텍스트 테두리 효과 */
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
 }
 
 .people-list {
@@ -65,10 +71,10 @@
 .people-img {
   width: 90px;
   height: 90px;
-  border-radius: 0 !important;
+  border-radius: 10px !important;
   object-fit: cover;
   margin-bottom: 16px;
-  border: 2px solid var(--political-blue, #1e40af);
+  border: none;
   background: #f1f5f9;
 }
 

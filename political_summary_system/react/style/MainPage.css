@@ -537,6 +537,7 @@
     flex-wrap: wrap;       /* 여러 줄로 넘칠 때 자동 줄바꿈 */
     justify-content: flex-start; /* 필요시 center로 변경 가능 */
     background: #f4f4f6
+    
 }
 
 .person-card {
