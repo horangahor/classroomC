@@ -48,13 +48,15 @@ const DetailPeople = () => {
   if (!person) return null
 
   // 주요 필드만 선별 (순서: 이름, 나이, 직책, 위치, 소속정당)
+  // '직책'은 job > position 우선순위로 한 번만 출력
   const mainFields = [
     { label: '이름', key: 'name' },
     { label: '나이', key: 'age' },
-    { label: '직책', key: person.job ? 'job' : 'position' },
+    { label: '직책', key: person.job ? 'job' : (person.position ? 'position' : null) },
     { label: '위치', key: person.region ? 'region' : 'location' },
     { label: '소속정당', key: 'affiliation' }
-  ]
+  ].filter(f => f.key); // key가 null인 경우 제외
+
   // 기타 정보(공약만 남김, 이미지 관련 키 모두 제외)
   const extraEntries = Object.entries(person)
     .filter(([key, value]) =>
@@ -69,6 +71,7 @@ const DetailPeople = () => {
           ← 목록으로
         </button>
         <div className={`detail-people-container detailpeople-affiliation-${person.affiliation || ''}`} style={{display: 'flex', flexDirection: 'row', alignItems: 'flex-start', gap: '36px', justifyContent: 'flex-start'}}>
+          <img className="people-img detail" src={person.img} alt={person.name} style={{marginTop: 0}} />
           <div className="detail-people-info" style={{flex: 1}}>
             {mainFields.map(({ label, key }) =>
               person[key] ? (
@@ -78,11 +81,11 @@ const DetailPeople = () => {
                 </div>
               ) : null
             )}
-            {/* mainFields에 없는 나머지 정보도 모두 아래에 세로로 출력 (id 등 불필요한 필드는 제외) */}
+            {/* mainFields에 없는 나머지 정보도 모두 아래에 세로로 출력 (id 등 불필요한 필드는 제외, 'job', 'position'도 제외) */}
             {Object.entries(person)
               .filter(([key, value]) =>
                 !mainFields.some(f => f.key === key) &&
-                !['img', 'profile_image_url', 'profileImageUrl', 'profileImgUrl', 'id'].includes(key) &&
+                !['img', 'profile_image_url', 'profileImageUrl', 'profileImgUrl', 'id', 'job', 'position'].includes(key) &&
                 key !== 'pledge' &&
                 value && String(value).trim() !== ''
               )
@@ -102,7 +105,6 @@ const DetailPeople = () => {
               </div>
             )}
           </div>
-          <img className="people-img detail" src={person.img} alt={person.name} style={{marginTop: 0}} />
         </div>
       </div>
     </div>

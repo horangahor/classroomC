@@ -17,6 +17,8 @@ const fetchMember = async () => {
       return res.data.map(person => ({
         ...person,
         img: person.img || person.profile_image_url || '',
+        name: person.name || person.person_name || person.real_name || '-',
+        job: person.job || person.position || person.title || '-',
       }))
     }
     return null
