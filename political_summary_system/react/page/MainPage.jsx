@@ -320,11 +320,23 @@ const MainPage = () => {
                       className="person-img"
                       src={person.profile_image_url || 'https://via.placeholder.com/150x150?text=No+Image'}
                       alt={person.name}
-                      onClick={() => navigate(`/people/${person.id}`)}
+                      onClick={() => navigate(`/people/${person.id}`, { state: {
+                        id: person.id,
+                        name: person.name,
+                        job: person.job,
+                        img: person.profile_image_url || '',
+                        ...person
+                      } })}
                     />
                     <button
                       className="person-name-btn"
-                      onClick={() => navigate(`/people/${person.id}`)}
+                      onClick={() => navigate(`/people/${person.id}`, { state: {
+                        id: person.id,
+                        name: person.name,
+                        job: person.job,
+                        img: person.profile_image_url || '',
+                        ...person
+                      } })}
                     >
                       {person.name}
                     </button>
