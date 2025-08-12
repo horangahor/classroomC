@@ -15,69 +15,89 @@
   min-height: calc(100vh - 90px);
 }
 
-.people-container {
-  width: 60%;
-  display: flex;
-  flex-wrap: wrap;
-  border-radius: 20px;
-  background-color: var(--bg-secondary);
-  margin-top: 20px;
-  gap: 1.5rem;
-  justify-content: center;
-  padding: 2rem 0;
-  /* max-height와 overflow-y 제거 - 전체 페이지 스크롤 사용 */
+.people-page-bg {
+  min-height: 100vh;
+  background: var(--bg-secondary, #f7f8fa);
+  padding-top: 90px;
 }
 
-.person-card {
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-xl);
-  padding: var(--space-xl);
-  background: var(--bg-primary);
+.people-main-bg {
+  background: var(--bg-primary, #fff);
+  border-radius: 24px;
+  max-width: 1200px;
+  margin: 0 auto 40px auto;
+  padding: 40px 32px 32px 32px;
+  border: 1.5px solid var(--border-light, #e2e8f0);
+  box-sizing: border-box;
+}
+
+.people-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary, #22223b);
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.people-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: center;
+}
+
+.people-card {
+  background: var(--bg-primary, #fff);
+  border: 1px solid var(--border-light, #e2e8f0);
+  border-radius: 16px;
   width: 220px;
-  /* box-shadow 제거 */
+  padding: 24px 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: border-color 0.2s;
 }
 
-.person-img {
-  
-    width: 200px;
-  height: 200px;
+.people-card:hover {
+  border-color: var(--political-blue, #1e40af);
+}
+
+.people-img {
+  width: 90px;
+  height: 90px;
+  border-radius: 0 !important;
   object-fit: cover;
-  border-radius: 0%;
-  margin-bottom: 1rem;
-  
+  margin-bottom: 16px;
+  border: 2px solid var(--political-blue, #1e40af);
+  background: #f1f5f9;
 }
 
-.person-name {
-  margin: 0 0 0.5rem 0;
-  font-size: 1.2rem;
-  font-weight: 700;
+.people-info {
+  text-align: center;
 }
 
-.person-job {
-  margin: 0 0 0.5rem 0;
+.people-name {
+  font-size: 1.15rem;
   font-weight: 600;
-  font-size: 1rem;
+  color: var(--text-primary, #22223b);
+  margin-bottom: 6px;
 }
 
-.person-desc {
-  margin: 0;
-  color: var(--text-secondary);
-  font-size: var(--font-size-sm);
+.people-job {
+  font-size: 1rem;
+  color: var(--text-secondary, #475569);
+  margin-bottom: 4px;
 }
-.person-name-btn {
-  background: none;
-  border: none;
-  color: var(--political-blue);
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-bold);
-  cursor: pointer;
-  margin-bottom: var(--space-sm);
-  transition: color var(--transition-fast);
+
+.people-region {
+  font-size: 0.95rem;
+  color: var(--text-tertiary, #64748b);
 }
-.person-name-btn:hover {
-  color: var(--text-primary);
-  text-decoration: underline;
+
+/* 반응형 */
+@media (max-width: 900px) {
+  .people-main-bg { padding: 20px 6px; }
+  .people-list { gap: 16px; }
+  .people-card { width: 160px; padding: 16px 6px; }
+  .people-img { width: 64px; height: 64px; }
 }

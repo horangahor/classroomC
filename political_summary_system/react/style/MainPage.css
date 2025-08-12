@@ -561,7 +561,7 @@
 .person-img {
     width: 64px;
     height: 64px;
-    border-radius: 50%;
+    border-radius: 0 !important;
     object-fit: cover;
     border: 2px solid var(--political-blue, #1e40af);
     background: #f1f5f9;
