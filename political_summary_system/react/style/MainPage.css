@@ -284,7 +284,6 @@
     max-width: 1200px;
     height: auto;
     border-radius: var(--radius-2xl);
-    background: var(--bg-primary);
     transition: all var(--transition-normal);
 }
 
@@ -302,13 +301,13 @@
 }
 
 .region-path:hover {
-    fill: var(--political-blue);
+    fill: var(--secondary-skyblue);
     stroke-width: 2px;
 }
 
 .region-path.selected {
-    fill: var(--secondary-green);
-    stroke: var(--secondary-green);
+    fill: var(--secondary-indigo);
+    stroke: var(--gray-900);
     stroke-width: 3px;
 }
 
