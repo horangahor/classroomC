@@ -8,6 +8,34 @@
     font-style: normal;
 }
 
+/* 전체 배경 및 메인 카드 */
+.detailpeople-page-bg {
+  min-height: 100vh;
+  background: var(--bg-secondary, #f7f8fa);
+  padding-top: 90px;
+}
+
+.detailpeople-main-bg {
+  background: var(--bg-primary, #fff);
+  border-radius: 24px;
+  max-width: 700px;
+  margin: 0 auto 40px auto;
+  padding: 40px 32px 32px 32px;
+  border: 1.5px solid var(--border-light, #e2e8f0);
+  box-sizing: border-box;
+}
+
+/* 상단으로 돌아가기 버튼 */
+.detailpeople-back-btn {
+  background: none;
+  border: none;
+  color: var(--political-blue, #1e40af);
+  font-size: 1rem;
+  margin-bottom: 24px;
+  cursor: pointer;
+  padding: 0;
+}
+
 /* 상세 페이지 메인 컨테이너 - 이미지와 정보를 가로로 배치하는 플렉스 레이아웃 */
 .detail-container {
   display: flex;
@@ -22,7 +50,7 @@
   width: 300px;
   height: 400px;
   object-fit: cover;
-  border-radius: var(--radius-2xl);
+  border-radius: 0 !important;
   margin-bottom: 0;
   border: 2px solid var(--bg-primary);
   flex-shrink: 0;
@@ -36,22 +64,42 @@
   justify-content: center;
 }
 
-.detail-title {
-  font-size: 2rem;
+.detailpeople-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  justify-content: center;
+}
+
+.detailpeople-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 0 !important;
+  object-fit: cover;
+  border: 2px solid var(--political-blue, #1e40af);
+  background: #f1f5f9;
+}
+
+.detailpeople-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+}
+
+.detailpeople-name {
+  font-size: 1.3rem;
   font-weight: 700;
-  margin-bottom: 1rem;
-  color: #1f2937;
+  color: var(--text-primary, #22223b);
 }
 
-.detail-job {
-  font-weight: bold;
-  color: #2563eb;
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
+.detailpeople-job {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-secondary, #475569);
 }
 
-.detail-content {
+.detailpeople-region {
   font-size: 1rem;
-  color: #374151;
-  margin-bottom: 1rem;
+  color: var(--text-tertiary, #64748b);
 }

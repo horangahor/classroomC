@@ -106,6 +106,7 @@ const News = () => {
     useEffect(() => {
         setLoading(true);
         getNews(1).then(data => {
+            console.log('[getNews 결과]', data); // 데이터 구조 확인용
             setNewsData(data);
             setLoading(false);
         });
@@ -127,6 +128,7 @@ const News = () => {
 
     // 뉴스 카드 클릭
     const handleNewsClick = (url) => {
+        console.log('[뉴스 카드 클릭] url:', url);
         window.open(url, '_blank');
     };
 
@@ -187,7 +189,7 @@ const News = () => {
                                         <div
                                             className="news-card"
                                             key={idx}
-                                            onClick={() => handleNewsClick(news.link)}
+                                            onClick={() => handleNewsClick(news.link || news.url)}
                                             style={{ cursor: 'pointer' }}
                                         >
                                             {/* 좌측: 제목/요약/메타 */}
