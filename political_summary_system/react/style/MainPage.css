@@ -531,26 +531,31 @@
 .people-container {
     display: flex;
     flex-direction: row;   /* ← row로 변경 */
+    border-radius: 12px;
     gap: 18px;
     width: 100%;
     flex-wrap: wrap;       /* 여러 줄로 넘칠 때 자동 줄바꿈 */
-    justify-content: flex-start; /* 필요시 center로 변경 가능 */
-    background: #f4f4f6
+    justify-content: center; /* 필요시 center로 변경 가능 */
+    align-items: center;
+    background: none;
+    margin-bottom: 20px;
 }
 
 .person-card {
     display: flex;
-    align-items: center;
+    flex-direction: column;      /* 세로 정렬로 변경 */
+    align-items: center;         /* 가운데 정렬 */
+    justify-content: center;
     height: 200px;
     width: 150px;
-    margin-left: 10px;
     gap: 10px;
     background: var(--bg-primary, #fff);
     border: 1px solid var(--border-light, #e2e8f0);
     border-radius: var(--radius-lg, 16px);
     box-shadow: var(--shadow-sm, 0 1px 2px 0 rgb(0 0 0 / 0.05));
-    padding: 16px 20px;
+    padding: 16px 10px;
     transition: box-shadow 0.2s, transform 0.2s;
+    margin-left: 0;              /* 필요시 마진 조정 */
 }
 
 .person-card:hover {
@@ -559,11 +564,10 @@
 }
 
 .person-img {
-    width: 64px;
-    height: 64px;
+    width: 120px;
+    height: 120px;
     border-radius: 0 !important;
     object-fit: cover;
-    border: 2px solid var(--political-blue, #1e40af);
     background: #f1f5f9;
     cursor: pointer;
     transition: border-color 0.2s;
@@ -593,7 +597,6 @@
 .person-job {
     color: var(--text-secondary, #475569);
     font-size: 0.95rem;
-    margin-left: auto;
     font-weight: 400;
 }
 
