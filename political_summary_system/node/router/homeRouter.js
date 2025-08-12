@@ -10,7 +10,7 @@ function getSession(req, res){
 }
 
 
-// delete 세션인데 쓸까말까
+// delete 세션인데 쓰기로 함
 function deleteSession(req,res){
     req.session.destroy(err => {
         if(err) {

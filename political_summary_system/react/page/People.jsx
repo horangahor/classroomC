@@ -12,7 +12,7 @@ const fetchMember = async () => {
   console.log("패치멤버가 실행됨");
             
                 const response = await axios
-                .get('http://localhost:8000/members',
+                .get(import.meta.env.VITE_PEOPLE_SERVER,
 
                 )
                 .then ((res) => {
