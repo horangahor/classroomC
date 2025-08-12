@@ -44,9 +44,10 @@ function csvToArray(str , delimiter = ","){
             name : record[1],
             age : record[2],
             location : record[3],
-            affiliation : record[4],
-            profile_image_url : record[5],
-            pledge : record[6]
+            position : record[4],
+            affiliation : record[5],
+            pledge : record[6],
+            profile_image_url : record[7]
         }
         arr.push(obj);
     }

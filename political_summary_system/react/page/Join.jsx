@@ -36,7 +36,7 @@ const Join = () => {
         }
         // 서버에 회원가입 요청 보내기
         axios
-            .post('http://localhost:8000/join', {
+            .post(import.meta.env.VITE_JOIN_SERVER, {
                 id : formData.email,
                 pw : formData.password,
                 name : formData.name,
