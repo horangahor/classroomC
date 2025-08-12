@@ -302,13 +302,13 @@
 }
 
 .region-path:hover {
-    fill: var(--political-blue);
+    fill: #97c6e8;
     stroke-width: 2px;
 }
 
 .region-path.selected {
-    fill: var(--secondary-green);
-    stroke: var(--secondary-green);
+    fill: #759dc2  ;
+    stroke: #759dc2 ;
     stroke-width: 3px;
 }
 
