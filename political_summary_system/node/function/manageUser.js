@@ -57,16 +57,9 @@ async function update(id, name, phnum, cpw, npw) { // req, res를 제거하고 �
 }
 
 // 회원탈퇴 기능
-async function remove(req) {
+async function remove(req, session) {
     const { pw } = req.body;
-    try {
-        const result = await deleteuser(session.id, session.name, pw);
-
-        
-    } catch (err) {
-        console.error("회원탈퇴 중 오류", err);
-        res.redirect('/remove');
-    }
+        const result = await deleteuser(session.id, session.name , pw);
 }
 
 module.exports = {join, login, update, remove};
