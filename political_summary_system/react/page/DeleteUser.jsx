@@ -41,7 +41,7 @@ const DeleteUser = () => {
         if (window.confirm('정말로 탈퇴하시겠습니까? 이 작업은 되돌릴 수 없습니다.')) {
             axios
                 .post('http://localhost:8000/deleteuser', {
-                    id: currentUser.id,
+                    id: formData.email,
                     pw: formData.password,
                 },
                     { withCredentials: true }
