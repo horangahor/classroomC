@@ -78,11 +78,11 @@
   width: 180px;
   height: 220px;
   border-radius: 12px !important;
+  border: 3px solid var(--political-blue, #1e40af) !important;
   object-fit: cover;
   background: #f1f5f9;
   margin: 0 32px 0 0;
   box-shadow: 0 4px 16px 0 rgba(30,64,175,0.08);
-  border: 3px solid var(--political-blue, #1e40af);
   align-self: flex-start;
   flex-shrink: 0;
 }
@@ -168,11 +168,11 @@
   width: 180px;
   height: 220px;
   border-radius: 12px !important;
+  border: 3px solid var(--political-blue, #1e40af) !important;
   object-fit: cover;
   background: #f1f5f9;
   margin-bottom: 0;
   box-shadow: 0 4px 16px 0 rgba(30,64,175,0.08);
-  border: 3px solid var(--political-blue, #1e40af); /* 기본값 */
 }
 
 /* 목록으로 버튼: 배경 없이 글씨만 컬러, hover 효과 */
@@ -195,33 +195,18 @@
   border-bottom: 2px solid #233876;
 }
 
-/* 정당별 이미지 border 색상 (예시: 국민의힘, 더불어민주당, 정의당, 무소속) */
-.people-img.detail {
-  width: 180px;
-  height: 220px;
-  border-radius: 12px !important;
-  object-fit: cover;
-  background: #f1f5f9;
-  margin-bottom: 0;
-  box-shadow: 0 4px 16px 0 rgba(30,64,175,0.08);
-  border: 3px solid var(--political-blue, #1e40af); /* 기본값 */
-}
-
-/* 국민의힘 */
+/* 정당별 이미지 border 색상 (DetailPeople 전용) */
 .detailpeople-affiliation-국민의힘 .people-img.detail {
-  border-color: #e61e2b;
+  border-color: #e61e2b !important;
 }
-/* 더불어민주당 */
 .detailpeople-affiliation-더불어민주당 .people-img.detail {
-  border-color: #1877d5;
+  border-color: #1877c9 !important;
 }
-/* 정의당 */
 .detailpeople-affiliation-정의당 .people-img.detail {
-  border-color: #ffcb08;
+  border-color: #ffcb08 !important;
 }
-/* 무소속 */
 .detailpeople-affiliation-무소속 .people-img.detail {
-  border-color: #64748b;
+  border-color: #222 !important;
 }
 
 @media (max-width: 600px) {
