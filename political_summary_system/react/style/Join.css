@@ -117,13 +117,29 @@
 }
 
 /* 반응형 디자인 */
-@media screen and (max-width: 480px) {
+@media (max-width: 1024px) {
+  .join-form {
+    padding: 20px;
+    max-width: 320px;
+  }
+}
+
+@media (max-width: 768px) {
+  .join-form {
+    padding: 10px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
     .join-container {
         padding: 10px;
     }
     
     .join-form {
-        padding: 30px 20px;
+        padding: 4px;
+        max-width: 220px;
+        font-size: 0.9rem;
     }
     
     .join-form h2 {

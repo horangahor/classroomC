@@ -211,29 +211,30 @@
   border-color: #222 !important;
 }
 
-@media (max-width: 600px) {
-  .detailpeople-container {
-    flex-direction: column;
-    align-items: center;
-    gap: 18px;
-  }
-  .detailpeople-img {
-    width: 90px;
-    height: 90px;
-  }
+@media (max-width: 1024px) {
   .detailpeople-main-bg {
-    padding: 18px 8px 18px 8px;
+    padding: 20px 8px;
+    max-width: 100vw;
   }
-  .detailpeople-grid {
-    grid-template-columns: 1fr;
-    gap: 10px;
+  .detail-img {
+    width: 180px;
+    height: 240px;
   }
-  .people-img.detail {
-    width: 110px;
-    height: 130px;
+}
+@media (max-width: 768px) {
+  .detailpeople-main-bg {
+    padding: 8px 2px;
   }
-  .people-back-btn {
-    font-size: 0.98rem;
-    padding: 0 0 7px 0;
+  .detailpeople-back-btn {
+    font-size: 0.9rem;
+  }
+}
+@media (max-width: 480px) {
+  .detailpeople-main-bg {
+    padding: 2px;
+  }
+  .detail-img {
+    width: 100px;
+    height: 120px;
   }
 }

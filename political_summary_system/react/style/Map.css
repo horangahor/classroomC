@@ -12,3 +12,22 @@
   display: block;
   margin: 0 auto;
 }
+
+@media (max-width: 1024px) {
+  .map-container {
+    padding: 10px;
+    min-height: 400px;
+  }
+}
+@media (max-width: 768px) {
+  .map-container {
+    padding: 4px;
+    font-size: 0.95rem;
+  }
+}
+@media (max-width: 480px) {
+  .map-container {
+    padding: 2px;
+    font-size: 0.9rem;
+  }
+}

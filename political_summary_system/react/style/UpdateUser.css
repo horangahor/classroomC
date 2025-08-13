@@ -123,20 +123,22 @@
 }
 
 /* 반응형 디자인 */
+@media (max-width: 1024px) {
+  .update-card {
+    padding: 20px;
+    max-width: 320px;
+  }
+}
+@media (max-width: 768px) {
+  .update-card {
+    padding: 10px;
+    font-size: 0.95rem;
+  }
+}
 @media (max-width: 480px) {
-    .update-container {
-        padding: 15px;
-    }
-    
-    .update-card {
-        padding: 30px 25px;
-    }
-    
-    .update-card h2 {
-        font-size: 1.5rem;
-    }
-    
-    .button-group {
-        flex-direction: column;
-    }
+  .update-card {
+    padding: 4px;
+    max-width: 220px;
+    font-size: 0.9rem;
+  }
 }

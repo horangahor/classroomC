@@ -85,21 +85,38 @@
 }
 
 /* 반응형 디자인 */
+@media (max-width: 1024px) {
+  .mypage-container {
+    padding: 8px;
+  }
+  .mypage-card {
+    max-width: 320px;
+    padding: var(--space-lg);
+  }
+}
+@media (max-width: 768px) {
+  .mypage-card {
+    padding: var(--space-md);
+    font-size: 0.95rem;
+  }
+}
 @media (max-width: 480px) {
-    .mypage-container {
-        padding: 15px;
-    }
-    
-    .mypage-card {
-        padding: 30px 25px;
-    }
-    
-    .mypage-card h2 {
-        font-size: 1.5rem;
-    }
-    
-    .menu-btn {
-        padding: 12px 15px;
-        font-size: 0.9rem;
-    }
+  .mypage-container {
+    padding: 15px;
+  }
+  
+  .mypage-card {
+    padding: var(--space-sm);
+    max-width: 220px;
+    font-size: 0.9rem;
+  }
+  
+  .mypage-card h2 {
+    font-size: 1.5rem;
+  }
+  
+  .menu-btn {
+    padding: 12px 15px;
+    font-size: 0.9rem;
+  }
 }
