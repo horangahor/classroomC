@@ -28,6 +28,23 @@ const fetchMember = async () => {
   }
 }
 
+// 직책별 카테고리 그룹핑 함수
+const groupByJobCategory = (peopleList) => {
+  const categories = {
+    대통령: [],
+    도지사: [],
+    시장: [],
+    기타: []
+  }
+  peopleList.forEach(person => {
+    if (person.job?.includes('대통령')) categories.대통령.push(person)
+    else if (person.job?.includes('도지사')) categories.도지사.push(person)
+    else if (person.job?.includes('시장')) categories.시장.push(person)
+    else categories.기타.push(person)
+  })
+  return categories
+}
+
 const People = () => {
   const [people, setPeople] = useState([])
   const navigate = useNavigate()
@@ -50,32 +67,41 @@ const People = () => {
     load()
   }, [])
 
+  const jobCategories = groupByJobCategory(people)
+
   return (
     <div className="people-page-bg">
       <div className="people-main-bg">
         <h1 className="people-title">정치인 인물 정보</h1>
-        <div className="people-list">
-          {people.map(person => (
-            <div
-              className="people-card"
-              key={person.id}
-              onClick={() => navigate(`/people/${person.id}`, { state: person })}
-              style={{ cursor: 'pointer' }}
-            >
-              <div className="people-img-wrap">
-                <img
-                  className="people-img"
-                  src={person.img}
-                  alt={person.name}
-                />
-              </div>
-              <div className="people-info">
-                <div className="people-name">{person.name ? person.name : '-'}</div>
-                <div className="people-job">{person.job ? person.job : '-'}</div>
+        {Object.entries(jobCategories).map(([category, list]) => (
+          list.length > 0 && (
+            <div key={category} className="people-category-group">
+              <h2 className="people-category-title">{category}</h2>
+              <div className="people-list">
+                {list.map(person => (
+                  <div
+                    className="people-card"
+                    key={person.id}
+                    onClick={() => navigate(`/people/${person.id}`, { state: person })}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    <div className="people-img-wrap">
+                      <img
+                        className="people-img"
+                        src={person.img}
+                        alt={person.name}
+                      />
+                    </div>
+                    <div className="people-info">
+                      <div className="people-name">{person.name ? person.name : '-'}</div>
+                      <div className="people-job">{person.job ? person.job : '-'}</div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-          ))}
-        </div>
+          )
+        ))}
       </div>
     </div>
   )
