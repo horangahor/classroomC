@@ -14,15 +14,6 @@ const readFile = async (file) => {
     // console.log("readFile의 csvData :" , csvData); // 여기까진 값이 잘 전달됨
     
     return csvData;
-
-    // fs.readFile(file=politician, "utf8", (err, data)=>{
-    // if (err){
-    //     console.error(err);
-    // }  
-    // else{
-    //     const arr = csvToArray(data);
-    //     console.log("readFile : " ,arr);
-    // }
 }  
 
 // 읽은 csv 텍스트를 배열로 바꿈
@@ -55,21 +46,5 @@ function csvToArray(str , delimiter = ","){
     
     return arr;
 }
-
-// async function insertAll(file){
-//     const csvData = await csvReader.readFile(file);
-//     for(i=0;i<csvData.length;i++){
-//         insertMember(csvData[i].name,csvData[i].age,csvData[i].position,csvData[i].politics );
-//     }
-// }
-
-
-// const csvReader = {
-//     greeting : "hello",
-//     readCsv :async () => {
-//         const csvData = await readFile();
-//         return csvData;
-//     }
-// }
 
 module.exports = {readFile};

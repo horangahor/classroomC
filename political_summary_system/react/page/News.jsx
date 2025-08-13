@@ -106,6 +106,7 @@ const News = () => {
     useEffect(() => {
         setLoading(true);
         getNews(1).then(data => {
+            console.log('[getNews 결과]', data); // 데이터 구조 확인용
             setNewsData(data);
             setLoading(false);
         });
@@ -127,6 +128,7 @@ const News = () => {
 
     // 뉴스 카드 클릭
     const handleNewsClick = (url) => {
+        console.log('[뉴스 카드 클릭] url:', url);
         window.open(url, '_blank');
     };
 
@@ -167,6 +169,7 @@ const News = () => {
     return (
         <div className="news-page">
             <div className="bg-con news-main-bg">
+                {/* 뉴스 카드/페이지네이션 영역 */}
                 <div className="news-layout">
                     <div className="news-main-content">
                         {/* 로딩/빈 상태 안내 */}
@@ -187,7 +190,7 @@ const News = () => {
                                         <div
                                             className="news-card"
                                             key={idx}
-                                            onClick={() => handleNewsClick(news.link)}
+                                            onClick={() => handleNewsClick(news.link || news.url)}
                                             style={{ cursor: 'pointer' }}
                                         >
                                             {/* 좌측: 제목/요약/메타 */}
@@ -201,9 +204,9 @@ const News = () => {
                                                 <p className="news-summary">{news.summary}</p>
                                             </div>
                                             {/* 우측: 이미지 */}
-                                            <div className="news-image">
+                                            {/* <div className="news-image">
                                                 <img src={news.imageUrl} alt="뉴스 썸네일" />
-                                            </div>
+                                            </div> */}
                                         </div>
                                     )
                                 })}
@@ -242,20 +245,21 @@ const News = () => {
                             </div>
                         )}
                     </div>
-                    <div className="party-sidebar">
-                        <h3 className="sidebar-title">정당 목록</h3>
-                        <div className="party-simple-list">
-                            {partyList.map((party, idx) => (
-                                <button
-                                    key={idx}
-                                    className="party-simple-btn"
-                                    onClick={() => handlePartyClick(party.url)}
-                                    title={party.name}
-                                >
-                                    {party.name}
-                                </button>
-                            ))}
-                        </div>
+                </div>
+                {/* 하단에 정당 목록 분리 배치 (컨테이너 내부로 이동) */}
+                <div className="party-bottombar">
+                    <div className="party-bottombar-title">정당 공식 홈페이지 바로가기</div>
+                    <div className="party-simple-list party-row-list">
+                        {partyList.map((party, idx) => (
+                            <button
+                                key={idx}
+                                className="party-simple-btn"
+                                onClick={() => handlePartyClick(party.url)}
+                                title={party.name}
+                            >
+                                {party.name}
+                            </button>
+                        ))}
                     </div>
                 </div>
             </div>

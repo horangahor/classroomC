@@ -16,4 +16,26 @@ async function getNewsList(page) {
     }
 }
 
-module.exports = { getNewsList };
+async function insertNews(obj){
+    
+    const conn = await pool.getConnection();
+    // console.log(obj);
+    
+    try{
+        const [result] = await conn.execute(
+            "insert into news(news_identifier,date,media_company,politician, location, institution, title, summary, url) values(?, ?, ?, ?, ?, ?, ?, ?, ?)"
+            ,[obj.news_identifier, obj.date, obj.media_company, obj.politician, obj.location, obj.institution, obj.title, obj.summary, obj.url]
+        );
+        console.log("insertNews의");
+         console.log(result);
+        return result.affectedRows;
+    }
+    catch(err){
+        console.error(err);
+    }
+    finally{
+        conn.release();
+    }
+}
+
+module.exports = { getNewsList, insertNews };

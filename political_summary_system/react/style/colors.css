@@ -16,7 +16,8 @@
     --secondary-cyan: #06b6d4;      /* 시안색 (정보, 링크) */
     --secondary-pink: #ec4899;      /* 분홍색 (특별, 이벤트) */
     --secondary-indigo: #6366f1;    /* 인디고 (프리미엄, 고급) */
-    
+    --secondary-skyblue: #97c6e8;    /* 하늘색 (정보, 링크) */
+
     /* Neutral Colors - 중성 컬러 */
     --gray-50: #f9fafb;             /* 가장 밝은 회색 */
     --gray-100: #f3f4f6;            /* 배경용 */

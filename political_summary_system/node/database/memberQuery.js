@@ -9,7 +9,7 @@ async function insertMember(obj){
             [obj.id, obj.name, obj.age, obj.location, obj.affiliation, obj.profile_image_url, obj.pledge, obj.position   ]
         );
         console.log("insertMember의");
-        console.log(result);
+        // console.log(result);
         
         return result.affectedRows;
     }
