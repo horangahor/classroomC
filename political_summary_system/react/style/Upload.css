@@ -133,3 +133,23 @@
 .input-margin-bottom {
   margin-bottom: var(--space-md);
 }
+
+@media (max-width: 1024px) {
+  .upload-card {
+    padding: var(--space-lg);
+    max-width: 20rem;
+  }
+}
+@media (max-width: 768px) {
+  .upload-card {
+    padding: var(--space-md);
+    font-size: 0.95rem;
+  }
+}
+@media (max-width: 480px) {
+  .upload-card {
+    padding: var(--space-sm);
+    max-width: 12rem;
+    font-size: 0.9rem;
+  }
+}

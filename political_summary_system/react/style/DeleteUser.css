@@ -184,30 +184,27 @@
 }
 
 /* ===== 반응형 디자인 - 모바일 화면 대응 ===== */
+/* 1024px 이하 태블릿 및 작은 화면 기기용 스타일 조정 */
+@media (max-width: 1024px) {
+    .delete-card {
+        padding: 20px;
+        max-width: 320px;
+    }
+}
+
+/* 768px 이하 모바일 기기용 스타일 조정 */
+@media (max-width: 768px) {
+    .delete-card {
+        padding: 10px;
+        font-size: 0.95rem;
+    }
+}
+
 /* 480px 이하 모바일 기기용 스타일 조정 */
 @media (max-width: 480px) {
-    /* 모바일에서 컨테이너 패딩 축소 */
-    .delete-container {
-        padding: 15px;
-    }
-    
-    /* 모바일에서 카드 패딩 축소 */
     .delete-card {
-        padding: 30px 25px;
-    }
-    
-    /* 모바일에서 제목 크기 축소 */
-    .delete-card h2 {
-        font-size: 1.5rem;
-    }
-    
-    /* 모바일에서 버튼을 세로로 배치 */
-    .button-group {
-        flex-direction: column;
-    }
-    
-    /* 모바일에서 경고 박스 패딩 축소 */
-    .warning-box {
-        padding: 15px;
+        padding: 4px;
+        max-width: 220px;
+        font-size: 0.9rem;
     }
 }

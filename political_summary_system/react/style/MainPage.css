@@ -326,7 +326,40 @@
     }
 }
 
-/* 지도, 카드, 뉴스 등 기타 스타일 및 애니메이션 효과는 기존 주석 유지 */
+/* 태블릿: 1024px 이하 */
+@media (max-width: 1024px) {
+  .mainpage-container {
+    flex-direction: column;
+    gap: 16px;
+    padding: 10px;
+  }
+  .mainpage-2col {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .mainpage-people-col, .mainpage-map-col {
+    min-width: 0;
+    margin-right: 0;
+  }
+}
+
+/* 모바일: 768px 이하 */
+@media (max-width: 768px) {
+  .mainpage-container {
+    padding: 4px;
+  }
+  .mainpage-background {
+    margin-top: 60px;
+  }
+}
+
+/* 초소형 모바일: 480px 이하 */
+@media (max-width: 480px) {
+  .mainpage-container {
+    padding: 2px;
+  }
+}
+
 /* 애니메이션 효과 */
 .fade-in {
     animation: fadeIn 0.5s ease-in;

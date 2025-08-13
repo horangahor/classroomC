@@ -102,13 +102,27 @@
 }
 
 /* 반응형 디자인 */
+@media (max-width: 1024px) {
+  .login-form {
+    padding: 20px;
+    max-width: 320px;
+  }
+}
 @media (max-width: 768px) {
-    .login-container {
+  .login-container {
         padding: 16px;
         padding-top: 100px; /* 모바일에서 조금 더 여유 */
     }
     
     .login-form {
-        padding: 24px;
+        padding: 10px;
+        font-size: 0.95rem;
     }
+}
+@media (max-width: 480px) {
+  .login-form {
+    padding: 4px;
+    max-width: 220px;
+    font-size: 0.9rem;
+  }
 }

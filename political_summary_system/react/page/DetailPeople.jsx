@@ -47,7 +47,8 @@ const DetailPeople = () => {
     { label: '나이', key: 'age' },
     { label: '직책', key: person.job ? 'job' : (person.position ? 'position' : null) },
     { label: '위치', key: person.region ? 'region' : 'location' },
-    { label: '소속정당', key: 'affiliation' }
+    { label: '소속정당', key: 'affiliation' },
+    { label: '공약', key: 'pledge'}
   ].filter(f => f.key);
 
   // 기타 정보(공약 등)
@@ -75,12 +76,21 @@ const DetailPeople = () => {
               ) : null
             )}
             {/* 기타 정보(공약 등) 출력 */}
-            {extraEntries.map(([key, value]) => (
+            {/* {extraEntries.map(([key, value]) => (
               <div key={key} className="detailpeople-extra">
-                <span className="detailpeople-label">{key}</span>
-                <span className="detailpeople-value">{value}</span>
+                <span className="detailpeople-label">{key === 'pledge' ? '공약' : key}</span>
+                <span className="detailpeople-value">
+                  {Array.isArray(value)
+                    ? (
+                      <ul>
+                        {value.map((item, i) => <li key={i}>{item}</li>)}
+                      </ul>
+                    )
+                    : value
+                  }
+                </span>
               </div>
-            ))}
+            ))} */}
           </div>
         </div>
       </div>
