@@ -60,7 +60,7 @@ async function update(id, name, phnum, cpw, npw) { // req, res를 제거하고 �
 async function remove(req) {
     const { pw } = req.body;
     try {
-        const result = await deleteuser(pw);
+        const result = await deleteuser(session.id, session.name, pw);
 
         
     } catch (err) {
