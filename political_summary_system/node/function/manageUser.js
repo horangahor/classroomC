@@ -61,16 +61,8 @@ async function remove(req) {
     const { pw } = req.body;
     try {
         const result = await deleteuser(pw);
-<<<<<<< HEAD
 
         
-=======
-        if (result.affectedRows > 0) {
-
-        } else {
- 
-        }
->>>>>>> e0351d7 (8/8 햇던 것 커밋)
     } catch (err) {
         console.error("회원탈퇴 중 오류", err);
         res.redirect('/remove');
