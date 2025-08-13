@@ -8,6 +8,7 @@ import { useAuth } from '../contexts/AuthContext'
 const DeleteUser = () => {
     const navigate = useNavigate()
     const [formData, setFormData] = useState({
+        email : '',
         password: '',
         reason: '',
         confirmText: ''
