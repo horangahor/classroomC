@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import '../style/News.css';
 import { getNews } from '../auth/newsreq';
 
@@ -102,6 +102,7 @@ const News = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const newsPerPage = 9;
     const [loading, setLoading] = useState(true);
+    const gotoInputRef = useRef();
 
     useEffect(() => {
         setLoading(true);
@@ -119,7 +120,10 @@ const News = () => {
     const totalPages = Math.ceil(newsData.length / newsPerPage);
 
     // 페이지 버튼 클릭
-    const handleClick = (pageNum) => setCurrentPage(pageNum);
+    const handleClick = (pageNum) => {
+        setCurrentPage(pageNum);
+        if (gotoInputRef.current) gotoInputRef.current.value = '';
+    };
 
     // 정당 공식 홈페이지 이동
     const handlePartyClick = (url) => {
@@ -242,24 +246,30 @@ const News = () => {
                                 >
                                     &#62;
                                 </button>
+                                {/* 직접 페이지 입력 기능 */}
+                                <form className="pagination-goto-form"
+                                    onSubmit={e => {
+                                        e.preventDefault();
+                                        const val = Number(e.target.elements.gotoPage.value);
+                                        if (val >= 1 && val <= totalPages) handleClick(val);
+                                        if (gotoInputRef.current) gotoInputRef.current.value = '';
+                                    }}
+                                >
+                                    <input
+                                        type="number"
+                                        name="gotoPage"
+                                        min={1}
+                                        max={totalPages}
+                                        placeholder="페이지"
+                                        className="pagination-goto-input"
+                                        ref={gotoInputRef}
+                                    />
+                                    <button type="submit" className="pagination-goto-btn">
+                                        이동
+                                    </button>
+                                </form>
                             </div>
                         )}
-                    </div>
-                </div>
-                {/* 하단에 정당 목록 분리 배치 (컨테이너 내부로 이동) */}
-                <div className="party-bottombar">
-                    <div className="party-bottombar-title">정당 공식 홈페이지 바로가기</div>
-                    <div className="party-simple-list party-row-list">
-                        {partyList.map((party, idx) => (
-                            <button
-                                key={idx}
-                                className="party-simple-btn"
-                                onClick={() => handlePartyClick(party.url)}
-                                title={party.name}
-                            >
-                                {party.name}
-                            </button>
-                        ))}
                     </div>
                 </div>
             </div>

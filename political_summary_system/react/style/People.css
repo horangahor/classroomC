@@ -68,8 +68,8 @@
   border-radius: 0 !important;
   object-fit: cover;
   margin-bottom: 16px;
-  border: 2px solid var(--political-blue, #1e40af);
   background: #f1f5f9;
+  border: none !important;
 }
 
 .people-info {

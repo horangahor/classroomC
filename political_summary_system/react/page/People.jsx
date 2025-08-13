@@ -67,7 +67,6 @@ const People = () => {
                   className="people-img"
                   src={person.img}
                   alt={person.name}
-                  style={{ objectFit: 'cover', background: '#f1f5f9' }}
                 />
               </div>
               <div className="people-info">
