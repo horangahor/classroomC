@@ -270,6 +270,22 @@ const News = () => {
                                 </form>
                             </div>
                         )}
+                        {/* 정당 홈페이지 바로가기 영역 복구 */}
+                        <div className="party-bottombar">
+                            <div className="party-bottombar-title">정당 공식 홈페이지 바로가기</div>
+                            <div className="party-simple-list party-row-list">
+                                {partyList.map((party, idx) => (
+                                    <button
+                                        key={idx}
+                                        className="party-simple-btn"
+                                        onClick={() => handlePartyClick(party.url)}
+                                        title={party.name}
+                                    >
+                                        {party.name}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
