@@ -387,62 +387,66 @@ const MainPage = () => {
           {/* 좌측: 정치인 정보 */}
           <div className="mainpage-people-col">
             {/* <h3 className="mainpage-section-title">정치인 정보</h3> */}
-            <div className="people-container">
-              {loading ? (
-                <div className="people-loading">
-                  <div className="person-card skeleton" />
-                  <div className="person-card skeleton" />
-                  <div className="person-card skeleton" />
-                </div>
-              ) : people.length > 0 ? (
-                people.map(person => (
-                  <div className="person-card" key={person.id}>
-                    <img
-                      className="person-img"
-                      src={person.profile_image_url || 'https://via.placeholder.com/150x150?text=No+Image'}
-                      alt={person.name}
-                      onClick={() => navigate(`/people/${person.id}`, { state: {
-                        id: person.id,
-                        name: person.name,
-                        job: person.job,
-                        img: person.profile_image_url || '',
-                        ...person
-                      } })}
-                    />
-                    <button
-                      className="person-name-btn"
-                      onClick={() => navigate(`/people/${person.id}`, { state: {
-                        id: person.id,
-                        name: person.name,
-                        job: person.job,
-                        img: person.profile_image_url || '',
-                        ...person
-                      } })}
-                    >
-                      {person.name}
-                    </button>
-                    <p className="person-job">{person.affiliation || ''}</p>
-                  </div>
-                ))
-              ) : (
-                <div className="no-people">
-                  <h3>🗺️ 지역을 선택해주세요</h3>
-                  <p>지도를 클릭하면 해당 지역의 정치인 정보를 볼 수 있습니다.</p>
-                </div>
-              )}
-            </div>
+            {/* <div className="people-container"> */}
+            {loading ? (
+              <div className="people-loading">
+                <div className="person-card skeleton" />
+                <div className="person-card skeleton" />
+                <div className="person-card skeleton" />
+              </div>
+            ) : null}
             {selectedRegion && (
               <div className="region-info-box fade-in">
-                <h3 className="region-info-title">선택된 지역</h3>
                 <p className="region-info-name">{getRegionName(selectedRegion)}</p>
+                <p className='region-info-name'>정치인 정보</p>
+                {/* 정치인 카드 리스트 */}
+                <div className="region-people-list">
+                  {people.length > 0 ? (
+                    people.map(person => (
+                      <div className="person-card" key={person.id}>
+                        <img
+                          className="person-img"
+                          src={person.profile_image_url || 'https://via.placeholder.com/150x150?text=No+Image'}
+                          alt={person.name}
+                          onClick={() => navigate(`/people/${person.id}`, { state: {
+                            id: person.id,
+                            name: person.name,
+                            job: person.job,
+                            img: person.profile_image_url || '',
+                            ...person
+                          } })}
+                        />
+                            
+                        <button
+                          className="person-name-btn"
+                          onClick={() => navigate(`/people/${person.id}`, { state: {
+                            id: person.id,
+                            name: person.name,
+                            job: person.job,
+                            img: person.profile_image_url || '',
+                            ...person
+                          } })}
+                        >
+                          {person.name}
+                        </button>
+                        <p className="person-job">{person.affiliation || ''}</p>
+                      </div>
+                    ))
+                  ) : (
+                    <div className="no-people">
+                      <h3>🗺️ 지역을 선택해주세요</h3>
+                      <p>지도를 클릭하면 해당 지역의 정치인 정보를 볼 수 있습니다.</p>
+                    </div>
+                  )}
+                </div>
                 <small className="region-info-desc">
-                  {people.length}명의 정치인이 표시되고 있습니다.
-                </small>
+                              {people.length}명의 정치인이 표시되고 있습니다.
+                            </small>
                 {/* 지역별 뉴스 출력 */}
                 <div className="region-news-list">
                   <h4 className="region-news-title">지역 뉴스</h4>
                   {regionNews.length > 0 ? (
-                    regionNews.slice(0, 5).map(newsItem => {
+                    regionNews.map(newsItem => {
                       // 내용 필드 추출: description, summary, content, body 등 우선순위
                       const content = newsItem.description || newsItem.summary || newsItem.content || newsItem.body || '';
                       return (
