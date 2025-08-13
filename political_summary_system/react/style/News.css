@@ -1,8 +1,10 @@
+/* News.css - 뉴스 페이지/카드/메타/페이지네이션 UI 스타일 정의 */
+
 /* 폰트 및 컬러 변수 불러오기 */
 @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
 @import './colors.css';
 
-/* 전역 스타일 초기화 및 기본 폰트 설정 */
+/* 전역 스타일 초기화 및 폰트 적용 */
 * {
   padding: 0;
   margin: 0;
@@ -11,7 +13,7 @@
   font-style: normal;
 }
 
-/* 뉴스 페이지 전체 컨테이너 - 헤더 높이만큼 상단 패딩 추가 */
+/* 뉴스 페이지 전체 배경 및 메인 컨테이너 */
 .news-page {
   min-height: 100vh;
   background: var(--bg-secondary);
@@ -40,7 +42,7 @@
   position: relative;
 }
 
-/* 뉴스 페이지 메인 제목 */
+/* 뉴스 메인 타이틀 */
 .news-h1 {
   background: var(--gradient-secondary);
   font-size: var(--font-size-4xl);
@@ -380,6 +382,34 @@
 
 .party-bottombar .party-row-list {
   gap: 18px;
+}
+
+/* 정당 홈페이지 바로가기 버튼 영역 복구 */
+.party-link-list {
+  display: flex;
+  flex-direction: row;
+  gap: 14px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.party-link-btn {
+  background: var(--political-blue);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.party-link-btn:hover {
+  background: var(--main-blue, #2563eb);
+  color: #fff;
 }
 
 /* 반응형 디자인 */

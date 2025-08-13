@@ -1,14 +1,16 @@
+/* Detail.css - 정치인 상세 정보 페이지 UI 스타일 정의 */
+
 /* 폰트 및 컬러 변수 불러오기 */
 @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
 @import './colors.css';
 
-/* 전역 폰트 설정 */
+/* 전역 폰트 및 스타일 초기화 */
 * {
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
     font-style: normal;
 }
 
-/* 전체 배경 및 메인 카드 */
+/* 상세페이지 전체 배경 및 메인 컨테이너 */
 .detailpeople-page-bg {
   min-height: 100vh;
   background: var(--bg-secondary, #f7f8fa);
@@ -25,7 +27,7 @@
   box-sizing: border-box;
 }
 
-/* 상단으로 돌아가기 버튼 */
+/* 상단 돌아가기 버튼 */
 .detailpeople-back-btn {
   background: none;
   border: none;

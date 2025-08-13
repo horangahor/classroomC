@@ -3,17 +3,18 @@ import { useNavigate } from 'react-router-dom'
 import '../style/People.css'
 import axios from 'axios'
 
-const dummyPeople = [
-  { id: 1, name: '이재명', job: '대통령', img: 'https://search.pstatic.net/common?type=b&size=3000&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2F5f6c9c3e-ec97-4a6f-8435-500d64bdb83d.jpg' },
-  { id: 2, name: '오세훈', job: '서울시장', img: 'https://search.pstatic.net/common?type=b&size=3000&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2F741375bb-aeb9-4c71-8f84-3bc72273e4dc.jpg' },
-]
+/**
+ * People 컴포넌트
+ * - 전체 정치인 목록을 직책별로 그룹핑하여 카드 형태로 출력
+ * - 각 카드 클릭 시 상세 페이지로 이동
+ * - 인물 데이터는 백엔드에서 fetch하여 동적으로 연동
+ * - 직책별 그룹핑, 예외 처리, 스타일 일원화 등 UI/UX 개선
+ */
 
 const fetchMember = async () => {
   try {
     const res = await axios.get('http://localhost:8000/members')
-    // 서버에서 배열로 내려온다고 가정
     if (Array.isArray(res.data) && res.data.length > 0) {
-      // 백엔드 profile_image_url → 프론트 img로 매핑
       return res.data.map(person => ({
         ...person,
         img: person.img || person.profile_image_url || '',
@@ -49,19 +50,14 @@ const People = () => {
   const [people, setPeople] = useState([])
   const navigate = useNavigate()
 
+  // 인물 데이터 fetch (백엔드 연동)
   useEffect(() => {
-    // 서버에서 데이터 받아오고, 없으면 더미 사용
     const load = async () => {
       const data = await fetchMember()
-      console.log('[fetchMember 결과]', data)
       if (data && Array.isArray(data)) {
-        // img 필드와 profile_image_url 필드 모두 콘솔로 확인
-        data.forEach((person, idx) => {
-          console.log(`[person ${idx}] img:`, person.img, 'profile_image_url:', person.profile_image_url)
-        })
         setPeople(data)
       } else {
-        setPeople(dummyPeople)
+        setPeople([])
       }
     }
     load()

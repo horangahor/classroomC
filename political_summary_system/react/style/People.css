@@ -1,11 +1,15 @@
+/* People.css - 정치인 목록/카드 UI 스타일 정의 */
+
 @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
 @import './colors.css';
 
+/* 전역 폰트 및 스타일 초기화 */
 * {
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
     font-style: normal;
 }
 
+/* 전체 배경 및 메인 컨테이너 */
 .background {
   display: flex;
   justify-content: center;
@@ -14,13 +18,11 @@
   padding-bottom: 2rem;
   min-height: calc(100vh - 90px);
 }
-
 .people-page-bg {
   min-height: 100vh;
   background: var(--bg-secondary, #f7f8fa);
   padding-top: 90px;
 }
-
 .people-main-bg {
   background: var(--bg-primary, #fff);
   border-radius: 24px;
@@ -31,6 +33,7 @@
   box-sizing: border-box;
 }
 
+/* 타이틀 및 카테고리 그룹 */
 .people-title {
   font-size: 2rem;
   font-weight: 700;
@@ -38,7 +41,6 @@
   margin-bottom: 32px;
   text-align: center;
 }
-
 .people-category-group {
   margin-bottom: 38px;
   padding-bottom: 18px;
@@ -58,13 +60,13 @@
   letter-spacing: 0.01em;
 }
 
+/* 인물 카드 리스트 및 카드 스타일 */
 .people-list {
   display: flex;
   flex-wrap: wrap;
   gap: 18px 22px;
   margin-bottom: 0;
 }
-
 .people-card {
   background: var(--bg-primary, #fff);
   border: 1.5px solid var(--border-light, #e2e8f0);

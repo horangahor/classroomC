@@ -1,20 +1,21 @@
+/* MainPage.css - 메인페이지 및 지도/정치인/뉴스 UI 스타일 정의 */
+
 /* 폰트 및 컬러 변수 불러오기 */
 @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
 @import './colors.css';
 
-/* 전역 스타일 초기화 */
+/* 전역 초기화 및 폰트 적용 */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* 메인페이지 배경 컨테이너 - 헤더 높이만큼 상단 여백 */
+/* 메인페이지 배경 및 전체 레이아웃 */
 .mainpage-background {
     margin-top: 90px;
 }
 
-/* 메인페이지 전체 컨테이너 - 좌우 콘텐츠를 나누는 플렉스 레이아웃 */
 .mainpage-container {
     padding: 20px;
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -23,7 +24,6 @@
     gap: 30px;
 }
 
-/* 메인페이지 2분할 레이아웃 - 지도 테두리 안에 좌우 컬럼 배치 */
 .mainpage-2col {
     display: flex;
     flex-direction: row;
@@ -31,13 +31,13 @@
     margin-top: 40px;
 }
 
+/* 좌측(정치인/뉴스), 우측(지도) 컬럼 */
 .mainpage-people-col {
     flex: 1.2;
     min-width: 340px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    /* map-container 내부에 맞게 여백 조정 */
     margin-right: 24px;
 }
 
@@ -49,7 +49,7 @@
     align-items: center;
 }
 
-/* 지도 컨테이너 - 테두리/배경/라운드, 좌우 컬럼 포함 */
+/* 지도 컨테이너 및 반응형 */
 .map-container {
     width: 100%;
     max-width: 1840px;
@@ -93,52 +93,12 @@
     }
 }
 
-/* 좌측 콘텐츠 영역 - 제목, 검색, 정치인 리스트 등을 담는 영역 */
-.left-content {
-    flex: 1;
-    min-width: 400px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-/* 우측 지도 영역 - 한국 지도를 표시하는 영역 */
-.right-content {
-    flex: 1;
-    min-width: 500px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-}
-
-/* 메인페이지 제목 - "정치인 정보 시스템" 등의 메인 타이틀 */
-.mainpage-title {
-    background: var(--secondary-indigo);
-    font-size: var(--font-size-4xl);
-    color: var(--text-primary);
-    margin-bottom: var(--space-lg);
-    font-weight: var(--font-weight-bold);
-    text-align: center;
-    padding: var(--space-lg);
-    border-radius: var(--radius-xl);
-    /* box-shadow 제거 */
-}
-
-.mainpage-subtitle {
-    color: var(--text-secondary);
-    margin-bottom: var(--space-2xl);
-    font-size: var(--font-size-lg);
-    text-align: left;
-    line-height: var(--line-height-relaxed);
-}
-
-/* 선택된 지역 정보 박스 */
+/* 지역 정보 박스 및 타이틀 */
 .region-info-box {
     padding: var(--space-xl);
     background: var(--border-light);
     color: var(--text-primary);
     border-radius: var(--radius-lg);
-    /* box-shadow 제거 */
     transform: translateY(0);
     transition: all var(--transition-normal);
     width: 100%;
@@ -146,7 +106,6 @@
 
 .region-info-box:hover {
     transform: translateY(-5px);
-    /* box-shadow 제거 */
 }
 
 .region-info-title {
@@ -167,40 +126,254 @@
     line-height: 1.5;
 }
 
-/* 추가 정보 영역 */
-.additional-info {
-    padding: 20px;
-    background: white;
-    border-radius: 15px;
-    /* box-shadow 제거 */
-    margin-top: 20px;
+/* 인물 카드 리스트 및 카드 스타일 */
+.people-container {
+    display: flex;
+    flex-direction: row;
+    border-radius: 12px;
+    gap: 18px;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    margin-bottom: 20px;
 }
 
-.additional-info h3 {
-    color: var(--text-primary);
-    margin-bottom: var(--space-lg);
-    font-size: var(--font-size-xl);
+.person-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    width: 150px;
+    gap: 10px;
+    background: var(--bg-primary, #fff);
+    border: 1px solid var(--border-light, #e2e8f0);
+    border-radius: var(--radius-lg, 16px);
+    box-shadow: var(--shadow-sm, 0 1px 2px 0 rgb(0 0 0 / 0.05));
+    padding: 16px 10px;
+    transition: box-shadow 0.2s, transform 0.2s;
+    margin-left: 0;
+    margin-bottom: 20px;
 }
 
-.additional-info p {
-    color: var(--text-secondary);
-    line-height: var(--line-height-relaxed);
-    margin-bottom: var(--space-sm);
+.person-card:hover {
+    box-shadow: var(--shadow-md, 0 4px 6px -1px rgb(0 0 0 / 0.1));
+    transform: translateY(-2px) scale(1.01);
 }
 
-.info-list {
-    list-style: none;
+.person-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 0 !important;
+    object-fit: cover;
+    background: #f1f5f9;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.person-img:hover {
+    border-color: var(--political-red, #dc2626);
+}
+
+.person-name-btn {
+    background: none;
+    border: none;
+    color: var(--text-primary, #0f172a);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
     padding: 0;
+    margin: 0;
+    transition: color 0.2s;
 }
 
-.info-list li {
-    padding: var(--space-sm) 0;
-    border-bottom: 1px solid var(--border-light);
-    color: var(--text-secondary);
+.person-name-btn:hover {
+    color: var(--political-blue, #1e40af);
+    text-decoration: underline;
 }
 
-.info-list li:last-child {
-    border-bottom: none;
+.person-job {
+    color: var(--text-secondary, #475569);
+    font-size: 0.95rem;
+    font-weight: 400;
+}
+
+.no-people {
+    text-align: center;
+    color: var(--text-secondary, #64748b);
+    padding: 40px 0 20px 0;
+}
+
+/* 지역 뉴스 리스트 및 뉴스 카드 스타일 */
+.region-news-list {
+    margin-top: 32px;
+    width: 100%;
+    background: #f7f8fa;
+    border-radius: 16px;
+    padding: 24px 20px 12px 20px;
+    box-shadow: 0 2px 12px rgba(80, 80, 120, 0.07);
+    max-height: 340px;
+    /* 내부 스크롤을 위한 높이 제한 */
+    overflow-y: auto;
+    /* 내부 스크롤 활성화 */
+}
+
+/* 뉴스 리스트 스크롤바 스타일 */
+.region-news-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.region-news-list::-webkit-scrollbar-track {
+    background: #f7f8fa;
+    border-radius: 4px;
+}
+
+.region-news-list::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 4px;
+}
+
+.region-news-list::-webkit-scrollbar-thumb:hover {
+    background: #a0aec0;
+}
+
+.region-news-title {
+    font-size: 1.18rem;
+    font-weight: 600;
+    color: var(--main-dark);
+    margin-bottom: 18px;
+    letter-spacing: -0.5px;
+}
+
+.region-news-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(80, 80, 120, 0.08);
+    margin-bottom: 18px;
+    padding: 18px 20px 14px 20px;
+    transition: box-shadow 0.18s, transform 0.18s;
+    border: 1.5px solid #e6e8ee;
+    cursor: pointer;
+    position: relative;
+}
+
+.region-news-card:hover {
+    box-shadow: 0 4px 18px rgba(80, 80, 120, 0.13);
+    transform: translateY(-2px) scale(1.012);
+    border-color: var(--main-blue);
+}
+
+.region-news-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.region-news-meta {
+    display: flex;
+    gap: 12px;
+    font-size: 0.98rem;
+    color: #6a6a8b;
+    margin-bottom: 6px;
+    font-weight: 400;
+}
+
+.region-news-source {
+    font-weight: 600;
+    color: var(--main-blue);
+}
+
+.region-news-date {
+    font-size: 0.97rem;
+    color: #a0a0b5;
+}
+
+.region-news-title-txt {
+    font-size: 1.08rem;
+    font-weight: 600;
+    color: #2a2a3a;
+    margin-bottom: 7px;
+    line-height: 1.35;
+    letter-spacing: -0.2px;
+    word-break: keep-all;
+}
+
+.region-news-content {
+    font-size: 1.01rem;
+    color: #44446a;
+    line-height: 1.6;
+    margin-bottom: 2px;
+    word-break: break-all;
+    white-space: pre-line;
+}
+
+.region-news-none {
+    color: #b0b0c0;
+    font-size: 1.04rem;
+    padding: 18px 0 8px 0;
+    text-align: center;
+}
+
+@media (max-width: 900px) {
+    .region-news-list {
+        padding: 14px 6px 6px 6px;
+    }
+
+    .region-news-card {
+        padding: 12px 8px 10px 10px;
+    }
+}
+
+/* 지도, 카드, 뉴스 등 기타 스타일 및 애니메이션 효과는 기존 주석 유지 */
+/* 애니메이션 효과 */
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.slide-up {
+    animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.slide-left {
+    animation: slideLeft 0.6s ease-out;
+}
+
+@keyframes slideLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 /* 지도 컨테이너 - 좌우 분할 레이아웃 */
@@ -480,138 +653,6 @@
     transform: translateY(-2px);
 }
 
-/* 애니메이션 효과 */
-.fade-in {
-    animation: fadeIn 0.5s ease-in;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.slide-up {
-    animation: slideUp 0.6s ease-out;
-}
-
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.slide-left {
-    animation: slideLeft 0.6s ease-out;
-}
-
-@keyframes slideLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-/* People(인물) 카드 스타일 */
-.people-container {
-    display: flex;
-    flex-direction: row;   /* ← row로 변경 */
-    border-radius: 12px;
-    gap: 18px;
-    width: 100%;
-    flex-wrap: wrap;       /* 여러 줄로 넘칠 때 자동 줄바꿈 */
-    justify-content: center; /* 필요시 center로 변경 가능 */
-    align-items: center;
-    background: none;
-    margin-bottom: 20px;
-}
-
-.person-card {
-    display: flex;
-    flex-direction: column;      /* 세로 정렬로 변경 */
-    align-items: center;         /* 가운데 정렬 */
-    justify-content: center;
-    height: 200px;
-    width: 150px;
-    gap: 10px;
-    background: var(--bg-primary, #fff);
-    border: 1px solid var(--border-light, #e2e8f0);
-    border-radius: var(--radius-lg, 16px);
-    box-shadow: var(--shadow-sm, 0 1px 2px 0 rgb(0 0 0 / 0.05));
-    padding: 16px 10px;
-    transition: box-shadow 0.2s, transform 0.2s;
-    margin-left: 0;              /* 필요시 마진 조정 */
-}
-
-.person-card:hover {
-    box-shadow: var(--shadow-md, 0 4px 6px -1px rgb(0 0 0 / 0.1));
-    transform: translateY(-2px) scale(1.01);
-}
-
-.person-img {
-    width: 120px;
-    height: 120px;
-    border-radius: 0 !important;
-    object-fit: cover;
-    background: #f1f5f9;
-    cursor: pointer;
-    transition: border-color 0.2s;
-}
-
-.person-img:hover {
-    border-color: var(--political-red, #dc2626);
-}
-
-.person-name-btn {
-    background: none;
-    border: none;
-    color: var(--text-primary, #0f172a);
-    font-size: 1.1rem;
-    font-weight: 600;
-    cursor: pointer;
-    padding: 0;
-    margin: 0;
-    transition: color 0.2s;
-}
-
-.person-name-btn:hover {
-    color: var(--political-blue, #1e40af);
-    text-decoration: underline;
-}
-
-.person-job {
-    color: var(--text-secondary, #475569);
-    font-size: 0.95rem;
-    font-weight: 400;
-}
-
-.no-people {
-    text-align: center;
-    color: var(--text-secondary, #64748b);
-    padding: 40px 0 20px 0;
-}
-
-/* region-info-box, region-info-title, region-info-name, region-info-desc는 이미 위에서 정의되어 있으므로 중복 정의 삭제 */
-
-/* @keyframes fadeIn은 region-info-box에서 사용하므로 유지 */
-
 /* 지도 컨테이너 반응형 추가 */
 @media (max-width: 1024px) {
     .map-container {
@@ -657,97 +698,4 @@
 
 @media (max-width: 480px) {
     /* 추가적인 스타일 조정이 필요할 경우 여기에 작성 */
-}
-
-/* 지역 뉴스 리스트 전체 영역 */
-.region-news-list {
-  margin-top: 32px;
-  width: 100%;
-  background: #f7f8fa;
-  border-radius: 16px;
-  padding: 24px 20px 12px 20px;
-  box-shadow: 0 2px 12px rgba(80, 80, 120, 0.07);
-}
-
-.region-news-title {
-  font-size: 1.18rem;
-  font-weight: 600;
-  color: var(--main-dark);
-  margin-bottom: 18px;
-  letter-spacing: -0.5px;
-}
-
-.region-news-card {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(80, 80, 120, 0.08);
-  margin-bottom: 18px;
-  padding: 18px 20px 14px 20px;
-  transition: box-shadow 0.18s, transform 0.18s;
-  border: 1.5px solid #e6e8ee;
-  cursor: pointer;
-  position: relative;
-}
-.region-news-card:hover {
-  box-shadow: 0 4px 18px rgba(80, 80, 120, 0.13);
-  transform: translateY(-2px) scale(1.012);
-  border-color: var(--main-blue);
-}
-
-.region-news-link {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-}
-
-.region-news-meta {
-  display: flex;
-  gap: 12px;
-  font-size: 0.98rem;
-  color: #6a6a8b;
-  margin-bottom: 6px;
-  font-weight: 400;
-}
-.region-news-source {
-  font-weight: 600;
-  color: var(--main-blue);
-}
-.region-news-date {
-  font-size: 0.97rem;
-  color: #a0a0b5;
-}
-
-.region-news-title-txt {
-  font-size: 1.08rem;
-  font-weight: 600;
-  color: #2a2a3a;
-  margin-bottom: 7px;
-  line-height: 1.35;
-  letter-spacing: -0.2px;
-  word-break: keep-all;
-}
-
-.region-news-content {
-  font-size: 1.01rem;
-  color: #44446a;
-  line-height: 1.6;
-  margin-bottom: 2px;
-  word-break: break-all;
-  white-space: pre-line;
-}
-
-.region-news-none {
-  color: #b0b0c0;
-  font-size: 1.04rem;
-  padding: 18px 0 8px 0;
-  text-align: center;
-}
-
-@media (max-width: 900px) {
-  .region-news-list {
-    padding: 14px 6px 6px 6px;
-  }
-  .region-news-card {
-    padding: 12px 8px 10px 10px;
-  }
 }

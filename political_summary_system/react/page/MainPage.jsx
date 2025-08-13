@@ -4,6 +4,14 @@ import { ReactComponent as KrMap } from '../assets/kr.svg'
 import { useNavigate } from 'react-router-dom'
 import '../style/MainPage.css'
 
+/**
+ * MainPage 컴포넌트
+ * - 대한민국 지도 SVG를 클릭하여 지역별 정치인/뉴스 정보를 보여주는 메인 페이지
+ * - 좌측: 선택 지역의 정치인 카드 및 지역별 뉴스 리스트
+ * - 우측: SVG 지도 (클릭 시 지역 선택)
+ * - 지역명, 인물, 뉴스 등은 백엔드에서 fetch하여 동적으로 연동
+ * - 지역별 매핑, 예외 처리, 상태관리, 스타일 일원화 등 UI/UX 개선
+ */
 const MainPage = () => {
   const svgRef = useRef(null)
   const [selectedRegion, setSelectedRegion] = useState(null)
@@ -11,10 +19,7 @@ const MainPage = () => {
   const [news, setNews] = useState([])
   const navigate = useNavigate()
 
-  // 지역별 인물 더미 데이터 (실제 사용 안 함)
-  // const regionPeople = { ... }
-
-  // 백엔드에서 전체 인물 데이터 받아오기
+  // 전체 인물 데이터 fetch (백엔드 연동)
   const [allMembers, setAllMembers] = useState([])
   const [loading, setLoading] = useState(true)
   useEffect(() => {
@@ -25,60 +30,30 @@ const MainPage = () => {
       .finally(() => setLoading(false))
   }, [])
 
-  // 백엔드에서 전체 뉴스 데이터 받아오기
+  // 전체 뉴스 데이터 fetch (백엔드 연동)
   useEffect(() => {
     axios.get('http://localhost:8000/getNews')
       .then(res => setNews(res.data))
       .catch(err => console.error('뉴스 데이터 fetch 실패', err))
   }, [])
 
-  // 로딩 끝 디버깅
-  useEffect(() => {
-    if (!loading) {
-      console.log('로딩 끝!')
-    }
-  }, [loading])
-
-  // 디버깅: 데이터 상태 변화 확인
-
-  useEffect(() => {
-    console.log('[디버그] allMembers:', allMembers)
-  }, [allMembers])
-  useEffect(() => {
-    console.log('[디버그] people:', people)
-  }, [people])
-
+  // 지도 SVG path에 클릭 이벤트 등록 (지역 선택)
   useEffect(() => {
     if (svgRef.current) {
-      // SVG 내부의 모든 path 요소 찾기
       const paths = svgRef.current.querySelectorAll('path')
-
-      // console.log(`총 ${paths.length}개의 지역을 찾았습니다.`)
-
       paths.forEach((path, index) => {
-        // 각 path의 식별자 확인
         const regionId = path.id ||
           path.getAttribute('data-name') ||
           path.className.baseVal ||
           `region-${index}`
-
-        // CSS 클래스 적용
         path.classList.add('region-path')
-
-        // 클릭 이벤트 핸들러
         const handleClick = (e) => {
           e.stopPropagation()
           handleRegionClick(regionId, path)
         }
-
-        // 이벤트 리스너 추가
         path.addEventListener('click', handleClick)
-
-        // cleanup을 위해 path에 리스너 저장
         path._listeners = { handleClick }
       })
-
-      // cleanup 함수
       return () => {
         paths.forEach(path => {
           if (path._listeners) {
@@ -92,7 +67,11 @@ const MainPage = () => {
   // 최신 handleRegionAction을 참조하기 위한 ref
   const handleRegionActionRef = useRef();
 
-  // 지역별 액션 처리 useCallback
+  /**
+   * handleRegionAction(regionId)
+   * - 지역 ID를 받아 해당 지역의 정치인 리스트를 allMembers에서 필터링
+   * - 지역명 매핑 및 예외 처리 포함
+   */
   const handleRegionAction = useCallback((regionId) => {
     // 더 포괄적인 키 매핑 (SVG의 실제 ID와 매칭 - kr.svg 파일 기반)
     const keyMapping = {
@@ -264,7 +243,10 @@ const MainPage = () => {
     '제주특별자치도': 'jeju', '제주': 'jeju'
   };
 
-  // 지역별 뉴스 필터링 (selectedRegion이 있을 때만)
+  /**
+   * 지역별 뉴스 필터링
+   * - 선택된 지역(regionKey)에 해당하는 뉴스만 추출
+   */
   const regionKey = (() => {
     if (people.length > 0 && people[0].location) {
       const loc = people[0].location?.trim();
@@ -286,7 +268,11 @@ const MainPage = () => {
     handleRegionActionRef.current = handleRegionAction;
   }, [handleRegionAction]);
 
-  // handleRegionClick은 useCallback([])로 감싸고, ref로 최신 액션 참조
+  /**
+   * handleRegionClick(regionId, pathElement)
+   * - 지도에서 지역 클릭 시 선택/해제 및 스타일 처리
+   * - 선택된 지역의 정치인/뉴스 정보 갱신
+   */
   const handleRegionClick = useCallback((regionId, pathElement) => {
     // 이미 선택된 지역을 다시 클릭하면 선택 해제
     if (selectedRegion === regionId) {
@@ -312,33 +298,6 @@ const MainPage = () => {
     handleRegionActionRef.current(regionId)
   }, []);
 
-  // SVG path 이벤트 등록 useEffect는 빈 배열
-  useEffect(() => {
-    if (svgRef.current) {
-      const paths = svgRef.current.querySelectorAll('path')
-      paths.forEach((path, index) => {
-        const regionId = path.id ||
-          path.getAttribute('data-name') ||
-          path.className.baseVal ||
-          `region-${index}`
-        path.classList.add('region-path')
-        const handleClick = (e) => {
-          e.stopPropagation()
-          handleRegionClick(regionId, path)
-        }
-        path.addEventListener('click', handleClick)
-        path._listeners = { handleClick }
-      })
-      return () => {
-        paths.forEach(path => {
-          if (path._listeners) {
-            path.removeEventListener('click', path._listeners.handleClick)
-          }
-        })
-      }
-    }
-  }, []);
-
   // 한글 지역명 매핑 (지도/뉴스/표시용 공통)
   const regionNames = {
     'seoul': '서울특별시',
@@ -360,7 +319,10 @@ const MainPage = () => {
     'jeju': '제주특별자치도'
   };
 
-  // 선택된 지역 한글명 반환 함수
+  /**
+   * getRegionName(regionId)
+   * - 지역 ID를 한글 지역명으로 변환
+   */
   const getRegionName = (regionId) => {
     if (!regionId) return '';
     // regionId가 KR42 등 코드면 keyMapping으로 변환
@@ -377,17 +339,11 @@ const MainPage = () => {
 
   return (
     <div className="mainpage-background">
-      {/* 히어로 영역 */}
-      {/* <div className="mainpage-hero"> */}
-      {/* <p className="mainpage-subtitle">지도를 클릭하면 지역별 정치인과 최신 뉴스를 볼 수 있습니다.</p> */}
-      {/* </div> */}
-      {/* 2분할 레이아웃 - 지도 테두리 안에 좌우 컬럼 */}
+      {/* 메인 2분할 레이아웃: 좌측(정치인/뉴스), 우측(지도) */}
       <div className="mainpage-2col">
         <div className="map-container">
-          {/* 좌측: 정치인 정보 */}
           <div className="mainpage-people-col">
-            {/* <h3 className="mainpage-section-title">정치인 정보</h3> */}
-            {/* <div className="people-container"> */}
+            {/* 로딩 상태: 스켈레톤 카드 */}
             {loading ? (
               <div className="people-loading">
                 <div className="person-card skeleton" />
@@ -395,6 +351,7 @@ const MainPage = () => {
                 <div className="person-card skeleton" />
               </div>
             ) : null}
+            {/* 지역 선택 시: 정치인/뉴스 정보 박스 */}
             {selectedRegion && (
               <div className="region-info-box fade-in">
                 <p className="region-info-name">{getRegionName(selectedRegion)}</p>
@@ -416,7 +373,6 @@ const MainPage = () => {
                             ...person
                           } })}
                         />
-                            
                         <button
                           className="person-name-btn"
                           onClick={() => navigate(`/people/${person.id}`, { state: {
@@ -440,8 +396,8 @@ const MainPage = () => {
                   )}
                 </div>
                 <small className="region-info-desc">
-                              {people.length}명의 정치인이 표시되고 있습니다.
-                            </small>
+                  {people.length}명의 정치인이 표시되고 있습니다.
+                </small>
                 {/* 지역별 뉴스 출력 */}
                 <div className="region-news-list">
                   <h4 className="region-news-title">지역 뉴스</h4>
@@ -471,12 +427,8 @@ const MainPage = () => {
               </div>
             )}
           </div>
-          {/* 우측: 지도 */}
+          {/* 지도 SVG */}
           <div className="mainpage-map-col">
-            {/* <div className="map-header">
-              <h3 className="map-title">대한민국 지도</h3>
-              <p className="map-description">지역을 선택하세요</p>
-            </div> */}
             <KrMap ref={svgRef} className="korea-map slide-up" />
           </div>
         </div>
