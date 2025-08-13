@@ -11,7 +11,7 @@ router.delete("/members", async (req, res) => {
     const user = req.session?.user;
     const { password } = req.body;
 
-    if (!user || (!user.nickname && !user.name) || !password) {
+    if (!user || (!user.name && !user.id) || !password) {
         return res.status(400).json({ message: "로그인된 사용자 정보가 없습니다." });
     }
 
@@ -23,7 +23,7 @@ router.delete("/members", async (req, res) => {
         const [rows] = await pool.execute(
             `select * from users
              where name = ? and id = ? and password = ?`,
-            [identifiername, identifierid, password]
+            [identifierName, identifierid, password]
         );
 
         if (rows.length === 0) {
@@ -34,7 +34,7 @@ router.delete("/members", async (req, res) => {
         const [result] = await pool.execute(
             `delete from users 
              where name = ? and id = ? and password = ?`,
-            [identifiername, identifierId, password]
+            [identifierName, identifierid, password]
         );
 
         if (result.affectedRows === 0) {

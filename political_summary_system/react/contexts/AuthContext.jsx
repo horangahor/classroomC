@@ -2,8 +2,10 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { getSession, logout as logoutAPI } from '../auth/auth';
 import axios from 'axios';
 
+// Context 생성
 const AuthContext = createContext();
 
+// Custom Hook 생성이랑 내보내기
 export const useAuth = () => {
     const context = useContext(AuthContext);
     if (!context) {
@@ -12,6 +14,7 @@ export const useAuth = () => {
     return context;
 };
 
+// Provider 컴포넌트 정의랑 내보내기
 export const AuthProvider = ({ children }) => {
     const [isLogin, setIsLogin] = useState(false);
     const [user, setUser] = useState(null);
