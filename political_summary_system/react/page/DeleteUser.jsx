@@ -118,7 +118,7 @@ const DeleteUser = () => {
                         <button type="submit" className="delete-btn">
                             계정 삭제
                         </button>
-                        <Link to="/mypage" className="cancel-btn">
+                        <Link to="/mypage" className="cancel-btn2">
                             취소
                         </Link>
                     </div>
