@@ -61,22 +61,19 @@ const Header = () => {
         >
           인물
         </li>
-        <li
-          onClick={() => nav('/mypage')}
-          className={isPathActive('/mypage') ? 'active' : ''}
-          style={{ cursor: 'pointer' }}
-        >
-          마이페이지
-        </li>
-        {/* 로그인 상태에 따라 조건부 렌더링 */}
-        {isLogin ? (
+        {/* 로그인 상태일 때만 마이페이지 노출 */}
+        {isLogin && (
           <li
-            onClick={handleLogout}
+            onClick={() => nav('/mypage')}
+            className={isPathActive('/mypage') ? 'active' : ''}
             style={{ cursor: 'pointer' }}
           >
-            로그아웃
+            마이페이지
           </li>
-        ) : (
+        )}
+        {/* 로그인 상태에 따라 조건부 렌더링 */}
+        {/* 로그아웃은 헤더에서 제거, 마이페이지 내부에서만 노출 */}
+        {!isLogin && (  
           <li
             onClick={() => nav('/login')}
             className={isPathActive('/login') ? 'active' : ''}

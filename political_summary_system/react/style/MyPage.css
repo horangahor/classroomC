@@ -68,6 +68,18 @@
     background: var(--primary-light);
 }
 
+.menu-btn.logout {
+    background: var(--custom-color-white);
+    color: var(--text-primary);
+    border: 2px solid var(--border-light);
+    /* 기존 .menu-btn 스타일과 동일하게 통일 */
+}
+
+.menu-btn.logout:hover {
+    background: var(--primary-light);
+    color: var(--text-primary);
+}
+
 .back-link {
     margin-top: var(--space-lg);
 }
