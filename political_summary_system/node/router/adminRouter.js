@@ -74,7 +74,6 @@ router.post('/upload',upload.single('file'), async(req, res)=>{
             // jsonData.map(data => insertNews(data));
             const insertionPromises = jsonData.map(data => insertNews(data));
             await Promise.all(insertionPromises);
-            console.log("문제?");
             
 
             res.status(200).json({ message: "파일 업로드 및 처리 성공", status: "ok" });
