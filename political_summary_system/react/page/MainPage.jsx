@@ -1,72 +1,52 @@
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useRef, useEffect, useState, useCallback } from 'react'
+import axios from 'axios'
 import { ReactComponent as KrMap } from '../assets/kr.svg'
 import { useNavigate } from 'react-router-dom'
 import '../style/MainPage.css'
-// import '../style/People.css'
 
 const MainPage = () => {
   const svgRef = useRef(null)
   const [selectedRegion, setSelectedRegion] = useState(null)
   const [people, setPeople] = useState([])
+  const [news, setNews] = useState([])
   const navigate = useNavigate()
 
-  // 지역별 인물 데이터
-  const regionPeople = {
-    seoul: [
-      { id: 1, name: '오세훈', job: '서울시장', img: 'https://via.placeholder.com/150x150/4A90E2/FFFFFF?text=오세훈' },
-      { id: 2, name: '김철수', job: '서울시의원', img: 'https://via.placeholder.com/150x150/50C878/FFFFFF?text=김철수' },
-    ],
-    busan: [
-      { id: 3, name: '박형준', job: '부산시장', img: 'https://via.placeholder.com/150x150/FF6B6B/FFFFFF?text=박형준' },
-      { id: 4, name: '이영희', job: '부산시의원', img: 'https://via.placeholder.com/150x150/FFD93D/000000?text=이영희' },
-    ],
-    gyeonggi: [
-      { id: 5, name: '김동연', job: '경기도지사', img: 'https://via.placeholder.com/150x150/6BCF7F/FFFFFF?text=김동연' },
-      { id: 6, name: '박민수', job: '경기도의원', img: 'https://via.placeholder.com/150x150/4ECDC4/FFFFFF?text=박민수' },
-    ],
-    daegu: [
-      { id: 7, name: '홍준표', job: '대구시장', img: 'https://via.placeholder.com/150x150/96CEB4/FFFFFF?text=홍준표' },
-    ],
-    incheon: [
-      { id: 8, name: '유정복', job: '인천시장', img: 'https://via.placeholder.com/150x150/FECA57/000000?text=유정복' },
-    ],
-    gwangju: [
-      { id: 9, name: '강기정', job: '광주시장', img: 'https://via.placeholder.com/150x150/FF9FF3/000000?text=강기정' },
-    ],
-    daejeon: [
-      { id: 10, name: '이장우', job: '대전시장', img: 'https://via.placeholder.com/150x150/54A0FF/FFFFFF?text=이장우' },
-    ],
-    ulsan: [
-      { id: 11, name: '김두겸', job: '울산시장', img: 'https://via.placeholder.com/150x150/5F27CD/FFFFFF?text=김두겸' },
-    ],
-    sejong: [
-      { id: 12, name: '최민호', job: '세종시장', img: 'https://via.placeholder.com/150x150/00D2D3/FFFFFF?text=최민호' },
-    ],
-    gangwon: [
-      { id: 13, name: '김진태', job: '강원도지사', img: 'https://via.placeholder.com/150x150/FF6348/FFFFFF?text=김진태' },
-    ],
-    chungbuk: [
-      { id: 14, name: '김영환', job: '충북도지사', img: 'https://via.placeholder.com/150x150/2ED573/FFFFFF?text=김영환' },
-    ],
-    chungnam: [
-      { id: 15, name: '김태흠', job: '충남도지사', img: 'https://via.placeholder.com/150x150/FFA502/FFFFFF?text=김태흠' },
-    ],
-    jeonbuk: [
-      { id: 16, name: '김관영', job: '전북도지사', img: 'https://via.placeholder.com/150x150/3742FA/FFFFFF?text=김관영' },
-    ],
-    jeonnam: [
-      { id: 17, name: '김영록', job: '전남도지사', img: 'https://via.placeholder.com/150x150/2F3542/FFFFFF?text=김영록' },
-    ],
-    gyeongbuk: [
-      { id: 18, name: '이철우', job: '경북도지사', img: 'https://via.placeholder.com/150x150/F97F51/FFFFFF?text=이철우' },
-    ],
-    gyeongnam: [
-      { id: 19, name: '박완수', job: '경남도지사', img: 'https://via.placeholder.com/150x150/1DD1A1/FFFFFF?text=박완수' },
-    ],
-    jeju: [
-      { id: 20, name: '오영훈', job: '제주도지사', img: 'https://via.placeholder.com/150x150/F8B500/000000?text=오영훈' },
-    ]
-  }
+  // 지역별 인물 더미 데이터 (실제 사용 안 함)
+  // const regionPeople = { ... }
+
+  // 백엔드에서 전체 인물 데이터 받아오기
+  const [allMembers, setAllMembers] = useState([])
+  const [loading, setLoading] = useState(true)
+  useEffect(() => {
+    setLoading(true)
+    axios.get('http://localhost:8000/members')
+      .then(res => setAllMembers(res.data))
+      .catch(err => console.error('멤버 데이터 fetch 실패', err))
+      .finally(() => setLoading(false))
+  }, [])
+
+  // 백엔드에서 전체 뉴스 데이터 받아오기
+  useEffect(() => {
+    axios.get('http://localhost:8000/getNews')
+      .then(res => setNews(res.data))
+      .catch(err => console.error('뉴스 데이터 fetch 실패', err))
+  }, [])
+
+  // 로딩 끝 디버깅
+  useEffect(() => {
+    if (!loading) {
+      console.log('로딩 끝!')
+    }
+  }, [loading])
+
+  // 디버깅: 데이터 상태 변화 확인
+
+  useEffect(() => {
+    console.log('[디버그] allMembers:', allMembers)
+  }, [allMembers])
+  useEffect(() => {
+    console.log('[디버그] people:', people)
+  }, [people])
 
   useEffect(() => {
     if (svgRef.current) {
@@ -81,14 +61,6 @@ const MainPage = () => {
           path.getAttribute('data-name') ||
           path.className.baseVal ||
           `region-${index}`
-
-        // console.log(`지역 ${index}:`, {
-        //   id: path.id,
-        //   className: path.className.baseVal,
-        //   dataName: path.getAttribute('data-name'),
-        //   tagName: path.tagName,
-        //   allAttributes: Array.from(path.attributes).map(attr => `${attr.name}="${attr.value}"`).join(', ')
-        // })
 
         // CSS 클래스 적용
         path.classList.add('region-path')
@@ -115,43 +87,13 @@ const MainPage = () => {
         })
       }
     }
-  }, [selectedRegion])
+  }, [])
 
-  // 지역 클릭 처리 함수
-  const handleRegionClick = (regionId, pathElement) => {
-    // console.log('클릭된 지역:', regionId)
+  // 최신 handleRegionAction을 참조하기 위한 ref
+  const handleRegionActionRef = useRef();
 
-    // 이미 선택된 지역을 다시 클릭하면 선택 해제
-    if (selectedRegion === regionId) {
-      pathElement.classList.remove('selected')
-      setSelectedRegion(null)
-      setPeople([])
-      // console.log('지역 선택 해제됨')
-      return
-    }
-
-    // 모든 지역에서 selected 클래스 제거
-    if (svgRef.current) {
-      const allPaths = svgRef.current.querySelectorAll('path')
-      allPaths.forEach(path => {
-        path.classList.remove('selected')
-      })
-    }
-
-    // 선택된 지역에 selected 클래스 추가
-    pathElement.classList.add('selected')
-    setSelectedRegion(regionId)
-
-    // 지역별 처리 로직
-    handleRegionAction(regionId)
-  }
-
-  // 지역별 액션 처리
-  const handleRegionAction = (regionId) => {
-    // console.log('🔍 디버깅 시작!')
-    // console.log('원본 regionId:', regionId)
-    // console.log('소문자 변환:', regionId.toLowerCase())
-
+  // 지역별 액션 처리 useCallback
+  const handleRegionAction = useCallback((regionId) => {
     // 더 포괄적인 키 매핑 (SVG의 실제 ID와 매칭 - kr.svg 파일 기반)
     const keyMapping = {
       // 서울 - path id="KR11"
@@ -259,14 +201,179 @@ const MainPage = () => {
     const regionName = regionNames[mappedKey] || regionId
     // console.log(`${regionName} 선택됨!`)
 
-    // 인물 데이터 찾기
-    const regionPeopleData = regionPeople[mappedKey] || []
-    // console.log('🎯 찾은 인물 데이터:', regionPeopleData)
-    // console.log('🎯 인물 수:', regionPeopleData.length)
-
+    // 더미 regionPeople 대신, 백엔드에서 받아온 allMembers에서 지역(location) 매칭
+    // 한글 location → 영문 mappedKey로 변환 매핑 테이블
+    const locationToKey = {
+      '서울특별시': 'seoul', '서울': 'seoul',
+      '부산광역시': 'busan', '부산': 'busan',
+      '대구광역시': 'daegu', '대구': 'daegu',
+      '인천광역시': 'incheon', '인천': 'incheon',
+      '광주광역시': 'gwangju', '광주': 'gwangju',
+      '대전광역시': 'daejeon', '대전': 'daejeon',
+      '울산광역시': 'ulsan', '울산': 'ulsan',
+      '세종특별자치시': 'sejong', '세종': 'sejong',
+      '경기도': 'gyeonggi', '경기': 'gyeonggi',
+      '강원도': 'gangwon', '강원': 'gangwon',
+      '충청북도': 'chungbuk', '충북': 'chungbuk',
+      '충청남도': 'chungnam', '충남': 'chungnam',
+      '전라북도': 'jeonbuk', '전북': 'jeonbuk',
+      '전라남도': 'jeonnam', '전남': 'jeonnam',
+      '경상북도': 'gyeongbuk', '경북': 'gyeongbuk',
+      '경상남도': 'gyeongnam', '경남': 'gyeongnam',
+      '제주특별자치도': 'jeju', '제주': 'jeju'
+    };
+    const regionPeopleData = Array.isArray(allMembers)
+      ? allMembers.filter(person => {
+          const rawLoc = person.location;
+          const trimmedLoc = rawLoc?.trim();
+          const key = locationToKey[trimmedLoc] || trimmedLoc?.toLowerCase().replace(/\s/g, '');
+          const match = key === mappedKey;
+          console.log('[매핑 디버그]', {
+            personId: person.id,
+            location: rawLoc,
+            trimmedLoc,
+            key,
+            mappedKey,
+            match
+          });
+          return match;
+        })
+      : [];
+    console.log('[최종 필터 결과]', regionPeopleData);
     setPeople(regionPeopleData)
-    // console.log(`${regionName}의 정치인 ${regionPeopleData.length}명을 불러왔습니다!`)
-  }
+  }, [allMembers])
+
+  // 지역명 한글→영문 매핑 테이블 (인물/뉴스 공통)
+  const locationToKey = {
+    '서울특별시': 'seoul', '서울': 'seoul',
+    '부산광역시': 'busan', '부산': 'busan',
+    '대구광역시': 'daegu', '대구': 'daegu',
+    '인천광역시': 'incheon', '인천': 'incheon',
+    '광주광역시': 'gwangju', '광주': 'gwangju',
+    '대전광역시': 'daejeon', '대전': 'daejeon',
+    '울산광역시': 'ulsan', '울산': 'ulsan',
+    '세종특별자치시': 'sejong', '세종': 'sejong',
+    '경기도': 'gyeonggi', '경기': 'gyeonggi',
+    '강원도': 'gangwon', '강원': 'gangwon',
+    '충청북도': 'chungbuk', '충북': 'chungbuk',
+    '충청남도': 'chungnam', '충남': 'chungnam',
+    '전라북도': 'jeonbuk', '전북': 'jeonbuk',
+    '전라남도': 'jeonnam', '전남': 'jeonnam',
+    '경상북도': 'gyeongbuk', '경북': 'gyeongbuk',
+    '경상남도': 'gyeongnam', '경남': 'gyeongnam',
+    '제주특별자치도': 'jeju', '제주': 'jeju'
+  };
+
+  // 지역별 뉴스 필터링 (selectedRegion이 있을 때만)
+  const regionKey = (() => {
+    if (people.length > 0 && people[0].location) {
+      const loc = people[0].location?.trim();
+      return locationToKey[loc] || loc?.toLowerCase().replace(/\s/g, '');
+    }
+    // people이 없을 때는 selectedRegion(영문) 사용
+    return selectedRegion ? selectedRegion.toLowerCase() : null;
+  })();
+  const regionNews = Array.isArray(news) && regionKey ?
+    news.filter(item => {
+      const rawLoc = item.location || item.region;
+      const trimmedLoc = rawLoc?.trim();
+      const key = locationToKey[trimmedLoc] || trimmedLoc?.toLowerCase().replace(/\s/g, '');
+      return key === regionKey;
+    }) : [];
+
+  // 최신 handleRegionAction을 ref에 저장
+  useEffect(() => {
+    handleRegionActionRef.current = handleRegionAction;
+  }, [handleRegionAction]);
+
+  // handleRegionClick은 useCallback([])로 감싸고, ref로 최신 액션 참조
+  const handleRegionClick = useCallback((regionId, pathElement) => {
+    // 이미 선택된 지역을 다시 클릭하면 선택 해제
+    if (selectedRegion === regionId) {
+      pathElement.classList.remove('selected')
+      setSelectedRegion(null)
+      setPeople([])
+      return
+    }
+
+    // 모든 지역에서 selected 클래스 제거
+    if (svgRef.current) {
+      const allPaths = svgRef.current.querySelectorAll('path')
+      allPaths.forEach(path => {
+        path.classList.remove('selected')
+      })
+    }
+
+    // 선택된 지역에 selected 클래스 추가
+    pathElement.classList.add('selected')
+    setSelectedRegion(regionId)
+
+    // 항상 최신 handleRegionAction 사용
+    handleRegionActionRef.current(regionId)
+  }, []);
+
+  // SVG path 이벤트 등록 useEffect는 빈 배열
+  useEffect(() => {
+    if (svgRef.current) {
+      const paths = svgRef.current.querySelectorAll('path')
+      paths.forEach((path, index) => {
+        const regionId = path.id ||
+          path.getAttribute('data-name') ||
+          path.className.baseVal ||
+          `region-${index}`
+        path.classList.add('region-path')
+        const handleClick = (e) => {
+          e.stopPropagation()
+          handleRegionClick(regionId, path)
+        }
+        path.addEventListener('click', handleClick)
+        path._listeners = { handleClick }
+      })
+      return () => {
+        paths.forEach(path => {
+          if (path._listeners) {
+            path.removeEventListener('click', path._listeners.handleClick)
+          }
+        })
+      }
+    }
+  }, []);
+
+  // 한글 지역명 매핑 (지도/뉴스/표시용 공통)
+  const regionNames = {
+    'seoul': '서울특별시',
+    'busan': '부산광역시',
+    'daegu': '대구광역시',
+    'incheon': '인천광역시',
+    'gwangju': '광주광역시',
+    'daejeon': '대전광역시',
+    'ulsan': '울산광역시',
+    'sejong': '세종특별자치시',
+    'gyeonggi': '경기도',
+    'gangwon': '강원도',
+    'chungbuk': '충청북도',
+    'chungnam': '충청남도',
+    'jeonbuk': '전라북도',
+    'jeonnam': '전라남도',
+    'gyeongbuk': '경상북도',
+    'gyeongnam': '경상남도',
+    'jeju': '제주특별자치도'
+  };
+
+  // 선택된 지역 한글명 반환 함수
+  const getRegionName = (regionId) => {
+    if (!regionId) return '';
+    // regionId가 KR42 등 코드면 keyMapping으로 변환
+    const keyMapping = {
+      'kr11': 'seoul', 'kr26': 'busan', 'kr27': 'daegu', 'kr28': 'incheon', 'kr29': 'gwangju',
+      'kr30': 'daejeon', 'kr31': 'ulsan', 'kr50': 'sejong', 'kr41': 'gyeonggi', 'kr42': 'gangwon',
+      'kr43': 'chungbuk', 'kr44': 'chungnam', 'kr45': 'jeonbuk', 'kr46': 'jeonnam', 'kr47': 'gyeongbuk',
+      'kr48': 'gyeongnam', 'kr49': 'jeju'
+    };
+    const lower = regionId.toLowerCase();
+    const mapped = keyMapping[lower] || lower;
+    return regionNames[mapped] || regionId;
+  };
 
   return (
     <div className="mainpage-background">
@@ -281,22 +388,40 @@ const MainPage = () => {
           <div className="mainpage-people-col">
             {/* <h3 className="mainpage-section-title">정치인 정보</h3> */}
             <div className="people-container">
-              {people.length > 0 ? (
+              {loading ? (
+                <div className="people-loading">
+                  <div className="person-card skeleton" />
+                  <div className="person-card skeleton" />
+                  <div className="person-card skeleton" />
+                </div>
+              ) : people.length > 0 ? (
                 people.map(person => (
                   <div className="person-card" key={person.id}>
                     <img
                       className="person-img"
-                      src={person.img}
+                      src={person.profile_image_url || 'https://via.placeholder.com/150x150?text=No+Image'}
                       alt={person.name}
-                      onClick={() => navigate(`/people/${person.id}`)}
+                      onClick={() => navigate(`/people/${person.id}`, { state: {
+                        id: person.id,
+                        name: person.name,
+                        job: person.job,
+                        img: person.profile_image_url || '',
+                        ...person
+                      } })}
                     />
                     <button
                       className="person-name-btn"
-                      onClick={() => navigate(`/people/${person.id}`)}
+                      onClick={() => navigate(`/people/${person.id}`, { state: {
+                        id: person.id,
+                        name: person.name,
+                        job: person.job,
+                        img: person.profile_image_url || '',
+                        ...person
+                      } })}
                     >
                       {person.name}
                     </button>
-                    <p className="person-job">{person.job}</p>
+                    <p className="person-job">{person.affiliation || ''}</p>
                   </div>
                 ))
               ) : (
@@ -309,10 +434,36 @@ const MainPage = () => {
             {selectedRegion && (
               <div className="region-info-box fade-in">
                 <h3 className="region-info-title">선택된 지역</h3>
-                <p className="region-info-name">{selectedRegion}</p>
+                <p className="region-info-name">{getRegionName(selectedRegion)}</p>
                 <small className="region-info-desc">
                   {people.length}명의 정치인이 표시되고 있습니다.
                 </small>
+                {/* 지역별 뉴스 출력 */}
+                <div className="region-news-list">
+                  <h4 className="region-news-title">지역 뉴스</h4>
+                  {regionNews.length > 0 ? (
+                    regionNews.slice(0, 5).map(newsItem => {
+                      // 내용 필드 추출: description, summary, content, body 등 우선순위
+                      const content = newsItem.description || newsItem.summary || newsItem.content || newsItem.body || '';
+                      return (
+                        <div key={newsItem.id} className="region-news-card">
+                          <a href={newsItem.url} target="_blank" rel="noopener noreferrer" className="region-news-link">
+                            <div className="region-news-meta">
+                              <span className="region-news-source">{newsItem.source || newsItem.media}</span>
+                              <span className="region-news-date">{newsItem.date || newsItem.pubDate}</span>
+                            </div>
+                            <div className="region-news-title-txt">{newsItem.title}</div>
+                            {content && (
+                              <div className="region-news-content">{content}</div>
+                            )}
+                          </a>
+                        </div>
+                      )
+                    })
+                  ) : (
+                    <div className="region-news-none">해당 지역 뉴스가 없습니다.</div>
+                  )}
+                </div>
               </div>
             )}
           </div>

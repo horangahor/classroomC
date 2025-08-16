@@ -134,28 +134,6 @@
   justify-content: flex-start;
 }
 
-/* 카드 내부 우측 이미지 영역 */
-.news-image {
-  border-radius: 8px;
-  overflow: hidden;
-  width: 170px;
-  flex-shrink: 0;
-  margin-left: var(--space-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  aspect-ratio: 4 / 3;
-  background: #f5f5f5;
-}
-
-.news-image img {
-  border-radius: 8px;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
 /* 뉴스 메타 정보 */
 .news-meta {
   display: flex;
@@ -248,7 +226,7 @@
 /* 뉴스 그리드 */
 .news-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 32px;
   width: 100%;
   justify-content: center;
@@ -304,13 +282,64 @@
   min-height: 180px;
 }
 
+/* 정당 목록 가로 배치 스타일 */
+.party-topbar {
+  width: 100%;
+  margin-bottom: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.party-row-list {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+}
+
+.party-row-list .party-simple-btn {
+  min-width: 110px;
+  width: auto;
+  padding: 10px 18px;
+  font-size: 1rem;
+}
+
+/* 정당 목록 하단 박스 */
+.party-bottombar {
+  width: 100%;
+  margin: 48px auto 0 auto;
+  padding: 32px 0 24px 0;
+  background: #f7faff;
+  border-radius: 18px;
+  border: 2px solid var(--border-light);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.party-bottombar-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--political-blue);
+  margin-bottom: 18px;
+  letter-spacing: 0.01em;
+}
+
+.party-bottombar .party-row-list {
+  gap: 18px;
+}
+
 /* 반응형 디자인 */
 @media (max-width: 1700px) {
   .news-main-content {
-    width: 1032px; /* 500*2 + 32*1 + 2*15 */
+    width: 100%;
   }
   .news-grid {
-    grid-template-columns: repeat(2, 500px);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 @media (max-width: 1200px) {

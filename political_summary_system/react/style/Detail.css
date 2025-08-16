@@ -8,6 +8,34 @@
     font-style: normal;
 }
 
+/* 전체 배경 및 메인 카드 */
+.detailpeople-page-bg {
+  min-height: 100vh;
+  background: var(--bg-secondary, #f7f8fa);
+  padding-top: 90px;
+}
+
+.detailpeople-main-bg {
+  background: var(--bg-primary, #fff);
+  border-radius: 24px;
+  max-width: 700px;
+  margin: 0 auto 40px auto;
+  padding: 40px 32px 32px 32px;
+  border: 1.5px solid var(--border-light, #e2e8f0);
+  box-sizing: border-box;
+}
+
+/* 상단으로 돌아가기 버튼 */
+.detailpeople-back-btn {
+  background: none;
+  border: none;
+  color: var(--political-blue, #1e40af);
+  font-size: 1rem;
+  margin-bottom: 24px;
+  cursor: pointer;
+  padding: 0;
+}
+
 /* 상세 페이지 메인 컨테이너 - 이미지와 정보를 가로로 배치하는 플렉스 레이아웃 */
 .detail-container {
   display: flex;
@@ -22,7 +50,7 @@
   width: 300px;
   height: 400px;
   object-fit: cover;
-  border-radius: var(--radius-2xl);
+  border-radius: 0 !important;
   margin-bottom: 0;
   border: 2px solid var(--bg-primary);
   flex-shrink: 0;
@@ -34,4 +62,191 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.detailpeople-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  justify-content: flex-start;
+  position: relative;
+  min-height: 220px;
+  padding: 24px 0;
+}
+
+.people-img.detail {
+  width: 180px;
+  height: 220px;
+  border-radius: 12px !important;
+  object-fit: cover;
+  background: #f1f5f9;
+  margin: 0 32px 0 0;
+  box-shadow: 0 4px 16px 0 rgba(30,64,175,0.08);
+  border: 3px solid var(--political-blue, #1e40af);
+  align-self: flex-start;
+  flex-shrink: 0;
+}
+
+.detail-people-info {
+  flex: 1 1 0;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 12px;
+}
+
+.detailpeople-extra {
+  margin-top: 32px;
+  margin-bottom: 0;
+}
+
+/* 기존 스타일 유지 + 주요 필드/추가 정보에 대한 시각적 강조 및 통일성 강화 */
+
+.detailpeople-main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 8px 0 4px 0;
+  border-bottom: 1px solid var(--border-light, #e2e8f0);
+}
+.detailpeople-main:last-child {
+  border-bottom: none;
+}
+.detailpeople-label {
+  font-weight: 600;
+  color: var(--political-blue, #1e40af);
+  font-size: 1rem;
+}
+.detailpeople-value {
+  font-size: 1.05rem;
+  color: var(--text-primary, #22223b);
+  word-break: break-all;
+}
+
+.detailpeople-extra {
+  margin-top: 18px;
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 16px 18px 12px 18px;
+  border: 1px solid var(--border-light, #e2e8f0);
+}
+.detailpeople-extra-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--political-blue, #1e40af);
+  margin-bottom: 10px;
+}
+.detailpeople-extra-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.person-detail-value {
+  background: #e0e7ef;
+  color: #334155;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 0.98rem;
+  margin-bottom: 4px;
+  word-break: break-all;
+}
+
+/* 주요 필드 그리드 레이아웃 및 공약(pledge) 스타일 추가 */
+.detailpeople-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 18px 32px;
+  margin-bottom: 24px;
+}
+
+/* 인물 이미지 크기 확대 및 뒤로가기 버튼 스타일 개선 */
+.people-img.detail {
+  width: 180px;
+  height: 220px;
+  border-radius: 12px !important;
+  object-fit: cover;
+  background: #f1f5f9;
+  margin-bottom: 0;
+  box-shadow: 0 4px 16px 0 rgba(30,64,175,0.08);
+  border: 3px solid var(--political-blue, #1e40af); /* 기본값 */
+}
+
+/* 목록으로 버튼: 배경 없이 글씨만 컬러, hover 효과 */
+.people-back-btn {
+  background: none;
+  color: var(--political-blue, #1e40af);
+  border: none;
+  border-radius: 0;
+  font-size: 1.08rem;
+  font-weight: 600;
+  padding: 0 0 8px 0;
+  margin-bottom: 24px;
+  cursor: pointer;
+  box-shadow: none;
+  transition: color 0.18s;
+  border-bottom: 2px solid transparent;
+}
+.people-back-btn:hover {
+  color: #233876;
+  border-bottom: 2px solid #233876;
+}
+
+/* 정당별 이미지 border 색상 (예시: 국민의힘, 더불어민주당, 정의당, 무소속) */
+.people-img.detail {
+  width: 180px;
+  height: 220px;
+  border-radius: 12px !important;
+  object-fit: cover;
+  background: #f1f5f9;
+  margin-bottom: 0;
+  box-shadow: 0 4px 16px 0 rgba(30,64,175,0.08);
+  border: 3px solid var(--political-blue, #1e40af); /* 기본값 */
+}
+
+/* 국민의힘 */
+.detailpeople-affiliation-국민의힘 .people-img.detail {
+  border-color: #e61e2b;
+}
+/* 더불어민주당 */
+.detailpeople-affiliation-더불어민주당 .people-img.detail {
+  border-color: #1877d5;
+}
+/* 정의당 */
+.detailpeople-affiliation-정의당 .people-img.detail {
+  border-color: #ffcb08;
+}
+/* 무소속 */
+.detailpeople-affiliation-무소속 .people-img.detail {
+  border-color: #64748b;
+}
+
+@media (max-width: 600px) {
+  .detailpeople-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+  .detailpeople-img {
+    width: 90px;
+    height: 90px;
+  }
+  .detailpeople-main-bg {
+    padding: 18px 8px 18px 8px;
+  }
+  .detailpeople-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .people-img.detail {
+    width: 110px;
+    height: 130px;
+  }
+  .people-back-btn {
+    font-size: 0.98rem;
+    padding: 0 0 7px 0;
+  }
 }

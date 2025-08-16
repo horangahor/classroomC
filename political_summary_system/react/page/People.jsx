@@ -9,51 +9,71 @@ const dummyPeople = [
 ]
 
 const fetchMember = async () => {
-  console.log("패치멤버가 실행됨");
-            
-                const response = await axios
-                .get(import.meta.env.VITE_PEOPLE_SERVER,
-
-                )
-                .then ((res) => {
-                  console.log(res.data);
-                  return [res.data];
-                })
-                .catch ((err) => {
-                  console.error(err);
-                });
- };
-
- /// fetchmemberㅓ로 인물 데이터 가져오기
-//  const dummydata = fetchMember ()
+  try {
+    const res = await axios.get('http://localhost:8000/members')
+    // 서버에서 배열로 내려온다고 가정
+    if (Array.isArray(res.data) && res.data.length > 0) {
+      // 백엔드 profile_image_url → 프론트 img로 매핑
+      return res.data.map(person => ({
+        ...person,
+        img: person.img || person.profile_image_url || '',
+        name: person.name || person.person_name || person.real_name || '-',
+        job: person.job || person.position || person.title || '-',
+      }))
+    }
+    return null
+  } catch (err) {
+    console.error(err)
+    return null
+  }
+}
 
 const People = () => {
   const [people, setPeople] = useState([])
   const navigate = useNavigate()
 
   useEffect(() => {
-    setPeople(dummyPeople)
+    // 서버에서 데이터 받아오고, 없으면 더미 사용
+    const load = async () => {
+      const data = await fetchMember()
+      console.log('[fetchMember 결과]', data)
+      if (data && Array.isArray(data)) {
+        // img 필드와 profile_image_url 필드 모두 콘솔로 확인
+        data.forEach((person, idx) => {
+          console.log(`[person ${idx}] img:`, person.img, 'profile_image_url:', person.profile_image_url)
+        })
+        setPeople(data)
+      } else {
+        setPeople(dummyPeople)
+      }
+    }
+    load()
   }, [])
 
   return (
-    <div>
-      <div className="background">
-        <div className="people-container">
+    <div className="people-page-bg">
+      <div className="people-main-bg">
+        <h1 className="people-title">정치인 인물 정보</h1>
+        <div className="people-list">
           {people.map(person => (
-            <div className="person-card" key={person.id}>
-              <img
-                className="person-img"
-                src={person.img}
-                alt={person.name}
-                onClick={() => navigate(`/people/${person.id}`)}
-              />
-              <button
-                className="person-name-btn"
-                onClick={() => navigate(`/people/${person.id}`)}
-              >
-                {person.name}
-              </button>
-              <p className="person-job">{person.job}</p>
+            <div
+              className="people-card"
+              key={person.id}
+              onClick={() => navigate(`/people/${person.id}`, { state: person })}
+              style={{ cursor: 'pointer' }}
+            >
+              <div className="people-img-wrap">
+                <img
+                  className="people-img"
+                  src={person.img}
+                  alt={person.name}
+                  style={{ objectFit: 'cover', background: '#f1f5f9' }}
+                />
+              </div>
+              <div className="people-info">
+                <div className="people-name">{person.name ? person.name : '-'}</div>
+                <div className="people-job">{person.job ? person.job : '-'}</div>
+              </div>
             </div>
           ))}
         </div>
