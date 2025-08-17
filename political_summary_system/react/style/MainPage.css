@@ -1,17 +1,17 @@
-/* MainPage.css - 메인페이지 및 지도/정치인/뉴스 UI 스타일 정의 */
+/* MainPage.css - 메인페이지 전체 레이아웃, 지도/정치인/뉴스 UI 스타일 정의
+   반응형, 카드, 버튼, 링크 등 주요 UI 섹션별 상세 주석 포함 */
 
-/* 폰트 및 컬러 변수 불러오기 */
+/* ===== 폰트 및 컬러 변수 불러오기 ===== */
 @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
 @import './colors.css';
 
-/* 전역 초기화 및 폰트 적용 */
+/* ===== 메인페이지 배경 및 전체 레이아웃 ===== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* 메인페이지 배경 및 전체 레이아웃 */
 .mainpage-background {
     margin-top: 90px;
 }
@@ -31,7 +31,7 @@
     margin-top: 40px;
 }
 
-/* 좌측(정치인/뉴스), 우측(지도) 컬럼 */
+/* ===== 좌/우 컬럼 레이아웃 ===== */
 .mainpage-people-col {
     flex: 1.2;
     min-width: 340px;
@@ -49,7 +49,7 @@
     align-items: center;
 }
 
-/* 지도 컨테이너 및 반응형 */
+/* ===== 지도 컨테이너 및 반응형 ===== */
 .map-container {
     width: 100%;
     max-width: 1840px;
@@ -93,7 +93,7 @@
     }
 }
 
-/* 지역 정보 박스 및 타이틀 */
+/* ===== 지역 정보 박스 및 타이틀 ===== */
 .region-info-box {
     padding: var(--space-xl);
     background: var(--border-light);
@@ -126,7 +126,7 @@
     line-height: 1.5;
 }
 
-/* 인물 카드 리스트 및 카드 스타일 */
+/* ===== 인물 카드 리스트 및 카드 스타일 ===== */
 .people-container {
     display: flex;
     flex-direction: row;
@@ -206,7 +206,7 @@
     padding: 40px 0 20px 0;
 }
 
-/* 지역 뉴스 리스트 및 뉴스 카드 스타일 */
+/* ===== 지역 뉴스 리스트 및 뉴스 카드 스타일 ===== */
 .region-news-list {
     margin-top: 32px;
     width: 100%;
@@ -220,7 +220,7 @@
     /* 내부 스크롤 활성화 */
 }
 
-/* 뉴스 리스트 스크롤바 스타일 */
+/* ===== 뉴스 리스트 스크롤바 스타일 ===== */
 .region-news-list::-webkit-scrollbar {
     width: 8px;
 }
@@ -269,6 +269,14 @@
     text-decoration: none;
     color: inherit;
     display: block;
+}
+
+/* 링크 방문 시에도 항상 기본 색상 유지 */
+a,
+a:visited,
+.region-news-link:visited {
+    color: var(--text-primary, #0f172a);
+    text-decoration: none;
 }
 
 .region-news-meta {
@@ -326,6 +334,7 @@
     }
 }
 
+/* ===== 반응형 디자인 ===== */
 /* 태블릿: 1024px 이하 */
 @media (max-width: 1024px) {
   .mainpage-container {
@@ -360,7 +369,7 @@
   }
 }
 
-/* 애니메이션 효과 */
+/* ===== 애니메이션 효과 ===== */
 .fade-in {
     animation: fadeIn 0.5s ease-in;
 }
@@ -409,7 +418,7 @@
     }
 }
 
-/* 지도 컨테이너 - 좌우 분할 레이아웃 */
+/* ===== 지도 컨테이너 - 좌우 분할 레이아웃 ===== */
 .map-container {
     width: 100%;
     min-height: 800px;
@@ -423,7 +432,7 @@
     border: 2px solid var(--border-light);
 }
 
-/* 지도 컨테이너 좌측 - 카드/뉴스 영역 */
+/* ===== 지도 컨테이너 좌측/우측 ===== */
 .map-left-content {
     flex: 1;
     min-width: 300px;
@@ -436,7 +445,6 @@
     padding-right: 10px;
 }
 
-/* 지도 컨테이너 우측 - SVG 지도 영역 */
 .map-right-content {
     flex: 1;
     min-width: 400px;
@@ -446,25 +454,7 @@
     align-items: center;
 }
 
-/* 좌측 섹션 헤더 */
-.map-left-header {
-    margin-bottom: 20px;
-}
-
-.map-left-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 8px;
-}
-
-.map-left-subtitle {
-    font-size: 1rem;
-    color: var(--text-secondary);
-    line-height: 1.5;
-}
-
-/* 지도 헤더 */
+/* ===== 지도 헤더 및 SVG 지도 ===== */
 .map-header {
     text-align: center;
     margin-bottom: 20px;
@@ -497,7 +487,7 @@
     transform: translateY(-2px);
 }
 
-/* SVG path 기본 스타일 */
+/* ===== SVG path 기본/선택 스타일 ===== */
 .region-path {
     fill: var(--primary);
     stroke: var(--text-primary);
@@ -519,7 +509,7 @@
     vector-effect: non-scaling-stroke;
 }
 
-/* 로딩 상태 */
+/* ===== 로딩 상태 ===== */
 .loading-container {
     display: flex;
     justify-content: center;
@@ -546,7 +536,7 @@
     }
 }
 
-/* 뉴스/정치인 카드 스타일 */
+/* ===== 뉴스/정치인 카드 스타일 ===== */
 .info-card {
     background: var(--bg-primary);
     border: 2px solid var(--border-light);
@@ -652,7 +642,7 @@
     margin-right: 12px;
 }
 
-/* 스크롤바 스타일링 */
+/* ===== 스크롤바 스타일링 ===== */
 .map-left-content::-webkit-scrollbar {
     width: 6px;
 }
@@ -686,7 +676,7 @@
     transform: translateY(-2px);
 }
 
-/* 지도 컨테이너 반응형 추가 */
+/* ===== 지도 컨테이너 반응형 추가 ===== */
 @media (max-width: 1024px) {
     .map-container {
         flex-direction: column;
@@ -731,4 +721,212 @@
 
 @media (max-width: 480px) {
     /* 추가적인 스타일 조정이 필요할 경우 여기에 작성 */
+}
+
+.mainpage-container a,
+.menu-btn {
+    color: var(--text-primary);
+    text-decoration: none;
+}
+.mainpage-container a:visited,
+.menu-btn:visited {
+    color: var(--text-primary);
+}
+
+/* 모든 직접 색상값을 colors.css 변수로 치환 (예시) */
+.mainpage-background {
+    background-color: var(--bg-main);
+}
+
+.mainpage-container {
+    background-color: var(--bg-secondary);
+}
+
+.mainpage-people-col {
+    background-color: var(--bg-tertiary);
+}
+
+.mainpage-map-col {
+    background-color: var(--bg-quaternary);
+}
+
+.region-info-box {
+    background-color: var(--card-bg);
+}
+
+.region-info-title {
+    color: var(--text-title);
+}
+
+.region-info-name {
+    color: var(--text-name);
+}
+
+.region-info-desc {
+    color: var(--text-description);
+}
+
+.person-card {
+    background-color: var(--card-bg);
+    border-color: var(--border-light);
+}
+
+.person-card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.person-img {
+    background-color: var(--image-bg);
+}
+
+.person-img:hover {
+    border-color: var(--political-red);
+}
+
+.person-name-btn {
+    color: var(--text-primary);
+}
+
+.person-name-btn:hover {
+    color: var(--political-blue);
+}
+
+.person-job {
+    color: var(--text-secondary);
+}
+
+.no-people {
+    color: var(--text-secondary);
+}
+
+.region-news-list {
+    background-color: var(--card-bg);
+}
+
+.region-news-title {
+    color: var(--text-title);
+}
+
+.region-news-card {
+    background-color: var(--card-bg);
+    border-color: var(--border-light);
+}
+
+.region-news-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--main-blue);
+}
+
+.region-news-link {
+    color: inherit;
+}
+
+a,
+a:visited,
+.region-news-link:visited {
+    color: var(--text-primary);
+}
+
+.region-news-meta {
+    color: var(--text-meta);
+}
+
+.region-news-source {
+    color: var(--main-blue);
+}
+
+.region-news-date {
+    color: var(--text-date);
+}
+
+.region-news-title-txt {
+    color: var(--text-title);
+}
+
+.region-news-content {
+    color: var(--text-content);
+}
+
+.region-news-none {
+    color: var(--text-none);
+}
+
+.korea-map {
+    background-color: var(--bg-primary);
+}
+
+.region-path {
+    fill: var(--primary);
+    stroke: var(--text-primary);
+}
+
+.region-path:hover {
+    fill: var(--secondary-skyblue);
+}
+
+.region-path.selected {
+    fill: var(--secondary-indigo);
+    stroke: var(--gray-900);
+}
+
+.loading-spinner {
+    border-top-color: var(--secondary-indigo);
+}
+
+.info-card {
+    background-color: var(--card-bg);
+    border-color: var(--border-light);
+}
+
+.info-card:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+.info-card-icon {
+    background-color: var(--political-blue);
+}
+
+.info-card-title {
+    color: var(--text-primary);
+}
+
+.info-card-subtitle {
+    color: var(--text-secondary);
+}
+
+.info-card-content {
+    color: var(--text-secondary);
+}
+
+.info-card-footer {
+    color: var(--text-secondary);
+}
+
+.info-card-date {
+    color: var(--text-tertiary);
+}
+
+.info-card-category {
+    background-color: var(--secondary-indigo);
+    color: white;
+}
+
+.news-card {
+    border-left-color: var(--secondary-green);
+}
+
+.news-card:hover {
+    border-left-color: var(--political-blue);
+}
+
+.politician-card-mini {
+    border-left-color: var(--political-blue);
+}
+
+.politician-card-mini:hover {
+    border-left-color: var(--secondary-green);
+}
+
+.politician-avatar-mini {
+    background: var(--gradient-primary);
 }

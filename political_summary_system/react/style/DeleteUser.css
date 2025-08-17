@@ -1,7 +1,12 @@
-/* 폰트 및 컬러 변수 불러오기 */
+/* DeleteUser.css - 회원탈퇴 페이지 스타일
+   회원탈퇴 UI, 경고박스, 폼, 버튼 등 전체 레이아웃 및 동작 정의
+   협업/유지보수용 상세 주석 포함 */
+
+/* ===== 폰트 및 컬러 변수 불러오기 ===== */
 @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
 @import './colors.css';
 
+/* ===== 전역 초기화 및 폰트 적용 ===== */
 * {
     margin: 0;
     padding: 0;
@@ -10,6 +15,7 @@
     font-style: normal;
 }
 
+/* ===== 회원탈퇴 전체 컨테이너 레이아웃 ===== */
 .delete-container {
     min-height: 100vh;
     display: flex;
@@ -19,6 +25,7 @@
     padding: 20px;
 }
 
+/* ===== 회원탈퇴 카드(중앙 박스) ===== */
 .delete-card {
     background: var(--bg-primary);
     padding: 40px;
@@ -43,13 +50,12 @@
     font-size: var(--font-size-base);
 }
 
-/* 위험 경고 부제목 - 주의사항을 강조하는 빨간색 텍스트 */
+/* ===== 위험 경고 부제목 및 경고박스 ===== */
 .subtitle.danger {
     color: var(--text-primary);
     font-weight: var(--font-weight-medium);
 }
 
-/* 경고 메시지 박스 - 회원 탈퇴 시 주의사항을 담은 노란색 경고 영역 */
 .warning-box {
     background: var(--warning-light);
     border: 2px solid var(--warning);
@@ -59,32 +65,28 @@
     text-align: left;
 }
 
-/* 경고 박스 제목 - "주의사항" 등의 헤딩 */
 .warning-box h3 {
     color: var(--warning-dark);
     margin-bottom: 12px;
     font-size: var(--font-size-lg);
 }
 
-/* 경고 박스 내 목록 - 주의사항 리스트 */
 .warning-box ul {
     color: var(--warning-dark);
     padding-left: 18px;
 }
 
-/* 경고 박스 내 각 항목 - 개별 주의사항 스타일 */
 .warning-box li {
     margin-bottom: 8px;
     line-height: 1.5;
 }
 
-/* 폼 그룹 컨테이너 - 각 입력 필드와 라벨을 감싸는 영역 */
+/* ===== 폼 그룹 및 입력 필드 ===== */
 .form-group {
     margin-bottom: 20px;
     text-align: left;
 }
 
-/* 폼 라벨 - 입력 필드 설명 텍스트 */
 .form-group label {
     display: block;
     margin-bottom: 8px;
@@ -92,7 +94,6 @@
     font-weight: var(--font-weight-medium);
 }
 
-/* 입력 필드 공통 스타일 - 텍스트 입력창과 텍스트 영역 */
 .form-group input,
 .form-group textarea {
     width: 100%;
@@ -105,14 +106,12 @@
     font-family: inherit;
 }
 
-/* 입력 필드 포커스 상태 - 클릭했을 때의 강조 효과 */
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
     border-color: var(--error);
 }
 
-/* 폼 도움말 텍스트 - 입력 필드 아래의 작은 안내 문구 */
 .form-group small {
     display: block;
     margin-top: var(--space-xs);
@@ -120,19 +119,18 @@
     font-size: var(--font-size-xs);
 }
 
-/* 폼 도움말 내 강조 텍스트 - 중요한 부분을 빨간색으로 강조 */
 .form-group small strong {
     color: var(--error);
 }
 
-/* 버튼 그룹 컨테이너 - 탈퇴/취소 버튼을 나란히 배치하는 영역 */
+/* ===== 버튼 그룹 및 버튼 스타일 ===== */
 .button-group {
     display: flex;
     gap: var(--space-lg);
     margin-top: var(--space-2xl);
 }
 
-/* 회원 탈퇴 확정 버튼 - 회색 위험 버튼 */
+/* 회원탈퇴 확정 버튼 - 실제 탈퇴 동작 트리거 */
 .delete-btn {
     width: 50%;
     padding: 12px;
@@ -146,8 +144,11 @@
     transition: background 0.18s;
 }
 
+.delete-btn:hover {
+    background: var(--primary-light);
+}
 
-/* 취소 버튼 - 회색 버튼으로 이전 페이지로 돌아가기 */
+/* 취소 버튼 - 회원탈퇴 취소 및 이전 페이지 이동 */
 .cancel-btn2 {
     width: 50%;
     padding: 12px;
@@ -158,15 +159,20 @@
     cursor: pointer;
     margin-bottom: 12px;
     transition: background 0.18s;
-} */
+    background: var(--custom-color-white);
+    color: var(--text-primary);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
 
-/* 취소 버튼 호버 효과 - 마우스를 올렸을 때의 상호작용 */
 .cancel-btn2:hover {
     background: var(--primary-light);
 }
 
-/* ===== 반응형 디자인 - 모바일 화면 대응 ===== */
-/* 1024px 이하 태블릿 및 작은 화면 기기용 스타일 조정 */
+/* ===== 반응형 디자인 - 모바일 대응 ===== */
 @media (max-width: 1024px) {
     .delete-card {
         padding: 20px;
@@ -174,7 +180,6 @@
     }
 }
 
-/* 768px 이하 모바일 기기용 스타일 조정 */
 @media (max-width: 768px) {
     .delete-container {
         padding: 16px;
@@ -186,7 +191,6 @@
     }
 }
 
-/* 480px 이하 모바일 기기용 스타일 조정 */
 @media (max-width: 480px) {
     .delete-card {
         padding: 4px;

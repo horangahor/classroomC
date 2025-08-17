@@ -4,6 +4,11 @@ import '../style/Detail.css'
 import axios from 'axios'
 
 /**
+ * DetailPeople.jsx - 정치인 상세 정보 페이지
+ * 정치인 상세 정보, 공약, 카드 등 UI 담당
+ */
+
+/**
  * DetailPeople 컴포넌트
  * - 정치인 상세 정보 페이지
  * - 주요 필드(이름, 나이, 직책, 위치, 소속정당 등)만 보기 좋게 출력

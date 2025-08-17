@@ -1,7 +1,11 @@
-/* 폰트 및 컬러 변수 불러오기 */
+/* Login.css - 로그인 페이지 스타일
+   로그인 폼, 버튼, 레이아웃, 반응형 등 상세 주석 포함 */
+
+/* ===== 폰트 및 컬러 변수 불러오기 ===== */
 @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
 @import './colors.css';
 
+/* ===== 전체 컨테이너 및 카드 레이아웃 ===== */
 /* 전역 스타일 초기화 및 기본 폰트 설정 */
 * {
     margin: 0;
@@ -32,6 +36,7 @@
     max-width: 400px;
 }
 
+/* ===== 타이틀/서브타이틀 ===== */
 .login-form h2 {
     text-align: center;
     margin-bottom: 30px;
@@ -40,6 +45,7 @@
     font-weight: var(--font-weight-bold);
 }
 
+/* ===== 폼 그룹 및 입력 필드 ===== */
 .input-group {
     margin-bottom: 20px;
 }
@@ -66,6 +72,7 @@
     /* box-shadow 제거 */
 }
 
+/* ===== 버튼 그룹 및 버튼 스타일 ===== */
 .login-button {
     width: 100%;
     padding: 12px;
@@ -81,6 +88,7 @@
     background: var(--primary-light);
 }
 
+/* ===== 링크 스타일 ===== */
 .join-link {
     text-align: center;
     margin-top: 20px;
@@ -101,7 +109,7 @@
     text-decoration: underline;
 }
 
-/* 반응형 디자인 */
+/* ===== 반응형 디자인 ===== */
 @media (max-width: 1024px) {
   .login-form {
     padding: 20px;

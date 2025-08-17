@@ -1,3 +1,8 @@
+/**
+ * App.jsx - 전체 앱 라우팅/구성
+ * 페이지 라우트, 컨텍스트, 글로벌 레이아웃 등 담당
+ */
+
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { AuthProvider } from '../contexts/AuthContext'
 import Header from '../components/Header'

@@ -1,6 +1,11 @@
+/* MyPage.css - 마이페이지(내 정보) 스타일
+   내 정보 카드, 로그아웃 버튼, 레이아웃, 반응형 등 상세 주석 포함 */
+
+/* ===== 폰트 및 컬러 변수 불러오기 ===== */
 @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
 @import './colors.css';
 
+/* ===== 전체 컨테이너 및 카드 레이아웃 ===== */
 * {
     margin: 0;
     padding: 0;
@@ -29,6 +34,7 @@
     text-align: center;
 }
 
+/* ===== 타이틀/서브타이틀/정보 리스트 ===== */
 .mypage-card h2 {
     font-size: var(--font-size-3xl);
     color: var(--text-primary);
@@ -42,6 +48,7 @@
     font-size: var(--font-size-base);
 }
 
+/* ===== 로그아웃/버튼/카드 등 상세 스타일 ===== */
 .menu-buttons {
     display: flex;
     flex-direction: column;
@@ -96,7 +103,7 @@
     text-decoration: underline;
 }
 
-/* 반응형 디자인 */
+/* ===== 반응형 디자인 ===== */
 @media (max-width: 1024px) {
   .mypage-container {
     padding: 8px;

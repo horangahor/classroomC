@@ -1,3 +1,8 @@
+/**
+ * MyPage.jsx - 마이페이지(내 정보) 컴포넌트
+ * 사용자 정보 표시, 로그아웃, 정보 수정 등 UI/동작 담당
+ */
+
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'

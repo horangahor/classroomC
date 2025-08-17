@@ -11,6 +11,7 @@
     font-style: normal;
 }
 
+/* ===== 헤더 전체 레이아웃 및 메뉴 ===== */
 /* Header 스타일 - 고정 위치 */
 #header {
     display: flex;
@@ -181,8 +182,25 @@
     background: var(--active-border);
     bottom: -2px;
 }
+
+.mypage-btn {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.mypage-name {
+    font-weight: 500;
+    font-size: var(--font-size-base);
+    color: var(--text-primary);
+}
+.mypage-icon {
+    width: 22px;
+    height: 22px;
+    vertical-align: middle;
+}
     
-/* 반응형 디자인 */
+/* ===== 반응형 디자인 ===== */
 /* PC: 1025px 이상 (기본 스타일) */
 @media (min-width: 1025px) {
     .search-container {

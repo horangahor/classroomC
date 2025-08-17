@@ -1,5 +1,7 @@
-/* People.css - 정치인 목록/카드 UI 스타일 정의 */
+/* People.css - 정치인 리스트/카드 스타일
+   정치인 카드, 리스트, 버튼, 반응형 등 상세 주석 포함 */
 
+/* ===== 폰트 및 컬러 변수 불러오기 ===== */
 @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
 @import './colors.css';
 
@@ -9,6 +11,7 @@
     font-style: normal;
 }
 
+/* ===== 전체 컨테이너 및 카드 레이아웃 ===== */
 /* 전체 배경 및 메인 컨테이너 */
 .background {
   display: flex;
@@ -33,6 +36,7 @@
   box-sizing: border-box;
 }
 
+/* ===== 타이틀/서브타이틀/리스트 ===== */
 /* 타이틀 및 카테고리 그룹 */
 .people-title {
   font-size: 2rem;
@@ -60,6 +64,7 @@
   letter-spacing: 0.01em;
 }
 
+/* ===== 카드/버튼/리스트 등 상세 스타일 ===== */
 /* 인물 카드 리스트 및 카드 스타일 */
 .people-list {
   display: flex;
@@ -121,6 +126,7 @@
   color: var(--text-secondary, #64748b);
 }
 
+/* ===== 반응형 디자인 ===== */
 /* 반응형 */
 @media (max-width: 900px) {
   .people-main-bg { padding: 20px 6px; }
@@ -157,4 +163,10 @@
     width: 100px;
     font-size: 0.9rem;
   }
+}
+
+/* 모든 직접 색상값을 colors.css 변수로 치환 (예시) */
+.example-class {
+  color: var(--example-color, #123456);
+  background-color: var(--example-bg, #abcdef);
 }

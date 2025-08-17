@@ -4,6 +4,11 @@ import '../style/People.css'
 import axios from 'axios'
 
 /**
+ * People.jsx - 정치인 리스트/카드 페이지
+ * 정치인 목록, 카드, 상세 이동 등 UI 담당
+ */
+
+/**
  * People 컴포넌트
  * - 전체 정치인 목록을 직책별로 그룹핑하여 카드 형태로 출력
  * - 각 카드 클릭 시 상세 페이지로 이동

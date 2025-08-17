@@ -1,3 +1,8 @@
+/**
+ * News.jsx - 뉴스 리스트/카드 페이지
+ * 지역별 뉴스, 뉴스 카드, 링크 등 UI 담당
+ */
+
 import React, { useEffect, useState, useRef } from 'react';
 import '../style/News.css';
 import { getNews } from '../auth/newsreq';
@@ -273,6 +278,7 @@ const News = () => {
                         {/* 정당 홈페이지 바로가기 영역 복구 */}
                         <div className="party-bottombar">
                             <div className="party-bottombar-title">정당 공식 홈페이지 바로가기</div>
+                            <hr className='party-bottombar-divider'/>
                             <div className="party-simple-list party-row-list">
                                 {partyList.map((party, idx) => (
                                     <button

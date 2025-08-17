@@ -1,10 +1,11 @@
-/* News.css - 뉴스 페이지/카드/메타/페이지네이션 UI 스타일 정의 */
+/* News.css - 뉴스 페이지 및 뉴스 카드 스타일 정의
+   뉴스 리스트, 카드, 반응형, 스크롤 등 상세 주석 포함 */
 
-/* 폰트 및 컬러 변수 불러오기 */
+/* ===== 폰트 및 컬러 변수 불러오기 ===== */
 @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
 @import './colors.css';
 
-/* 전역 스타일 초기화 및 폰트 적용 */
+/* ===== 전역 스타일 초기화 및 폰트 적용 ===== */
 * {
   padding: 0;
   margin: 0;
@@ -13,6 +14,7 @@
   font-style: normal;
 }
 
+/* ===== 뉴스 전체 컨테이너 및 레이아웃 ===== */
 /* 뉴스 페이지 전체 배경 및 메인 컨테이너 */
 .news-page {
   min-height: 100vh;
@@ -83,6 +85,7 @@
   box-sizing: border-box;
 }
 
+/* ===== 뉴스 카드 및 리스트 스타일 ===== */
 /* 메인 콘텐츠 영역 */
 .news-main-content {
   flex: 1 1 0;
@@ -154,14 +157,14 @@
 .news-meta-source {
   color: var(--secondary-indigo);
   font-weight: 600;
-  background: #f2f3fa;
+  background: var(--main-light-gray);
   border-radius: 6px;
   padding: 2px 7px;
   font-size: 0.85em;
 }
 
 .news-meta-category {
-  color: white;
+  color: var(--custom-color-white);
   background: var(--political-blue);
   border-radius: 6px;
   padding: 2px 7px;
@@ -169,6 +172,12 @@
   font-weight: 500;
 }
 
+/* ===== 뉴스 카드 hover/visited 등 상태 ===== */
+.news-card:hover {
+  border-color: var(--border-light);
+}
+
+/* ===== 정당 목록 사이드바 ===== */
 /* 정당 목록 사이드바 */
 .party-sidebar {
   width: 220px;
@@ -220,11 +229,12 @@
 }
 
 .party-simple-btn:hover {
-  background: #f2f3fa;
+  background: var(--main-light-gray);
   color: var(--political-blue);
   border-color: var(--political-blue);
 }
 
+/* ===== 뉴스 그리드 ===== */
 /* 뉴스 그리드 */
 .news-grid {
   display: grid;
@@ -234,6 +244,7 @@
   justify-content: center;
 }
 
+/* ===== 페이지네이션 ===== */
 /* 페이지네이션 */
 .pagination {
   display: flex;
@@ -254,7 +265,7 @@
 
 .pagination button.active {
   background: var(--political-blue);
-  color: #fff;
+  color: var(--custom-color-white);
   border-color: var(--political-blue);
   font-weight: var(--font-weight-bold);
   z-index: 1;
@@ -268,7 +279,7 @@
 }
 
 .pagination button:hover:not(.active) {
-  background: #f2f3fa;
+  background: var(--main-light-gray);
   color: var(--political-blue);
   border-color: var(--political-blue);
 }
@@ -285,27 +296,27 @@
   margin-right: 4px;
   font-size: 1rem;
   border-radius: 6px;
-  border: 1px solid #d0d0e0;
+  border: 1px solid var(--main-mid-gray);
   padding: 2px 6px;
   outline: none;
   transition: border 0.15s;
 }
 .pagination-goto-input:focus {
-  border: 1.5px solid var(--main-blue, #3b82f6);
-  background: #f7faff;
+  border: 1.5px solid var(--main-blue-accent);
+  background: var(--main-bg-blue);
 }
 .pagination-goto-btn {
   font-size: 0.98rem;
   border-radius: 6px;
-  border: 1px solid #b0b0c0;
-  background: #f7f7fa;
+  border: 1px solid var(--main-border-gray);
+  background: var(--main-bg-gray);
   padding: 2px 10px;
   cursor: pointer;
   transition: background 0.15s, border 0.15s;
 }
 .pagination-goto-btn:hover {
-  background: #e6f0ff;
-  border: 1.5px solid var(--main-blue, #3b82f6);
+  background: var(--main-hover-blue);
+  border: 1.5px solid var(--main-blue-accent);
 }
 
 @media (max-width: 600px) {
@@ -322,6 +333,7 @@
   }
 }
 
+/* ===== 빈 뉴스/로딩 안내 ===== */
 /* 빈 뉴스/로딩 안내 */
 .no-news {
   text-align: center;
@@ -333,6 +345,7 @@
   min-height: 180px;
 }
 
+/* ===== 정당 목록 가로 배치 스타일 ===== */
 /* 정당 목록 가로 배치 스타일 */
 .party-topbar {
   width: 100%;
@@ -357,33 +370,7 @@
   font-size: 1rem;
 }
 
-/* 정당 목록 하단 박스 */
-.party-bottombar {
-  width: 100%;
-  margin: 48px auto 0 auto;
-  padding: 32px 0 24px 0;
-  background: #f7faff;
-  border-radius: 18px;
-  border: 2px solid var(--border-light);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.party-bottombar-title {
-  font-size: 1.15rem;
-  font-weight: 600;
-  color: var(--political-blue);
-  margin-bottom: 18px;
-  letter-spacing: 0.01em;
-}
-
-.party-bottombar .party-row-list {
-  gap: 18px;
-}
-
+/* ===== 정당 홈페이지 바로가기 버튼 영역 복구 ===== */
 /* 정당 홈페이지 바로가기 버튼 영역 복구 */
 .party-link-list {
   display: flex;
@@ -394,9 +381,11 @@
   margin-bottom: 24px;
 }
 
-.party-link-btn {
+.party-link-btn,
+.party-link-btn:visited,
+.party-link-btn:active {
   background: var(--political-blue);
-  color: #fff;
+  color: var(--custom-color-white);
   border: none;
   border-radius: 8px;
   padding: 8px 18px;
@@ -405,13 +394,34 @@
   cursor: pointer;
   transition: background 0.18s, color 0.18s;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  text-decoration: none;
+  display: inline-block;
 }
-
 .party-link-btn:hover {
-  background: var(--main-blue, #2563eb);
-  color: #fff;
+  background: var(--main-blue);
+  color: var(--custom-color-white);
 }
 
+/* 정당 공식 홈페이지 바로가기 안내 문구 강조 스타일 */
+.party-bottombar-title {
+  font-size: 1.08rem;
+  font-weight: 600;
+  color: var(--main-blue);
+  margin-top : 50px;
+  margin-bottom: 10px;
+  text-align: center;
+  letter-spacing: -0.5px;
+  display: block;
+}
+
+.party-bottombar-divider {
+  border: none;
+  height: 1px;
+  background: var(--border-light);
+  margin: 15px 0;
+}
+
+/* ===== 반응형 디자인 ===== */
 /* 반응형 디자인 */
 @media (max-width: 1700px) {
   .news-main-content {

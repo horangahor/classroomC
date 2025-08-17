@@ -1,3 +1,8 @@
+/**
+ * Header.jsx - 헤더/네비게이션 컴포넌트
+ * 상단 메뉴, 마이페이지, 로그인/로그아웃 등 UI 담당
+ */
+
 import React from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
@@ -65,15 +70,15 @@ const Header = () => {
         {isLogin && (
           <li
             onClick={() => nav('/mypage')}
-            className={isPathActive('/mypage') ? 'active' : ''}
-            style={{ cursor: 'pointer' }}
+            className={isPathActive('/mypage') ? 'active mypage-btn' : 'mypage-btn'}
           >
-            마이페이지
+            <span className="mypage-name">{user?.name ? `${user.name}님` : '마이페이지'}</span>
+            <img src="https://cdn-icons-png.flaticon.com/512/456/456212.png" alt="마이페이지" className="mypage-icon" />
           </li>
         )}
         {/* 로그인 상태에 따라 조건부 렌더링 */}
         {/* 로그아웃은 헤더에서 제거, 마이페이지 내부에서만 노출 */}
-        {!isLogin && (  
+        {!isLogin && (
           <li
             onClick={() => nav('/login')}
             className={isPathActive('/login') ? 'active' : ''}

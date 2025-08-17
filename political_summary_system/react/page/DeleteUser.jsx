@@ -1,3 +1,8 @@
+/**
+ * DeleteUser.jsx - 회원탈퇴 페이지
+ * 회원탈퇴 폼, 경고, 버튼 등 UI/동작 담당
+ */
+
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import '../style/DeleteUser.css'
