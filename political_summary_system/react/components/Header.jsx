@@ -3,35 +3,16 @@
  * 상단 메뉴, 마이페이지, 로그인/로그아웃 등 UI 담당
  */
 
-import React from 'react'
+import React, { useRef } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import '../style/Header.css'
 
 const Header = () => {
-  const { isLogin, user, logout, loading } = useAuth()
+  const { isLogin, user } = useAuth() // loading 제거
   const nav = useNavigate()
   const location = useLocation()
-
-  const handleLogout = async () => {
-    const result = await logout()
-
-    if (result.success) {
-      alert('로그아웃 성공')
-      nav('/')
-    } else {
-      alert(result.message)
-    }
-  }
-
-  const handleLogoClick = () => {
-    nav('/')
-  }
-
-  // 현재 경로에 따라 활성 클래스 결정하는 함수
-  const getActiveClass = (path) => {
-    return location.pathname === path ? 'active' : ''
-  }
+  const searchInputRef = useRef()
 
   // 경로 그룹핑 (people/:id도 people으로 처리)
   const isPathActive = (basePath) => {
@@ -41,16 +22,25 @@ const Header = () => {
     return location.pathname === basePath
   }
 
+  // 검색창에서 엔터 또는 아이콘 클릭 시 검색 결과 페이지로 이동
+  const handleSearch = (e) => {
+    e.preventDefault()
+    const value = searchInputRef.current?.value?.trim()
+    if (value) {
+      nav(`/searchresult?query=${encodeURIComponent(value)}`)
+    }
+  }
+
   return (
     <header id="header">
-      <div className="logo" onClick={handleLogoClick} style={{ cursor: 'pointer' }}>
+      <div className="logo" onClick={() => nav('/')} style={{ cursor: 'pointer' }}>
         <span>정</span>
         <span>리소</span>
       </div>
-      <div className="search-container" style={{ flex: 1, margin: '0 24px' }}>
-        <input type="text" className="search-input" placeholder="검색어 입력" />
-        <img src="../images/search-icon.ico" alt="검색" className='search-icon' />
-      </div>
+      <form className="search-container" style={{ flex: 1, margin: '0 24px' }} onSubmit={handleSearch}>
+        <input type="text" className="search-input" placeholder="검색어 입력" ref={searchInputRef} />
+        <img src="../images/search-icon.ico" alt="검색" className='search-icon' onClick={handleSearch} style={{ cursor: 'pointer' }} />
+      </form>
       <ul className="nav-menu">
         <li
           onClick={() => nav('/news')}

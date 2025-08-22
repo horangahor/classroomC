@@ -19,6 +19,7 @@ import DeleteUser from '../page/DeleteUser'
 
 import Upload from '../components/Upload'
 import DetailPeople from '../page/DetailPeople' // 추가
+import SearchResult from '../page/SearchResult'; // 검색 결과 페이지 추가
 
 
 function App() {
@@ -40,8 +41,8 @@ function App() {
             <Route path="/updateuser" element={<UpdateUser />} />
             <Route path="/deleteuser" element={<DeleteUser />} />
 
-            <Route path="/people/:id" element={<DetailPeople />} /> {/* 추가 */}
-
+            <Route path="/people/:id" element={<DetailPeople />} />
+            <Route path="/searchresult" element={<SearchResult />} />
           </Routes>
         </div>
       </AuthProvider>
