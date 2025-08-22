@@ -102,11 +102,9 @@
     transform: translateY(0);
     transition: all var(--transition-normal);
     width: 100%;
+    position: relative;
 }
 
-.region-info-box:hover {
-    transform: translateY(-5px);
-}
 
 .region-info-title {
     font-size: 1.4rem;
@@ -125,6 +123,26 @@
     opacity: 0.9;
     line-height: 1.5;
 }
+
+.close-btn {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background: none;
+    border: none;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10;
+    border: none !important;
+    background: none !important;
+    box-shadow: none;
+}
+
 
 /* ===== 인물 카드 리스트 및 카드 스타일 ===== */
 .people-container {
@@ -160,7 +178,7 @@
 
 .person-card:hover {
     box-shadow: var(--shadow-md, 0 4px 6px -1px rgb(0 0 0 / 0.1));
-    transform: translateY(-2px) scale(1.01);
+    /* transform: translateY(-2px) scale(1.01); */
 }
 
 .person-img {
@@ -261,14 +279,13 @@
 
 .region-news-card:hover {
     box-shadow: 0 4px 18px rgba(80, 80, 120, 0.13);
-    transform: translateY(-2px) scale(1.012);
+    /* transform: translateY(-2px) scale(1.012); */
     border-color: var(--main-blue);
 }
 
 .region-news-link {
     text-decoration: none;
     color: inherit;
-    display: block;
 }
 
 /* 링크 방문 시에도 항상 기본 색상 유지 */
@@ -483,10 +500,6 @@ a:visited,
     transition: all var(--transition-normal);
 }
 
-.korea-map:hover {
-    transform: translateY(-2px);
-}
-
 /* ===== SVG path 기본/선택 스타일 ===== */
 .region-path {
     fill: var(--primary);
@@ -547,7 +560,7 @@ a:visited,
 }
 
 .info-card:hover {
-    transform: translateY(-3px);
+    /* transform: translateY(-3px); */
     border-color: var(--political-blue);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
@@ -669,11 +682,6 @@ a:visited,
     background: var(--bg-primary);
     /* box-shadow 제거 */
     transition: all var(--transition-normal);
-}
-
-.korea-map:hover {
-    /* box-shadow 제거 */
-    transform: translateY(-2px);
 }
 
 /* ===== 지도 컨테이너 반응형 추가 ===== */

@@ -279,28 +279,23 @@ const MainPage = () => {
    * - 선택된 지역의 정치인/뉴스 정보 갱신
    */
   const handleRegionClick = useCallback((regionId, pathElement) => {
-    // 이미 선택된 지역을 다시 클릭하면 선택 해제
-    if (selectedRegion === regionId) {
-      pathElement.classList.remove('selected')
-      setSelectedRegion(null)
-      setPeople([])
-      return
-    }
-
-    // 모든 지역에서 selected 클래스 제거
-    if (svgRef.current) {
-      const allPaths = svgRef.current.querySelectorAll('path')
-      allPaths.forEach(path => {
-        path.classList.remove('selected')
-      })
-    }
-
-    // 선택된 지역에 selected 클래스 추가
-    pathElement.classList.add('selected')
-    setSelectedRegion(regionId)
-
-    // 항상 최신 handleRegionAction 사용
-    handleRegionActionRef.current(regionId)
+    setSelectedRegion(prev => {
+      const normalizedPrev = prev?.toLowerCase();
+      const normalizedRegionId = regionId?.toLowerCase();
+      if (normalizedPrev === normalizedRegionId) {
+        if (pathElement) pathElement.classList.remove('selected');
+        setPeople([]);
+        return null;
+      } else {
+        if (svgRef.current) {
+          const allPaths = svgRef.current.querySelectorAll('path');
+          allPaths.forEach(path => path.classList.remove('selected'));
+        }
+        if (pathElement) pathElement.classList.add('selected');
+        handleRegionActionRef.current(regionId);
+        return regionId;
+      }
+    });
   }, []);
 
   // 한글 지역명 매핑 (지도/뉴스/표시용 공통)
