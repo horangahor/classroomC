@@ -143,6 +143,20 @@
     box-shadow: none;
 }
 
+.region-info-close {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    font-size: 1.3rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    color: #333;
+    z-index: 2;
+}
+
 
 /* ===== 인물 카드 리스트 및 카드 스타일 ===== */
 .people-container {
@@ -354,36 +368,40 @@ a:visited,
 /* ===== 반응형 디자인 ===== */
 /* 태블릿: 1024px 이하 */
 @media (max-width: 1024px) {
-  .mainpage-container {
-    flex-direction: column;
-    gap: 16px;
-    padding: 10px;
-  }
-  .mainpage-2col {
-    flex-direction: column;
-    gap: 10px;
-  }
-  .mainpage-people-col, .mainpage-map-col {
-    min-width: 0;
-    margin-right: 0;
-  }
+    .mainpage-container {
+        flex-direction: column;
+        gap: 16px;
+        padding: 10px;
+    }
+
+    .mainpage-2col {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .mainpage-people-col,
+    .mainpage-map-col {
+        min-width: 0;
+        margin-right: 0;
+    }
 }
 
 /* 모바일: 768px 이하 */
 @media (max-width: 768px) {
-  .mainpage-container {
-    padding: 4px;
-  }
-  .mainpage-background {
-    margin-top: 60px;
-  }
+    .mainpage-container {
+        padding: 4px;
+    }
+
+    .mainpage-background {
+        margin-top: 60px;
+    }
 }
 
 /* 초소형 모바일: 480px 이하 */
 @media (max-width: 480px) {
-  .mainpage-container {
-    padding: 2px;
-  }
+    .mainpage-container {
+        padding: 2px;
+    }
 }
 
 /* ===== 애니메이션 효과 ===== */
@@ -736,6 +754,7 @@ a:visited,
     color: var(--text-primary);
     text-decoration: none;
 }
+
 .mainpage-container a:visited,
 .menu-btn:visited {
     color: var(--text-primary);
