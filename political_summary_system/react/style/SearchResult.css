@@ -1,0 +1,78 @@
+/* ===================== SearchResult.css =====================
+   - 검색 결과 페이지 스타일 (심플/반응형/색상 변수)
+   - 인라인 스타일 제거, colors.css 변수만 사용
+   - 카드, 안내, 리스트, 모바일 대응
+============================================================ */
+.search-result-container {
+    margin-top: 100px;
+}
+
+.search-result-main {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 32px 12px;
+}
+.search-result-title {
+    color: var(--political-blue);
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin-bottom: 16px;
+}
+.result-info {
+    color: var(--text-tertiary);
+    margin: 32px 0;
+    text-align: center;
+    font-size: 1rem;
+}
+.result-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.result-card {
+    background: var(--bg-primary);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    margin-bottom: 16px;
+    padding: 18px 14px;
+    transition: box-shadow 0.2s;
+}
+.result-card:hover {
+    box-shadow: 0 4px 16px rgba(0,60,200,0.08);
+}
+.result-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+}
+.result-summary {
+    color: var(--text-secondary);
+    font-size: 0.98rem;
+}
+@media (max-width: 600px) {
+    .search-result-main {
+        padding: 18px 4px;
+    }
+    .result-card {
+        padding: 12px 7px;
+    }
+    .result-title {
+        font-size: 1rem;
+    }
+    .result-summary {
+        font-size: 0.92rem;
+    }
+}
+@media (max-width: 400px) {
+    .search-result-title {
+        font-size: 1.05rem;
+    }
+    .result-card {
+        padding: 8px 3px;
+    }
+}
+/* ===================== 유지보수/협업 주석 =====================
+   - colors.css 변수만 사용, 인라인 스타일 금지
+   - 카드/리스트/안내/반응형/hover 등 분리
+============================================================== */

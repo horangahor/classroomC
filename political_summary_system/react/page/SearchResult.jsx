@@ -7,6 +7,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import Header from '../components/Header.jsx';
 import '../style/colors.css';
+import '../style/SearchResult.css';
 
 const sampleData = [
     { id: 1, title: '정치 뉴스 샘플', summary: '정치 관련 뉴스 요약입니다.' },
@@ -29,26 +30,26 @@ const SearchResult = () => {
     const results = getResults(query);
 
     return (
-        <div style={{ background: 'var(--bg-secondary)', minHeight: '100vh' }}>
+        <div className="search-result-container">
             <Header />
-            <main className="search-result-main" style={{ maxWidth: 480, margin: '0 auto', padding: '32px 12px' }}>
-                <h2 style={{ color: 'var(--political-blue)', fontWeight: 700, fontSize: '1.3rem', marginBottom: 16 }}>
+            <main className="search-result-main">
+                <h2 className="search-result-title">
                     "{query}" 검색 결과
                 </h2>
                 {query === '' ? (
-                    <div className="result-info" style={{ color: 'var(--text-tertiary)', margin: '32px 0' }}>
+                    <div className="result-info">
                         검색어를 입력해 주세요.
                     </div>
                 ) : results.length === 0 ? (
-                    <div className="result-info" style={{ color: 'var(--text-tertiary)', margin: '32px 0' }}>
+                    <div className="result-info">
                         검색 결과가 없습니다.
                     </div>
                 ) : (
-                    <ul className="result-list" style={{ listStyle: 'none', padding: 0 }}>
+                    <ul className="result-list">
                         {results.map(item => (
-                            <li key={item.id} className="result-card" style={{ background: 'var(--bg-primary)', borderRadius: 10, boxShadow: '0 2px 8px rgba(0,0,0,0.04)', marginBottom: 16, padding: '18px 14px' }}>
-                                <div className="result-title" style={{ fontWeight: 600, fontSize: '1.1rem', color: 'var(--text-primary)', marginBottom: 6 }}>{item.title}</div>
-                                <div className="result-summary" style={{ color: 'var(--text-secondary)', fontSize: '0.98rem' }}>{item.summary}</div>
+                            <li key={item.id} className="result-card">
+                                <div className="result-title">{item.title}</div>
+                                <div className="result-summary">{item.summary}</div>
                             </li>
                         ))}
                     </ul>
