@@ -1,5 +1,7 @@
-/* People.css - 정치인 목록/카드 UI 스타일 정의 */
+/* People.css - 정치인 리스트/카드 스타일
+   정치인 카드, 리스트, 버튼, 반응형 등 상세 주석 포함 */
 
+/* ===== 폰트 및 컬러 변수 불러오기 ===== */
 @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
 @import './colors.css';
 
@@ -9,6 +11,7 @@
     font-style: normal;
 }
 
+/* ===== 전체 컨테이너 및 카드 레이아웃 ===== */
 /* 전체 배경 및 메인 컨테이너 */
 .background {
   display: flex;
@@ -33,6 +36,7 @@
   box-sizing: border-box;
 }
 
+/* ===== 타이틀/서브타이틀/리스트 ===== */
 /* 타이틀 및 카테고리 그룹 */
 .people-title {
   font-size: 2rem;
@@ -60,6 +64,7 @@
   letter-spacing: 0.01em;
 }
 
+/* ===== 카드/버튼/리스트 등 상세 스타일 ===== */
 /* 인물 카드 리스트 및 카드 스타일 */
 .people-list {
   display: flex;
@@ -68,7 +73,7 @@
   margin-bottom: 0;
 }
 .people-card {
-  background: var(--bg-primary, #fff);
+  background: var(--card-bg);
   border: 1.5px solid var(--border-light, #e2e8f0);
   border-radius: 12px;
   width: 170px;
@@ -81,7 +86,7 @@
   cursor: pointer;
 }
 .people-card:hover {
-  box-shadow: 0 4px 16px rgba(30,64,175,0.10);
+  box-shadow: var(--shadow-md);
   border-color: var(--political-blue, #1e40af);
 }
 
@@ -91,7 +96,7 @@
   border-radius: 10px;
   overflow: hidden;
   margin-bottom: 10px;
-  background: #e0e7ef;
+  background: var(--image-bg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -101,7 +106,7 @@
   height: 100%;
   object-fit: cover;
   border-radius: 10px;
-  background: #e0e7ef;
+  background: var(--image-bg);
 }
 
 .people-info {
@@ -112,15 +117,16 @@
 .people-name {
   font-size: 1.08rem;
   font-weight: 600;
-  color: var(--text-primary, #22223b);
+  color: var(--text-primary);
   margin-bottom: 4px;
 }
 
 .people-job {
   font-size: 0.98rem;
-  color: var(--text-secondary, #64748b);
+  color: var(--text-secondary);
 }
 
+/* ===== 반응형 디자인 ===== */
 /* 반응형 */
 @media (max-width: 900px) {
   .people-main-bg { padding: 20px 6px; }
@@ -158,3 +164,40 @@
     font-size: 0.9rem;
   }
 }
+
+/* ================= 통합 오버라이드: People.css (중복 색상/토큰 통일) ================ */
+/* 이 블록은 색상/배경/보더 관련 중복 정의를 변수로 통일하여 유지보수성을 높입니다. */
+
+.background,
+.people-page-bg {
+  background-color: var(--bg-secondary);
+}
+
+.people-main-bg {
+  background-color: var(--bg-primary);
+  border-color: var(--border-light);
+}
+
+.people-card {
+  background-color: var(--card-bg);
+  border-color: var(--border-light);
+}
+
+.people-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.people-img,
+.people-img-wrap {
+  background-color: var(--image-bg);
+}
+
+.people-name {
+  color: var(--text-primary);
+}
+
+.people-job {
+  color: var(--text-secondary);
+}
+
+/* ============================================================================== */

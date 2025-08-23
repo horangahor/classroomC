@@ -1,3 +1,8 @@
+/**
+ * Join.jsx - 회원가입 페이지
+ * 회원가입 폼, 입력값 관리, 인증 등 담당
+ */
+
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'

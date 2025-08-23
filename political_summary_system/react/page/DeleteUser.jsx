@@ -1,3 +1,8 @@
+/**
+ * DeleteUser.jsx - 회원탈퇴 페이지
+ * 회원탈퇴 폼, 경고, 버튼 등 UI/동작 담당
+ */
+
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import '../style/DeleteUser.css'
@@ -118,7 +123,7 @@ const DeleteUser = () => {
                         <button type="submit" className="delete-btn">
                             계정 삭제
                         </button>
-                        <Link to="/mypage" className="cancel-btn">
+                        <Link to="/mypage" className="cancel-btn2">
                             취소
                         </Link>
                     </div>

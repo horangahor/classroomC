@@ -1,8 +1,11 @@
-/* Detail.css - 정치인 상세 정보 페이지 UI 스타일 정의 */
+/* Detail.css - 정치인 상세 정보 페이지 스타일
+   상세 카드, 공약, 레이아웃, 반응형 등 상세 주석 포함 */
 
-/* 폰트 및 컬러 변수 불러오기 */
+/* ===== 폰트 및 컬러 변수 불러오기 ===== */
 @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
 @import './colors.css';
+
+/* ===== 전체 컨테이너 및 카드 레이아웃 ===== */
 
 /* 전역 폰트 및 스타일 초기화 */
 * {
@@ -26,6 +29,8 @@
   border: 1.5px solid var(--border-light, #e2e8f0);
   box-sizing: border-box;
 }
+
+/* ===== 타이틀/서브타이틀/공약 리스트 ===== */
 
 /* 상단 돌아가기 버튼 */
 .detailpeople-back-btn {
@@ -100,12 +105,7 @@
   gap: 12px;
 }
 
-.detailpeople-extra {
-  margin-top: 32px;
-  margin-bottom: 0;
-}
-
-/* 기존 스타일 유지 + 주요 필드/추가 정보에 대한 시각적 강조 및 통일성 강화 */
+/* ===== 카드/버튼/공약 등 상세 스타일 ===== */
 
 .detailpeople-main {
   display: flex;
@@ -211,30 +211,74 @@
   border-color: #222 !important;
 }
 
+/* ================= 통합 오버라이드: Detail.css (중복 정의 정리) ================ */
+
+.detailpeople-page-bg,
+.detailpeople-main-bg {
+  background-color: var(--bg-secondary);
+}
+
+.detailpeople-main-bg {
+  background-color: var(--bg-primary);
+  border-color: var(--border-light);
+}
+
+.detail-img,
+.people-img.detail {
+  background-color: var(--image-bg);
+  border-color: var(--political-blue);
+}
+
+.detailpeople-extra,
+.person-detail-value {
+  background-color: var(--bg-muted);
+}
+
+.detailpeople-label {
+  color: var(--political-blue);
+}
+
+.detailpeople-value {
+  color: var(--text-primary);
+}
+
+/* ========================================================================== */
+
+/* ===== 반응형 디자인 ===== */
 @media (max-width: 1024px) {
-  .detailpeople-main-bg {
-    padding: 20px 8px;
-    max-width: 100vw;
+  .detail-people-container {
+    flex-direction: column;
+    gap: 18px;
+    align-items: center;
   }
-  .detail-img {
-    width: 180px;
-    height: 240px;
+  .people-img.detail {
+    width: 160px;
+    height: 220px;
+  }
+  .detail-people-info {
+    font-size: 0.98rem;
   }
 }
 @media (max-width: 768px) {
-  .detailpeople-main-bg {
+  .people-main-bg {
     padding: 8px 2px;
   }
-  .detailpeople-back-btn {
-    font-size: 0.9rem;
+  .detail-people-container {
+    gap: 10px;
+  }
+  .detail-people-info {
+    font-size: 0.95rem;
   }
 }
 @media (max-width: 480px) {
-  .detailpeople-main-bg {
+  .people-main-bg {
     padding: 2px;
   }
-  .detail-img {
-    width: 100px;
+  .people-img.detail {
+    width: 90px;
     height: 120px;
+  }
+  .detail-people-info {
+    font-size: 0.9rem;
   }
 }

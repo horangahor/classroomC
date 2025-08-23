@@ -1,3 +1,8 @@
+/**
+ * AuthContext.jsx - 인증/세션 컨텍스트
+ * 사용자 인증, 세션 관리, 글로벌 상태 제공
+ */
+
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { getSession, logout as logoutAPI } from '../auth/auth';
 import axios from 'axios';

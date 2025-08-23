@@ -1,3 +1,8 @@
+/**
+ * News.jsx - 뉴스 리스트/카드 페이지
+ * 지역별 뉴스, 뉴스 카드, 링크 등 UI 담당
+ */
+
 import React, { useEffect, useState, useRef } from 'react';
 import '../style/News.css';
 import { getNews } from '../auth/newsreq';
@@ -101,8 +106,12 @@ const News = () => {
     const [newsData, setNewsData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const newsPerPage = 9;
+    // reduce how many page numbers appear around the current page for a more compact pagination
+    const PAGINATION_DELTA = 1; // change this to 0/1/2 to adjust visible neighbors
     const [loading, setLoading] = useState(true);
     const gotoInputRef = useRef();
+    // controlled input shown in place of the current page number
+    const [gotoPageInput, setGotoPageInput] = useState(String(1));
 
     useEffect(() => {
         setLoading(true);
@@ -113,6 +122,11 @@ const News = () => {
         });
     }, []);
 
+    // keep the visible input in sync with currentPage
+    useEffect(() => {
+        setGotoPageInput(String(currentPage));
+    }, [currentPage]);
+
     // 현재 페이지에서 보여줄 뉴스 계산
     const indexOfLastNews = currentPage * newsPerPage;
     const indexOfFirstNews = indexOfLastNews - newsPerPage;
@@ -122,6 +136,8 @@ const News = () => {
     // 페이지 버튼 클릭
     const handleClick = (pageNum) => {
         setCurrentPage(pageNum);
+        // update the controlled input shown at current page location
+        setGotoPageInput(String(pageNum));
         if (gotoInputRef.current) gotoInputRef.current.value = '';
     };
 
@@ -146,7 +162,7 @@ const News = () => {
 
     // 페이지네이션 축약 로직
     function getPageList(current, total) {
-        const delta = 2; // 현재페이지 양옆 몇 개 보여줄지
+        const delta = PAGINATION_DELTA; // 현재페이지 양옆 몇 개 보여줄지 (configurable above)
         const range = [];
         const rangeWithDots = [];
         let l;
@@ -170,6 +186,12 @@ const News = () => {
         return rangeWithDots;
     }
 
+    // 새 페이지네이션: 중앙 입력창 고정을 위해 좌/중앙/우 리스트를 미리 계산
+    const pageList = getPageList(currentPage, totalPages);
+    const currentIndexInList = pageList.findIndex(p => p === currentPage);
+    const leftList = currentIndexInList > -1 ? pageList.slice(0, currentIndexInList) : pageList;
+    const rightList = currentIndexInList > -1 ? pageList.slice(currentIndexInList + 1) : [];
+
     return (
         <div className="news-page">
             <div className="bg-con news-main-bg">
@@ -178,7 +200,7 @@ const News = () => {
                     <div className="news-main-content">
                         {/* 로딩/빈 상태 안내 */}
                         {loading ? (
-                            <div className="loading-container" style={{ minHeight: 200 }}>
+                            <div className="loading-container">
                                 <div className="loading-spinner" />
                             </div>
                         ) : currentNews.length === 0 ? (
@@ -195,22 +217,17 @@ const News = () => {
                                             className="news-card"
                                             key={idx}
                                             onClick={() => handleNewsClick(news.link || news.url)}
-                                            style={{ cursor: 'pointer' }}
                                         >
-                                            {/* 좌측: 제목/요약/메타 */}
+                                            {/* 카드 레이아웃: 상단 헤더(타이틀 좌측, 날짜 우측) + 본문(요약) */}
                                             <div className="news-content">
-                                                <div className="news-meta">
+                                                <div className="news-card-header">
+                                                    <h4 className="news-title">{news.title}</h4>
                                                     <span className="news-meta-date">{meta.date}</span>
-                                                    <span className="news-meta-source">{meta.source}</span>
-                                                    <span className="news-meta-category">{meta.category}</span>
                                                 </div>
-                                                <h4 className="news-title">{news.title}</h4>
-                                                <p className="news-summary">{news.summary}</p>
+                                                <div className="news-card-body">
+                                                    <p className="news-summary">{news.summary}</p>
+                                                </div>
                                             </div>
-                                            {/* 우측: 이미지 */}
-                                            {/* <div className="news-image">
-                                                <img src={news.imageUrl} alt="뉴스 썸네일" />
-                                            </div> */}
                                         </div>
                                     )
                                 })}
@@ -220,59 +237,81 @@ const News = () => {
                         {totalPages > 1 && !loading && (
                             <div className="pagination">
                                 <button
-                                    onClick={() => handleClick(currentPage - 1)}
+                                    onClick={() => handleClick(Math.max(1, currentPage - 1))}
                                     disabled={currentPage === 1}
                                     aria-label="이전 페이지"
                                 >
                                     &#60;
                                 </button>
-                                {getPageList(currentPage, totalPages).map((page, idx) =>
-                                    page === '...' ? (
-                                        <span key={idx} className="pagination-ellipsis">...</span>
-                                    ) : (
-                                        <button
-                                            key={idx}
-                                            onClick={() => handleClick(page)}
-                                            className={currentPage === page ? 'active' : ''}
-                                        >
-                                            {page}
-                                        </button>
-                                    )
-                                )}
+
+                                {/* 왼쪽 페이지 그룹 (현재 페이지 이전 항목) */}
+                                <div className="pagination-left">
+                                    {leftList.map((page, idx) => (
+                                        page === '...' ? (
+                                            <span key={'l-'+idx} className="pagination-ellipsis">...</span>
+                                        ) : (
+                                            <button key={'l-'+page} onClick={() => handleClick(page)}>
+                                                {page}
+                                            </button>
+                                        )
+                                    ))}
+                                </div>
+
+                                {/* 중앙 고정 영역: 현재 페이지 입력창 */}
+                                <div className="pagination-center">
+                                    <input
+                                        type="number"
+                                        className="pagination-goto-input pagination-current-input"
+                                        min={1}
+                                        max={totalPages}
+                                        value={gotoPageInput}
+                                        ref={gotoInputRef}
+                                        onChange={(e) => {
+                                            const raw = e.target.value;
+                                            setGotoPageInput(raw);
+                                        }}
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'Enter') {
+                                                const val = Number(e.target.value);
+                                                if (!isNaN(val) && val >= 1 && val <= totalPages) {
+                                                    handleClick(val);
+                                                } else {
+                                                    setGotoPageInput(String(currentPage));
+                                                }
+                                            }
+                                        }}
+                                        onBlur={() => setGotoPageInput(String(currentPage))}
+                                        onFocus={(e) => e.target.select()}
+                                        aria-label="현재 페이지 입력"
+                                    />
+                                </div>
+
+                                {/* 오른쪽 페이지 그룹 (현재 페이지 이후 항목) */}
+                                <div className="pagination-right">
+                                    {rightList.map((page, idx) => (
+                                        page === '...' ? (
+                                            <span key={'r-'+idx} className="pagination-ellipsis">...</span>
+                                        ) : (
+                                            <button key={'r-'+page} onClick={() => handleClick(page)}>
+                                                {page}
+                                            </button>
+                                        )
+                                    ))}
+                                </div>
+
                                 <button
-                                    onClick={() => handleClick(currentPage + 1)}
+                                    onClick={() => handleClick(Math.min(totalPages, currentPage + 1))}
                                     disabled={currentPage === totalPages}
                                     aria-label="다음 페이지"
                                 >
                                     &#62;
                                 </button>
-                                {/* 직접 페이지 입력 기능 */}
-                                <form className="pagination-goto-form"
-                                    onSubmit={e => {
-                                        e.preventDefault();
-                                        const val = Number(e.target.elements.gotoPage.value);
-                                        if (val >= 1 && val <= totalPages) handleClick(val);
-                                        if (gotoInputRef.current) gotoInputRef.current.value = '';
-                                    }}
-                                >
-                                    <input
-                                        type="number"
-                                        name="gotoPage"
-                                        min={1}
-                                        max={totalPages}
-                                        placeholder="페이지"
-                                        className="pagination-goto-input"
-                                        ref={gotoInputRef}
-                                    />
-                                    <button type="submit" className="pagination-goto-btn">
-                                        이동
-                                    </button>
-                                </form>
                             </div>
                         )}
                         {/* 정당 홈페이지 바로가기 영역 복구 */}
                         <div className="party-bottombar">
                             <div className="party-bottombar-title">정당 공식 홈페이지 바로가기</div>
+                            <hr className='party-bottombar-divider' />
                             <div className="party-simple-list party-row-list">
                                 {partyList.map((party, idx) => (
                                     <button

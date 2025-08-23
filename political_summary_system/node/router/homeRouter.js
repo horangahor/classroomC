@@ -43,7 +43,8 @@ router.post('/login', async (req, res) => {
         req.session.user = {
             id: result.uid,
             name: result.uname,
-            isLogin: true // 필요한가 ?
+            isLogin: true, // 필요한가 ?
+            phnum: result.uphnum
         }
         console.log("homeRouter의 /login 만들어 낸 세션" + req.session.user);
 
