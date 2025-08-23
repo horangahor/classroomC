@@ -38,6 +38,14 @@ const News = () => {
         setGotoPageInput(String(currentPage));
     }, [currentPage]);
 
+    // 로컬 스토리지에서 즐겨찾기 상태 불러오기
+    useEffect(() => {
+        const storedFavorites = localStorage.getItem('favorites');
+        if (storedFavorites) {
+            setFavorites(JSON.parse(storedFavorites));
+        }
+    }, []);
+
     // 현재 페이지에 표시할 뉴스 계산
     const indexOfLastNews = currentPage * newsPerPage;
     const indexOfFirstNews = indexOfLastNews - newsPerPage;
@@ -103,11 +111,13 @@ const News = () => {
 
     const toggleFavorite = (newsId) => {
         setFavorites((prevFavorites) => {
-            if (prevFavorites.includes(newsId)) {
-                return prevFavorites.filter((id) => id !== newsId);
-            } else {
-                return [...prevFavorites, newsId];
-            }
+            const updatedFavorites = prevFavorites.includes(newsId)
+                ? prevFavorites.filter((id) => id !== newsId) // 해당 ID 제거
+                : [...prevFavorites, newsId]; // 해당 ID 추가
+
+            // 로컬 스토리지에 저장
+            localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+            return updatedFavorites;
         });
     };
 
@@ -129,12 +139,12 @@ const News = () => {
                             <div className="news-grid">
                                 {currentNews.map((news, idx) => {
                                     const meta = getMeta(idx + indexOfFirstNews);
-                                    const isFavorite = favorites.includes(news.id);
+                                    const isFavorite = favorites.includes(news.news_identifier); // 개별 뉴스 ID 확인
                                     return (
                                         <div
                                             className="news-card"
-                                            key={idx}
-                                            onClick={() => handleNewsClick(news.link || news.url)}
+                                            key={news.news_identifier} // 고유 ID 사용
+                                            onClick={() => handleNewsClick(news.url)}
                                         >
                                             <div className="news-content">
                                                 <div className="news-card-header">
@@ -144,7 +154,7 @@ const News = () => {
                                                         className={`favorite-btn ${isFavorite ? 'active' : ''}`}
                                                         onClick={(e) => {
                                                             e.stopPropagation(); // 부모 클릭 이벤트 방지
-                                                            toggleFavorite(news.id);
+                                                            toggleFavorite(news.news_identifier); // 개별 뉴스 ID 전달
                                                         }}
                                                         aria-label="즐겨찾기"
                                                     >
