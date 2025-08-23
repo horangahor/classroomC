@@ -218,20 +218,16 @@ const News = () => {
                                             key={idx}
                                             onClick={() => handleNewsClick(news.link || news.url)}
                                         >
-                                            {/* 좌측: 제목/요약/메타 */}
+                                            {/* 카드 레이아웃: 상단 헤더(타이틀 좌측, 날짜 우측) + 본문(요약) */}
                                             <div className="news-content">
-                                                <div className="news-meta">
+                                                <div className="news-card-header">
+                                                    <h4 className="news-title">{news.title}</h4>
                                                     <span className="news-meta-date">{meta.date}</span>
-                                                    <span className="news-meta-source">{meta.source}</span>
-                                                    <span className="news-meta-category">{meta.category}</span>
                                                 </div>
-                                                <h4 className="news-title">{news.title}</h4>
-                                                <p className="news-summary">{news.summary}</p>
+                                                <div className="news-card-body">
+                                                    <p className="news-summary">{news.summary}</p>
+                                                </div>
                                             </div>
-                                            {/* 우측: 이미지 */}
-                                            {/* <div className="news-image">
-                                                <img src={news.imageUrl} alt="뉴스 썸네일" />
-                                            </div> */}
                                         </div>
                                     )
                                 })}
