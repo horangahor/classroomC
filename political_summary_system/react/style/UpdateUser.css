@@ -120,6 +120,37 @@
     background: var(--primary-light);
 }
 
+/* ================= 통합 오버라이드: UpdateUser.css ================ */
+/* 색상/배경/보더를 colors.css 변수로 통일 (레이아웃 변경 없음) */
+
+.update-container {
+  background-color: var(--bg-secondary);
+}
+
+.update-card {
+  background-color: var(--bg-primary);
+  border-color: var(--border-light);
+}
+
+.form-group input {
+  background-color: var(--bg-muted);
+  border-color: var(--border-light);
+}
+
+.submit-btn,
+.cancel-btn {
+  background-color: var(--custom-color-white);
+  color: var(--text-primary);
+  border-color: var(--border-light);
+}
+
+.submit-btn:hover,
+.cancel-btn:hover {
+  background: var(--primary-light);
+}
+
+/* ==================================================================== */
+
 /* ===== 반응형 디자인 ===== */
 @media (max-width: 1024px) {
   .update-card {

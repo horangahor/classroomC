@@ -211,6 +211,39 @@
   border-color: #222 !important;
 }
 
+/* ================= 통합 오버라이드: Detail.css (중복 정의 정리) ================ */
+
+.detailpeople-page-bg,
+.detailpeople-main-bg {
+  background-color: var(--bg-secondary);
+}
+
+.detailpeople-main-bg {
+  background-color: var(--bg-primary);
+  border-color: var(--border-light);
+}
+
+.detail-img,
+.people-img.detail {
+  background-color: var(--image-bg);
+  border-color: var(--political-blue);
+}
+
+.detailpeople-extra,
+.person-detail-value {
+  background-color: var(--bg-muted);
+}
+
+.detailpeople-label {
+  color: var(--political-blue);
+}
+
+.detailpeople-value {
+  color: var(--text-primary);
+}
+
+/* ========================================================================== */
+
 /* ===== 반응형 디자인 ===== */
 @media (max-width: 1024px) {
   .detail-people-container {

@@ -198,3 +198,26 @@
         font-size: 0.9rem;
     }
 }
+
+/* ===== Consolidated overrides - DeleteUser colors/borders/backgrounds =====
+   - 반복되는 컬러/배경/테두리를 일괄 관리
+========================================================= */
+.delete-container,
+.delete-card,
+.warning-box,
+.delete-btn,
+.cancel-btn2 {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border-color: var(--border-light);
+}
+
+.warning-box {
+    background: var(--warning-light);
+    border-color: var(--warning);
+}
+
+.delete-btn:hover,
+.cancel-btn2:hover {
+    background: var(--primary-light);
+}

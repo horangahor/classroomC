@@ -34,11 +34,10 @@
 
 .logo {
     flex: 0 0 auto;
-    padding: 8px 12px;
-    height: 50px;
-    width: 130px;
-    font-weight: 700;
-    font-size: 35px;
+    height: 80px;
+    width: 150px;
+    font-weight: 900;
+    font-size: 45px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -64,24 +63,29 @@
     margin: 0 24px;
     display: flex;
     align-items: center;
-    border: 1.5px solid var(--border-light); /* 두께 줄임 */
-    border-radius: 10px; /* 살짝 둥글게 */
+    border: 1.5px solid var(--border-light);
+    /* 두께 줄임 */
+    border-radius: 10px;
+    /* 살짝 둥글게 */
     overflow: hidden;
-    height: 48px; /* 높이 살짝 줄임 */
+    height: 48px;
+    /* 높이 살짝 줄임 */
     background: var(--bg-primary);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
     transition: all 0.2s;
 }
 
 .search-container:hover,
 .search-container:focus-within {
     border-color: var(--political-blue);
-    box-shadow: 0 0 0 2px rgba(0,60,200,0.08); /* 부드러운 강조 */
+    box-shadow: 0 0 0 2px rgba(0, 60, 200, 0.08);
+    /* 부드러운 강조 */
 }
 
 .search-input {
     border: none;
-    padding: 8px 12px; /* 간격 축소 */
+    padding: 8px 12px;
+    /* 간격 축소 */
     outline: none;
     font-size: 18px;
     width: 100%;
@@ -89,7 +93,8 @@
     background: transparent;
     display: flex;
     align-items: center;
-    height: 100%; /* 부모 높이와 맞춤 */
+    height: 100%;
+    /* 부모 높이와 맞춤 */
 }
 
 .search-input::placeholder {
@@ -420,10 +425,13 @@
     .search-container {
         width: 95vw;
         min-width: 120px;
-        height: 24px; /* 높이 줄임 */
-        padding: 1px 2px; /* 내부 여백 줄임 */
+        height: 24px;
+        /* 높이 줄임 */
+        padding: 1px 2px;
+        /* 내부 여백 줄임 */
         margin: 0 auto;
-        border-radius: 5px; /* 둥글기 줄임 */
+        border-radius: 5px;
+        /* 둥글기 줄임 */
     }
 
     .search-input {
@@ -470,6 +478,38 @@
         --active-bg: var(--political-navy);
         --active-border: var(--political-blue);
         --active-text: var(--primary);
+    }
+}
+
+/* ===== Consolidated color / border / background overrides (consolidated block) =====
+   - 중앙에서 파일 내 반복되는 background, color, border-color 값을 한곳에 모음
+   - 기존 레이아웃/spacing/크기 관련 선언은 변경하지 않음
+   - 이 블록은 파일 하단에 위치하여 동일한 특성의 이전 선언을 명확하게 재정의합니다.
+=============================================================== */
+#header,
+.search-container,
+.logo,
+.search-icon,
+.mypage-btn {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border-color: var(--border-light);
+}
+
+.nav-menu li {
+    background: transparent; /* 메뉴 기본은 투명 */
+    color: var(--text-secondary);
+    border-color: transparent;
+}
+
+/* 다크모드/상태별 오버라이드(파일 내부 선언 우선) */
+@media (prefers-color-scheme: dark) {
+    #header,
+    .search-container,
+    .mypage-btn {
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        border-color: var(--border-light);
     }
 }
 

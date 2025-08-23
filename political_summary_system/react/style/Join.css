@@ -124,6 +124,24 @@
     text-decoration: underline;
 }
 
+/* ===== Consolidated overrides - Join colors/backgrounds =====
+   - 반복되는 컬러/배경/테두리를 한 곳으로 모아 유지보수성 향상
+========================================================= */
+.join-container,
+.join-form,
+.input-group input,
+.join-button,
+.login-link a {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border-color: var(--border-light);
+}
+
+.join-button:hover,
+.login-link a:hover {
+    background: var(--primary-light);
+}
+
 /* ===== 반응형 디자인 ===== */
 @media (max-width: 1024px) {
   .join-form {

@@ -76,3 +76,20 @@
    - colors.css 변수만 사용, 인라인 스타일 금지
    - 카드/리스트/안내/반응형/hover 등 분리
 ============================================================== */
+
+/* ===== Consolidated overrides - SearchResult colors/backgrounds =====
+   - 반복되는 컬러/배경/테두리를 일괄 관리
+========================================================= */
+.search-result-container,
+.search-result-main,
+.result-card,
+.result-title,
+.result-summary {
+    background: transparent;
+    color: var(--text-primary);
+    border-color: var(--border-light);
+}
+
+.result-card {
+    background: var(--bg-primary);
+}

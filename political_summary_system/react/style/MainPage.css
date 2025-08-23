@@ -242,7 +242,7 @@
 .region-news-list {
     margin-top: 32px;
     width: 100%;
-    background: #f7f8fa;
+    background: var(--custom-color-white);
     border-radius: 16px;
     padding: 24px 20px 12px 20px;
     box-shadow: 0 2px 12px rgba(80, 80, 120, 0.07);
@@ -749,18 +749,13 @@ a:visited,
     /* 추가적인 스타일 조정이 필요할 경우 여기에 작성 */
 }
 
-.mainpage-container a,
-.menu-btn {
-    color: var(--text-primary);
-    text-decoration: none;
-}
+/* ================= 통합된 색상/토큰 기반 오버라이드 (중복 정의 정리) =================
+   이전에 파일 곳곳에 중복으로 선언된 동일 셀렉터(.region-news-list 등)를
+   이 블록으로 통합했습니다. 실제 색상/토큰 값은 colors.css에서 관리하므로
+   이곳은 컴포넌트별 변수 기반 스타일을 일관되게 적용합니다.
+============================================================================== */
 
-.mainpage-container a:visited,
-.menu-btn:visited {
-    color: var(--text-primary);
-}
-
-/* 모든 직접 색상값을 colors.css 변수로 치환 (예시) */
+/* 페이지/컨테이너 배경 */
 .mainpage-background {
     background-color: var(--bg-main);
 }
@@ -777,6 +772,7 @@ a:visited,
     background-color: var(--bg-quaternary);
 }
 
+/* 지역 정보 박스 */
 .region-info-box {
     background-color: var(--card-bg);
 }
@@ -793,6 +789,7 @@ a:visited,
     color: var(--text-description);
 }
 
+/* 인물 카드 */
 .person-card {
     background-color: var(--card-bg);
     border-color: var(--border-light);
@@ -826,6 +823,7 @@ a:visited,
     color: var(--text-secondary);
 }
 
+/* 지역 뉴스 목록 & 카드 */
 .region-news-list {
     background-color: var(--card-bg);
 }
@@ -878,6 +876,7 @@ a:visited,
     color: var(--text-none);
 }
 
+/* 지도 관련 */
 .korea-map {
     background-color: var(--bg-primary);
 }
@@ -896,10 +895,12 @@ a:visited,
     stroke: var(--gray-900);
 }
 
+/* 로딩/아이콘 등 */
 .loading-spinner {
     border-top-color: var(--secondary-indigo);
 }
 
+/* 카드/정보 카드 */
 .info-card {
     background-color: var(--card-bg);
     border-color: var(--border-light);
@@ -938,6 +939,7 @@ a:visited,
     color: white;
 }
 
+/* 뉴스/정치인 전용 변형 */
 .news-card {
     border-left-color: var(--secondary-green);
 }

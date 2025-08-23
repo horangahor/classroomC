@@ -39,3 +39,13 @@
     font-size: 0.9rem;
   }
 }
+
+/* ===== Consolidated overrides - Map colors/backgrounds =====
+   - 지도의 반복 컬러/배경 선언을 통합
+========================================================= */
+.korea-map,
+.map-container {
+    background: transparent;
+    color: var(--text-primary);
+    border-color: var(--border-light);
+}

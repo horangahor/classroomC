@@ -248,9 +248,35 @@
 /* 페이지네이션 */
 .pagination {
   display: flex;
+  align-items: center;
   justify-content: center;
   gap: var(--space-sm);
   margin-top: var(--space-lg);
+  position: relative; /* 중앙 고정을 위해 기준 컨테이너로 설정 */
+  min-height: 44px; /* 입력창 수직 중앙 정렬 공간 확보 */
+  --pagination-center-width: 160px; /* 중앙 고정 영역 전체 너비(입력창 + 여유) */
+  padding: 0; /* 중앙 패딩 대신 flex 기반 레이아웃 사용 */
+}
+
+.pagination-left,
+.pagination-right {
+  display: flex;
+  gap: var(--space-sm);
+  flex: 1 1 0; /* 가능한 만큼 너비 확보, 중앙영역 침범 방지 */
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination-center {
+  flex: 0 0 var(--pagination-center-width); /* 고정 너비 중앙 슬롯 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none; /* 슬롯 자체는 포인터 차단, 내부 입력은 포인터 허용 */
+}
+
+.pagination-center .pagination-current-input {
+  pointer-events: auto; /* 입력은 상호작용 허용 */
 }
 
 .pagination button {
@@ -261,14 +287,16 @@
   border-radius: var(--radius-md);
   cursor: pointer;
   font-size: var(--font-size-sm);
+  position: relative; /* z-index가 동작하도록 설정 */
+  z-index: 5; /* 입력창보다 낮게 유지 (입력창 z-index:20) */
+  background-clip: padding-box; /* 경계에서 배경이 겹쳐 보이는 현상 완화 */
 }
 
 .pagination button.active {
-  background: var(--political-blue);
-  color: var(--custom-color-white);
-  border-color: var(--political-blue);
-  font-weight: var(--font-weight-bold);
-  z-index: 1;
+  /* 활성 버튼은 입력창이 대신 표시되므로 시각적으로 숨김(공간 유지) */
+  visibility: visible;
+  pointer-events: auto;
+  z-index: 6;
 }
 
 .pagination button:not(.active) {
@@ -291,46 +319,84 @@
   margin-left: 12px;
 }
 .pagination-goto-input {
-  width: px;
+  width: 56px;
   margin-left: 6px;
   margin-right: 4px;
   font-size: 1rem;
   border-radius: 6px;
-  border: 1px solid var(--main-mid-gray);
-  padding: 2px 6px;
+  border: 1px solid var(--border-light);
+  padding: 6px 8px;
   outline: none;
-  transition: border 0.15s;
+  transition: border 0.15s, background 0.15s;
+  text-align: center;
+  background: var(--bg-primary);
+  color: var(--text-primary);
 }
 .pagination-goto-input:focus {
-  border: 1.5px solid var(--main-blue-accent);
-  background: var(--main-bg-blue);
-}
-.pagination-goto-btn {
-  font-size: 0.98rem;
-  border-radius: 6px;
-  border: 1px solid var(--main-border-gray);
-  background: var(--main-bg-gray);
-  padding: 2px 10px;
-  cursor: pointer;
-  transition: background 0.15s, border 0.15s;
-}
-.pagination-goto-btn:hover {
-  background: var(--main-hover-blue);
-  border: 1.5px solid var(--main-blue-accent);
+  border: 1.5px solid var(--political-blue);
+  background: var(--primary-light);
 }
 
+/* 현재 페이지 위치에 표시되는 입력창 스타일 */
+.pagination-current-input {
+  /* 중앙에 고정: 플로우에서 분리하여 항상 .pagination의 중앙에 위치하도록 함 */
+  position: static;
+  transform: none;
+  width: 64px;
+  padding: 6px 8px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-light);
+  background: var(--card-bg);
+  color: var(--text-primary);
+  text-align: center;
+  font-weight: 600;
+  box-sizing: border-box;
+  z-index: 20;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04); /* 시각적으로 위에 떠 있음을 명확히 함 */
+}
+
+/* 작은 화면에서는 절대 위치가 레이아웃을 깨울 수 있으므로 플로우로 복귀 및 중앙 패딩 제거 */
 @media (max-width: 600px) {
-  .pagination-goto-form {
-    margin-left: 2px;
+  .pagination {
+    padding: 0 12px;
   }
-  .pagination-goto-input {
-    width: 38px;
-    font-size: 0.95rem;
+  .pagination-left,
+  .pagination-right {
+    flex: 0 0 auto;
+    justify-content: center;
+    flex-wrap: wrap;
   }
-  .pagination-goto-btn {
-    font-size: 0.95rem;
-    padding: 2px 6px;
+  .pagination-center {
+    flex: 0 0 auto;
+    pointer-events: auto;
+    margin: 0 6px;
   }
+  .pagination-current-input {
+    box-shadow: none;
+  }
+}
+
+/* ===== Remove number input spinners (pagination input) =====
+   - 크롬/사파리 웹킷 스피너 제거, 파이어폭스 텍스트필드 모드 적용
+   - 표준 'appearance' 속성도 추가하여 호환성 보강
+============================================================= */
+.pagination-goto-input[type="number"],
+.pagination-current-input[type="number"],
+input[type="number"].pagination-goto-input,
+input[type="number"].pagination-current-input {
+  appearance: textfield; /* 표준 */
+  -webkit-appearance: none; /* Chrome, Safari, Edge */
+  -moz-appearance: textfield; /* Firefox */
+}
+
+/* Chrome, Edge, Safari - spin buttons 제거 */
+.pagination-goto-input[type="number"]::-webkit-outer-spin-button,
+.pagination-goto-input[type="number"]::-webkit-inner-spin-button,
+.pagination-current-input[type="number"]::-webkit-outer-spin-button,
+.pagination-current-input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 /* ===== 빈 뉴스/로딩 안내 ===== */
@@ -485,3 +551,106 @@
     font-size: 0.9rem;
   }
 }
+
+/* ================= 통합된 색상/토큰 기반 오버라이드 (중복 정의 정리) =================
+   이 블록은 파일 내 여러 곳에서 중복으로 정의된 동일 셀렉터들(.news-layout, .news-card 등)을
+   한 곳으로 통합하여 유지보수성을 높입니다. 실제 색상/토큰 값은 colors.css에서 관리됩니다.
+============================================================================== */
+
+/* 레이아웃 및 컨테이너 */
+.news-layout {
+  gap: var(--space-lg);
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.news-main-bg {
+  background-color: var(--bg-primary);
+  border-color: var(--border-light);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+}
+
+.news-main-content {
+  background: none;
+  border: none;
+}
+
+.news-grid {
+  gap: 32px;
+}
+
+/* 뉴스 카드 */
+.news-card {
+  background-color: var(--card-bg);
+  border-color: var(--border-light);
+  border-radius: 12px;
+}
+
+.news-card:hover {
+  border-color: var(--border-light);
+  box-shadow: var(--shadow-sm);
+}
+
+.news-content {
+  color: var(--text-content);
+}
+
+.news-meta {
+  color: var(--text-meta);
+}
+
+.news-meta-date {
+  color: var(--text-tertiary);
+}
+
+.news-meta-source {
+  color: var(--secondary-indigo);
+  background: var(--main-light-gray);
+}
+
+.news-meta-category {
+  color: var(--custom-color-white);
+  background: var(--political-blue);
+}
+
+/* 사이드바 및 버튼 */
+.party-sidebar {
+  background-color: var(--card-bg);
+  border-color: var(--border-light);
+}
+
+.party-simple-btn {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border-color: var(--border-light);
+}
+
+.party-simple-btn:hover {
+  background: var(--main-light-gray);
+  color: var(--political-blue);
+  border-color: var(--political-blue);
+}
+
+.party-link-btn {
+  background: var(--political-blue);
+  color: var(--custom-color-white);
+}
+
+/* 공통 빈/로딩 상태 */
+.no-news {
+  color: var(--text-secondary);
+}
+
+.loading-container {
+  min-height: 180px;
+}
+
+/* 반응형/미세 조정 기본값 */
+@media (max-width: 1024px) {
+  .news-card {
+    max-width: 400px;
+  }
+}
+
+/* ========================================================================== */

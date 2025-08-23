@@ -356,9 +356,6 @@ const MainPage = () => {
               <div className="region-info-box fade-in">
                 <button
                   className="region-info-close"
-                  style={{
-                    position: 'absolute', top: 8, right: 12, fontSize: '1.3rem', background: 'none', border: 'none', cursor: 'pointer', padding: 0, lineHeight: 1, color: '#333', zIndex: 2
-                  }}
                   aria-label="닫기"
                   onClick={() => { setSelectedRegion(null); setPeople([]); }}
                 >

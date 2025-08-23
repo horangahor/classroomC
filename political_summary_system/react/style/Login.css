@@ -64,12 +64,15 @@
     border-radius: var(--radius-md);
     font-size: var(--font-size-sm);
     transition: border-color 0.2s ease;
+    background: var(--bg-primary);
+    color: var(--text-primary);
 }
 
 .input-group input:focus {
     outline: none;
     border-color: var(--political-blue);
     /* box-shadow 제거 */
+    background: var(--primary-light);
 }
 
 /* ===== 버튼 그룹 및 버튼 스타일 ===== */
@@ -86,6 +89,7 @@
 
 .login-button:hover {
     background: var(--primary-light);
+    border-color: var(--political-blue);
 }
 
 /* ===== 링크 스타일 ===== */
@@ -133,4 +137,22 @@
     max-width: 220px;
     font-size: 0.9rem;
   }
+}
+
+/* ===== Consolidated overrides - Login colors/borders/backgrounds =====
+   - 반복되는 배경/컬러/테두리를 일괄 관리
+========================================================= */
+.login-container,
+.login-form,
+.login-button,
+.input-group input {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border-color: var(--border-light);
+}
+
+.login-button:hover,
+.input-group input:focus {
+    border-color: var(--political-blue);
+    background: var(--primary-light);
 }

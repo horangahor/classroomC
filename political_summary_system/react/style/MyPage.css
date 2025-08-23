@@ -139,3 +139,23 @@
     font-size: 0.9rem;
   }
 }
+
+/* ===== Consolidated overrides - colors/borders/backgrounds =====
+   - 파일 내 반복되는 컬러/배경/테두리 설정을 한 곳으로 모아 관리성을 높임
+   - 레이아웃 및 spacing 관련 규칙은 변경하지 않음
+========================================================= */
+.mypage-container,
+.mypage-card,
+.menu-btn,
+.menu-btn.logout,
+.back-link a {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border-color: var(--border-light);
+}
+
+.menu-btn:hover,
+.menu-btn.logout:hover,
+.back-link a:hover {
+    background: var(--primary-light);
+}

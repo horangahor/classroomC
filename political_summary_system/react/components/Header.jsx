@@ -33,26 +33,24 @@ const Header = () => {
 
   return (
     <header id="header">
-      <div className="logo" onClick={() => nav('/')} style={{ cursor: 'pointer' }}>
+      <div className="logo" onClick={() => nav('/') }>
         <span>정</span>
         <span>리소</span>
       </div>
-      <form className="search-container" style={{ flex: 1, margin: '0 24px' }} onSubmit={handleSearch}>
+      <form className="search-container" onSubmit={handleSearch}>
         <input type="text" className="search-input" placeholder="검색어 입력" ref={searchInputRef} />
-        <img src="../images/search-icon.ico" alt="검색" className='search-icon' onClick={handleSearch} style={{ cursor: 'pointer' }} />
+        <img src="../images/search-icon.ico" alt="검색" className='search-icon' onClick={handleSearch} />
       </form>
       <ul className="nav-menu">
         <li
           onClick={() => nav('/news')}
           className={isPathActive('/news') ? 'active' : ''}
-          style={{ cursor: 'pointer' }}
         >
           뉴스
         </li>
         <li
           onClick={() => nav('/people')}
           className={isPathActive('/people') ? 'active' : ''}
-          style={{ cursor: 'pointer' }}
         >
           인물
         </li>
@@ -72,7 +70,6 @@ const Header = () => {
           <li
             onClick={() => nav('/login')}
             className={isPathActive('/login') ? 'active' : ''}
-            style={{ cursor: 'pointer' }}
           >
             로그인
           </li>
