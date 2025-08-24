@@ -368,7 +368,12 @@ html, body {
   }
 }
 
-
+@media (max-width: 290px) {
+  .pagination {
+    flex-wrap: wrap; /* 두 줄로 처리 */
+    gap: 4px; /* 버튼 간격 조정 */
+  }
+}
 
 /* ===== Remove number input spinners (pagination input) =====
    - 크롬/사파리 웹킷 스피너 제거, 파이어폭스 텍스트필드 모드 적용
@@ -532,12 +537,20 @@ input[type="number"].pagination-current-input {
     padding: 3px 8px; /* 패딩 추가 축소 */
     font-size: 0.8rem; /* 폰트 크기 추가 축소 */
   }
+
+  .news-grid {
+    grid-template-columns: repeat(1, 1fr); /* 한 줄에 1개의 뉴스 카드 */
+  }
 }
 
 @media (max-width: 290px) {
   .news-page {
     max-width: 100%;
     padding: 0;
+  }
+  .pagination {
+    flex-wrap: wrap; /* 두 줄로 처리 */
+    gap: 4px; /* 버튼 간격 조정 */
   }
 }
 
@@ -639,6 +652,43 @@ input[type="number"].pagination-current-input {
 @media (max-width: 1024px) {
   .news-card {
     max-width: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .news-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .news-card {
+    padding: 8px;
+  }
+}
+@media (max-width: 480px) {
+  .news-list {
+    grid-template-columns: 1fr;
+  }
+  .news-card {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .news-card img {
+    width: 100px;
+    height: 80px;
+    object-fit: cover;
+  }
+}
+@media (max-width: 290px) {
+  .news-card {
+    flex-direction: column;
+    padding: 6px;
+    text-align: center;
+  }
+  .news-card img {
+    width: 80px;
+    height: 60px;
+    margin-bottom: 6px;
   }
 }
 

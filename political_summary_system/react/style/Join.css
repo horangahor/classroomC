@@ -81,19 +81,23 @@
 
 /* ===== 버튼 그룹 및 버튼 스타일 ===== */
 .join-button {
-    display: flex;
-    width: 300px;
-    height: 50px;
-    padding: var(--space-lg);
+    display: block; /* 버튼을 블록으로 만들어 width:100% 동작 보장 */
+    width: 100%;           /* 기본적으로 컨테이너에 꽉 차도록 */
+    max-width: 320px;      /* 데스크탑에서는 최대 너비 제한 */
+    height: auto;
+    min-height: 48px;      /* 터치 친화적 최소 높이 */
+    padding: 12px 18px;
     border: 2px solid var(--border-light);
     border-radius: var(--radius-md);
     font-size: var(--font-size-base);
     font-weight: var(--font-weight-semibold);
     cursor: pointer;
-    margin-top: var(--space-sm);
+    margin: var(--space-sm) auto 0; /* 가운데 정렬 */
     background: var(--custom-color-white);
     align-items: center;
     justify-content: center;
+    text-align: center;
+    box-sizing: border-box;
 }
 
 .join-button:hover {
@@ -148,12 +152,21 @@
     padding: 20px;
     max-width: 320px;
   }
+  .join-button {
+    max-width: 300px;
+  }
 }
 
 @media (max-width: 768px) {
   .join-form {
     padding: 10px;
     font-size: 0.95rem;
+  }
+  .join-button {
+    max-width: 260px;
+    padding: 11px 16px;
+    font-size: 0.975rem;
+    min-height: 46px;
   }
 }
 
@@ -178,7 +191,24 @@
     }
     
     .join-button {
-        padding: 12px;
+        padding: 12px 14px;
         font-size: 14px;
+        max-width: 100%; /* 폼 너비에 맞춰 꽉 차도록 */
+        width: 100%;
     }
+}
+
+/* 초소형 화면 (예: 290px)에서 버튼 및 폼 안정화 */
+@media (max-width: 290px) {
+  .join-form {
+    max-width: 280px; /* 작은 여백 확보 */
+    padding: 6px;
+  }
+  .join-button {
+    padding: 10px 12px;
+    font-size: 13px;
+    min-height: 44px;
+    width: 100%;
+    max-width: 100%;
+  }
 }

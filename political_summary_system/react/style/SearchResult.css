@@ -17,6 +17,7 @@
     font-weight: 700;
     font-size: 1.3rem;
     margin-bottom: 16px;
+    text-align: center;
 }
 .result-info {
     color: var(--text-tertiary);

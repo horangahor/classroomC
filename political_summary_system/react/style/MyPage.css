@@ -54,14 +54,19 @@
     flex-direction: column;
     gap: var(--space-lg);
     margin-bottom: var(--space-2xl);
+    width: 100%;
+    align-items: center; /* 중앙 정렬로 각 버튼이 컨테이너 너비에 맞춰짐 */
 }
 
 .menu-btn {
-    display: flex;
+    display: flex; /* 가로 정렬 유지하면서 내부 가운데 정렬 */
     align-items: center;
     justify-content: center;
-    width: 300px;
-    height: 50px;
+    width: 100%;           /* 기본적으로 컨테이너에 꽉 차도록 */
+    max-width: 320px;      /* 데스크탑에서는 최대 너비 제한 */
+    height: auto;
+    min-height: 48px;      /* 터치 친화적 최소 높이 */
+    padding: 12px 18px;
     text-decoration: none;
     border-radius: var(--radius-lg);
     font-weight: var(--font-weight-medium);
@@ -69,6 +74,10 @@
     transition: all var(--transition-normal);
     border: 2px solid var(--border-light);
     cursor: pointer;
+    margin: 0 auto; /* 가운데 정렬 */
+    box-sizing: border-box;
+    background: var(--custom-color-white);
+    color: var(--text-primary);
 }
 
 .menu-btn:hover {
@@ -112,13 +121,24 @@
     max-width: 320px;
     padding: var(--space-lg);
   }
+  .menu-btn {
+    max-width: 300px;
+  }
 }
+
 @media (max-width: 768px) {
   .mypage-card {
     padding: var(--space-md);
     font-size: 0.95rem;
   }
+  .menu-btn {
+    max-width: 260px;
+    padding: 11px 16px;
+    font-size: 0.975rem;
+    min-height: 46px;
+  }
 }
+
 @media (max-width: 480px) {
   .mypage-container {
     padding: 15px;
@@ -135,8 +155,24 @@
   }
   
   .menu-btn {
-    padding: 12px 15px;
-    font-size: 0.9rem;
+    padding: 12px 14px;
+    font-size: 14px;
+    max-width: 100%; /* 폼 너비에 맞춰 꽉 차도록 */
+    width: 100%;
+  }
+}
+
+@media (max-width: 290px) {
+  .mypage-card {
+    max-width: 280px;
+    padding: 6px;
+  }
+  .menu-btn {
+    padding: 10px 12px;
+    font-size: 13px;
+    min-height: 44px;
+    width: 100%;
+    max-width: 100%;
   }
 }
 
