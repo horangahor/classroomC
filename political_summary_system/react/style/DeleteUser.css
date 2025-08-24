@@ -1,6 +1,4 @@
-/* DeleteUser.css - 회원탈퇴 페이지 스타일
-   회원탈퇴 UI, 경고박스, 폼, 버튼 등 전체 레이아웃 및 동작 정의
-   협업/유지보수용 상세 주석 포함 */
+/* DeleteUser.css - 회원탈퇴 페이지 스타일 요약 */
 
 /* ===== 폰트 및 컬러 변수 불러오기 ===== */
 @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');

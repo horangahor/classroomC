@@ -1,5 +1,4 @@
-/* News.css - 뉴스 페이지 및 뉴스 카드 스타일 정의
-   뉴스 리스트, 카드, 반응형, 스크롤 등 상세 주석 포함 */
+/* News.css - 뉴스 목록 및 카드 스타일 요약 */
 
 /* ===== 폰트 및 컬러 변수 불러오기 ===== */
 @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
@@ -652,43 +651,6 @@ input[type="number"].pagination-current-input {
 @media (max-width: 1024px) {
   .news-card {
     max-width: 400px;
-  }
-}
-
-@media (max-width: 768px) {
-  .news-list {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-  }
-  .news-card {
-    padding: 8px;
-  }
-}
-@media (max-width: 480px) {
-  .news-list {
-    grid-template-columns: 1fr;
-  }
-  .news-card {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-  }
-  .news-card img {
-    width: 100px;
-    height: 80px;
-    object-fit: cover;
-  }
-}
-@media (max-width: 290px) {
-  .news-card {
-    flex-direction: column;
-    padding: 6px;
-    text-align: center;
-  }
-  .news-card img {
-    width: 80px;
-    height: 60px;
-    margin-bottom: 6px;
   }
 }
 

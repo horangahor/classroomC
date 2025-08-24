@@ -1,8 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
 @import './colors.css';
 
-/* UpdateUser.css - 회원정보 수정 페이지 스타일
-   회원정보 수정 폼, 버튼, 레이아웃, 반응형 등 상세 주석 포함 */
+/* UpdateUser.css - 회원정보 수정 페이지 스타일 요약 */
 
 /* ===== 폰트 및 컬러 변수 불러오기 ===== */
 * {

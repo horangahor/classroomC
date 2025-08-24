@@ -2,6 +2,8 @@ import React, { useEffect, useState, useRef } from 'react';
 import '../style/News.css';
 import { getNews } from '../auth/newsreq';
 
+/* News.jsx - 뉴스 리스트 페이지 컴포넌트 설명: 데이터 fetching 및 카드 렌더링 역할 */
+
 // 정당 홈페이지 바로가기 목록
 const partyList = [
     { name: '더불어민주당', url: 'https://theminjoo.kr/main/' },

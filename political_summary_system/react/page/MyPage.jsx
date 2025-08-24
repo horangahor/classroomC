@@ -1,7 +1,4 @@
-/**
- * MyPage.jsx - 마이페이지(내 정보) 컴포넌트
- * 사용자 정보 표시, 로그아웃, 정보 수정 등 UI/동작 담당
- */
+/* MyPage.jsx - 마이페이지 컴포넌트: 계정 관리 액션(수정/탈퇴/로그아웃) 설명 */
 
 import React from 'react'
 import { Link } from 'react-router-dom'

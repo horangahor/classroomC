@@ -3,10 +3,7 @@ import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import '../style/Detail.css'
 import axios from 'axios'
 
-/**
- * DetailPeople.jsx - 정치인 상세 정보 페이지
- * 정치인 상세 정보, 공약, 카드 등 UI 담당
- */
+/* DetailPeople.jsx - 인물 상세 컴포넌트: 프로필/공약/세부정보 렌더링 요약 */
 
 /**
  * DetailPeople 컴포넌트

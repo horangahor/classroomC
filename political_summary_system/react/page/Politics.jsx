@@ -1,7 +1,4 @@
-/**
- * Politics.jsx - 정치/정당 정보 페이지
- * 정당/정치 관련 데이터 및 UI 렌더링 담당
- */
+/* Politics.jsx - 정당/정치 관련 페이지 컴포넌트 설명 (구성 요약) */
 
 import React from 'react'
 

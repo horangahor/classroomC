@@ -1,8 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
 @import './colors.css';
 
-/* Upload.css - 파일 업로드 컴포넌트 스타일
-   업로드 버튼, 입력창, 레이아웃 등 상세 주석 포함 */
+/* Upload.css - 파일 업로드 컴포넌트 스타일: 레이아웃과 입력/버튼 스타일을 다룹니다. */
 
 /* ===== 폰트 및 컬러 변수 불러오기 ===== */
 * {

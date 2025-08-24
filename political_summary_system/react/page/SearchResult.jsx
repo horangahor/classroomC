@@ -1,8 +1,5 @@
-// ===================== SearchResult.jsx =====================
-// 검색 결과 페이지 - 심플하고 가벼운 정리소 스타일
-// - Header, 검색어 표시, 결과 리스트, 안내 메시지
-// - colors.css 변수 사용, 반응형, 유지보수 주석 포함
-// ==========================================================
+/* SearchResult.jsx - 검색결과 페이지 컴포넌트: 렌더링 구조와 props 설명 주석만 유지 */
+
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import Header from '../components/Header.jsx';

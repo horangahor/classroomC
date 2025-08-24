@@ -1,7 +1,4 @@
-/**
- * MainPage.jsx - 메인페이지 전체 UI
- * 지도, 정치인, 뉴스 등 메인 레이아웃 및 동작 담당
- */
+/* MainPage.jsx - 메인 페이지 컴포넌트: 주요 섹션 배치 및 주요 링크 설명 */
 
 import React, { useRef, useEffect, useState, useCallback } from 'react'
 import axios from 'axios'

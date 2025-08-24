@@ -1,7 +1,4 @@
-/**
- * UpdateUser.jsx - 회원정보 수정 페이지
- * 사용자 정보 수정 폼, 입력값 관리, 세션 기반 렌더링 등 담당
- */
+/* UpdateUser.jsx - 회원정보 수정 페이지 컴포넌트: 목적과 주요 props/상태 설명 */
 
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'

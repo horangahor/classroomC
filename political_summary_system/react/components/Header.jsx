@@ -1,7 +1,4 @@
-/**
- * Header.jsx - 헤더/네비게이션 컴포넌트
- * 상단 메뉴, 마이페이지, 로그인/로그아웃 등 UI 담당
- */
+/* components/Header.jsx - 헤더/네비게이션 컴포넌트 설명: 검색/링크/인증 표시 역할 */
 
 import React, { useRef } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'

@@ -1,8 +1,4 @@
-```javascript
-/**
- * ProtectedRoute.jsx - 인증된 사용자만 접근 가능한 라우트
- * 로그인/세션 체크, 접근 제어 등 담당
- */
+/* ProtectedRoute.jsx - 인증 보호 라우트 컴포넌트 설명 */
 
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
@@ -26,4 +22,3 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
 };
 
 export default ProtectedRoute;
-```

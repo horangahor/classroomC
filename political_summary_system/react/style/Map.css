@@ -1,5 +1,4 @@
-/* Map.css - 지도 페이지 및 지도 관련 스타일
-   지도 컨테이너, SVG, 지역 정보, 반응형 등 상세 주석 포함 */
+/* Map.css - 지도/위치 관련 스타일 (레이어, 마커, 반응형) */
 
 /* ===== 폰트 및 컬러 변수 불러오기 ===== */
 @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');

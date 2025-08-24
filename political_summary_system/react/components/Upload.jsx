@@ -1,7 +1,4 @@
-/**
- * Upload.jsx - 파일 업로드 컴포넌트
- * 파일 업로드 UI, 입력, 버튼 등 담당
- */
+/* components/Upload.jsx - 업로드 컴포넌트: 파일 선택/전송 관련 설명 */
 
 import React, { useState } from 'react';
 import axios from 'axios';
