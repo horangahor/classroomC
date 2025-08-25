@@ -54,5 +54,5 @@ app.use('/', memberRouter);
 // 7. 서버 실행
 app.listen(8000);
 
-const keyword = req.query.keyword;
-console.log("서버가 받은 검색어:", keyword);
+// const keyword = req.query.keyword;
+// console.log("서버가 받은 검색어:", keyword);
