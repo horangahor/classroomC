@@ -358,7 +358,7 @@ const MainPage = () => {
                 >
                   ×
                 </button>
-                <p className="region-info-name">{getRegionName(selectedRegion)}</p>
+                <p className="region-info-region">{getRegionName(selectedRegion)}</p>
                 <p className='region-info-name'>정치인 정보</p>
                 {/* 정치인 카드 리스트 */}
                 <div className="region-people-list">

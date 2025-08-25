@@ -1,0 +1,35 @@
+/* Favorites.css - 즐겨찾기 전용 추가 스타일 (News 카드 스타일을 주로 재사용) */
+
+.favorites-page .news-h1 {
+    margin-bottom: 24px;
+}
+
+/* 즐겨찾기 전용 문구 정렬 */
+.favorites-page .no-news {
+    text-align: center;
+    padding: 24px 16px;
+}
+
+/* .news-grid, .news-card 등은 기존 News.css를 그대로 사용합니다. */
+
+@media (max-width: 768px) {
+    .favorites-page .news-grid {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .favorites-page .news-grid {
+        gap: 12px;
+    }
+}
+
+@media (max-width: 290px) {
+    .favorites-page .news-grid {
+        gap: 8px;
+    }
+
+    .favorites-page .news-h1 {
+        font-size: 18px;
+    }
+}

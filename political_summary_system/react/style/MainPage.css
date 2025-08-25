@@ -110,6 +110,11 @@
     margin-bottom: 15px;
     font-weight: 600;
 }
+.region-info-region {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
 
 .region-info-name {
     font-size: 1.5rem;
@@ -146,7 +151,7 @@
     position: absolute;
     top: 8px;
     right: 12px;
-    font-size: 1.3rem;
+    font-size: 2rem;
     background: none;
     border: none;
     cursor: pointer;

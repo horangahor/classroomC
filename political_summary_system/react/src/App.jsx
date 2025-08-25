@@ -17,6 +17,7 @@ import DeleteUser from '../page/DeleteUser'
 import Upload from '../components/Upload'
 import DetailPeople from '../page/DetailPeople' // 추가
 import SearchResult from '../page/SearchResult'; // 검색 결과 페이지 추가
+import Favorites from '../page/Favorites'
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
 
             <Route path="/people/:id" element={<DetailPeople />} />
             <Route path="/searchresult" element={<SearchResult />} />
+            <Route path="/favorites" element={<Favorites />} />
           </Routes>
         </div>
       </AuthProvider>
