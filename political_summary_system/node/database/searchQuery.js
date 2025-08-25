@@ -30,7 +30,7 @@ async function searchlike(keyword, limit, offset) {
         console.error("검색 중 오류 발생:", error);
         throw error;
     }
-}
+};
 
 app.get('/api/search', async (req, res) => {
     try {
