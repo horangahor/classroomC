@@ -102,7 +102,7 @@ const UpdateUser = () => {
 
         
         axios
-            .post('http://localhost:8000/updateuser', {
+            .post(import.meta.env.VITE_UPDATE_SERVER, {
                 // 데이터 감싸서 보낼 때 변수명 통일이 안되어있는 문제
                 id : formData.email,
                 name : formData.name,

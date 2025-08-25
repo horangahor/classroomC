@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }) => {
     // 로그인 함수
     const login = async (credentials) => {
         try {
-            const response = await axios.post('http://localhost:8000/login', {
+            const response = await axios.post(import.meta.env.VITE_LOGIN_SERVER, {
                 id: credentials.email,
                 pw: credentials.password,
             }, {

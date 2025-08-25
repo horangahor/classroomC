@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import '../style/News.css';
 import { getNews } from '../auth/newsreq';
+import axios from 'axios';
+import { getSession } from '../auth/auth';
 
 /* News.jsx - 뉴스 리스트 페이지 컴포넌트 설명: 데이터 fetching 및 카드 렌더링 역할 */
 
@@ -26,12 +28,15 @@ const News = () => {
     const [gotoPageInput, setGotoPageInput] = useState(String(1)); // 페이지 입력창 상태
     const [favorites, setFavorites] = useState([]); // 즐겨찾기 상태 추가
 
+
     // 컴포넌트 마운트 시 뉴스 데이터 가져오기
     useEffect(() => {
         setLoading(true);
         getNews(1).then(data => {
             setNewsData(data);
             setLoading(false);
+            toggleFavorite();
+            
         });
     }, []);
 
@@ -41,12 +46,12 @@ const News = () => {
     }, [currentPage]);
 
     // 로컬 스토리지에서 즐겨찾기 상태 불러오기
-    useEffect(() => {
-        const storedFavorites = localStorage.getItem('favorites');
-        if (storedFavorites) {
-            setFavorites(JSON.parse(storedFavorites));
-        }
-    }, []);
+    // useEffect(() => {
+    //     const storedFavorites = localStorage.getItem('favorites');
+    //     if (storedFavorites) {
+    //         setFavorites(JSON.parse(storedFavorites));
+    //     }
+    // }, []);
 
     // 현재 페이지에 표시할 뉴스 계산
     const indexOfLastNews = currentPage * newsPerPage;
@@ -111,16 +116,24 @@ const News = () => {
     const leftList = currentIndexInList > -1 ? pageList.slice(0, currentIndexInList) : pageList;
     const rightList = currentIndexInList > -1 ? pageList.slice(currentIndexInList + 1) : [];
 
-    const toggleFavorite = (newsId) => {
-        setFavorites((prevFavorites) => {
-            const updatedFavorites = prevFavorites.includes(newsId)
-                ? prevFavorites.filter((id) => id !== newsId) // 해당 ID 제거
-                : [...prevFavorites, newsId]; // 해당 ID 추가
+    const toggleFavorite =async (newsId=-1) => {
+        // 현재 로그인 된 세션의 정보를 가져옴
+        const user = await getSession();
 
-            // 로컬 스토리지에 저장
-            localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
-            return updatedFavorites;
-        });
+        // 아래의 주소로 세션의 id와 즐겨찾기 상호작용하는 번호를 보냄
+        axios
+            .post('http://localhost:8000/favor',{
+                uid : user.id,
+                nid : newsId
+            })
+            // response로 현재 세션이 즐겨찾기한 뉴스의 식별자 리스트를 가져옴
+            .then (async (res) =>{
+                console.log(res.data);
+                setFavorites(res.data);
+            })
+            .catch((err)=>{
+                console.error(err);
+            });
     };
 
     return (

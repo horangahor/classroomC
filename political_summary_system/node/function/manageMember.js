@@ -4,7 +4,7 @@ async function getMemberInfo(req, res) {
     try {
         const member = await getMember();
         console.log("manageMember파일 ,  getMemberInfo함수");
-        console.log(member);
+        // console.log(member);
         
         
         if (member) {
