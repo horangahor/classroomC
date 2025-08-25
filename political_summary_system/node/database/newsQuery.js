@@ -1,4 +1,4 @@
-const pool = require("./db");
+const pool = require("../db/db");
 
 async function getNewsList(page) {
     const conn = await pool.getConnection();

@@ -44,7 +44,7 @@ const SearchResult = () => {
             setError(null);
             try {
                 const qs = new URLSearchParams({ query, page, limit });
-                const res = await fetch(`/api/search?${qs.toString()}`, {
+                const res = await fetch(`http://localhost:8000/api/search?${qs.toString()}`, {
                     method: 'GET',
                     headers: { 'Accept': 'application/json' },
                     signal,
@@ -89,7 +89,7 @@ const SearchResult = () => {
                         <div className="result-meta">총 {total}개 · 페이지 {page}</div>
                         <ul className="result-list">
                             {results.map(item => (
-                                <li key={item.id} className="result-card">
+                                <li key={item.news_identifier} className="result-card">
                                     <div className="result-title">{item.title || item.name || item.id}</div>
                                     <div className="result-summary">{item.snippet || item.summary || item.bio_snippet || ''}</div>
                                 </li>

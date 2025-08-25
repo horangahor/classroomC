@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { getMemberInfo } = require("../function/manageMember");
-const pool = require("../database/db") // DB 연결 모듈
+const pool = require("../db/db") // DB 연결 모듈
 
 // GET: 회원 목록 조회
 router.get("/members", getMemberInfo);

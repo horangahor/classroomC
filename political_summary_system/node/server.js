@@ -8,7 +8,8 @@ const MemoryStore = require('express-session').MemoryStore;
 // 2. 라우터 가져오기 (페이지 주소 그룹 불러오기)
 const homeRouter = require("./router/homeRouter.js");
 const adminRouter = require("./router/adminRouter.js");
-const memberRouter = require("./router/memberRouter.js")
+const memberRouter = require("./router/memberRouter.js");
+const searchRouter = require("./router/searchRouter.js");
 
 // 3. 세션 저장소(Store) 인스턴스 생성
 const sessionStore = new MemoryStore();
@@ -50,9 +51,12 @@ homeRouter.get('/sessions', (req, res)=>{
 app.use('/', homeRouter);
 app.use('/admin', adminRouter);
 app.use('/', memberRouter);
+app.use('/api', searchRouter);
 
 // 7. 서버 실행
-app.listen(8000);
+app.listen(8000, () => {
+    console.log("서버가 http://localhost:8000 에서 실행 중 입니다.");
+});
 
 // const keyword = req.query.keyword;
 // console.log("서버가 받은 검색어:", keyword);
