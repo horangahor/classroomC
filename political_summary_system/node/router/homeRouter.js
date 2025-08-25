@@ -1,6 +1,7 @@
 const express = require('express');
 const { join, login, update, remove } = require("../function/manageUser");
 const { getNewsList , favor, getFavor } = require("../database/newsQuery");
+const { sendEmail, generateRandomNumber } = require("../function/sendMail")
 const sessionStore = require("../server");
 const router = express.Router();
 
@@ -131,5 +132,12 @@ router.post('/favor', async (req, res) => {
     
 //     res.json(favorList);
 // })
+
+
+router.get('/confirm', async (req,res)=>{
+    const code = await generateRandomNumber(10);
+    sendEmail("hkl1428312@gmail.com" , code);
+    res.send("hi");
+});
 
 module.exports = router;

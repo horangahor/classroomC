@@ -6,7 +6,7 @@ async function loginUser(id, pw){
     const conn = await pool.getConnection();
     try {
         const [results] = await conn.execute(
-            "select * from user WHERE uid = ? and upw = ?",
+            "select * from user WHERE uid = ? and upw = ? and isVerified='Y'",
             [id, pw]
         );
         return results;
@@ -21,7 +21,7 @@ async function registerUser(id, pw, name, phnum){
     const conn = await pool.getConnection();
     try{
         const [results] = await conn.execute(
-            "insert into user values(? , ? , ? , ? )",
+            "insert into user values(? , ? , ? , ?, 'F' )",
             [id , pw , name , phnum]
         );
         return results;
