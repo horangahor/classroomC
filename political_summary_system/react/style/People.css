@@ -1,11 +1,17 @@
+/* People.css - 인물 리스트/카드 스타일: 그리드, 카드, 반응형 규칙 설명 */
+
+/* ===== 폰트 및 컬러 변수 불러오기 ===== */
 @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
 @import './colors.css';
 
+/* 전역 폰트 및 스타일 초기화 */
 * {
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
     font-style: normal;
 }
 
+/* ===== 전체 컨테이너 및 카드 레이아웃 ===== */
+/* 전체 배경 및 메인 컨테이너 */
 .background {
   display: flex;
   justify-content: center;
@@ -14,13 +20,11 @@
   padding-bottom: 2rem;
   min-height: calc(100vh - 90px);
 }
-
 .people-page-bg {
   min-height: 100vh;
   background: var(--bg-secondary, #f7f8fa);
   padding-top: 90px;
 }
-
 .people-main-bg {
   background: var(--bg-primary, #fff);
   border-radius: 24px;
@@ -31,6 +35,8 @@
   box-sizing: border-box;
 }
 
+/* ===== 타이틀/서브타이틀/리스트 ===== */
+/* 타이틀 및 카테고리 그룹 */
 .people-title {
   font-size: 2rem;
   font-weight: 700;
@@ -38,66 +44,186 @@
   margin-bottom: 32px;
   text-align: center;
 }
+.people-category-group {
+  margin-bottom: 38px;
+  padding-bottom: 18px;
+  border-bottom: 2px solid var(--border-light, #e2e8f0);
+}
+.people-category-group:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.people-category-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--political-blue, #1e40af);
+  margin-bottom: 18px;
+  margin-top: 8px;
+  letter-spacing: 0.01em;
+}
 
+/* ===== 카드/버튼/리스트 등 상세 스타일 ===== */
+/* 인물 카드 리스트 및 카드 스타일 */
 .people-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 32px;
-  justify-content: center;
+  gap: 18px 22px;
+  margin-bottom: 0;
 }
-
 .people-card {
-  background: var(--bg-primary, #fff);
-  border: 1px solid var(--border-light, #e2e8f0);
-  border-radius: 16px;
-  width: 220px;
-  padding: 24px 16px;
+  background: var(--card-bg);
+  border: 1.5px solid var(--border-light, #e2e8f0);
+  border-radius: 12px;
+  width: 140px; /* 너비 축소: 기존 170px -> 140px */
+  min-width: 0;
+  padding: 16px 10px 12px 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: border-color 0.2s;
+  transition: box-shadow 0.18s, border 0.18s;
+  cursor: pointer;
 }
-
 .people-card:hover {
+  box-shadow: var(--shadow-md);
   border-color: var(--political-blue, #1e40af);
 }
 
+.people-img-wrap {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  background: var(--image-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .people-img {
-  width: 90px;
-  height: 90px;
-  border-radius: 0 !important;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  margin-bottom: 16px;
-  border: 2px solid var(--political-blue, #1e40af);
-  background: #f1f5f9;
+  border-radius: 10px;
+  background: var(--image-bg);
 }
 
 .people-info {
+  width: 100%;
   text-align: center;
 }
 
 .people-name {
-  font-size: 1.15rem;
+  font-size: 1.08rem;
   font-weight: 600;
-  color: var(--text-primary, #22223b);
-  margin-bottom: 6px;
-}
-
-.people-job {
-  font-size: 1rem;
-  color: var(--text-secondary, #475569);
+  color: var(--text-primary);
   margin-bottom: 4px;
 }
 
-.people-region {
-  font-size: 0.95rem;
-  color: var(--text-tertiary, #64748b);
+.people-job {
+  font-size: 0.98rem;
+  color: var(--text-secondary);
 }
 
+/* ===== 반응형 디자인 ===== */
 /* 반응형 */
 @media (max-width: 900px) {
   .people-main-bg { padding: 20px 6px; }
   .people-list { gap: 16px; }
-  .people-card { width: 160px; padding: 16px 6px; }
+  .people-card { width: 130px; padding: 14px 6px; }
   .people-img { width: 64px; height: 64px; }
 }
+@media (max-width: 1024px) {
+  .people-main-bg {
+    padding: 20px 8px;
+    max-width: 100vw;
+  }
+  .people-list {
+    gap: 12px 10px;
+  }
+  .people-card { width: 120px; padding: 10px 6px; }
+}
+@media (max-width: 768px) {
+  .people-main-bg {
+    padding: 8px 2px;
+  }
+  .people-title {
+    font-size: 1.2rem;
+  }
+  .people-card { width: 110px; padding: 8px; }
+  .people-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .person-card img {
+    height: 140px;
+  }
+}
+@media (max-width: 480px) {
+  .people-main-bg {
+    padding: 2px;
+  }
+  .people-card { width: 92px; font-size: 0.86rem; }
+  .people-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .person-card {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .person-card img {
+    width: 110px;
+    height: 80px;
+    flex-shrink: 0;
+  }
+}
+@media (max-width: 290px) {
+    .person-card img {
+        width: 90px;
+        height: 70px;
+    }
+
+    .person-card .name {
+        font-size: 12px;
+    }
+}
+
+/* ================= 통합 오버라이드: People.css (중복 색상/토큰 통일) ================ */
+/* 이 블록은 색상/배경/보더 관련 중복 정의를 변수로 통일하여 유지보수성을 높입니다. */
+
+.background,
+.people-page-bg {
+  background-color: var(--bg-secondary);
+}
+
+.people-main-bg {
+  background-color: var(--bg-primary);
+  border-color: var(--border-light);
+}
+
+.people-card {
+  background-color: var(--card-bg);
+  border-color: var(--border-light);
+}
+
+.people-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.people-img,
+.people-img-wrap {
+  background-color: var(--image-bg);
+}
+
+.people-name {
+  color: var(--text-primary);
+}
+
+.people-job {
+  color: var(--text-secondary);
+}
+
+/* ============================================================================== */

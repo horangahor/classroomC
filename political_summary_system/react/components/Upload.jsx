@@ -1,3 +1,5 @@
+/* components/Upload.jsx - 업로드 컴포넌트: 파일 선택/전송 관련 설명 */
+
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../style/Upload.css'

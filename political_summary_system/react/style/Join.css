@@ -1,7 +1,10 @@
-/* 폰트 및 컬러 변수 불러오기 */
+/* Join.css - 회원가입 페이지 스타일 (폼, 입력, 버튼, 반응형) */
+
+/* ===== 폰트 및 컬러 변수 불러오기 ===== */
 @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
 @import './colors.css';
 
+/* ===== 전체 컨테이너 및 카드 레이아웃 ===== */
 /* 전역 스타일 초기화 및 기본 폰트 설정 */
 * {
     margin: 0;
@@ -33,6 +36,7 @@
     max-width: 400px;
 }
 
+/* ===== 타이틀/서브타이틀 ===== */
 .join-form h2 {
     text-align: center;
     margin-bottom: var(--space-2xl);
@@ -41,6 +45,7 @@
     font-weight: var(--font-weight-semibold);
 }
 
+/* ===== 폼 그룹 및 입력 필드 ===== */
 .input-group {
     margin-bottom: var(--space-lg);
 }
@@ -73,20 +78,25 @@
     color: var(--text-muted);
 }
 
+/* ===== 버튼 그룹 및 버튼 스타일 ===== */
 .join-button {
-    display: flex;
-    width: 300px;
-    height: 50px;
-    padding: var(--space-lg);
+    display: block; /* 버튼을 블록으로 만들어 width:100% 동작 보장 */
+    width: 100%;           /* 기본적으로 컨테이너에 꽉 차도록 */
+    max-width: 320px;      /* 데스크탑에서는 최대 너비 제한 */
+    height: auto;
+    min-height: 48px;      /* 터치 친화적 최소 높이 */
+    padding: 12px 18px;
     border: 2px solid var(--border-light);
     border-radius: var(--radius-md);
     font-size: var(--font-size-base);
     font-weight: var(--font-weight-semibold);
     cursor: pointer;
-    margin-top: var(--space-sm);
+    margin: var(--space-sm) auto 0; /* 가운데 정렬 */
     background: var(--custom-color-white);
     align-items: center;
     justify-content: center;
+    text-align: center;
+    box-sizing: border-box;
 }
 
 .join-button:hover {
@@ -94,6 +104,7 @@
 }
 
 
+/* ===== 로그인 링크 ===== */
 .login-link {
     text-align: center;
     margin-top: var(--space-xl);
@@ -116,14 +127,58 @@
     text-decoration: underline;
 }
 
-/* 반응형 디자인 */
-@media screen and (max-width: 480px) {
+/* ===== Consolidated overrides - Join colors/backgrounds =====
+   - 반복되는 컬러/배경/테두리를 한 곳으로 모아 유지보수성 향상
+========================================================= */
+.join-container,
+.join-form,
+.input-group input,
+.join-button,
+.login-link a {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border-color: var(--border-light);
+}
+
+.join-button:hover,
+.login-link a:hover {
+    background: var(--primary-light);
+}
+
+/* ===== 반응형 디자인 ===== */
+@media (max-width: 1024px) {
+  .join-form {
+    padding: 20px;
+    max-width: 320px;
+  }
+  .join-button {
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .join-form {
+    padding: 10px;
+    font-size: 0.95rem;
+  }
+  .join-button {
+    max-width: 360px;
+    padding: 10px 16px;
+    font-size: 15px;
+    height: 44px;
+    border-radius: 6px;
+  }
+}
+
+@media (max-width: 480px) {
     .join-container {
         padding: 10px;
     }
     
     .join-form {
-        padding: 30px 20px;
+        padding: 4px;
+        max-width: 220px;
+        font-size: 0.9rem;
     }
     
     .join-form h2 {
@@ -136,7 +191,25 @@
     }
     
     .join-button {
-        padding: 12px;
+        max-width: 320px;
+        padding: 9px 14px;
         font-size: 14px;
+        height: 40px;
+        border-radius: 6px;
     }
+}
+
+@media (max-width: 290px) {
+  .join-form {
+    max-width: 280px; /* 작은 여백 확보 */
+    padding: 6px;
+  }
+  .join-button {
+    max-width: 260px;
+    width: 95%;
+    padding: 7px 10px;
+    font-size: 12px;
+    height: 36px;
+    border-radius: 5px;
+  }
 }

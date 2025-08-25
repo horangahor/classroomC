@@ -1,7 +1,10 @@
-/* 폰트 및 컬러 변수 불러오기 */
+/* Login.css - 로그인 페이지 스타일 (폼, 버튼, 반응형) */
+
+/* ===== 폰트 및 컬러 변수 불러오기 ===== */
 @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
 @import './colors.css';
 
+/* ===== 전체 컨테이너 및 카드 레이아웃 ===== */
 /* 전역 스타일 초기화 및 기본 폰트 설정 */
 * {
     margin: 0;
@@ -32,6 +35,7 @@
     max-width: 400px;
 }
 
+/* ===== 타이틀/서브타이틀 ===== */
 .login-form h2 {
     text-align: center;
     margin-bottom: 30px;
@@ -40,6 +44,7 @@
     font-weight: var(--font-weight-bold);
 }
 
+/* ===== 폼 그룹 및 입력 필드 ===== */
 .input-group {
     margin-bottom: 20px;
 }
@@ -58,14 +63,18 @@
     border-radius: var(--radius-md);
     font-size: var(--font-size-sm);
     transition: border-color 0.2s ease;
+    background: var(--bg-primary);
+    color: var(--text-primary);
 }
 
 .input-group input:focus {
     outline: none;
     border-color: var(--political-blue);
     /* box-shadow 제거 */
+    background: var(--primary-light);
 }
 
+/* ===== 버튼 그룹 및 버튼 스타일 ===== */
 .login-button {
     width: 100%;
     padding: 12px;
@@ -79,8 +88,10 @@
 
 .login-button:hover {
     background: var(--primary-light);
+    border-color: var(--political-blue);
 }
 
+/* ===== 링크 스타일 ===== */
 .join-link {
     text-align: center;
     margin-top: 20px;
@@ -101,7 +112,13 @@
     text-decoration: underline;
 }
 
-/* 반응형 디자인 */
+/* ===== 반응형 디자인 ===== */
+@media (max-width: 1024px) {
+  .login-form {
+    padding: 20px;
+    max-width: 320px;
+  }
+}
 @media (max-width: 768px) {
     .login-container {
         padding: 16px;
@@ -109,6 +126,50 @@
     }
     
     .login-form {
-        padding: 24px;
+        padding: 10px;
+        font-size: 0.95rem;
+        width: 90%;
     }
+
+    .login-form .btn {
+        max-width: 360px;
+    }
+}
+@media (max-width: 480px) {
+  .login-form {
+    padding: 4px;
+    max-width: 220px;
+    font-size: 0.9rem;
+  }
+
+  .login-form .btn {
+        max-width: 320px;
+    }
+}
+@media (max-width: 290px) {
+    .login-form {
+        padding: 6px;
+    }
+
+    .login-form .btn {
+        font-size: 13px;
+    }
+}
+
+/* ===== Consolidated overrides - Login colors/borders/backgrounds =====
+   - 반복되는 배경/컬러/테두리를 일괄 관리
+========================================================= */
+.login-container,
+.login-form,
+.login-button,
+.input-group input {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border-color: var(--border-light);
+}
+
+.login-button:hover,
+.input-group input:focus {
+    border-color: var(--political-blue);
+    background: var(--primary-light);
 }

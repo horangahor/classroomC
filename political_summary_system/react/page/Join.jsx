@@ -1,3 +1,5 @@
+/* Join.jsx - 회원가입 페이지 컴포넌트 설명: 입력/유효성/서브밋 관련 역할 */
+
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'

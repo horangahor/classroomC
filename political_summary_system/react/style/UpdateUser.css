@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
 @import './colors.css';
 
+/* UpdateUser.css - 회원정보 수정 페이지 스타일 요약 */
+
+/* ===== 폰트 및 컬러 변수 불러오기 ===== */
 * {
     margin: 0;
     padding: 0;
@@ -9,6 +12,7 @@
     font-style: normal;
 }
 
+/* ===== 전체 컨테이너 및 카드 레이아웃 ===== */
 .update-container {
     min-height: 100vh;
     display: flex;
@@ -26,8 +30,10 @@
     border: 2px solid var(--border-light);
     width: 100%;
     max-width: 500px;
+    margin-top: 100px;
 }
 
+/* ===== 타이틀/서브타이틀 ===== */
 .update-card h2 {
     font-size: var(--font-size-3xl);
     color: var(--text-primary);
@@ -43,6 +49,7 @@
     text-align: center;
 }
 
+/* ===== 폼 그룹 및 입력 필드 ===== */
 .form-group {
     margin-bottom: var(--space-lg);
 }
@@ -72,6 +79,7 @@
     /* box-shadow 제거 */
 }
 
+/* ===== 구분선 ===== */
 .divider {
     border: none;
     height: 1px;
@@ -79,64 +87,115 @@
     margin: var(--space-xl) 0;
 }
 
+/* ===== 버튼 그룹 및 버튼 스타일 ===== */
 .button-group {
     display: flex;
     gap: var(--space-lg);
     margin-top: var(--space-2xl);
 }
 
-.submit-btn {
-    flex: 1;
-    padding: var(--space-lg);
-    background: var(--custom-color-white);
+.submit-btn,
+.cancel-btn {
+    width: 50%;
+    padding: 12px;
     border: 2px solid var(--border-light);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-md);
     font-size: var(--font-size-base);
     font-weight: var(--font-weight-medium);
     cursor: pointer;
-    transition: all var(--transition-normal);
-}
-
-.submit-btn:hover {
-    background: var(--primary-light);
-}
-
-.cancel-btn {
-    flex: 1;
-    padding: var(--space-lg);
-    background: var(--custom-color-white) !important;
-    color: black !important;
-    text-decoration: none;
-    border: 2px solid var(--border-light);
-    border-radius: var(--radius-lg);
-    font-size: var(--font-size-base);
-    font-weight: var(--font-weight-medium);
+    background: var(--custom-color-white);
+    margin-bottom: 12px;
+    transition: background 0.18s;
     text-align: center;
-    transition: all var(--transition-normal);
     display: flex;
     align-items: center;
     justify-content: center;
+    color: var(--text-primary);
+    text-decoration: none;
 }
 
+.submit-btn:hover,
 .cancel-btn:hover {
     background: var(--primary-light);
 }
 
-/* 반응형 디자인 */
+/* ================= 통합 오버라이드: UpdateUser.css ================ */
+/* 색상/배경/보더를 colors.css 변수로 통일 (레이아웃 변경 없음) */
+
+.update-container {
+  background-color: var(--bg-secondary);
+}
+
+.update-card {
+  background-color: var(--bg-primary);
+  border-color: var(--border-light);
+}
+
+.form-group input {
+  background-color: var(--bg-muted);
+  border-color: var(--border-light);
+}
+
+.submit-btn,
+.cancel-btn {
+  background-color: var(--custom-color-white);
+  color: var(--text-primary);
+  border-color: var(--border-light);
+}
+
+.submit-btn:hover,
+.cancel-btn:hover {
+  background: var(--primary-light);
+}
+
+/* ==================================================================== */
+
+/* ===== 반응형 디자인 ===== */
+@media (max-width: 1024px) {
+  .update-card {
+    padding: 20px;
+    max-width: 320px;
+  }
+}
+@media (max-width: 768px) {
+  .update-card {
+    padding: 10px;
+    font-size: 0.95rem;
+  }
+}
 @media (max-width: 480px) {
-    .update-container {
-        padding: 15px;
+  .update-card {
+    padding: 4px;
+    max-width: 220px;
+    font-size: 0.9rem;
+  }
+}
+
+.update-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.update-form .field {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .update-form {
+        grid-template-columns: 1fr;
     }
-    
-    .update-card {
-        padding: 30px 25px;
+}
+
+@media (max-width: 480px) {
+    .update-form {
+        gap: 12px;
+        padding: 8px;
     }
-    
-    .update-card h2 {
-        font-size: 1.5rem;
-    }
-    
-    .button-group {
-        flex-direction: column;
+}
+
+@media (max-width: 290px) {
+    .update-form .field {
+        font-size: 13px;
     }
 }

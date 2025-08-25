@@ -1,11 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
 @import './colors.css';
 
+/* Upload.css - 파일 업로드 컴포넌트 스타일: 레이아웃과 입력/버튼 스타일을 다룹니다. */
+
+/* ===== 폰트 및 컬러 변수 불러오기 ===== */
 * {
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
     font-style: normal;
 }
 
+/* ===== 업로드 전체 컨테이너 및 레이아웃 ===== */
 .upload-page-container {
   display: flex;
   flex-direction: column;
@@ -35,6 +39,8 @@
   margin-bottom: var(--space-xl);
   text-align: center;
 }
+
+/* ===== 업로드 버튼/입력창/상태 ===== */
 
 /* 파일 선택 레이블 스타일 */
 .file-label {
@@ -132,4 +138,44 @@
 /* 파일 입력 필드 아래 여백 */
 .input-margin-bottom {
   margin-bottom: var(--space-md);
+}
+
+/* ===== 반응형 디자인 ===== */
+@media (max-width: 1024px) {
+  .upload-card {
+    padding: var(--space-lg);
+    max-width: 20rem;
+  }
+}
+@media (max-width: 768px) {
+  .upload-card {
+    padding: var(--space-md);
+    font-size: 0.95rem;
+  }
+
+  .upload-form {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .upload-preview img {
+    width: 100%;
+    max-height: 320px;
+  }
+}
+@media (max-width: 480px) {
+  .upload-card {
+    padding: var(--space-sm);
+    max-width: 12rem;
+    font-size: 0.9rem;
+  }
+
+  .upload-preview img {
+    max-height: 220px;
+  }
+}
+@media (max-width: 290px) {
+  .upload-preview img {
+    max-height: 160px;
+  }
 }

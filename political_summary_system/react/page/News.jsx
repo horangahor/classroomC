@@ -1,92 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import '../style/News.css';
 import { getNews } from '../auth/newsreq';
 
-// 예시 뉴스 데이터
+/* News.jsx - 뉴스 리스트 페이지 컴포넌트 설명: 데이터 fetching 및 카드 렌더링 역할 */
 
-// getNews와 page 번호 아래 useState currentPage를 인수로 주면 해당페이지 1 ~ 9 , 10 ~ 18 이런식으로 불러옴
-// const newsList = getNews(1);
-// console.log(newsList);
-
-
-
-// const newsData = [
-//     {
-//         title: '정치 뉴스 제목 1',
-//         summary: '요약된 뉴스 내용입니다.',
-//         imageUrl: 'https://via.placeholder.com/150',
-//         link: 'https://www.google.com/'
-//     },
-//     {
-//         title: '정치 뉴스 제목 2',
-//         summary: '요약된 뉴스 내용입니다.',
-//         imageUrl: 'https://via.placeholder.com/150',
-//         link: 'https://www.google.com/'
-//     },
-//     {
-//         title: '정치 뉴스 제목 3',
-//         summary: '요약된 뉴스 내용입니다. 더 긴 요약 내용으로 테스트해보겠습니다.',
-//         imageUrl: 'https://via.placeholder.com/150',
-//         link: 'https://www.google.com/'
-//     },
-//     {
-//         title: '정치 뉴스 제목 4',
-//         summary: '요약된 뉴스 내용입니다.',
-//         imageUrl: 'https://via.placeholder.com/150',
-//         link: 'https://www.google.com/'
-//     },
-//     {
-//         title: '정치 뉴스 제목 5',
-//         summary: '요약된 뉴스 내용입니다.',
-//         imageUrl: 'https://via.placeholder.com/150',
-//         link: 'https://www.google.com/'
-//     },
-//     {
-//         title: '정치 뉴스 제목 6',
-//         summary: '요약된 뉴스 내용입니다.',
-//         imageUrl: 'https://via.placeholder.com/150',
-//         link: 'https://www.google.com/'
-//     },
-//     {
-//         title: '정치 뉴스 제목 7',
-//         summary: '요약된 뉴스 내용입니다.',
-//         imageUrl: 'https://via.placeholder.com/150',
-//         link: 'https://www.google.com/'
-//     },
-//     {
-//         title: '정치 뉴스 제목 8',
-//         summary: '요약된 뉴스 내용입니다.',
-//         imageUrl: 'https://via.placeholder.com/150',
-//         link: 'https://www.google.com/'
-//     },
-//     {
-//         title: '정치 뉴스 제목 9',
-//         summary: '요약된 뉴스 내용입니다.',
-//         imageUrl: 'https://via.placeholder.com/150',
-//         link: 'https://www.google.com/'
-//     },
-//     {
-//         title: '정치 뉴스 제목 10',
-//         summary: '요약된 뉴스 내용입니다.',
-//         imageUrl: 'https://via.placeholder.com/150',
-//         link: 'https://www.google.com/'
-//     },
-//     {
-//         title: '정치 뉴스 제목 11',
-//         summary: '요약된 뉴스 내용입니다.',
-//         imageUrl: 'https://via.placeholder.com/150',
-//         link: 'https://www.google.com/'
-//     },
-//     {
-//         title: '정치 뉴스 제목 12',
-//         summary: '요약된 뉴스 내용입니다.',
-//         imageUrl: 'https://via.placeholder.com/150',
-//         link: 'https://www.google.com/'
-//     }
-// ];
-
-
-// 정당 정보 (간단하게)
+// 정당 홈페이지 바로가기 목록
 const partyList = [
     { name: '더불어민주당', url: 'https://theminjoo.kr/main/' },
     { name: '국민의힘', url: 'https://www.peoplepowerparty.kr/' },
@@ -97,42 +15,63 @@ const partyList = [
     { name: '사회민주당', url: 'https://www.samindang.kr/' }
 ];
 
+// 뉴스 페이지 컴포넌트
 const News = () => {
-    const [newsData, setNewsData] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const newsPerPage = 9;
-    const [loading, setLoading] = useState(true);
+    const [newsData, setNewsData] = useState([]); // 뉴스 데이터 상태
+    const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태
+    const newsPerPage = 9; // 페이지당 뉴스 개수
+    const PAGINATION_DELTA = 1; // 페이지네이션에서 현재 페이지 양옆에 표시할 페이지 수
+    const [loading, setLoading] = useState(true); // 로딩 상태
+    const gotoInputRef = useRef(); // 페이지 입력창 참조
+    const [gotoPageInput, setGotoPageInput] = useState(String(1)); // 페이지 입력창 상태
+    const [favorites, setFavorites] = useState([]); // 즐겨찾기 상태 추가
 
+    // 컴포넌트 마운트 시 뉴스 데이터 가져오기
     useEffect(() => {
         setLoading(true);
         getNews(1).then(data => {
-            console.log('[getNews 결과]', data); // 데이터 구조 확인용
             setNewsData(data);
             setLoading(false);
         });
     }, []);
 
-    // 현재 페이지에서 보여줄 뉴스 계산
+    // 현재 페이지 변경 시 입력창 상태 업데이트
+    useEffect(() => {
+        setGotoPageInput(String(currentPage));
+    }, [currentPage]);
+
+    // 로컬 스토리지에서 즐겨찾기 상태 불러오기
+    useEffect(() => {
+        const storedFavorites = localStorage.getItem('favorites');
+        if (storedFavorites) {
+            setFavorites(JSON.parse(storedFavorites));
+        }
+    }, []);
+
+    // 현재 페이지에 표시할 뉴스 계산
     const indexOfLastNews = currentPage * newsPerPage;
     const indexOfFirstNews = indexOfLastNews - newsPerPage;
     const currentNews = newsData.slice(indexOfFirstNews, indexOfLastNews);
     const totalPages = Math.ceil(newsData.length / newsPerPage);
 
-    // 페이지 버튼 클릭
-    const handleClick = (pageNum) => setCurrentPage(pageNum);
+    // 페이지 버튼 클릭 핸들러
+    const handleClick = (pageNum) => {
+        setCurrentPage(pageNum);
+        setGotoPageInput(String(pageNum));
+        if (gotoInputRef.current) gotoInputRef.current.value = '';
+    };
 
-    // 정당 공식 홈페이지 이동
+    // 정당 홈페이지 이동 핸들러
     const handlePartyClick = (url) => {
         window.open(url, '_blank');
     };
 
-    // 뉴스 카드 클릭
+    // 뉴스 카드 클릭 핸들러
     const handleNewsClick = (url) => {
-        console.log('[뉴스 카드 클릭] url:', url);
         window.open(url, '_blank');
     };
 
-    // 더미 메타 정보 생성
+    // 뉴스 메타 정보 생성
     const getMeta = (idx) => {
         const date = `2025-08-${String((idx % 28) + 1).padStart(2, '0')}`;
         const source = ['연합뉴스', 'KBS', 'MBC', 'SBS', 'JTBC', '한겨레', '조선일보'][idx % 7];
@@ -140,9 +79,9 @@ const News = () => {
         return { date, source, category };
     };
 
-    // 페이지네이션 축약 로직
+    // 페이지네이션 표시 범위 계산
     function getPageList(current, total) {
-        const delta = 2; // 현재페이지 양옆 몇 개 보여줄지
+        const delta = PAGINATION_DELTA;
         const range = [];
         const rangeWithDots = [];
         let l;
@@ -166,15 +105,31 @@ const News = () => {
         return rangeWithDots;
     }
 
+    // 페이지네이션 데이터 분리
+    const pageList = getPageList(currentPage, totalPages);
+    const currentIndexInList = pageList.findIndex(p => p === currentPage);
+    const leftList = currentIndexInList > -1 ? pageList.slice(0, currentIndexInList) : pageList;
+    const rightList = currentIndexInList > -1 ? pageList.slice(currentIndexInList + 1) : [];
+
+    const toggleFavorite = (newsId) => {
+        setFavorites((prevFavorites) => {
+            const updatedFavorites = prevFavorites.includes(newsId)
+                ? prevFavorites.filter((id) => id !== newsId) // 해당 ID 제거
+                : [...prevFavorites, newsId]; // 해당 ID 추가
+
+            // 로컬 스토리지에 저장
+            localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+            return updatedFavorites;
+        });
+    };
+
     return (
         <div className="news-page">
             <div className="bg-con news-main-bg">
-                {/* 뉴스 카드/페이지네이션 영역 */}
                 <div className="news-layout">
                     <div className="news-main-content">
-                        {/* 로딩/빈 상태 안내 */}
                         {loading ? (
-                            <div className="loading-container" style={{ minHeight: 200 }}>
+                            <div className="loading-container">
                                 <div className="loading-spinner" />
                             </div>
                         ) : currentNews.length === 0 ? (
@@ -186,57 +141,97 @@ const News = () => {
                             <div className="news-grid">
                                 {currentNews.map((news, idx) => {
                                     const meta = getMeta(idx + indexOfFirstNews);
+                                    const isFavorite = favorites.includes(news.news_identifier); // 개별 뉴스 ID 확인
                                     return (
                                         <div
                                             className="news-card"
-                                            key={idx}
-                                            onClick={() => handleNewsClick(news.link || news.url)}
-                                            style={{ cursor: 'pointer' }}
+                                            key={news.news_identifier} // 고유 ID 사용
+                                            onClick={() => handleNewsClick(news.url)}
                                         >
-                                            {/* 좌측: 제목/요약/메타 */}
                                             <div className="news-content">
-                                                <div className="news-meta">
+                                                <div className="news-card-header">
+                                                    <h4 className="news-title">{news.title}</h4>
                                                     <span className="news-meta-date">{meta.date}</span>
-                                                    <span className="news-meta-source">{meta.source}</span>
-                                                    <span className="news-meta-category">{meta.category}</span>
+                                                    <button
+                                                        className={`favorite-btn ${isFavorite ? 'active' : ''}`}
+                                                        onClick={(e) => {
+                                                            e.stopPropagation(); // 부모 클릭 이벤트 방지
+                                                            toggleFavorite(news.news_identifier); // 개별 뉴스 ID 전달
+                                                        }}
+                                                        aria-label="즐겨찾기"
+                                                    >
+                                                        {isFavorite ? '★' : '☆'}
+                                                    </button>
                                                 </div>
-                                                <h4 className="news-title">{news.title}</h4>
-                                                <p className="news-summary">{news.summary}</p>
+                                                <div className="news-card-body">
+                                                    <p className="news-summary">{news.summary}</p>
+                                                </div>
                                             </div>
-                                            {/* 우측: 이미지 */}
-                                            {/* <div className="news-image">
-                                                <img src={news.imageUrl} alt="뉴스 썸네일" />
-                                            </div> */}
                                         </div>
-                                    )
+                                    );
                                 })}
                             </div>
                         )}
-                        {/* 페이지네이션 */}
                         {totalPages > 1 && !loading && (
                             <div className="pagination">
                                 <button
-                                    onClick={() => handleClick(currentPage - 1)}
+                                    onClick={() => handleClick(Math.max(1, currentPage - 1))}
                                     disabled={currentPage === 1}
                                     aria-label="이전 페이지"
                                 >
                                     &#60;
                                 </button>
-                                {getPageList(currentPage, totalPages).map((page, idx) =>
-                                    page === '...' ? (
-                                        <span key={idx} className="pagination-ellipsis">...</span>
-                                    ) : (
-                                        <button
-                                            key={idx}
-                                            onClick={() => handleClick(page)}
-                                            className={currentPage === page ? 'active' : ''}
-                                        >
-                                            {page}
-                                        </button>
-                                    )
-                                )}
+                                <div className="pagination-left">
+                                    {leftList.map((page, idx) => (
+                                        page === '...' ? (
+                                            <span key={'l-'+idx} className="pagination-ellipsis">...</span>
+                                        ) : (
+                                            <button key={'l-'+page} onClick={() => handleClick(page)}>
+                                                {page}
+                                            </button>
+                                        )
+                                    ))}
+                                </div>
+                                <div className="pagination-center">
+                                    <input
+                                        type="number"
+                                        className="pagination-goto-input pagination-current-input"
+                                        min={1}
+                                        max={totalPages}
+                                        value={gotoPageInput}
+                                        ref={gotoInputRef}
+                                        onChange={(e) => {
+                                            const raw = e.target.value;
+                                            setGotoPageInput(raw);
+                                        }}
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'Enter') {
+                                                const val = Number(e.target.value);
+                                                if (!isNaN(val) && val >= 1 && val <= totalPages) {
+                                                    handleClick(val);
+                                                } else {
+                                                    setGotoPageInput(String(currentPage));
+                                                }
+                                            }
+                                        }}
+                                        onBlur={() => setGotoPageInput(String(currentPage))}
+                                        onFocus={(e) => e.target.select()}
+                                        aria-label="현재 페이지 입력"
+                                    />
+                                </div>
+                                <div className="pagination-right">
+                                    {rightList.map((page, idx) => (
+                                        page === '...' ? (
+                                            <span key={'r-'+idx} className="pagination-ellipsis">...</span>
+                                        ) : (
+                                            <button key={'r-'+page} onClick={() => handleClick(page)}>
+                                                {page}
+                                            </button>
+                                        )
+                                    ))}
+                                </div>
                                 <button
-                                    onClick={() => handleClick(currentPage + 1)}
+                                    onClick={() => handleClick(Math.min(totalPages, currentPage + 1))}
                                     disabled={currentPage === totalPages}
                                     aria-label="다음 페이지"
                                 >
@@ -244,22 +239,22 @@ const News = () => {
                                 </button>
                             </div>
                         )}
-                    </div>
-                </div>
-                {/* 하단에 정당 목록 분리 배치 (컨테이너 내부로 이동) */}
-                <div className="party-bottombar">
-                    <div className="party-bottombar-title">정당 공식 홈페이지 바로가기</div>
-                    <div className="party-simple-list party-row-list">
-                        {partyList.map((party, idx) => (
-                            <button
-                                key={idx}
-                                className="party-simple-btn"
-                                onClick={() => handlePartyClick(party.url)}
-                                title={party.name}
-                            >
-                                {party.name}
-                            </button>
-                        ))}
+                        <div className="party-bottombar">
+                            <div className="party-bottombar-title">정당 공식 홈페이지 바로가기</div>
+                            <hr className='party-bottombar-divider' />
+                            <div className="party-simple-list party-row-list">
+                                {partyList.map((party, idx) => (
+                                    <button
+                                        key={idx}
+                                        className="party-simple-btn"
+                                        onClick={() => handlePartyClick(party.url)}
+                                        title={party.name}
+                                    >
+                                        {party.name}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

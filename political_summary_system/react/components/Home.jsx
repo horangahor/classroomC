@@ -1,3 +1,5 @@
+/* components/Home.jsx - 홈 컴포넌트: 메인 랜딩 섹션 구성 설명 */
+
 import React from 'react'
 import axios from 'axios'
 

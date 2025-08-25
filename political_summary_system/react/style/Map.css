@@ -1,6 +1,10 @@
+/* Map.css - 지도/위치 관련 스타일 (레이어, 마커, 반응형) */
+
+/* ===== 폰트 및 컬러 변수 불러오기 ===== */
 @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
 @import './colors.css';
 
+/* ===== 지도 전체 컨테이너 및 레이아웃 ===== */
 * {
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
     font-style: normal;
@@ -11,4 +15,49 @@
   max-width: 800px;
   display: block;
   margin: 0 auto;
+}
+
+.map-container {
+    width: 100%;
+    height: 480px;
+    overflow: hidden;
+}
+
+/* ===== 지도 SVG/지역 정보/카드 ===== */
+
+/* ===== 반응형 디자인 ===== */
+@media (max-width: 1024px) {
+  .map-container {
+    padding: 10px;
+    min-height: 400px;
+  }
+}
+@media (max-width: 768px) {
+  .map-container {
+    padding: 4px;
+    font-size: 0.95rem;
+    height: 380px;
+  }
+}
+@media (max-width: 480px) {
+  .map-container {
+    padding: 2px;
+    font-size: 0.9rem;
+    height: 300px;
+  }
+}
+@media (max-width: 290px) {
+    .map-container {
+        height: 220px;
+    }
+}
+
+/* ===== Consolidated overrides - Map colors/backgrounds =====
+   - 지도의 반복 컬러/배경 선언을 통합
+========================================================= */
+.korea-map,
+.map-container {
+    background: transparent;
+    color: var(--text-primary);
+    border-color: var(--border-light);
 }

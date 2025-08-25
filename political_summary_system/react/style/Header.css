@@ -1,7 +1,6 @@
+/* Header.css - 상단 헤더/네비게이션 스타일 요약 */
 @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
-/* 컬러 변수 파일 import */
 @import './colors.css';
-
 
 * {
     margin: 0;
@@ -11,89 +10,104 @@
     font-style: normal;
 }
 
-/* Header 스타일 - 고정 위치 */
+/* ===== 헤더 전체 레이아웃 ===== */
 #header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-wrap: wrap; /* 공간 부족시 줄바꿈 허용 */
+    flex-wrap: wrap;
     padding: 12px 24px;
     background: var(--bg-primary);
     border-bottom: 2px solid var(--border-light);
-    position: fixed; /* fixed로 변경 */
-    top: 0; /* 상단에 고정 */
-    left: 0; /* 좌측부터 시작 */
-    right: 0; /* 우측까지 확장 */
-    width: 100%; /* 전체 너비 */
-    z-index: 1000; /* 다른 요소들 위에 표시 */
-    transition: all 0.2s ease;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: all 0.2s;
 }
 
 .logo {
     flex: 0 0 auto;
-    padding: 8px 12px;
-    height: 50px;
-    width: 130px;
-    font-weight: 700;
-    font-size: 35px;
+    height: 80px;
+    width: 150px;
+    font-weight: 900;
+    font-size: 45px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     color: var(--text-primary);
     border-radius: 8px;
-    transition: all 0.2s ease;
+    transition: all 0.2s;
 }
 
 .logo:hover {
     background: var(--primary);
 }
 
-.logo > span:first-child {
+.logo>span:first-child {
     color: var(--political-blue);
 }
 
+/* ===== 검색창 ===== */
 .search-container {
-    flex: 1 1 350px;   /* 최소 350px, 남는 공간만큼 늘어남 */
+    flex: 1 1 350px;
     max-width: 600px;
     min-width: 180px;
     margin: 0 24px;
-    position: static;
-    left: auto;
-    transform: none;
     display: flex;
     align-items: center;
-    border: 2px solid var(--border-light);
-    border-radius: 12px;
+    border: 1.5px solid var(--border-light);
+    /* 두께 줄임 */
+    border-radius: 10px;
+    /* 살짝 둥글게 */
     overflow: hidden;
-    height: 55px;
+    height: 48px;
+    /* 높이 살짝 줄임 */
     background: var(--bg-primary);
-    transition: all 0.2s ease;
-    margin: 0 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    transition: all 0.2s;
 }
 
-.search-container:hover {
-    border-color: var(--political-blue);
-    /* box-shadow 제거 */
-}
-
+.search-container:hover,
 .search-container:focus-within {
     border-color: var(--political-blue);
-    /* box-shadow 제거 */
+    box-shadow: 0 0 0 2px rgba(0, 60, 200, 0.08);
+    /* 부드러운 강조 */
 }
 
 .search-input {
     border: none;
-    padding: 12px 16px;
+    padding: 8px 12px;
+    /* 간격 축소 */
     outline: none;
     font-size: 18px;
     width: 100%;
     color: var(--text-primary);
     background: transparent;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    /* 부모 높이와 맞춤 */
 }
 
 .search-input::placeholder {
     color: var(--text-tertiary);
+    font-size: 16px;
+    line-height: 1.2;
+}
+
+/* Unified placeholder sizes (통합된 브레이크포인트: 768 / 480 / 290) */
+@media (max-width: 768px) {
+    .search-input::placeholder { font-size: 13px; }
+}
+@media (max-width: 480px) {
+    .search-input::placeholder { font-size: 11px; }
+}
+@media (max-width: 290px) {
+    .search-input::placeholder { font-size: 9px; }
 }
 
 .search-icon {
@@ -105,15 +119,17 @@
     align-items: center;
     justify-content: center;
     border-radius: 8px;
-    margin: 2px;
-    transition: all 0.2s ease;
-    margin-right: 10px;
+    margin: 2px 10px 2px 0;
+    transition: all 0.2s;
+    background: var(--bg-primary);
 }
 
 .search-icon:hover {
-    transform: scale(1.05);
+    background: var(--primary);
+    transform: scale(1.08);
 }
 
+/* ===== 메뉴 ===== */
 .nav-menu {
     flex: 0 0 auto;
     display: flex;
@@ -129,35 +145,29 @@
     cursor: pointer;
     color: var(--text-secondary);
     border-radius: 8px;
-    transition: all 0.2s ease;
+    transition: all 0.2s;
     position: relative;
-    border: 2px solid transparent; /* 활성 상태를 위한 투명 테두리 */
+    border: 2px solid transparent;
 }
 
-/* 기본 호버 효과 */
 .nav-menu li:hover {
     color: var(--political-blue);
     background: var(--primary);
     transform: translateY(-1px);
 }
 
-/* 활성 상태 스타일 - 현재 페이지 */
 .nav-menu li.active {
     color: var(--active-text);
     background: var(--active-bg);
     border: 2px solid var(--active-border);
     font-weight: 600;
-    /* box-shadow 제거 */
 }
 
-/* 활성 상태일 때는 호버 효과 약간 다르게 */
 .nav-menu li.active:hover {
     background: var(--active-bg);
     transform: translateY(-1px);
-    /* box-shadow 제거 */
 }
 
-/* 메뉴 아이템 하단 인디케이터 - 일반 상태 */
 .nav-menu li::after {
     content: '';
     position: absolute;
@@ -166,7 +176,7 @@
     width: 0;
     height: 2px;
     background: var(--political-blue);
-    transition: all 0.2s ease;
+    transition: all 0.2s;
     transform: translateX(-50%);
 }
 
@@ -174,172 +184,280 @@
     width: 80%;
 }
 
-/* 활성 상태일 때 인디케이터는 항상 보이기 */
 .nav-menu li.active::after {
     width: 90%;
     height: 3px;
     background: var(--active-border);
     bottom: -2px;
 }
-    
-/* 반응형 디자인 */
-/* PC: 1025px 이상 (기본 스타일) */
-@media (min-width: 1025px) {
-    .search-container {
-        margin-left: auto;
-        margin-right: auto;
-        width: auto;
-        max-width: 600px;
-        min-width: 180px;
-        flex: 1 1 350px;
-        display: flex;
-        align-items: center;
-        position: static;
-        left: auto;
-        transform: none;
-    }
+
+/* ===== 마이페이지 영역 ===== */
+.mypage-btn {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    background: var(--bg-primary);
+    transition: background 0.2s;
 }
 
-/* 태블릿: 1024px 이하 */
-@media (max-width: 1024px) {
-    #header {
-        padding: 10px 12px;
-    }
-    .search-container {
-        width: 70%;
-        min-width: 180px;
-        max-width: 100vw;
-        margin: 0 8px;
-    }
-    .search-icon {
-        width: 32px;
-        height: 32px;
-        margin-right: 6px;
-    }
-    .nav-menu li {
-        font-size: 16px;
-        padding: 8px 10px;
-    }
+.mypage-btn:hover {
+    background: var(--primary);
 }
 
-/* 모바일: 768px 이하 */
+.mypage-name {
+    font-weight: 500;
+    font-size: var(--font-size-base);
+    color: var(--text-primary);
+    letter-spacing: 0.5px;
+}
+
+.mypage-icon {
+    width: 22px;
+    height: 22px;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+/* ===== 반응형 디자인 (통합된 브레이크포인트: 768 / 480 / 290) ===== */
 @media (max-width: 768px) {
     #header {
-        display: flex;
         flex-wrap: wrap;
         align-items: flex-start;
         padding: 4px 2px;
     }
+
     .logo {
-        flex: 0 0 auto;
         width: auto;
         order: 0;
-        font-size: 24px;
-        height: 36px;
-        padding: 4px 6px;
+        font-size: 30px;
+        height: 44px;
+        padding: 6px 8px;
     }
+
     .nav-menu {
-        flex: 0 0 auto;
         width: auto;
         order: 1;
         justify-content: flex-end;
-        margin-left: 0 !important; /* auto 해제! */
+        margin-left: 0 !important;
         gap: 2px;
     }
+
     .search-container {
         display: block;
-        flex-basis: 100% !important;   /* 한 줄 전체 차지 */
+        flex-basis: 100% !important;
         width: 100% !important;
         max-width: 100% !important;
         min-width: 0 !important;
         margin: 8px 0 0 0;
         order: 2;
-        position: static;
-        transform: none;
+        border-radius: 7px;
+        height: 36px;
     }
+
+    .search-input {
+        font-size: 13px;
+        padding: 5px 8px;
+    }
+
+    .search-input::placeholder {
+        font-size: 13px;
+    }
+
     .search-icon {
         width: 24px;
         height: 24px;
         margin-right: 4px;
     }
+
     .nav-menu li {
         padding: 7px 6px;
         font-size: 13px;
     }
+
     .nav-menu li.active {
         border: 1px solid var(--active-border);
     }
+
+    .mypage-btn {
+        padding: 4px 8px;
+        gap: 4px;
+    }
+
+    .mypage-name {
+        font-size: 13px;
+    }
+
+    .mypage-icon {
+        width: 18px;
+        height: 18px;
+    }
 }
 
-/* 초소형 모바일: 480px 이하 */
 @media (max-width: 480px) {
     #header {
-        display: flex;
         flex-wrap: wrap;
         align-items: flex-start;
         padding: 4px 2px;
     }
+
     .logo {
-        flex: 0 0 auto;
         width: auto;
         order: 0;
+        font-size: 20px;
+        height: 36px;
+        padding: 4px 6px;
     }
+
     .nav-menu {
-        flex: 0 0 auto;
         width: auto;
         order: 1;
         justify-content: flex-end;
-        margin-left: 0 !important; /* auto 해제! */
+        margin-left: 0 !important;
     }
+
     .search-container {
         display: block;
-        flex-basis: 100% !important;   /* 한 줄 전체 차지 */
+        flex-basis: 100% !important;
         width: 100% !important;
         max-width: 100% !important;
         min-width: 0 !important;
         margin: 8px 0 0 0;
         order: 2;
+        border-radius: 6px;
+        height: 32px;
+    }
+
+    .search-input {
+        font-size: 11px;
+        padding: 3px 6px;
+    }
+
+    .search-input::placeholder {
+        font-size: 11px;
+    }
+
+    .search-icon {
+        width: 18px;
+        height: 18px;
+        margin-right: 2px;
+    }
+
+    .nav-menu li {
+        font-size: 10px;
+        padding: 4px 2px;
+    }
+
+    .mypage-btn {
+        padding: 2px 4px;
+        gap: 2px;
+    }
+
+    .mypage-name {
+        font-size: 10px;
+    }
+
+    .mypage-icon {
+        width: 14px;
+        height: 14px;
     }
 }
 
-/* 최소 280px 대응 */
-@media (max-width: 320px) {
+@media (max-width: 290px) {
     #header {
         padding: 2px 1px;
     }
+
     .search-container {
         width: 95vw;
         min-width: 120px;
-        height: 32px;
-        padding: 0 2px;
+        height: 24px;
+        padding: 1px 2px;
         margin: 0 auto;
+        border-radius: 5px;
     }
+
     .search-input {
-        font-size: 11px;
-        padding: 2px 2px;
-    }
-    .search-icon {
-        width: 30px;
-        height: 30px;
-        margin-right: 2px;
-    }
-    .nav-menu li {
         font-size: 9px;
+        padding: 1px 2px;
+    }
+
+    .search-input::placeholder {
+        font-size: 9px;
+    }
+
+    .search-icon {
+        width: 14px;
+        height: 14px;
+        margin-right: 1px;
+    }
+
+    .nav-menu li {
+        font-size: 8px;
         padding: 2px 1px;
     }
+
     .logo {
-        font-size: 12px;
-        width: 38px;
-        height: 18px;
-        padding: 1px 1px;
+        font-size: 14px;
+        width: auto;
+        height: 24px;
+        padding: 2px 4px;
+    }
+
+    .mypage-btn {
+        padding: 1px 2px;
+        gap: 1px;
+    }
+
+    .mypage-name {
+        font-size: 8px;
+    }
+
+    .mypage-icon {
+        width: 10px;
+        height: 10px;
     }
 }
 
-/* 다크모드 지원 */
+/* ===== 다크모드 지원 ===== */
 @media (prefers-color-scheme: dark) {
     :root {
         --active-bg: var(--political-navy);
         --active-border: var(--political-blue);
         --active-text: var(--primary);
+    }
+}
+
+/* ===== Consolidated color / border / background overrides (consolidated block) =====
+   - 중앙에서 파일 내 반복되는 background, color, border-color 값을 한곳에 모음
+   - 기존 레이아웃/spacing/크기 관련 선언은 변경하지 않음
+   - 이 블록은 파일 하단에 위치하여 동일한 특성의 이전 선언을 명확하게 재정의합니다.
+=============================================================== */
+#header,
+.search-container,
+.logo,
+.search-icon,
+.mypage-btn {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border-color: var(--border-light);
+}
+
+.nav-menu li {
+    background: transparent; /* 메뉴 기본은 투명 */
+    color: var(--text-secondary);
+    border-color: transparent;
+}
+
+/* 다크모드/상태별 오버라이드(파일 내부 선언 우선) */
+@media (prefers-color-scheme: dark) {
+    #header,
+    .search-container,
+    .mypage-btn {
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        border-color: var(--border-light);
     }
 }

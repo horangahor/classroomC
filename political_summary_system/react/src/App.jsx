@@ -1,3 +1,5 @@
+/* App.jsx - 애플리케이션 라우트/공용 설정 컴포넌트 설명 */
+
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { AuthProvider } from '../contexts/AuthContext'
 import Header from '../components/Header'
@@ -14,6 +16,7 @@ import DeleteUser from '../page/DeleteUser'
 
 import Upload from '../components/Upload'
 import DetailPeople from '../page/DetailPeople' // 추가
+import SearchResult from '../page/SearchResult'; // 검색 결과 페이지 추가
 
 
 function App() {
@@ -35,8 +38,8 @@ function App() {
             <Route path="/updateuser" element={<UpdateUser />} />
             <Route path="/deleteuser" element={<DeleteUser />} />
 
-            <Route path="/people/:id" element={<DetailPeople />} /> {/* 추가 */}
-
+            <Route path="/people/:id" element={<DetailPeople />} />
+            <Route path="/searchresult" element={<SearchResult />} />
           </Routes>
         </div>
       </AuthProvider>

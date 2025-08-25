@@ -1,6 +1,10 @@
+/* MyPage.css - 마이페이지(계정 관리) 스타일: 카드/버튼/반응형 설명 */
+
+/* ===== 폰트 및 컬러 변수 불러오기 ===== */
 @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
 @import './colors.css';
 
+/* ===== 전체 컨테이너 및 카드 레이아웃 ===== */
 * {
     margin: 0;
     padding: 0;
@@ -29,6 +33,7 @@
     text-align: center;
 }
 
+/* ===== 타이틀/서브타이틀/정보 리스트 ===== */
 .mypage-card h2 {
     font-size: var(--font-size-3xl);
     color: var(--text-primary);
@@ -42,30 +47,51 @@
     font-size: var(--font-size-base);
 }
 
+/* ===== 로그아웃/버튼/카드 등 상세 스타일 ===== */
 .menu-buttons {
     display: flex;
     flex-direction: column;
     gap: var(--space-lg);
     margin-bottom: var(--space-2xl);
+    width: 100%;
+    align-items: center; /* 중앙 정렬로 각 버튼이 컨테이너 너비에 맞춰짐 */
 }
 
 .menu-btn {
-    display: flex;
+    display: flex; /* 가로 정렬 유지하면서 내부 가운데 정렬 */
     align-items: center;
     justify-content: center;
-    width: 300px;
-    height: 50px;
+    width: 100%;           /* 기본적으로 컨테이너에 꽉 차도록 */
+    max-width: 420px;      /* 데스크탑에서는 최대 너비 제한 */
+    height: 48px;
+    padding: 12px 16px;
     text-decoration: none;
-    border-radius: var(--radius-lg);
+    border-radius: 6px;
     font-weight: var(--font-weight-medium);
-    font-size: var(--font-size-base);
+    font-size: 16px;
     transition: all var(--transition-normal);
     border: 2px solid var(--border-light);
     cursor: pointer;
+    margin: 0 auto; /* 가운데 정렬 */
+    box-sizing: border-box;
+    background: var(--custom-color-white);
+    color: var(--text-primary);
 }
 
 .menu-btn:hover {
     background: var(--primary-light);
+}
+
+.menu-btn.logout {
+    background: var(--custom-color-white);
+    color: var(--text-primary);
+    border: 2px solid var(--border-light);
+    /* 기존 .menu-btn 스타일과 동일하게 통일 */
+}
+
+.menu-btn.logout:hover {
+    background: var(--primary-light);
+    color: var(--text-primary);
 }
 
 .back-link {
@@ -84,22 +110,92 @@
     text-decoration: underline;
 }
 
-/* 반응형 디자인 */
+/* ===== 반응형 디자인 ===== */
+@media (max-width: 1024px) {
+  .mypage-container {
+    padding: 8px;
+  }
+  .mypage-card {
+    max-width: 320px;
+    padding: var(--space-lg);
+  }
+  .menu-btn {
+    max-width: 360px;
+    padding: 10px 14px;
+    font-size: 15px;
+    height: 44px;
+    border-radius: 6px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mypage-card {
+    padding: var(--space-md);
+    font-size: 0.95rem;
+  }
+  .menu-btn {
+    max-width: 320px;
+    padding: 9px 12px;
+    font-size: 14px;
+    height: 40px;
+    border-radius: 6px;
+  }
+}
+
 @media (max-width: 480px) {
-    .mypage-container {
-        padding: 15px;
-    }
-    
-    .mypage-card {
-        padding: 30px 25px;
-    }
-    
-    .mypage-card h2 {
-        font-size: 1.5rem;
-    }
-    
-    .menu-btn {
-        padding: 12px 15px;
-        font-size: 0.9rem;
-    }
+  .mypage-container {
+    padding: 15px;
+  }
+  
+  .mypage-card {
+    padding: var(--space-sm);
+    max-width: 220px;
+    font-size: 0.9rem;
+  }
+  
+  .mypage-card h2 {
+    font-size: 1.5rem;
+  }
+  
+  .menu-btn {
+    padding: 12px 14px;
+    font-size: 14px;
+    max-width: 100%; /* 폼 너비에 맞춰 꽉 차도록 */
+    width: 100%;
+  }
+}
+
+@media (max-width: 290px) {
+  .mypage-card {
+    max-width: 280px;
+    padding: 6px;
+  }
+  .menu-btn {
+    padding: 6px 8px;
+    font-size: 12px;
+    height: 36px;
+    border-radius: 5px;
+    width: 95%;
+    max-width: 260px;
+  }
+}
+
+/* ===== Consolidated overrides - colors/borders/backgrounds =====
+   - 파일 내 반복되는 컬러/배경/테두리 설정을 한 곳으로 모아 관리성을 높임
+   - 레이아웃 및 spacing 관련 규칙은 변경하지 않음
+========================================================= */
+.mypage-container,
+.mypage-card,
+.menu-btn,
+.menu-btn.logout,
+.back-link a {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border-color: var(--border-light);
+}
+
+.menu-btn:hover,
+.menu-btn.logout:hover,
+.back-link a:hover {
+    background: var(--primary-light);
 }

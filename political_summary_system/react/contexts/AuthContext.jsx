@@ -1,3 +1,5 @@
+/* contexts/AuthContext.jsx - 인증 컨텍스트: 상태/로그인/로그아웃 설명 */
+
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { getSession, logout as logoutAPI } from '../auth/auth';
 import axios from 'axios';
