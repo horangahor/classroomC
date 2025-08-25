@@ -20,7 +20,6 @@
 
 @media (max-width: 480px) {
     .favorites-page .news-grid {
-        gap: 12px;
     }
 }
 

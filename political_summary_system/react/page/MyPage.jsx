@@ -30,7 +30,10 @@ const MyPage = () => {
                     <Link to="/deleteuser" className="menu-btn danger">
                         회원탈퇴
                     </Link>
-                    
+                    <Link to='/favorites' className='menu-btn'>
+                        즐겨찾기
+                    </Link>
+
                     <button className="menu-btn logout" onClick={handleLogout}>
                         로그아웃
                     </button>

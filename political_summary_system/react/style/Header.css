@@ -209,7 +209,7 @@
 
 .mypage-name {
     font-weight: 500;
-    font-size: var(--font-size-base);
+    font-size: 28px;
     color: var(--text-primary);
     letter-spacing: 0.5px;
 }
