@@ -38,4 +38,79 @@ async function insertNews(obj){
     }
 }
 
-module.exports = { getNewsList, insertNews };
+async function favor(obj){
+    
+    if(obj.uid!==undefined){ // 세션 로그인이 되어 있으면
+        const conn = await pool.getConnection();
+        if (obj.nid != -1){
+            try{
+                const existing = await conn.execute(
+                "select * from user_favor where fuid = ? and news_id = ?",
+                [obj.uid , obj.nid]
+                );
+                console.log("select 절의",existing[0]);
+
+                if(existing[0].length != 0){ // 검색 결과가 존재하면
+                    if(existing[0][0].del == "Y") // 얘가 Y 면 -> N으로 
+                    {
+                        const result = await conn.execute(
+                        "update user_favor set del = 'N' where fuid = ? and news_id = ?",
+                        [obj.uid, obj.nid])
+                    }
+                    else{
+                        const result = await conn.execute( // 얘가 N 이면 -> Y로
+                        "update user_favor set del = 'Y' where fuid = ? and news_id = ?",
+                        [obj.uid, obj.nid])
+                    }
+                }
+                else{
+                    const result = await conn.execute( // 만약 검색 결과가 없다면 새로운 즐겨찾기 튜플 추가
+                        "insert into user_favor values(?,?,'N')",
+                        [obj.uid, obj.nid] 
+                    )
+                }
+            }
+            catch(err){ console.log(err);
+            }
+        }
+        
+        try{
+            const favorList = await conn.execute(
+            "select news_id from user_favor where fuid = ? and del= 'N'",
+            [obj.uid]
+            );
+            const rows = favorList[0];
+            
+            return rows.map(item => item.news_id);
+        }
+        catch(err){
+            console.log(err);
+        }
+        finally{
+            conn.release();
+        }
+        }
+    else{ // 세션이 존재하지 않음 ?? 
+        console.log("로그인 안되어 있음");
+    }
+}
+
+async function getFavor(obj){
+    const conn = await pool.getConnection();
+    // const f_news = (page-1) * 9 + 1;
+    // const l_news = page * 9;
+    try {
+        const [results] = await conn.execute(
+            "select * from user_favor where uid = ? and del = 'N'",
+            [obj.uid]
+        );
+        console.log("getFavor의" +results);
+        return results;
+    }
+    finally{
+        conn.release();
+    }
+}
+
+
+module.exports = { getNewsList, insertNews, favor, getFavor };

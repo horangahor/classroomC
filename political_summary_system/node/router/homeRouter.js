@@ -1,6 +1,6 @@
 const express = require('express');
 const { join, login, update, remove } = require("../function/manageUser");
-const { getNewsList } = require("../database/newsQuery");
+const { getNewsList , favor, getFavor } = require("../database/newsQuery");
 const sessionStore = require("../server");
 const router = express.Router();
 
@@ -117,5 +117,19 @@ router.get('/getNews', async (req, res) => {
     res.json(newsList);
 })
 
+
+router.post('/favor', async (req, res) => {
+    console.log("라우터 /favor에서 받은", req.body);
+    const result = await favor(req.body);
+    
+    res.json(result);
+})
+
+// router.post('/getFavor', async (req, res) => {
+//     const favorList = await getFavor(req.body);
+//     console.log("/getFavor 받음");
+    
+//     res.json(favorList);
+// })
 
 module.exports = router;
