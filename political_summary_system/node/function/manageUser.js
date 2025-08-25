@@ -1,12 +1,14 @@
 const { loginUser, registerUser, updateuser, deleteuser } = require('../database/userQuery');
 const jwt = require("jsonwebtoken");
+const crypto = require('crypto');
 
 // 회원가입
 async function join(req) {
     // 요청데이터 가져오기(body)
     console.log(req);
     const { id, pw, name, phnum } = req.body;
-        const result = await registerUser(id, pw, name, phnum);
+    const hashed_pw = crypto.createHash('sha256').update(pw).digest('base64');
+        const result = await registerUser(id, hashed_pw, name, phnum);
 
         console.log('manageUser의 join 함수 result : ', result);
 }
@@ -15,7 +17,8 @@ async function join(req) {
 async function login(req) {
     
     const { id, pw } = req.body;
-    const [result] = await loginUser(id, pw);
+    const hashed_pw = crypto.createHash('sha256').update(pw).digest('base64');
+    const [result] = await loginUser(id, hashed_pw);
     // console.log(result);
 
 
@@ -39,8 +42,11 @@ async function login(req) {
 async function update(id, name, phnum, cpw, npw) { // req, res를 제거하고 필요한 인자만 받습니다.
     try {
 
+        const hashed_cpw = crypto.createHash('sha256').update(cpw).digest('base64');
+        
+        const hashed_npw = crypto.createHash('sha256').update(npw).digest('base64');
         // 쿼리 함수 호출
-        const result = await updateuser(id, name, phnum, cpw, npw);
+        const result = await updateuser(id, name, phnum,hashed_cpw,hashed_npw);
         
         // 쿼리 결과(affectedRows)를 보고 성공/실패 여부를 판단하여 반환
         if (result.affectedRows > 0) {
