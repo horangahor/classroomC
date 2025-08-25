@@ -28,12 +28,15 @@ const News = () => {
     const [gotoPageInput, setGotoPageInput] = useState(String(1)); // 페이지 입력창 상태
     const [favorites, setFavorites] = useState([]); // 즐겨찾기 상태 추가
 
+
     // 컴포넌트 마운트 시 뉴스 데이터 가져오기
     useEffect(() => {
         setLoading(true);
         getNews(1).then(data => {
             setNewsData(data);
             setLoading(false);
+            toggleFavorite();
+            
         });
     }, []);
 
@@ -43,12 +46,12 @@ const News = () => {
     }, [currentPage]);
 
     // 로컬 스토리지에서 즐겨찾기 상태 불러오기
-    useEffect(() => {
-        const storedFavorites = localStorage.getItem('favorites');
-        if (storedFavorites) {
-            setFavorites(JSON.parse(storedFavorites));
-        }
-    }, []);
+    // useEffect(() => {
+    //     const storedFavorites = localStorage.getItem('favorites');
+    //     if (storedFavorites) {
+    //         setFavorites(JSON.parse(storedFavorites));
+    //     }
+    // }, []);
 
     // 현재 페이지에 표시할 뉴스 계산
     const indexOfLastNews = currentPage * newsPerPage;
