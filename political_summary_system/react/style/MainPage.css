@@ -394,12 +394,40 @@ a:visited,
     .mainpage-background {
         margin-top: 60px;
     }
+
+    .main-hero {
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .hero-image, .hero-content {
+        width: 100%;
+    }
 }
 
 /* 초소형 모바일: 480px 이하 */
 @media (max-width: 480px) {
     .mainpage-container {
         padding: 2px;
+    }
+
+    .main-hero {
+        gap: 10px;
+    }
+
+    .hero-image {
+        max-height: 260px;
+    }
+}
+
+@media (max-width: 290px) {
+    .hero-image {
+        max-height: 180px;
+    }
+
+    .hero-content {
+        font-size: 13px;
+        padding: 6px;
     }
 }
 

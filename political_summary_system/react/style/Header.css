@@ -99,28 +99,15 @@
     line-height: 1.2;
 }
 
-@media (max-width: 1024px) {
-    .search-input::placeholder {
-        font-size: 15px;
-    }
-}
-
+/* Unified placeholder sizes (통합된 브레이크포인트: 768 / 480 / 290) */
 @media (max-width: 768px) {
-    .search-input::placeholder {
-        font-size: 13px;
-    }
+    .search-input::placeholder { font-size: 13px; }
 }
-
 @media (max-width: 480px) {
-    .search-input::placeholder {
-        font-size: 11px;
-    }
+    .search-input::placeholder { font-size: 11px; }
 }
-
-@media (max-width: 320px) {
-    .search-input::placeholder {
-        font-size: 9px;
-    }
+@media (max-width: 290px) {
+    .search-input::placeholder { font-size: 9px; }
 }
 
 .search-icon {
@@ -234,50 +221,7 @@
     display: inline-block;
 }
 
-/* ===== 반응형 디자인 ===== */
-@media (min-width: 1025px) {
-    .search-container {
-        margin-left: auto;
-        margin-right: auto;
-        width: auto;
-        max-width: 600px;
-        min-width: 180px;
-        flex: 1 1 350px;
-        display: flex;
-        align-items: center;
-        position: static;
-        left: auto;
-        transform: none;
-    }
-}
-
-@media (max-width: 1024px) {
-    #header {
-        padding: 10px 12px;
-    }
-
-    .search-container {
-        border-radius: 8px;
-        height: 40px;
-    }
-
-    .search-input {
-        font-size: 15px;
-        padding: 7px 10px;
-    }
-
-    .search-icon {
-        width: 32px;
-        height: 32px;
-        margin-right: 6px;
-    }
-
-    .nav-menu li {
-        font-size: 16px;
-        padding: 8px 10px;
-    }
-}
-
+/* ===== 반응형 디자인 (통합된 브레이크포인트: 768 / 480 / 290) ===== */
 @media (max-width: 768px) {
     #header {
         flex-wrap: wrap;
@@ -288,9 +232,9 @@
     .logo {
         width: auto;
         order: 0;
-        font-size: 24px;
-        height: 36px;
-        padding: 4px 6px;
+        font-size: 30px;
+        height: 44px;
+        padding: 6px 8px;
     }
 
     .nav-menu {
@@ -316,6 +260,10 @@
     .search-input {
         font-size: 13px;
         padding: 5px 8px;
+    }
+
+    .search-input::placeholder {
+        font-size: 13px;
     }
 
     .search-icon {
@@ -358,9 +306,9 @@
     .logo {
         width: auto;
         order: 0;
-        font-size: 16px;
-        height: 24px;
-        padding: 2px 3px;
+        font-size: 20px;
+        height: 36px;
+        padding: 4px 6px;
     }
 
     .nav-menu {
@@ -385,6 +333,10 @@
     .search-input {
         font-size: 11px;
         padding: 3px 6px;
+    }
+
+    .search-input::placeholder {
+        font-size: 11px;
     }
 
     .search-icon {
@@ -413,7 +365,7 @@
     }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 290px) {
     #header {
         padding: 2px 1px;
     }
@@ -422,17 +374,18 @@
         width: 95vw;
         min-width: 120px;
         height: 24px;
-        /* 높이 줄임 */
         padding: 1px 2px;
-        /* 내부 여백 줄임 */
         margin: 0 auto;
         border-radius: 5px;
-        /* 둥글기 줄임 */
     }
 
     .search-input {
         font-size: 9px;
         padding: 1px 2px;
+    }
+
+    .search-input::placeholder {
+        font-size: 9px;
     }
 
     .search-icon {
@@ -447,10 +400,10 @@
     }
 
     .logo {
-        font-size: 10px;
-        width: 28px;
-        height: 12px;
-        padding: 1px 1px;
+        font-size: 14px;
+        width: auto;
+        height: 24px;
+        padding: 2px 4px;
     }
 
     .mypage-btn {
@@ -508,11 +461,3 @@
         border-color: var(--border-light);
     }
 }
-
-/* ===================== 유지보수/협업 주석 =====================
-   - 모든 주요 영역별 스타일 분리, 변수화
-   - 반응형/접근성/다크모드/hover/active/visited 등 일관 적용
-   - 컬러 변수(colors.css)만 사용, 직접 색상 사용 금지
-   - 마이페이지/검색창/메뉴 등은 모바일에서 터치 영역 충분히 확보
-   - 필요시 추가 커스텀/확장 가능
-============================================================== */

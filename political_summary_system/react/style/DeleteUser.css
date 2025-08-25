@@ -197,6 +197,37 @@
     }
 }
 
+.delete-confirm {
+    max-width: 480px;
+    width: 100%;
+}
+
+.delete-confirm .btn {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .delete-confirm {
+        max-width: 360px;
+    }
+}
+
+@media (max-width: 480px) {
+    .delete-confirm {
+        max-width: 320px;
+    }
+}
+
+@media (max-width: 290px) {
+    .delete-confirm {
+        padding: 6px;
+    }
+
+    .delete-confirm .btn {
+        font-size: 12px;
+    }
+}
+
 /* ===== Consolidated overrides - DeleteUser colors/borders/backgrounds =====
    - 반복되는 컬러/배경/테두리를 일괄 관리
 ========================================================= */

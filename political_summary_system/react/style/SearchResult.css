@@ -70,6 +70,7 @@
         padding: 8px 3px;
     }
 }
+
 /* ===================== 유지보수/협업 주석 =====================
    - colors.css 변수만 사용, 인라인 스타일 금지
    - 카드/리스트/안내/반응형/hover 등 분리
@@ -90,4 +91,55 @@
 
 .result-card {
     background: var(--bg-primary);
+}
+
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.result-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .results-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .result-card img {
+        height: 140px;
+    }
+}
+
+@media (max-width: 480px) {
+    .results-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .result-card {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .result-card img {
+        width: 110px;
+        height: 80px;
+        flex-shrink: 0;
+    }
+}
+
+@media (max-width: 290px) {
+    .result-card img {
+        width: 90px;
+        height: 70px;
+    }
+
+    .result-card .title {
+        font-size: 12px;
+    }
 }

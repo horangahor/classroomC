@@ -293,6 +293,15 @@
     margin-bottom: 12px;
     padding: 0;
   }
+
+  .detail-wrapper {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .detail-image {
+    max-height: 360px;
+  }
 }
 @media (max-width: 480px) {
   .detailpeople-main-bg { padding: 8px 8px; }
@@ -315,6 +324,16 @@
     font-size: 0.95rem;
     margin-bottom: 10px;
     padding-left: 2px;
+  }
+
+  .detail-wrapper {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 8px;
+  }
+
+  .detail-image {
+    max-height: 300px;
   }
 }
 @media (max-width: 290px) {
@@ -368,4 +387,24 @@
 
   .detailpeople-main,
   .detailpeople-extra { width: 100% !important; box-sizing: border-box; }
+
+  .detail-wrapper {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 6px;
+  }
+
+  /* 이미지가 텍스트 위로 오도록 강제, 중앙 정렬 */
+  .detail-image {
+    order: -1;
+    width: 100%;
+    margin: 0 auto;
+    max-height: 220px;
+    object-fit: contain;
+  }
+
+  .detail-content {
+    font-size: 13px;
+    line-height: 1.4;
+  }
 }

@@ -170,3 +170,32 @@
     font-size: 0.9rem;
   }
 }
+
+.update-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.update-form .field {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .update-form {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .update-form {
+        gap: 12px;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 290px) {
+    .update-form .field {
+        font-size: 13px;
+    }
+}

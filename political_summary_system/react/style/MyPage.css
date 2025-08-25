@@ -62,14 +62,13 @@
     align-items: center;
     justify-content: center;
     width: 100%;           /* 기본적으로 컨테이너에 꽉 차도록 */
-    max-width: 320px;      /* 데스크탑에서는 최대 너비 제한 */
-    height: auto;
-    min-height: 48px;      /* 터치 친화적 최소 높이 */
-    padding: 12px 18px;
+    max-width: 420px;      /* 데스크탑에서는 최대 너비 제한 */
+    height: 48px;
+    padding: 12px 16px;
     text-decoration: none;
-    border-radius: var(--radius-lg);
+    border-radius: 6px;
     font-weight: var(--font-weight-medium);
-    font-size: var(--font-size-base);
+    font-size: 16px;
     transition: all var(--transition-normal);
     border: 2px solid var(--border-light);
     cursor: pointer;
@@ -121,7 +120,11 @@
     padding: var(--space-lg);
   }
   .menu-btn {
-    max-width: 300px;
+    max-width: 360px;
+    padding: 10px 14px;
+    font-size: 15px;
+    height: 44px;
+    border-radius: 6px;
   }
 }
 
@@ -131,10 +134,11 @@
     font-size: 0.95rem;
   }
   .menu-btn {
-    max-width: 260px;
-    padding: 11px 16px;
-    font-size: 0.975rem;
-    min-height: 46px;
+    max-width: 320px;
+    padding: 9px 12px;
+    font-size: 14px;
+    height: 40px;
+    border-radius: 6px;
   }
 }
 
@@ -167,11 +171,12 @@
     padding: 6px;
   }
   .menu-btn {
-    padding: 10px 12px;
-    font-size: 13px;
-    min-height: 44px;
-    width: 100%;
-    max-width: 100%;
+    padding: 6px 8px;
+    font-size: 12px;
+    height: 36px;
+    border-radius: 5px;
+    width: 95%;
+    max-width: 260px;
   }
 }
 

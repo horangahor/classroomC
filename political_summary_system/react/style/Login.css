@@ -120,7 +120,7 @@
   }
 }
 @media (max-width: 768px) {
-  .login-container {
+    .login-container {
         padding: 16px;
         padding-top: 100px; /* 모바일에서 조금 더 여유 */
     }
@@ -128,6 +128,11 @@
     .login-form {
         padding: 10px;
         font-size: 0.95rem;
+        width: 90%;
+    }
+
+    .login-form .btn {
+        max-width: 360px;
     }
 }
 @media (max-width: 480px) {
@@ -136,6 +141,19 @@
     max-width: 220px;
     font-size: 0.9rem;
   }
+
+  .login-form .btn {
+        max-width: 320px;
+    }
+}
+@media (max-width: 290px) {
+    .login-form {
+        padding: 6px;
+    }
+
+    .login-form .btn {
+        font-size: 13px;
+    }
 }
 
 /* ===== Consolidated overrides - Login colors/borders/backgrounds =====
