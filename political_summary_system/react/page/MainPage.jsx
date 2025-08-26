@@ -1,4 +1,3 @@
-/* MainPage.jsx - 메인 페이지 컴포넌트: 주요 섹션 배치 및 주요 링크 설명 */
 
 import React, { useRef, useEffect, useState, useCallback } from 'react'
 import axios from 'axios'
@@ -276,23 +275,28 @@ const MainPage = () => {
    * - 선택된 지역의 정치인/뉴스 정보 갱신
    */
   const handleRegionClick = useCallback((regionId, pathElement) => {
-    setSelectedRegion(prev => {
-      const normalizedPrev = prev?.toLowerCase();
-      const normalizedRegionId = regionId?.toLowerCase();
-      if (normalizedPrev === normalizedRegionId) {
-        if (pathElement) pathElement.classList.remove('selected');
-        setPeople([]);
-        return null;
-      } else {
-        if (svgRef.current) {
-          const allPaths = svgRef.current.querySelectorAll('path');
-          allPaths.forEach(path => path.classList.remove('selected'));
-        }
-        if (pathElement) pathElement.classList.add('selected');
-        handleRegionActionRef.current(regionId);
-        return regionId;
-      }
-    });
+    // 이미 선택된 지역을 다시 클릭하면 선택 해제
+    if (selectedRegion === regionId) {
+      pathElement.classList.remove('selected')
+      setSelectedRegion(null)
+      setPeople([])
+      return
+    }
+
+    // 모든 지역에서 selected 클래스 제거
+    if (svgRef.current) {
+      const allPaths = svgRef.current.querySelectorAll('path')
+      allPaths.forEach(path => {
+        path.classList.remove('selected')
+      })
+    }
+
+    // 모든 지역에서 selected 클래스 제거
+    pathElement.classList.add('selected')
+    setSelectedRegion(regionId)
+
+    // 항상 최신 handleRegionAction 사용
+    handleRegionActionRef.current(regionId)
   }, []);
 
   // 한글 지역명 매핑 (지도/뉴스/표시용 공통)
@@ -351,14 +355,9 @@ const MainPage = () => {
             {/* 지역 선택 시: 정치인/뉴스 정보 박스 */}
             {selectedRegion && (
               <div className="region-info-box fade-in">
-                <button
-                  className="region-info-close"
-                  aria-label="닫기"
-                  onClick={() => { setSelectedRegion(null); setPeople([]); }}
-                >
-                  ×
-                </button>
-                <p className="region-info-region">{getRegionName(selectedRegion)}</p>
+
+                <p className="region-info-name">{getRegionName(selectedRegion)}</p>
+
                 <p className='region-info-name'>정치인 정보</p>
                 {/* 정치인 카드 리스트 */}
                 <div className="region-people-list">

@@ -1,7 +1,8 @@
 // 프론트 서버의 /upload를 통해 접근
 
-
+// 1. 필요한 모듈 가져오기 (import)
 const express = require('express');
+
 const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
@@ -11,13 +12,15 @@ const {insertNews} = require('../database/newsQuery');
 
 
 // 파일 리더
-const csvReader = require("../function/fileReader")
+const csvReader = require("../function/fileReader")             // CSV 파일 내용을 JSON 형태로 변환
 
-
+// 2. Multer 설정 (파일 저장 방식 및 위치 지정)
 const storage = multer.diskStorage({
+    // 파일을 어떻게 저장할지 정의
     destination : (req, file, cb) => {
         cb(null , 'dataset/');
     },
+    // 파일 이름을 어떻게 할지 정의
     filename : (req , file, cb) => {
         cb(null, Date.now() +path.extname(file.originalname));
     }
@@ -27,7 +30,7 @@ const upload = multer({
     storage
 });
 
-
+// 3. 라우트 핸들러 정의 (실제 기능 구현)
 router.post('/upload',upload.single('file'), async(req, res)=>{
     console.log("json 파일 생성");
     
@@ -96,4 +99,5 @@ router.post('/upload',upload.single('file'), async(req, res)=>{
     
 })
 
+// 4. 라우터 내보내기 (export)
 module.exports = router;

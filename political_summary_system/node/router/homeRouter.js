@@ -1,6 +1,8 @@
 const express = require('express');
 const { join, login, update, remove } = require("../function/manageUser");
 const { getNewsList , favor, getFavor } = require("../database/newsQuery");
+const { sendEmail, generateRandomNumber } = require("../function/sendMail");
+const { confirmQuery } = require("../database/userQuery");
 const sessionStore = require("../server");
 const router = express.Router();
 
@@ -28,10 +30,20 @@ router.get('/', getSession);
 
 
 router.post('/join', async (req, res) => {
-    await join(req);
+    const code = await generateRandomNumber(10);
+    const {id} = req.body;
+    sendEmail(id , code);
 
+    await join(req, code); // 여기서 가계정을 만듦 
     res.send("회원가입 페이지입니다.");
 })
+//문제는 인증을 하지 않을 때 코드의 유효기간은?
+
+router.get('/confirm', async (req,res)=>{
+    await confirmQuery(req.query);
+    res.send("인증됨");
+});
+
 
 // 로그인
 router.post('/login', async (req, res) => {

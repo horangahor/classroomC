@@ -5,10 +5,14 @@ const { NODEMAILER_USER, NODEMAILER_PASS } = process.env;
 
 // 난수 code 생성하는 함수
 const generateRandomNumber = (n) => {
+  console.log(NODEMAILER_PASS);
+  
   let code = "";
   for (let i = 0; i < n; i++) {
     code += Math.floor(Math.random() * 10);
   }
+  console.log("난수 만들기의", code);
+  
   return code;
 };
 
@@ -22,11 +26,14 @@ const transporter = nodemailer.createTransport({
 });
 
 const sendEmail = (email, code) => {
+  console.log("sendEmail의", code);
+  const verificationUrl = `http://localhost:8000/confirm?token=${code}`;
   const mailOptions = {
     from: NODEMAILER_USER,
     to: email,
     subject: "Co-Code 회원가입 인증 코드", // 메일제목
-    text: `Co-Code 회원가입 인증 코드: ${code}`, // 메일 내용
+    html: `<h1>Co-Code 회원가입 인증 코드:</h1>
+           <a href="${verificationUrl}">인증하기</a>`, // 메일 내용
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
