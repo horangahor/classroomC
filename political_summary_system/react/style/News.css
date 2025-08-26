@@ -1,5 +1,4 @@
-/* News.css - 뉴스 페이지 및 뉴스 카드 스타일 정의
-   뉴스 리스트, 카드, 반응형, 스크롤 등 상세 주석 포함 */
+/* News.css - 뉴스 목록 및 카드 스타일 요약 */
 
 /* ===== 폰트 및 컬러 변수 불러오기 ===== */
 @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
@@ -14,6 +13,13 @@
   font-style: normal;
 }
 
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden; /* 수평 스크롤 방지 */
+}
+
 /* ===== 뉴스 전체 컨테이너 및 레이아웃 ===== */
 /* 뉴스 페이지 전체 배경 및 메인 컨테이너 */
 .news-page {
@@ -23,6 +29,8 @@
   padding-top: 90px;
   position: relative;
 }
+
+
 
 .bg-con {
   background: var(--bg-primary);
@@ -59,18 +67,11 @@
 /* 뉴스 페이지 메인 레이아웃 */
 .news-layout {
   display: flex;
-  gap: 40px;
+  gap: var(--space-lg);
   align-items: flex-start;
   justify-content: flex-start;
-}
-
-.news-layout {
-  display: flex;
-  gap: 80px; /* 사이드바와 카드 영역 사이 넉넉한 간격 */
   width: 100%;
   margin: 0 auto;
-  align-items: flex-start;
-  justify-content: flex-start;
 }
 
 /* 배경 컨테이너가 전체를 감싸도록 */
@@ -88,17 +89,6 @@
 /* ===== 뉴스 카드 및 리스트 스타일 ===== */
 /* 메인 콘텐츠 영역 */
 .news-main-content {
-  flex: 1 1 0;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0;
-  background: none;
-  border: none;
-}
-
-.news-main-content {
   width: 100%;
   min-width: 0;
   display: flex;
@@ -111,6 +101,7 @@
 
 /* 뉴스 카드 영역 */
 .news-card {
+  position: relative;
   width: 100%;
   max-width: 700px;
   min-width: 0;
@@ -119,10 +110,9 @@
   border-radius: 12px;
   padding: var(--space-md);
   min-height: 150px;
-  height: 180px;
   display: flex;
-  flex-direction: row;
-  align-items: stretch;
+  flex-direction: column; /* 세로로 쌓이도록 변경 */
+  align-items: flex-start;
 }
 
 .news-card:hover {
@@ -137,6 +127,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  padding-bottom: 12px; /* 날짜와 겹침 방지 */
 }
 
 /* 뉴스 메타 정보 */
@@ -150,8 +141,15 @@
 }
 
 .news-meta-date {
-  color: var(--text-tertiary);
-  font-weight: 500;
+  position: static; /* 절대 위치 제거, 플로우에 따라 하단 배치 */
+  left: auto;
+  bottom: auto;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: 0;
+  margin-top: 8px;
+  white-space: nowrap;
+  align-self: flex-end; /* 카드 오른쪽 하단에 정렬 */
 }
 
 .news-meta-source {
@@ -254,8 +252,9 @@
   margin-top: var(--space-lg);
   position: relative; /* 중앙 고정을 위해 기준 컨테이너로 설정 */
   min-height: 44px; /* 입력창 수직 중앙 정렬 공간 확보 */
-  --pagination-center-width: 160px; /* 중앙 고정 영역 전체 너비(입력창 + 여유) */
+  --pagination-center-width: 80px; /* 중앙 고정 영역 전체 너비(입력창 + 여유) - 기존 160px에서 축소 */
   padding: 0; /* 중앙 패딩 대신 flex 기반 레이아웃 사용 */
+  margin-bottom: 20px;
 }
 
 .pagination-left,
@@ -277,6 +276,34 @@
 
 .pagination-center .pagination-current-input {
   pointer-events: auto; /* 입력은 상호작용 허용 */
+}
+
+/* 페이지네이션 현재 페이지 입력창 디자인 개선 */
+.pagination-current-input {
+  width: 40px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1.5px solid var(--border-light);
+  padding: 6px 10px;
+  outline: none;
+  background: var(--main-light-gray);
+  color: var(--text-title);
+  transition: border 0.18s, box-shadow 0.18s, background 0.18s;
+  text-align: center;
+  font-weight: 600;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.pagination-current-input:focus {
+  border: 2px solid var(--political-blue);
+  background: var(--primary-light);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+}
+@media (max-width: 600px) {
+  .pagination-current-input {
+    width: 32px;
+    font-size: 14px;
+    padding: 4px 6px;
+  }
 }
 
 .pagination button {
@@ -312,91 +339,91 @@
   border-color: var(--political-blue);
 }
 
-/* 페이지네이션 직접 입력창 스타일 */
+/* 페이지네이션 직접 입력창 스타일 개선 */
 .pagination-goto-form {
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  gap: 6px;
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  padding: 8px 14px;
   margin-left: 12px;
+  margin-top: 20px;
+  border: 1.5px solid var(--border-light);
 }
 .pagination-goto-input {
-  width: 56px;
-  margin-left: 6px;
-  margin-right: 4px;
-  font-size: 1rem;
-  border-radius: 6px;
-  border: 1px solid var(--border-light);
-  padding: 6px 8px;
+  width: 48px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1.5px solid var(--border-light);
+  padding: 6px 10px;
   outline: none;
-  transition: border 0.15s, background 0.15s;
+  background: var(--main-light-gray);
+  color: var(--text-title);
+  transition: border 0.18s, box-shadow 0.18s, background 0.18s;
   text-align: center;
-  background: var(--bg-primary);
-  color: var(--text-primary);
+  font-weight: 500;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
 }
 .pagination-goto-input:focus {
-  border: 1.5px solid var(--political-blue);
+  border: 2px solid var(--political-blue);
   background: var(--primary-light);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
 }
-
-/* 현재 페이지 위치에 표시되는 입력창 스타일 */
-.pagination-current-input {
-  /* 중앙에 고정: 플로우에서 분리하여 항상 .pagination의 중앙에 위치하도록 함 */
-  position: static;
-  transform: none;
-  width: 64px;
-  padding: 6px 8px;
-  font-size: 1rem;
+.pagination-goto-btn {
+  background: var(--political-blue);
+  color: var(--custom-color-white);
+  border: none;
   border-radius: 8px;
-  border: 1px solid var(--border-light);
-  background: var(--card-bg);
-  color: var(--text-primary);
-  text-align: center;
+  padding: 6px 16px;
+  font-size: 16px;
   font-weight: 600;
-  box-sizing: border-box;
-  z-index: 20;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.04); /* 시각적으로 위에 떠 있음을 명확히 함 */
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
 }
-
-/* 작은 화면에서는 절대 위치가 레이아웃을 깨울 수 있으므로 플로우로 복귀 및 중앙 패딩 제거 */
+.pagination-goto-btn:hover,
+.pagination-goto-btn:focus {
+  background: var(--main-blue);
+  color: var(--custom-color-white);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+}
 @media (max-width: 600px) {
-  .pagination {
-    padding: 0 12px;
+  .pagination-goto-form {
+    padding: 6px 8px;
+    gap: 4px;
   }
-  .pagination-left,
-  .pagination-right {
-    flex: 0 0 auto;
-    justify-content: center;
-    flex-wrap: wrap;
+  .pagination-goto-input {
+    width: 36px;
+    font-size: 14px;
+    padding: 4px 6px;
   }
-  .pagination-center {
-    flex: 0 0 auto;
-    pointer-events: auto;
-    margin: 0 6px;
-  }
-  .pagination-current-input {
-    box-shadow: none;
+  .pagination-goto-btn {
+    padding: 4px 10px;
+    font-size: 14px;
   }
 }
 
-/* ===== Remove number input spinners (pagination input) =====
-   - 크롬/사파리 웹킷 스피너 제거, 파이어폭스 텍스트필드 모드 적용
-   - 표준 'appearance' 속성도 추가하여 호환성 보강
-============================================================= */
-.pagination-goto-input[type="number"],
-.pagination-current-input[type="number"],
-input[type="number"].pagination-goto-input,
-input[type="number"].pagination-current-input {
-  appearance: textfield; /* 표준 */
-  -webkit-appearance: none; /* Chrome, Safari, Edge */
-  -moz-appearance: textfield; /* Firefox */
+/* 페이지네이션 하단 인풋 카드형 래퍼 */
+.pagination-goto-bottom-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--card-bg);
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  padding: 18px 24px;
+  margin: 24px auto 0 auto;
+  border: 1.5px solid var(--border-light);
+  max-width: 340px;
 }
-
-/* Chrome, Edge, Safari - spin buttons 제거 */
-.pagination-goto-input[type="number"]::-webkit-outer-spin-button,
-.pagination-goto-input[type="number"]::-webkit-inner-spin-button,
-.pagination-current-input[type="number"]::-webkit-outer-spin-button,
-.pagination-current-input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+@media (max-width: 600px) {
+  .pagination-goto-bottom-wrapper {
+    padding: 10px 8px;
+    margin: 16px auto 0 auto;
+    max-width: 98vw;
+  }
 }
 
 /* ===== 빈 뉴스/로딩 안내 ===== */
@@ -489,66 +516,116 @@ input[type="number"].pagination-current-input {
 
 /* ===== 반응형 디자인 ===== */
 /* 반응형 디자인 */
-@media (max-width: 1700px) {
-  .news-main-content {
-    width: 100%;
-  }
-  .news-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-@media (max-width: 1200px) {
-  .news-main-bg {
-    padding: 16px;
-  }
-  .news-layout {
-    flex-direction: column;
-    gap: 32px;
-    align-items: stretch;
-  }
-  .party-sidebar {
-    width: 100%;
-    max-width: 100%;
-    margin-top: 32px;
-    position: static;
-    top: auto;
-    padding: 0;
-  }
-  .news-main-content {
-    width: 100%;
-    padding: 0;
-  }
-  .news-grid {
-    grid-template-columns: 1fr;
-    width: 100%;
-  }
-}
-
-@media (max-width: 1024px) {
-  .news-main-bg {
-    padding: 20px 8px;
-    max-width: 100vw;
-  }
-  .news-card {
-    max-width: 400px;
-    padding: 10px 6px;
-  }
-}
 @media (max-width: 768px) {
   .news-main-bg {
     padding: 8px 2px;
   }
+  .bg-con.news-main-bg {
+    margin-top: 100px;
+  }
   .news-h1 {
     font-size: 1.2rem;
   }
+  .news-page {
+    max-width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0 auto; /* 수평 중앙 정렬 */
+  }
+  .news-grid {
+    grid-template-columns: repeat(2, 1fr); /* 한 줄에 2개의 뉴스 카드 */
+    gap: 16px; /* 카드 간격 조정 */
+  }
+  .party-row-list {
+    flex-wrap: wrap; /* 정당 목록을 2줄로 배치 */
+    justify-content: center; /* 중앙 정렬 */
+    gap: 12px; /* 간격 조정 */
+  }
+  .party-row-list .party-simple-btn {
+    min-width: 20%; /* 버튼 너비를 더 줄임 */
+    padding: 4px 10px; /* 패딩 축소 */
+    font-size: 0.85rem; /* 폰트 크기 축소 */
+  }
+
+  .news-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .news-card img {
+    height: 140px;
+  }
 }
+
 @media (max-width: 480px) {
   .news-main-bg {
     padding: 2px;
   }
   .news-card {
-    max-width: 220px;
+    max-width: 100%;
+    width: 100%;
     font-size: 0.9rem;
+    align-items: flex-start;
+    flex-direction: column; /* 모바일에서도 세로 쌓기 유지 */
+  }
+  .news-card img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 8px;
+  }
+  .news-meta-date {
+    margin-top: 8px;
+    font-size: 0.85rem;
+  }
+  .news-page {
+    max-width: 100%;
+    padding: 0;
+    margin: 0 auto; /* 수평 중앙 정렬 */
+  }
+  .party-row-list .party-simple-btn {
+    min-width: 35%; /* 더 작은 화면에서 버튼 너비 추가 축소 */
+    padding: 3px 8px; /* 패딩 추가 축소 */
+    font-size: 0.8rem; /* 폰트 크기 추가 축소 */
+  }
+
+  .news-list {
+    grid-template-columns: 1fr;
+  }
+
+  .news-grid {
+    grid-template-columns: 1fr; /* 480px 이하에서는 뉴스카드 1개만 */
+    gap: 16px;
+  }
+
+  .news-card {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .news-card img {
+    width: 120px;
+    height: 80px;
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width: 290px) {
+  .news-page {
+    max-width: 100%;
+    padding: 0;
+  }
+  .pagination {
+    flex-wrap: wrap; /* 두 줄로 처리 */
+    gap: 4px; /* 버튼 간격 조정 */
+  }
+
+  .news-card img {
+    width: 90px;
+    height: 70px;
+  }
+
+  .news-card .title {
+    font-size: 12px;
   }
 }
 
@@ -649,30 +726,124 @@ input[type="number"].pagination-current-input {
 /* 반응형/미세 조정 기본값 */
 @media (max-width: 1024px) {
   .news-card {
-    max-width: 400px;
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .news-card {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .news-card {
+    max-width: 100%;
+    width: 100%;
   }
 }
 
 /* ========================================================================== */
 .news-card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 12px;
+  display: none; /* 헤더 숨김, 버튼은 카드에 직접 위치 */
 }
 
 .news-title {
-  margin: 0;
   flex: 1;
   text-align: left;
   font-size: 1.1rem;
   font-weight: 600;
   color: var(--text-title);
+  margin: 0;
+  margin-bottom: 0;
+  word-break: keep-all;
+}
+
+.news-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.favorite-btn {
+  position: static;
+  margin-left: auto;
+  font-size: 1.4rem;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.2s;
+  z-index: 2;
+  align-self: flex-start;
+}
+.favorite-btn.active {
+  color: var(--secondary-yellow);
+}
+
+.news-content {
+  flex: 1;
+  min-width: 0;
+  padding-right: var(--space-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-bottom: 12px;
 }
 
 .news-meta-date {
-  white-space: nowrap;
-  margin-left: 8px;
+  position: static;
+  left: auto;
+  bottom: auto;
   font-size: 0.9rem;
   color: var(--text-secondary);
+  margin: 0;
+  margin-top: 8px;
+  white-space: nowrap;
+  align-self: flex-end;
+}
+
+@media (max-width: 480px) {
+  .news-header-row {
+    margin-bottom: 6px;
+  }
+  .news-title {
+    font-size: 1rem;
+  }
+  .favorite-btn {
+    margin-left: auto;
+    font-size: 1.2rem;
+  }
+  .news-content {
+    padding-bottom: 8px;
+  }
+  .news-meta-date {
+    font-size: 0.85rem;
+    margin-top: 6px;
+  }
+}
+
+.pagination-current-btn {
+  background: var(--main-light-gray);
+  color: var(--text-title);
+  border: 1.5px solid var(--border-light);
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 4px 8px;
+  margin: 0 1px;
+  cursor: default;
+  box-shadow: none;
+}
+
+@media (max-width: 480px) {
+  .pagination-current-btn {
+    font-size: 14px;
+    padding: 3px 6px;
+    margin: 0 1px;
+  }
 }

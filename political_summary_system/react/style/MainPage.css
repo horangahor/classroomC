@@ -1,5 +1,4 @@
-/* MainPage.css - 메인페이지 전체 레이아웃, 지도/정치인/뉴스 UI 스타일 정의
-   반응형, 카드, 버튼, 링크 등 주요 UI 섹션별 상세 주석 포함 */
+/* MainPage.css - 메인 페이지 레이아웃 및 주요 섹션 스타일 요약 */
 
 /* ===== 폰트 및 컬러 변수 불러오기 ===== */
 @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
@@ -111,6 +110,11 @@
     margin-bottom: 15px;
     font-weight: 600;
 }
+.region-info-region {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
 
 .region-info-name {
     font-size: 1.5rem;
@@ -147,7 +151,7 @@
     position: absolute;
     top: 8px;
     right: 12px;
-    font-size: 1.3rem;
+    font-size: 2rem;
     background: none;
     border: none;
     cursor: pointer;
@@ -395,12 +399,40 @@ a:visited,
     .mainpage-background {
         margin-top: 60px;
     }
+
+    .main-hero {
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .hero-image, .hero-content {
+        width: 100%;
+    }
 }
 
 /* 초소형 모바일: 480px 이하 */
 @media (max-width: 480px) {
     .mainpage-container {
         padding: 2px;
+    }
+
+    .main-hero {
+        gap: 10px;
+    }
+
+    .hero-image {
+        max-height: 260px;
+    }
+}
+
+@media (max-width: 290px) {
+    .hero-image {
+        max-height: 180px;
+    }
+
+    .hero-content {
+        font-size: 13px;
+        padding: 6px;
     }
 }
 

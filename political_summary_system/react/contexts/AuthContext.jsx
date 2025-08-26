@@ -1,7 +1,4 @@
-/**
- * AuthContext.jsx - 인증/세션 컨텍스트
- * 사용자 인증, 세션 관리, 글로벌 상태 제공
- */
+/* contexts/AuthContext.jsx - 인증 컨텍스트: 상태/로그인/로그아웃 설명 */
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { getSession, logout as logoutAPI } from '../auth/auth';
@@ -56,7 +53,7 @@ export const AuthProvider = ({ children }) => {
     // 로그인 함수
     const login = async (credentials) => {
         try {
-            const response = await axios.post('http://localhost:8000/login', {
+            const response = await axios.post(import.meta.env.VITE_LOGIN_SERVER, {
                 id: credentials.email,
                 pw: credentials.password,
             }, {

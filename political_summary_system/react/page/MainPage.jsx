@@ -1,3 +1,4 @@
+
 import React, { useRef, useEffect, useState, useCallback } from 'react'
 import axios from 'axios'
 import { ReactComponent as KrMap } from '../assets/kr.svg'
@@ -354,7 +355,9 @@ const MainPage = () => {
             {/* 지역 선택 시: 정치인/뉴스 정보 박스 */}
             {selectedRegion && (
               <div className="region-info-box fade-in">
+
                 <p className="region-info-name">{getRegionName(selectedRegion)}</p>
+
                 <p className='region-info-name'>정치인 정보</p>
                 {/* 정치인 카드 리스트 */}
                 <div className="region-people-list">

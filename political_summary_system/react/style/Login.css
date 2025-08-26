@@ -1,5 +1,4 @@
-/* Login.css - 로그인 페이지 스타일
-   로그인 폼, 버튼, 레이아웃, 반응형 등 상세 주석 포함 */
+/* Login.css - 로그인 페이지 스타일 (폼, 버튼, 반응형) */
 
 /* ===== 폰트 및 컬러 변수 불러오기 ===== */
 @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
@@ -121,7 +120,7 @@
   }
 }
 @media (max-width: 768px) {
-  .login-container {
+    .login-container {
         padding: 16px;
         padding-top: 100px; /* 모바일에서 조금 더 여유 */
     }
@@ -129,6 +128,11 @@
     .login-form {
         padding: 10px;
         font-size: 0.95rem;
+        width: 90%;
+    }
+
+    .login-form .btn {
+        max-width: 360px;
     }
 }
 @media (max-width: 480px) {
@@ -137,6 +141,19 @@
     max-width: 220px;
     font-size: 0.9rem;
   }
+
+  .login-form .btn {
+        max-width: 320px;
+    }
+}
+@media (max-width: 290px) {
+    .login-form {
+        padding: 6px;
+    }
+
+    .login-form .btn {
+        font-size: 13px;
+    }
 }
 
 /* ===== Consolidated overrides - Login colors/borders/backgrounds =====

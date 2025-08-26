@@ -24,8 +24,9 @@ app.use(session({
     saveUninitialized : false, // false로 설정되면 초기화 되지 않은 세션에 대해서는 저장하지 않음
     store : sessionStore,
     cookie : { // 쿠키에 대한 설정
-    maxAge : 1000 * 60 * 10 // 단위는 ms 즉 10분
-    }
+    maxAge : 1000 * 60 * 100 // 단위는 ms 즉 10분
+    },
+    rolling : true
 }))
 
 // API 요청 등에서 JSON 형태로 오는 데이터를 req.body 객체에서 사용할 수 있게 해줌

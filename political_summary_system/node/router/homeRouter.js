@@ -1,6 +1,8 @@
 const express = require('express');
 const { join, login, update, remove } = require("../function/manageUser");
-const { getNewsList } = require("../database/newsQuery");
+const { getNewsList , favor, getFavor } = require("../database/newsQuery");
+const { sendEmail, generateRandomNumber } = require("../function/sendMail");
+const { confirmQuery } = require("../database/userQuery");
 const sessionStore = require("../server");
 const router = express.Router();
 
@@ -10,8 +12,9 @@ function getSession(req, res) {
 }
 
 
-// delete 세션인데 쓸까말까
-function deleteSession(req, res) {
+
+// delete 세션인데 쓰기로 함
+function deleteSession(req,res){
     req.session.destroy(err => {
         if (err) {
             return res.status(500).send("이유 모름");
@@ -27,10 +30,20 @@ router.get('/', getSession);
 
 
 router.post('/join', async (req, res) => {
-    await join(req);
+    const code = await generateRandomNumber(10);
+    const {id} = req.body;
+    sendEmail(id , code);
 
+    await join(req, code); // 여기서 가계정을 만듦 
     res.send("회원가입 페이지입니다.");
 })
+//문제는 인증을 하지 않을 때 코드의 유효기간은?
+
+router.get('/confirm', async (req,res)=>{
+    await confirmQuery(req.query);
+    res.send("인증됨");
+});
+
 
 // 로그인
 router.post('/login', async (req, res) => {
@@ -116,5 +129,19 @@ router.get('/getNews', async (req, res) => {
     res.json(newsList);
 })
 
+
+router.post('/favor', async (req, res) => {
+    console.log("라우터 /favor에서 받은", req.body);
+    const result = await favor(req.body);
+    
+    res.json(result);
+})
+
+// router.post('/getFavor', async (req, res) => {
+//     const favorList = await getFavor(req.body);
+//     console.log("/getFavor 받음");
+    
+//     res.json(favorList);
+// })
 
 module.exports = router;

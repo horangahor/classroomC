@@ -1,12 +1,9 @@
+/* People.jsx - 인물 목록 페이지 컴포넌트: 그리드/검색/페이징 관련 역할 설명 */
+
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../style/People.css'
 import axios from 'axios'
-
-/**
- * People.jsx - 정치인 리스트/카드 페이지
- * 정치인 목록, 카드, 상세 이동 등 UI 담당
- */
 
 /**
  * People 컴포넌트

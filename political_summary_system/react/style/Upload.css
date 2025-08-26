@@ -1,8 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
 @import './colors.css';
 
-/* Upload.css - 파일 업로드 컴포넌트 스타일
-   업로드 버튼, 입력창, 레이아웃 등 상세 주석 포함 */
+/* Upload.css - 파일 업로드 컴포넌트 스타일: 레이아웃과 입력/버튼 스타일을 다룹니다. */
 
 /* ===== 폰트 및 컬러 변수 불러오기 ===== */
 * {
@@ -153,11 +152,30 @@
     padding: var(--space-md);
     font-size: 0.95rem;
   }
+
+  .upload-form {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .upload-preview img {
+    width: 100%;
+    max-height: 320px;
+  }
 }
 @media (max-width: 480px) {
   .upload-card {
     padding: var(--space-sm);
     max-width: 12rem;
     font-size: 0.9rem;
+  }
+
+  .upload-preview img {
+    max-height: 220px;
+  }
+}
+@media (max-width: 290px) {
+  .upload-preview img {
+    max-height: 160px;
   }
 }

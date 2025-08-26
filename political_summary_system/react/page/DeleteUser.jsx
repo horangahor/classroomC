@@ -1,7 +1,4 @@
-/**
- * DeleteUser.jsx - 회원탈퇴 페이지
- * 회원탈퇴 폼, 경고, 버튼 등 UI/동작 담당
- */
+/* DeleteUser.jsx - 회원탈퇴 페이지 컴포넌트 설명 */
 
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
@@ -45,7 +42,7 @@ const DeleteUser = () => {
         // 최종 확인
         if (window.confirm('정말로 탈퇴하시겠습니까? 이 작업은 되돌릴 수 없습니다.')) {
             axios
-                .post('http://localhost:8000/deleteuser', {
+                .post(import.meta.env.VITE_DEL_SERVER, {
                     id: formData.email,
                     pw: formData.password,
                 },

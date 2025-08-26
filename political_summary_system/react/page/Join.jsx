@@ -1,7 +1,4 @@
-/**
- * Join.jsx - 회원가입 페이지
- * 회원가입 폼, 입력값 관리, 인증 등 담당
- */
+/* Join.jsx - 회원가입 페이지 컴포넌트 설명: 입력/유효성/서브밋 관련 역할 */
 
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
@@ -41,7 +38,7 @@ const Join = () => {
         }
         // 서버에 회원가입 요청 보내기
         axios
-            .post('http://localhost:8000/join', {
+            .post(import.meta.env.VITE_JOIN_SERVER, {
                 id : formData.email,
                 pw : formData.password,
                 name : formData.name,
@@ -49,7 +46,7 @@ const Join = () => {
             })
             .then ((res) =>{
                 console.log('회원가입 데이터:', formData)
-                alert('회원가입이 완료되었습니다!');
+                alert('이메일을 확인해서 인증하기');
                 nav('/');
             })
             .catch((err)=>{

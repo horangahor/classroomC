@@ -1,8 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
 @import './colors.css';
 
-/* UpdateUser.css - 회원정보 수정 페이지 스타일
-   회원정보 수정 폼, 버튼, 레이아웃, 반응형 등 상세 주석 포함 */
+/* UpdateUser.css - 회원정보 수정 페이지 스타일 요약 */
 
 /* ===== 폰트 및 컬러 변수 불러오기 ===== */
 * {
@@ -170,4 +169,33 @@
     max-width: 220px;
     font-size: 0.9rem;
   }
+}
+
+.update-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.update-form .field {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .update-form {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .update-form {
+        gap: 12px;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 290px) {
+    .update-form .field {
+        font-size: 13px;
+    }
 }

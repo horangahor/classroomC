@@ -1,7 +1,4 @@
-/**
- * Login.jsx - 로그인 페이지
- * 사용자 로그인 폼, 인증, 세션 처리 등 담당
- */
+/* Login.jsx - 로그인 페이지 컴포넌트 설명: 폼/인증 처리 역할 */
 
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'

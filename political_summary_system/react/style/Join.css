@@ -1,5 +1,4 @@
-/* Join.css - 회원가입 페이지 스타일
-   회원가입 폼, 버튼, 레이아웃, 반응형 등 상세 주석 포함 */
+/* Join.css - 회원가입 페이지 스타일 (폼, 입력, 버튼, 반응형) */
 
 /* ===== 폰트 및 컬러 변수 불러오기 ===== */
 @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
@@ -81,19 +80,23 @@
 
 /* ===== 버튼 그룹 및 버튼 스타일 ===== */
 .join-button {
-    display: flex;
-    width: 300px;
-    height: 50px;
-    padding: var(--space-lg);
+    display: block; /* 버튼을 블록으로 만들어 width:100% 동작 보장 */
+    width: 100%;           /* 기본적으로 컨테이너에 꽉 차도록 */
+    max-width: 320px;      /* 데스크탑에서는 최대 너비 제한 */
+    height: auto;
+    min-height: 48px;      /* 터치 친화적 최소 높이 */
+    padding: 12px 18px;
     border: 2px solid var(--border-light);
     border-radius: var(--radius-md);
     font-size: var(--font-size-base);
     font-weight: var(--font-weight-semibold);
     cursor: pointer;
-    margin-top: var(--space-sm);
+    margin: var(--space-sm) auto 0; /* 가운데 정렬 */
     background: var(--custom-color-white);
     align-items: center;
     justify-content: center;
+    text-align: center;
+    box-sizing: border-box;
 }
 
 .join-button:hover {
@@ -148,12 +151,22 @@
     padding: 20px;
     max-width: 320px;
   }
+  .join-button {
+    max-width: 300px;
+  }
 }
 
 @media (max-width: 768px) {
   .join-form {
     padding: 10px;
     font-size: 0.95rem;
+  }
+  .join-button {
+    max-width: 360px;
+    padding: 10px 16px;
+    font-size: 15px;
+    height: 44px;
+    border-radius: 6px;
   }
 }
 
@@ -178,7 +191,25 @@
     }
     
     .join-button {
-        padding: 12px;
+        max-width: 320px;
+        padding: 9px 14px;
         font-size: 14px;
+        height: 40px;
+        border-radius: 6px;
     }
+}
+
+@media (max-width: 290px) {
+  .join-form {
+    max-width: 280px; /* 작은 여백 확보 */
+    padding: 6px;
+  }
+  .join-button {
+    max-width: 260px;
+    width: 95%;
+    padding: 7px 10px;
+    font-size: 12px;
+    height: 36px;
+    border-radius: 5px;
+  }
 }

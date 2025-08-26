@@ -1,5 +1,4 @@
-/* People.css - 정치인 리스트/카드 스타일
-   정치인 카드, 리스트, 버튼, 반응형 등 상세 주석 포함 */
+/* People.css - 인물 리스트/카드 스타일: 그리드, 카드, 반응형 규칙 설명 */
 
 /* ===== 폰트 및 컬러 변수 불러오기 ===== */
 @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
@@ -76,7 +75,7 @@
   background: var(--card-bg);
   border: 1.5px solid var(--border-light, #e2e8f0);
   border-radius: 12px;
-  width: 170px;
+  width: 140px; /* 너비 축소: 기존 170px -> 140px */
   min-width: 0;
   padding: 16px 10px 12px 10px;
   display: flex;
@@ -131,7 +130,7 @@
 @media (max-width: 900px) {
   .people-main-bg { padding: 20px 6px; }
   .people-list { gap: 16px; }
-  .people-card { width: 160px; padding: 16px 6px; }
+  .people-card { width: 130px; padding: 14px 6px; }
   .people-img { width: 64px; height: 64px; }
 }
 @media (max-width: 1024px) {
@@ -142,10 +141,7 @@
   .people-list {
     gap: 12px 10px;
   }
-  .people-card {
-    width: 140px;
-    padding: 10px 6px;
-  }
+  .people-card { width: 120px; padding: 10px 6px; }
 }
 @media (max-width: 768px) {
   .people-main-bg {
@@ -154,15 +150,45 @@
   .people-title {
     font-size: 1.2rem;
   }
+  .people-card { width: 110px; padding: 8px; }
+  .people-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .person-card img {
+    height: 140px;
+  }
 }
 @media (max-width: 480px) {
   .people-main-bg {
     padding: 2px;
   }
-  .people-card {
-    width: 100px;
-    font-size: 0.9rem;
+  .people-card { width: 92px; font-size: 0.86rem; }
+  .people-grid {
+    grid-template-columns: 1fr;
   }
+
+  .person-card {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .person-card img {
+    width: 110px;
+    height: 80px;
+    flex-shrink: 0;
+  }
+}
+@media (max-width: 290px) {
+    .person-card img {
+        width: 90px;
+        height: 70px;
+    }
+
+    .person-card .name {
+        font-size: 12px;
+    }
 }
 
 /* ================= 통합 오버라이드: People.css (중복 색상/토큰 통일) ================ */

@@ -1,9 +1,11 @@
+
 // ===================== SearchResult.jsx =====================
 // 검색 결과 페이지 - API 연동 기반 프론트 구현
 // - Header, 검색어 표시, 결과 리스트, 로딩/에러 처리, 간단 페이징
 // - AbortController로 이전 요청 취소하여 race condition 방지
 // ==========================================================
 import React, { useEffect, useState } from 'react';
+
 import { useLocation } from 'react-router-dom';
 import Header from '../components/Header.jsx';
 import '../style/colors.css';

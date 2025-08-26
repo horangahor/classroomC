@@ -1,8 +1,4 @@
-```javascript
-/**
- * AuthContext.jsx - 인증/세션 컨텍스트
- * 사용자 인증, 세션 관리, 글로벌 상태 제공
- */
+/* src/contexts/AuthContext.jsx - 인증 컨텍스트(중복 경로): 상태와 제공자 설명 */
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
@@ -35,4 +31,3 @@ export const AuthProvider = ({ children }) => {
 export const useAuth = () => {
     return useContext(AuthContext);
 };
-```

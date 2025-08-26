@@ -1,5 +1,4 @@
-/* MyPage.css - 마이페이지(내 정보) 스타일
-   내 정보 카드, 로그아웃 버튼, 레이아웃, 반응형 등 상세 주석 포함 */
+/* MyPage.css - 마이페이지(계정 관리) 스타일: 카드/버튼/반응형 설명 */
 
 /* ===== 폰트 및 컬러 변수 불러오기 ===== */
 @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
@@ -54,21 +53,29 @@
     flex-direction: column;
     gap: var(--space-lg);
     margin-bottom: var(--space-2xl);
+    width: 100%;
+    align-items: center; /* 중앙 정렬로 각 버튼이 컨테이너 너비에 맞춰짐 */
 }
 
 .menu-btn {
-    display: flex;
+    display: flex; /* 가로 정렬 유지하면서 내부 가운데 정렬 */
     align-items: center;
     justify-content: center;
-    width: 300px;
-    height: 50px;
+    width: 100%;           /* 기본적으로 컨테이너에 꽉 차도록 */
+    max-width: 420px;      /* 데스크탑에서는 최대 너비 제한 */
+    height: 48px;
+    padding: 12px 16px;
     text-decoration: none;
-    border-radius: var(--radius-lg);
+    border-radius: 6px;
     font-weight: var(--font-weight-medium);
-    font-size: var(--font-size-base);
+    font-size: 16px;
     transition: all var(--transition-normal);
     border: 2px solid var(--border-light);
     cursor: pointer;
+    margin: 0 auto; /* 가운데 정렬 */
+    box-sizing: border-box;
+    background: var(--custom-color-white);
+    color: var(--text-primary);
 }
 
 .menu-btn:hover {
@@ -112,13 +119,29 @@
     max-width: 320px;
     padding: var(--space-lg);
   }
+  .menu-btn {
+    max-width: 360px;
+    padding: 10px 14px;
+    font-size: 15px;
+    height: 44px;
+    border-radius: 6px;
+  }
 }
+
 @media (max-width: 768px) {
   .mypage-card {
     padding: var(--space-md);
     font-size: 0.95rem;
   }
+  .menu-btn {
+    max-width: 320px;
+    padding: 9px 12px;
+    font-size: 14px;
+    height: 40px;
+    border-radius: 6px;
+  }
 }
+
 @media (max-width: 480px) {
   .mypage-container {
     padding: 15px;
@@ -135,8 +158,25 @@
   }
   
   .menu-btn {
-    padding: 12px 15px;
-    font-size: 0.9rem;
+    padding: 12px 14px;
+    font-size: 14px;
+    max-width: 100%; /* 폼 너비에 맞춰 꽉 차도록 */
+    width: 100%;
+  }
+}
+
+@media (max-width: 290px) {
+  .mypage-card {
+    max-width: 280px;
+    padding: 6px;
+  }
+  .menu-btn {
+    padding: 6px 8px;
+    font-size: 12px;
+    height: 36px;
+    border-radius: 5px;
+    width: 95%;
+    max-width: 260px;
   }
 }
 

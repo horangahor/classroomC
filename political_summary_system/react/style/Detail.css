@@ -1,5 +1,4 @@
-/* Detail.css - 정치인 상세 정보 페이지 스타일
-   상세 카드, 공약, 레이아웃, 반응형 등 상세 주석 포함 */
+/* Detail.css - 인물 상세 페이지 스타일: 카드, 이미지, 정보, 반응형 규칙 요약 */
 
 /* ===== 폰트 및 컬러 변수 불러오기 ===== */
 @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
@@ -244,41 +243,168 @@
 
 /* ========================================================================== */
 
-/* ===== 반응형 디자인 ===== */
+/* ===== 반응형 디자인 (이미지 크기 보정 포함) ===== */
 @media (max-width: 1024px) {
   .detail-people-container {
     flex-direction: column;
     gap: 18px;
     align-items: center;
   }
+  /* 데스크탑 -> 태블릿 전환 시 이미지 약간 축소 */
+  .detail-img {
+    width: 240px;
+    height: 320px;
+  }
   .people-img.detail {
     width: 160px;
-    height: 220px;
+    height: 200px;
   }
   .detail-people-info {
     font-size: 0.98rem;
   }
 }
 @media (max-width: 768px) {
-  .people-main-bg {
-    padding: 8px 2px;
+  .detailpeople-main-bg {
+    padding: 12px 10px; /* 패딩 축소 */
+    max-width: calc(100% - 20px);
+    margin: 0 auto 24px auto;
   }
-  .detail-people-container {
-    gap: 10px;
+  .detail-container {
+    padding: 12px;
+    gap: 16px;
+    flex-direction: column;
   }
-  .detail-people-info {
-    font-size: 0.95rem;
+  /* 태블릿에서 이미지 크기 더 줄임(레이아웃 보존) */
+  .detail-img {
+    width: 200px;
+    height: 260px;
+  }
+  .people-img.detail {
+    width: 140px;
+    height: 180px;
+  }
+  .detailpeople-back-btn,
+  .people-back-btn {
+    display: inline-block;
+    width: auto;
+    white-space: normal; /* 줄바꿈 허용 */
+    word-break: break-word;
+    font-size: 0.98rem;
+    margin-bottom: 12px;
+    padding: 0;
+  }
+
+  .detail-wrapper {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .detail-image {
+    max-height: 360px;
   }
 }
 @media (max-width: 480px) {
-  .people-main-bg {
-    padding: 2px;
+  .detailpeople-main-bg { padding: 8px 8px; }
+  .detail-container { padding: 8px; gap: 10px; }
+  /* 모바일에서는 이미지 비율을 유지하면서 충분히 축소 */
+  .detail-img {
+    width: 120px;
+    height: 160px;
+    object-fit: cover;
   }
   .people-img.detail {
     width: 90px;
     height: 120px;
   }
+  .detailpeople-back-btn,
+  .people-back-btn {
+    display: block;         /* 블록으로 변경해 항상 컨테이너 내부에 머무르게 함 */
+    width: 100%;
+    text-align: left;
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    padding-left: 2px;
+  }
+
+  .detail-wrapper {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 8px;
+  }
+
+  .detail-image {
+    max-height: 300px;
+  }
+}
+@media (max-width: 290px) {
+  /* 보강: 가능한 클래스 이름 변형들을 모두 포함하여 강제로 세로 스택 적용 */
+  .detail-container,
+  .detailpeople-container,
+  .detail-people-container {
+    display: flex !important;
+    flex-direction: column !important; /* 좌우 분할을 없애고 세로로 쌓음 */
+    align-items: stretch !important;   /* 이미지/텍스트가 컨테이너 폭을 사용하도록 */
+    gap: 10px;
+    padding: 6px !important;
+    box-sizing: border-box;
+  }
+
+  /* 사진은 상단에 중앙으로 표시, 폭 제한을 걸어 넘치지 않게 함 */
+  .detail-img,
+  .people-img.detail {
+    order: 0;
+    width: 100% !important;      /* 컨테이너 폭에 맞춰 축소 */
+    max-width: 220px !important; /* 너무 커지지 않도록 제한 */
+    height: auto !important;
+    object-fit: cover;
+    margin: 0 auto 8px auto; /* 위에 이미지, 아래에 텍스트 간격 확보 */
+    border-radius: 12px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    flex-shrink: 0;
+  }
+
+  /* 텍스트 컨테이너는 전체 너비를 차지하게 하여 이미지 아래로 내려가게 함 */
+  .detail-info,
+  .detail-people-info,
   .detail-people-info {
-    font-size: 0.9rem;
+    order: 1;
+    width: 100% !important;
+    padding: 0 6px !important;
+    box-sizing: border-box;
+    text-align: left !important;
+  }
+
+  /* 그리드 항목도 단일 컬럼으로 변경하여 가로 오버플로우 방지 */
+  .detailpeople-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px 12px;
+  }
+
+  .detailpeople-main-bg {
+    padding: 8px 8px !important;
+    max-width: calc(100% - 16px) !important;
+  }
+
+  .detailpeople-main,
+  .detailpeople-extra { width: 100% !important; box-sizing: border-box; }
+
+  .detail-wrapper {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 6px;
+  }
+
+  /* 이미지가 텍스트 위로 오도록 강제, 중앙 정렬 */
+  .detail-image {
+    order: -1;
+    width: 100%;
+    margin: 0 auto;
+    max-height: 220px;
+    object-fit: contain;
+  }
+
+  .detail-content {
+    font-size: 13px;
+    line-height: 1.4;
   }
 }
