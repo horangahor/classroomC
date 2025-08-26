@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { getSession } from '../auth/auth';
 import '../style/Favorites.css';
 
 /* Favorites.jsx - 즐겨찾기 페이지: News 카드 스타일을 재사용하여 즐겨찾기 목록을 렌더링합니다. */
@@ -10,95 +12,43 @@ const Favorites = () => {
 
     // DB 기반 즐겨찾기 로드 (News의 페이징 로직 재사용)
     useEffect(() => {
-        const loadFavoritesFromDB = async () => {
+        const loadFavorites = async () => {
             setLoading(true);
             try {
-                const res = await fetch('/api/users/me/favorites', { credentials: 'include' });
-
-                // 상태 확인 및 Content-Type 방어 처리
-                if (!res.ok) {
-                    const text = await res.text().catch(() => '');
-                    console.error('Favorites fetch failed', res.status, text);
-                    if (res.status === 401) {
-                        // 인증 만료/미인증: 안전하게 빈 목록 처리
-                        setFavorites([]);
-                        setNewsData([]);
-                        setLoading(false);
-                        return;
-                    }
-                    throw new Error(`Favorites fetch failed (${res.status})`);
-                }
-
-                const contentType = (res.headers.get('content-type') || '').toLowerCase();
-                let data;
-                if (contentType.includes('application/json')) {
-                    data = await res.json();
-                } else {
-                    const text = await res.text().catch(() => '');
-                    console.error('Favorites: expected JSON but got:', text.slice(0, 100));
-                    // HTML 로그인 페이지가 반환되는 경우가 많으므로 안전하게 빈 목록 처리
-                    if (text.toLowerCase().includes('<!doctype') || text.toLowerCase().includes('<html')) {
-                        setFavorites([]);
-                        setNewsData([]);
-                        setLoading(false);
-                        return;
-                    }
-                    throw new Error('서버가 JSON이 아닌 응답을 반환했습니다');
-                }
-
-                // 서버가 뉴스 객체 배열을 반환한 경우엔 바로 사용
+                const user = await getSession();
                 let favIds = [];
-                if (Array.isArray(data) && data.length > 0 && typeof data[0] === 'object' && data[0].news_identifier) {
-                    const favNews = data;
-                    favIds = favNews.map(d => d.news_identifier);
-                    setFavorites(favIds);
-                    setNewsData(favNews);
-                    setLoading(false);
-                    return;
+                if (user && user.id) {
+                    // axios로 즐겨찾기 ID 배열 받아오기
+                    const res = await axios.post('http://localhost:8000/favor', {
+                        uid: user.id,
+                        nid: -1
+                    }, { withCredentials: true });
+                    favIds = Array.isArray(res.data) ? res.data.map(id => String(id)) : [];
                 }
-
-                // 서버가 ID 배열을 반환한다고 가정하고, existing News 페이징 로직으로 상세 뉴스 수집
-                favIds = Array.isArray(data) ? data : [];
                 setFavorites(favIds);
 
-                if (!favIds || favIds.length === 0) {
-                    setNewsData([]);
-                    setLoading(false);
-                    return;
-                }
-
+                // 전체 뉴스 받아오기
+                let allNews = [];
                 try {
-                    // ID 배열이 있을 때 병렬(청크)로 상세를 조회
-                    const fetchDetailsChunked = async (ids, chunkSize = 8) => {
-                        const results = [];
-                        for (let i = 0; i < ids.length; i += chunkSize) {
-                            const chunk = ids.slice(i, i + chunkSize);
-                            const fetched = await Promise.all(chunk.map(id =>
-                                fetch(`/api/news/${encodeURIComponent(id)}`, { credentials: 'include' })
-                                    .then(r => r.ok ? r.json() : null)
-                                    .catch(() => null)
-                            ));
-                            results.push(...fetched.filter(Boolean));
-                        }
-                        return results;
-                    };
-
-                    const favNews = await fetchDetailsChunked(favIds, 8);
-                    setNewsData(favNews);
+                    const newsRes = await axios.get('/api/news/all', { withCredentials: true });
+                    if (Array.isArray(newsRes.data)) {
+                        allNews = newsRes.data;
+                    }
                 } catch (e) {
-                    console.error('즐겨찾기 상세 불러오기 실패', e);
-                    setNewsData([]);
+                    console.warn('전체 뉴스 로드 실패', e);
                 }
+
+                // 즐겨찾기 ID와 매치되는 뉴스만 필터링
+                const favNews = allNews.filter(n => favIds.includes(String(n.news_identifier)));
+                setNewsData(favNews);
             } catch (err) {
-                console.error('즐겨찾기 로드 실패', err);
                 setFavorites([]);
                 setNewsData([]);
             } finally {
                 setLoading(false);
             }
         };
-
-        loadFavoritesFromDB();
+        loadFavorites();
     }, []);
 
     // 즐겨찾기 토글: 낙관적 UI 적용 후 DB에 동기화 (POST / DELETE)
@@ -113,9 +63,9 @@ const Favorites = () => {
             setFavorites(prev => [...prev, newsId]);
             // 가능한 경우 서버에서 상세를 받아와 UI에 추가
             try {
-                const res = await fetch(`/api/news/${encodeURIComponent(newsId)}`, { credentials: 'include' });
-                if (res.ok) {
-                    const detail = await res.json();
+                const res = await axios.get(`/api/news/${newsId}`, { withCredentials: true });
+                if (res.status === 200) {
+                    const detail = res.data;
                     setNewsData(prev => [detail, ...prev]);
                 }
             } catch (e) {
