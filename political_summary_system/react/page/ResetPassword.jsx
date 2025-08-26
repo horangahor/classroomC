@@ -17,7 +17,7 @@ const ResetPassword = () => {
             return;
         }
         try {
-            await axios.post('http://localhost:8000/resetPw', { token, pw });
+            await axios.post(import.meta.env.VITE_RESETPW_SERVER, { token, pw });
             setMessage('비밀번호가 성공적으로 변경되었습니다.');
         } catch (err) {
             setMessage('비밀번호 변경에 실패했습니다.');

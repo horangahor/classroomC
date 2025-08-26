@@ -117,5 +117,24 @@ async function giveCodeToTuple(email,name,code){
     }
 }
 
+async function changePwWithCode(token, pw){
+    // console.log("코드로 비번 변경하기", pw);
+    
+    const conn = await pool.getConnection();
+    try{
+        const [result] = await conn.execute(
+            "update user set code = null, upw = ?  where code = ? "
+            ,[pw, token ]
+        )
+        return result;
+    }
+    catch(err){
+        console.error(err);
+    }
+    finally{
+        conn.release();
+    }
+}
 
-module.exports = { loginUser, registerUser, updateuser, deleteuser, confirmQuery, giveCodeToTuple };
+
+module.exports = { loginUser, registerUser, updateuser, deleteuser, confirmQuery, giveCodeToTuple, changePwWithCode };
