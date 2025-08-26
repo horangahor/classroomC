@@ -10,7 +10,7 @@ async function join(req, code) {
     const hashed_pw = crypto.createHash('sha256').update(pw).digest('base64');
         const result = await registerUser(id, hashed_pw, name, phnum, code);
 
-        console.log('manageUser의 join 함수 result : ', result);
+        // console.log('manageUser의 join 함수 result : ', result); 
 }
 
 // 로그인 기능 + 캐시 기능 추가 예정

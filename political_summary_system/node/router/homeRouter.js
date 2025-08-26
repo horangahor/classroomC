@@ -30,12 +30,19 @@ router.get('/', getSession);
 
 
 router.post('/join', async (req, res) => {
-    const code = await generateRandomNumber(10);
-    const {id} = req.body;
-    sendEmail(id , code);
+    try{
+        const code = await generateRandomNumber(10);
+        const {id} = req.body;
 
-    await join(req, code); // 여기서 가계정을 만듦 
-    res.send("회원가입 페이지입니다.");
+        const result = await join(req, code); // 여기서 가계정을 만듦 
+        sendEmail(id , code);
+        res.send("회원가입 페이지입니다.");
+    }
+    catch(err){
+        // console.log("join의 ",err);
+        
+        res.json(err);
+    }
 })
 //문제는 인증을 하지 않을 때 코드의 유효기간은?
 
