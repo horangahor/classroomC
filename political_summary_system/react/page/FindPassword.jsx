@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../style/FindPassword.css';
+import axios from 'axios'
 
 const FindPassword = () => {
     const [name, setName] = useState('');
@@ -13,6 +14,16 @@ const FindPassword = () => {
         setMessage('');
         // 실제 비밀번호 찾기 API 연동 필요
         try {
+            axios.post(import.meta.env.VITE_FIND_SERVER, {
+                email : email,
+                name : name
+            })
+                 .then((res)=>{
+                    
+                 })
+                 .catch((err)=>{
+
+                 })
             // 예시: await axios.post('/api/find-password', { name, email });
             setMessage('비밀번호 찾기 요청이 접수되었습니다. 이메일을 확인해 주세요.');
         } catch (err) {

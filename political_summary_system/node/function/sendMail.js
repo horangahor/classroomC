@@ -25,6 +25,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+// 회원가입 인증용 메일
 const sendEmail = (email, code) => {
   console.log("sendEmail의", code);
   const verificationUrl = `http://localhost:8000/confirm?token=${code}`;
@@ -47,4 +48,28 @@ const sendEmail = (email, code) => {
   return code;
 };
 
-module.exports = { generateRandomNumber, sendEmail };
+
+
+// 비밀번호 리셋용 메일
+const sendPwMail = (email,code) => {
+  const verificationUrl = `http://localhost:5173/resetPw?token=${code}`; // 이걸 비밀번호 변경할 수 있도록 바꿔야할 듯, 프론트 입력창으로
+  const mailOptions = {
+    from: NODEMAILER_USER,
+    to: email,
+    subject: "Co-Code 비밀번호 변경", // 메일제목
+    html: `<h1>Co-Code 비밀번호 변경하기:</h1>
+           <a href="${verificationUrl}">변경하기</a>`, // 메일 내용
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log(`Email sent: ${info.response}`);
+    }
+  });
+
+  return code;
+};
+
+module.exports = { generateRandomNumber, sendEmail, sendPwMail };
