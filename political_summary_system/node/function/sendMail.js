@@ -27,7 +27,7 @@ const transporter = nodemailer.createTransport({
 
 const sendEmail = (email, code) => {
   console.log("sendEmail의", code);
-  const verificationUrl = `http://localhost:8000/api/auth/verify?token=${code}`;
+  const verificationUrl = `http://localhost:8000/confirm?token=${code}`;
   const mailOptions = {
     from: NODEMAILER_USER,
     to: email,

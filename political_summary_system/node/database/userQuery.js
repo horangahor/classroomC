@@ -17,12 +17,12 @@ async function loginUser(id, pw){
 
 }
 
-async function registerUser(id, pw, name, phnum){
+async function registerUser(id, pw, name, phnum, code){
     const conn = await pool.getConnection();
     try{
         const [results] = await conn.execute(
-            "insert into user values(? , ? , ? , ?, 'F' )",
-            [id , pw , name , phnum]
+            "insert into user values(? , ? , ? , ?, 'F', ? )",
+            [id , pw , name , phnum, code]
         );
         return results;
     }
@@ -57,4 +57,22 @@ async function deleteuser(id, name ,pw) {
     }
 }
 
-module.exports = { loginUser, registerUser, updateuser, deleteuser };
+async function confirmQuery(query){
+    const conn = await pool.getConnection();
+    try{
+        const [result] = await conn.execute(
+            "update user set isVerified = 'Y', code = null where code = ? "
+            ,[query.token ]
+        )
+        return result;
+    }
+    catch(err){
+        console.error(err);
+    }
+    finally{
+        conn.release();
+    }
+}
+
+
+module.exports = { loginUser, registerUser, updateuser, deleteuser, confirmQuery };

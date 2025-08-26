@@ -3,12 +3,12 @@ const jwt = require("jsonwebtoken");
 const crypto = require('crypto');
 
 // 회원가입
-async function join(req) {
+async function join(req, code) {
     // 요청데이터 가져오기(body)
     console.log(req);
     const { id, pw, name, phnum } = req.body;
     const hashed_pw = crypto.createHash('sha256').update(pw).digest('base64');
-        const result = await registerUser(id, hashed_pw, name, phnum);
+        const result = await registerUser(id, hashed_pw, name, phnum, code);
 
         console.log('manageUser의 join 함수 result : ', result);
 }

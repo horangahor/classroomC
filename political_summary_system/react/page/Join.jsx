@@ -46,7 +46,7 @@ const Join = () => {
             })
             .then ((res) =>{
                 console.log('회원가입 데이터:', formData)
-                alert('회원가입이 완료되었습니다!');
+                alert('이메일을 확인해서 인증하기');
                 nav('/');
             })
             .catch((err)=>{
