@@ -74,5 +74,39 @@ async function confirmQuery(query){
     }
 }
 
+async function giveCodeToTuple(email, name, code){
+    const conn = await pool.getConnection();
+    try{
+        const [result] = await conn.execute(
+            "update user set code = ? where email = ? and name = ? "
+            ,[code, email, name ]
+        )
+        return result;
+    }
+    catch(err){
+        console.error(err);
+    }
+    finally{
+        conn.release();
+    }
+}
 
-module.exports = { loginUser, registerUser, updateuser, deleteuser, confirmQuery };
+async function giveCodeToTuple(email,name,code){
+    const conn = await pool.getConnection();
+    try{
+        const [result] = await conn.execute(
+            "update user set code = ?  where uid = ? and uname = ? "
+            ,[code, email, name ]
+        )
+        return result;
+    }
+    catch(err){
+        console.error(err);
+    }
+    finally{
+        conn.release();
+    }
+}
+
+
+module.exports = { loginUser, registerUser, updateuser, deleteuser, confirmQuery, giveCodeToTuple };

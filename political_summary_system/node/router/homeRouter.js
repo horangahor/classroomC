@@ -1,8 +1,8 @@
 const express = require('express');
 const { join, login, update, remove } = require("../function/manageUser");
 const { getNewsList , favor, getFavor } = require("../database/newsQuery");
-const { sendEmail, generateRandomNumber } = require("../function/sendMail");
-const { confirmQuery } = require("../database/userQuery");
+const { sendEmail, generateRandomNumber , sendPwMail } = require("../function/sendMail");
+const { confirmQuery, giveCodeToTuple } = require("../database/userQuery");
 const sessionStore = require("../server");
 const router = express.Router();
 
@@ -143,5 +143,24 @@ router.post('/favor', async (req, res) => {
     
 //     res.json(favorList);
 // })
+
+router.post('/find', async (req, res)=> {
+    console.log(req.body);
+    
+    const { email, name } = req.body;
+    const code = generateRandomNumber(10); // 튜플을 인식하는 임시 코드를 발급
+    await giveCodeToTuple(email, name, code); // 튜플에 임시 코드 부여
+    await sendPwMail(email,code);
+    res.send("hi");
+})
+//문제는 비밀번호 변경 메일의 주소를 외워서 아무나 접근할 수 있다면?
+// => 코드를 발급해줬으니까 코드를 발급받은 대상이 없다면 실패하도록?
+
+
+// 프론트에서 resetPw 페이지의 입력을 처리하는 라우터
+router.get('/resetPw', async (req, res)=>{
+    const {code} = req.query;
+    // await changePwWithCode(,code); // 코드 가지고 비번 바꾸기 
+})
 
 module.exports = router;
