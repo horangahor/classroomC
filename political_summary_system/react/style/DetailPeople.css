@@ -304,36 +304,61 @@
   }
 }
 @media (max-width: 480px) {
-  .detailpeople-main-bg { padding: 8px 8px; }
-  .detail-container { padding: 8px; gap: 10px; }
-  /* 모바일에서는 이미지 비율을 유지하면서 충분히 축소 */
-  .detail-img {
-    width: 120px;
-    height: 160px;
-    object-fit: cover;
+  .detail-container,
+  .detailpeople-container,
+  .detail-people-container {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px;
+    padding: 8px !important;
+    box-sizing: border-box;
   }
+  .detail-img,
   .people-img.detail {
-    width: 90px;
-    height: 120px;
+    order: 0;
+    width: 100% !important;
+    max-width: 220px !important;
+    height: auto !important;
+    object-fit: cover;
+    margin: 0 auto 8px auto;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    flex-shrink: 0;
   }
-  .detailpeople-back-btn,
-  .people-back-btn {
-    display: block;         /* 블록으로 변경해 항상 컨테이너 내부에 머무르게 함 */
-    width: 100%;
-    text-align: left;
-    font-size: 0.95rem;
-    margin-bottom: 10px;
-    padding-left: 2px;
+  .detail-info,
+  .detail-people-info {
+    order: 1;
+    width: 100% !important;
+    padding: 0 6px !important;
+    box-sizing: border-box;
+    text-align: left !important;
   }
-
+  .detailpeople-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px 12px;
+  }
+  .detailpeople-main-bg {
+    padding: 8px 8px !important;
+    max-width: calc(100% - 16px) !important;
+  }
+  .detailpeople-main,
+  .detailpeople-extra { width: 100% !important; box-sizing: border-box; }
   .detail-wrapper {
     grid-template-columns: 1fr;
-    gap: 12px;
-    padding: 8px;
+    gap: 8px;
+    padding: 6px;
   }
-
   .detail-image {
-    max-height: 300px;
+    order: -1;
+    width: 100%;
+    margin: 0 auto;
+    max-height: 220px;
+    object-fit: contain;
+  }
+  .detail-content {
+    font-size: 13px;
+    line-height: 1.4;
   }
 }
 @media (max-width: 290px) {
