@@ -83,7 +83,7 @@
     padding: 8px 12px;
     /* 간격 축소 */
     outline: none;
-    font-size: 28px;
+    font-size: 24px;
     width: 100%;
     color: var(--text-primary);
     background: transparent;
@@ -95,7 +95,7 @@
 
 .search-input::placeholder {
     color: var(--text-tertiary);
-    font-size: 28px;
+    font-size: 24px;
     line-height: 1.2;
 }
 
@@ -140,7 +140,7 @@
 
 .nav-menu li {
     padding: 10px 16px;
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 500;
     cursor: pointer;
     color: var(--text-secondary);
@@ -209,7 +209,7 @@
 
 .mypage-name {
     font-weight: 500;
-    font-size: 28px;
+    font-size: 24px;
     color: var(--text-primary);
     letter-spacing: 0.5px;
 }

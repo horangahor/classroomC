@@ -18,34 +18,37 @@ import Upload from '../components/Upload'
 import DetailPeople from '../page/DetailPeople' // 추가
 import SearchResult from '../page/SearchResult'; // 검색 결과 페이지 추가
 import Favorites from '../page/Favorites'
+import { FavoritesProvider } from '../contexts/FavoritesContext'
 
 
 function App() {
   return (
-    <BrowserRouter>
-      <AuthProvider>
-        <Header />
-        <div id="body">
-          <Routes>
-            <Route path="/" element={<MainPage />} />
-            <Route path="/upload" element={<Upload />} />
-            <Route path="/news" element={<News />} />
-            <Route path="/people" element={<People />} />
-            <Route path="/politics" element={<Politics />} />
+    <FavoritesProvider>
+      <BrowserRouter>
+        <AuthProvider>
+          <Header />
+          <div id="body">
+            <Routes>
+              <Route path="/" element={<MainPage />} />
+              <Route path="/upload" element={<Upload />} />
+              <Route path="/news" element={<News />} />
+              <Route path="/people" element={<People />} />
+              <Route path="/politics" element={<Politics />} />
 
-            <Route path="/join" element={<Join />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/mypage" element={<MyPage />} />
-            <Route path="/updateuser" element={<UpdateUser />} />
-            <Route path="/deleteuser" element={<DeleteUser />} />
+              <Route path="/join" element={<Join />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/mypage" element={<MyPage />} />
+              <Route path="/updateuser" element={<UpdateUser />} />
+              <Route path="/deleteuser" element={<DeleteUser />} />
 
-            <Route path="/people/:id" element={<DetailPeople />} />
-            <Route path="/searchresult" element={<SearchResult />} />
-            <Route path="/favorites" element={<Favorites />} />
-          </Routes>
-        </div>
-      </AuthProvider>
-    </BrowserRouter>
+              <Route path="/people/:id" element={<DetailPeople />} />
+              <Route path="/searchresult" element={<SearchResult />} />
+              <Route path="/favorites" element={<Favorites />} />
+            </Routes>
+          </div>
+        </AuthProvider>
+      </BrowserRouter>
+    </FavoritesProvider>
   )
 }
 
