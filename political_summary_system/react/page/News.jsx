@@ -1,8 +1,9 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useContext } from 'react';
 import '../style/News.css';
 import { getNews } from '../auth/newsreq';
 import axios from 'axios';
 import { getSession } from '../auth/auth';
+import { FavoritesContext } from '../contexts/FavoritesContext';
 
 /* News.jsx - 뉴스 리스트 페이지 컴포넌트 설명: 데이터 fetching 및 카드 렌더링 역할 */
 
@@ -26,7 +27,7 @@ const News = () => {
     const [loading, setLoading] = useState(true); // 로딩 상태
     const gotoInputRef = useRef(); // 페이지 입력창 참조
     const [gotoPageInput, setGotoPageInput] = useState(String(1)); // 페이지 입력창 상태
-    const [favorites, setFavorites] = useState([]); // 즐겨찾기 상태 추가
+    const { favorites, setFavorites } = useContext(FavoritesContext); // Context로 즐겨찾기 관리
 
 
     // 컴포넌트 마운트 시 뉴스 데이터 가져오기
@@ -238,6 +239,7 @@ const News = () => {
                                     }
                                 }}
                             >
+                                <div className="pagination-goto-input-container">
                                 <input
                                     type="number"
                                     className="pagination-goto-input-bottom"
@@ -248,6 +250,7 @@ const News = () => {
                                     placeholder="이동할 페이지 입력"
                                 />
                                 <button type="submit" className="pagination-goto-btn">이동</button>
+                                </div>
                             </form>
                         )}
                         <div className="party-bottombar">

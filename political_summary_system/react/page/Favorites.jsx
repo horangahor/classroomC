@@ -1,167 +1,35 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
-import { getSession } from '../auth/auth';
-import '../style/Favorites.css';
-
-/* Favorites.jsx - 즐겨찾기 페이지: News 카드 스타일을 재사용하여 즐겨찾기 목록을 렌더링합니다. */
+import { FavoritesContext } from '../contexts/FavoritesContext';
 
 const Favorites = () => {
-    const [newsData, setNewsData] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [favorites, setFavorites] = useState([]);
+    const [response, setResponse] = useState(null);
+    const { favorites } = useContext(FavoritesContext); // Context에서 배열 받아옴
 
-    // DB 기반 즐겨찾기 로드 (News의 페이징 로직 재사용)
-    useEffect(() => {
-        const loadFavorites = async () => {
-            setLoading(true);
-            try {
-                const user = await getSession();
-                let favIds = [];
-                if (user && user.id) {
-                    // axios로 즐겨찾기 ID 배열 받아오기
-                    const res = await axios.post('http://localhost:8000/favor', {
-                        uid: user.id,
-                        nid: -1
-                    }, { withCredentials: true });
-                    favIds = Array.isArray(res.data) ? res.data.map(id => String(id)) : [];
-                }
-                setFavorites(favIds);
-
-                // 전체 뉴스 받아오기
-                let allNews = [];
-                try {
-                    const newsRes = await axios.get('/api/news/all', { withCredentials: true });
-                    if (Array.isArray(newsRes.data)) {
-                        allNews = newsRes.data;
-                    }
-                } catch (e) {
-                    console.warn('전체 뉴스 로드 실패', e);
-                }
-
-                // 즐겨찾기 ID와 매치되는 뉴스만 필터링
-                const favNews = allNews.filter(n => favIds.includes(String(n.news_identifier)));
-                setNewsData(favNews);
-            } catch (err) {
-                setFavorites([]);
-                setNewsData([]);
-            } finally {
-                setLoading(false);
-            }
-        };
-        loadFavorites();
-    }, []);
-
-    // 즐겨찾기 토글: 낙관적 UI 적용 후 DB에 동기화 (POST / DELETE)
-    const toggleFavorite = async (newsId) => {
-        const isFav = favorites.includes(newsId);
-
-        // 낙관적 업데이트
-        if (isFav) {
-            setFavorites(prev => prev.filter(id => id !== newsId));
-            setNewsData(prevNews => prevNews.filter(n => n.news_identifier !== newsId));
-        } else {
-            setFavorites(prev => [...prev, newsId]);
-            // 가능한 경우 서버에서 상세를 받아와 UI에 추가
-            try {
-                const res = await axios.get(`/api/news/${newsId}`, { withCredentials: true });
-                if (res.status === 200) {
-                    const detail = res.data;
-                    setNewsData(prev => [detail, ...prev]);
-                }
-            } catch (e) {
-                console.warn('즐겨찾기 추가시 뉴스 상세 로드 실패', e);
-            }
-        }
-
-        // DB 동기화
+    // 즐겨찾기 배열을 백엔드로 전송하는 함수
+    const sendFavoritesToBackend = async () => {
         try {
-            const url = '/api/users/me/favorites';
-            await fetch(url, {
-                method: isFav ? 'DELETE' : 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                credentials: 'include',
-                body: JSON.stringify({ newsId })
-            });
+            console.log('보낼 즐겨찾기 배열:', favorites); // 디버그: 배열 확인
+            const res = await axios.post('/api/users/me/favorites/bulk', { favorites }, { withCredentials: true });
+            setResponse(res.data);
+            console.log('백엔드 응답:', res.data); // 디버그: 응답 확인
         } catch (e) {
-            console.error('즐겨찾기 업데이트 실패, UI를 되돌립니다', e);
-            // 실패 시 간단 복원 (re-fetch 권장)
-            try {
-                const res = await fetch('/api/users/me/favorites', { credentials: 'include' });
-                if (res.ok) {
-                    const re = await res.json();
-                    const reIds = Array.isArray(re) && re.length > 0 && typeof re[0] === 'object' && re[0].news_identifier ? re.map(d=>d.news_identifier) : re;
-                    setFavorites(reIds || []);
-                }
-            } catch (e2) {
-                console.warn('복원 시도 실패', e2);
-            }
+            console.error('백엔드 전송 실패:', e);
         }
     };
 
-    const handleNewsClick = (url) => {
-        window.open(url, '_blank');
-    };
-
-    const getMeta = (idx) => {
-        const date = `2025-08-${String((idx % 28) + 1).padStart(2, '0')}`;
-        const source = ['연합뉴스', 'KBS', 'MBC', 'SBS', 'JTBC', '한겨레', '조선일보'][idx % 7];
-        const category = ['정치', '국회', '선거', '정책', '사회'][idx % 5];
-        return { date, source, category };
-    };
-
-    const favoriteNews = newsData.filter(n => favorites.includes(n.news_identifier));
+    useEffect(() => {
+        // 페이지 접근 시 즐겨찾기 배열값 콘솔 디버그
+        console.log('[Favorites 페이지 접근] 전달받은 favorites 배열:', favorites);
+        // 페이지 로드 시 자동 전송 (원하면 주석 해제)
+        // sendFavoritesToBackend();
+    }, [favorites]);
 
     return (
-        <div className="news-page favorites-page">
-            <div className="bg-con news-main-bg">
-                <div className="news-layout">
-                    <div className="news-main-content">
-                        <h1 className="news-h1">즐겨찾기</h1>
-
-                        {loading ? (
-                            <div className="loading-container"><div className="loading-spinner" /></div>
-                        ) : favoriteNews.length === 0 ? (
-                            <div className="no-news">
-                                <h3>즐겨찾기가 없습니다</h3>
-                                <p>뉴스 목록에서 별표(☆)를 눌러 즐겨찾기에 추가하세요.</p>
-                            </div>
-                        ) : (
-                            <div className="news-grid">
-                                {favoriteNews.map((news, idx) => {
-                                    const meta = getMeta(idx);
-                                    const isFavorite = favorites.includes(news.news_identifier);
-                                    return (
-                                        <div
-                                            className="news-card"
-                                            key={news.news_identifier}
-                                            onClick={() => handleNewsClick(news.url)}
-                                        >
-                                            <div className="news-content">
-                                                <div className="news-card-header">
-                                                    <h4 className="news-title">{news.title}</h4>
-                                                    <span className="news-meta-date">{meta.date}</span>
-                                                    <button
-                                                        className={`favorite-btn ${isFavorite ? 'active' : ''}`}
-                                                        onClick={(e) => { e.stopPropagation(); toggleFavorite(news.news_identifier); }}
-                                                        aria-label="즐겨찾기"
-                                                    >
-                                                        {isFavorite ? '★' : '☆'}
-                                                    </button>
-                                                </div>
-
-                                                <div className="news-card-body">
-                                                    <p className="news-summary">{news.summary}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        )}
-
-                    </div>
-                </div>
-            </div>
+        <div>
+            <button onClick={sendFavoritesToBackend}>즐겨찾기 배열 백엔드로 전송</button>
+            <pre>{JSON.stringify(favorites, null, 2)}</pre> {/* 디버그: 배열 시각화 */}
+            <pre>{JSON.stringify(response, null, 2)}</pre> {/* 디버그: 응답 시각화 */}
         </div>
     );
 };
