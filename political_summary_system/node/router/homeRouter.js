@@ -2,8 +2,9 @@ const express = require('express');
 const { join, login, update, remove } = require("../function/manageUser");
 const { getNewsList , favor, getFavor } = require("../database/newsQuery");
 const { sendEmail, generateRandomNumber , sendPwMail } = require("../function/sendMail");
-const { confirmQuery, giveCodeToTuple } = require("../database/userQuery");
+const { confirmQuery, giveCodeToTuple, changePwWithCode } = require("../database/userQuery");
 const sessionStore = require("../server");
+const crypto = require('crypto');
 const router = express.Router();
 
 function getSession(req, res) {
@@ -165,9 +166,17 @@ router.post('/find', async (req, res)=> {
 
 
 // 프론트에서 resetPw 페이지의 입력을 처리하는 라우터
-router.get('/resetPw', async (req, res)=>{
-    const {code} = req.query;
-    // await changePwWithCode(,code); // 코드 가지고 비번 바꾸기 
+router.post('/resetPw', async (req, res)=>{
+    try{
+        const {token, pw} = req.body;
+        const hashed_pw = crypto.createHash('sha256').update(pw).digest('base64');
+        await changePwWithCode(token,hashed_pw); // 코드 가지고 비번 바꾸기 
+
+        res.send("변경 성공")
+    }
+    catch(err){
+        console.error(err);
+    }
 })
 
 module.exports = router;
