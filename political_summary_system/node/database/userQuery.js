@@ -1,6 +1,6 @@
 // 이곳은 사용자들의 정보를 관리하는 페이지입니다.
 // 여기는 쿼리문만 써요.
-const pool = require("../db/db");
+const pool = require("./db");
 
 async function loginUser(id, pw){
     const conn = await pool.getConnection();

@@ -1,4 +1,4 @@
-const pool = require("../db/db");
+const pool = require("./db");
 
 async function insertMember(id, name, age, location, affiliation, profile_image_url, pledge){
     const conn = await pool.getConnection();
