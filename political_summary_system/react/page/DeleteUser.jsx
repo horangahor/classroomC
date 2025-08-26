@@ -23,7 +23,7 @@ const DeleteUser = () => {
         }))
     }
 
-    const { logout } = useAuth()
+    const { logout, currentUser } = useAuth()
 
     const handleSubmit = async (e) => {
         e.preventDefault()

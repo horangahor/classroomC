@@ -102,7 +102,7 @@ const People = () => {
         ))}
       </div>
     </div>
-  )
+  ) 
 }
 
 export default People
