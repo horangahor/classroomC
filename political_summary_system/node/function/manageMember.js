@@ -3,7 +3,7 @@ const { getMember } = require("../database/memberQuery");
 async function getMemberInfo(req, res) {
     try {
         const member = await getMember();
-        console.log("manageMember파일 ,  getMemberInfo함수");
+        // console.log("manageMember파일 ,  getMemberInfo함수");
         // console.log(member);
         
         

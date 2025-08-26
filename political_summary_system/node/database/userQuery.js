@@ -26,6 +26,15 @@ async function registerUser(id, pw, name, phnum, code){
         );
         return results;
     }
+    catch(err){
+        if(err.code == 'ER_DUP_ENTRY'){
+            const [result] = await conn.execute(
+                "update user set code = ? where uid = ? ",
+                [code, id]
+            );
+        }
+        
+    }
     finally {
         conn.release();
     }
