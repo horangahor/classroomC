@@ -20,7 +20,7 @@
     justify-content: center;
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
     padding: 20px;
-    background: var(--bg-secondary);
+    background: var(--custom-color-white);
 }
 
 .update-card {
@@ -122,9 +122,7 @@
 /* ================= 통합 오버라이드: UpdateUser.css ================ */
 /* 색상/배경/보더를 colors.css 변수로 통일 (레이아웃 변경 없음) */
 
-.update-container {
-  background-color: var(--bg-secondary);
-}
+
 
 .update-card {
   background-color: var(--bg-primary);

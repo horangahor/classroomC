@@ -240,16 +240,15 @@ const News = () => {
                                 }}
                             >
                                 <div className="pagination-goto-input-container">
-                                <input
-                                    type="number"
-                                    className="pagination-goto-input-bottom"
-                                    min={1}
-                                    max={totalPages}
-                                    value={gotoPageInput}
-                                    onChange={e => setGotoPageInput(e.target.value)}
-                                    placeholder="이동할 페이지 입력"
-                                />
-                                <button type="submit" className="pagination-goto-btn">이동</button>
+                                    <input
+                                        type="number"
+                                        className="pagination-goto-input-bottom"
+                                        min={1}
+                                        max={totalPages}
+                                        onChange={e => setGotoPageInput(e.target.value)}
+                                        placeholder="이동할 페이지 입력"
+                                    />
+                                    <button type="submit" className="pagination-goto-btn">이동</button>
                                 </div>
                             </form>
                         )}
