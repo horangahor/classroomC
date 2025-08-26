@@ -56,6 +56,7 @@
     flex: 1 1 350px;
     max-width: 600px;
     min-width: 180px;
+    height: 60px;
     margin: 0 24px;
     display: flex;
     align-items: center;
@@ -64,7 +65,6 @@
     border-radius: 10px;
     /* 살짝 둥글게 */
     overflow: hidden;
-    height: 48px;
     /* 높이 살짝 줄임 */
     background: var(--bg-primary);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
@@ -83,7 +83,7 @@
     padding: 8px 12px;
     /* 간격 축소 */
     outline: none;
-    font-size: 18px;
+    font-size: 28px;
     width: 100%;
     color: var(--text-primary);
     background: transparent;
@@ -95,7 +95,7 @@
 
 .search-input::placeholder {
     color: var(--text-tertiary);
-    font-size: 16px;
+    font-size: 28px;
     line-height: 1.2;
 }
 
@@ -140,7 +140,7 @@
 
 .nav-menu li {
     padding: 10px 16px;
-    font-size: 20px;
+    font-size: 28px;
     font-weight: 500;
     cursor: pointer;
     color: var(--text-secondary);
@@ -209,7 +209,7 @@
 
 .mypage-name {
     font-weight: 500;
-    font-size: var(--font-size-base);
+    font-size: 28px;
     color: var(--text-primary);
     letter-spacing: 0.5px;
 }

@@ -28,12 +28,15 @@ const News = () => {
     const [gotoPageInput, setGotoPageInput] = useState(String(1)); // 페이지 입력창 상태
     const [favorites, setFavorites] = useState([]); // 즐겨찾기 상태 추가
 
+
     // 컴포넌트 마운트 시 뉴스 데이터 가져오기
     useEffect(() => {
         setLoading(true);
         getNews(1).then(data => {
             setNewsData(data);
             setLoading(false);
+            toggleFavorite();
+            
         });
     }, []);
 
@@ -43,12 +46,12 @@ const News = () => {
     }, [currentPage]);
 
     // 로컬 스토리지에서 즐겨찾기 상태 불러오기
-    useEffect(() => {
-        const storedFavorites = localStorage.getItem('favorites');
-        if (storedFavorites) {
-            setFavorites(JSON.parse(storedFavorites));
-        }
-    }, []);
+    // useEffect(() => {
+    //     const storedFavorites = localStorage.getItem('favorites');
+    //     if (storedFavorites) {
+    //         setFavorites(JSON.parse(storedFavorites));
+    //     }
+    // }, []);
 
     // 현재 페이지에 표시할 뉴스 계산
     const indexOfLastNews = currentPage * newsPerPage;
@@ -151,31 +154,29 @@ const News = () => {
                             <div className="news-grid">
                                 {currentNews.map((news, idx) => {
                                     const meta = getMeta(idx + indexOfFirstNews);
-                                    const isFavorite = favorites.includes(news.news_identifier); // 개별 뉴스 ID 확인
+                                    const isFavorite = favorites.includes(news.news_identifier);
                                     return (
                                         <div
                                             className="news-card"
-                                            key={news.news_identifier} // 고유 ID 사용
+                                            key={news.news_identifier}
                                             onClick={() => handleNewsClick(news.url)}
                                         >
+                                            <button
+                                                className={`favorite-btn ${isFavorite ? 'active' : ''}`}
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    toggleFavorite(news.news_identifier);
+                                                }}
+                                                aria-label="즐겨찾기"
+                                            >
+                                                {isFavorite ? '★' : '☆'}
+                                            </button>
                                             <div className="news-content">
-                                                <div className="news-card-header">
-                                                    <h4 className="news-title">{news.title}</h4>
-                                                    <span className="news-meta-date">{meta.date}</span>
-                                                    <button
-                                                        className={`favorite-btn ${isFavorite ? 'active' : ''}`}
-                                                        onClick={(e) => {
-                                                            e.stopPropagation(); // 부모 클릭 이벤트 방지
-                                                            toggleFavorite(news.news_identifier); // 개별 뉴스 ID 전달
-                                                        }}
-                                                        aria-label="즐겨찾기"
-                                                    >
-                                                        {isFavorite ? '★' : '☆'}
-                                                    </button>
-                                                </div>
+                                                <h4 className="news-title">{news.title}</h4>
                                                 <div className="news-card-body">
                                                     <p className="news-summary">{news.summary}</p>
                                                 </div>
+                                                <span className="news-meta-date">{meta.date}</span>
                                             </div>
                                         </div>
                                     );
@@ -203,31 +204,7 @@ const News = () => {
                                     ))}
                                 </div>
                                 <div className="pagination-center">
-                                    <input
-                                        type="number"
-                                        className="pagination-goto-input pagination-current-input"
-                                        min={1}
-                                        max={totalPages}
-                                        value={gotoPageInput}
-                                        ref={gotoInputRef}
-                                        onChange={(e) => {
-                                            const raw = e.target.value;
-                                            setGotoPageInput(raw);
-                                        }}
-                                        onKeyDown={(e) => {
-                                            if (e.key === 'Enter') {
-                                                const val = Number(e.target.value);
-                                                if (!isNaN(val) && val >= 1 && val <= totalPages) {
-                                                    handleClick(val);
-                                                } else {
-                                                    setGotoPageInput(String(currentPage));
-                                                }
-                                            }
-                                        }}
-                                        onBlur={() => setGotoPageInput(String(currentPage))}
-                                        onFocus={(e) => e.target.select()}
-                                        aria-label="현재 페이지 입력"
-                                    />
+                                    <button className="pagination-current-btn" disabled>{currentPage}</button>
                                 </div>
                                 <div className="pagination-right">
                                     {rightList.map((page, idx) => (
@@ -248,6 +225,30 @@ const News = () => {
                                     &#62;
                                 </button>
                             </div>
+                        )}
+                        {/* 페이지네이션 하단에 별도 페이지 이동 input 추가 */}
+                        {totalPages > 1 && !loading && (
+                            <form
+                                className="pagination-goto-form-bottom"
+                                onSubmit={e => {
+                                    e.preventDefault();
+                                    const val = Number(gotoPageInput);
+                                    if (!isNaN(val) && val >= 1 && val <= totalPages) {
+                                        handleClick(val);
+                                    }
+                                }}
+                            >
+                                <input
+                                    type="number"
+                                    className="pagination-goto-input-bottom"
+                                    min={1}
+                                    max={totalPages}
+                                    value={gotoPageInput}
+                                    onChange={e => setGotoPageInput(e.target.value)}
+                                    placeholder="이동할 페이지 입력"
+                                />
+                                <button type="submit" className="pagination-goto-btn">이동</button>
+                            </form>
                         )}
                         <div className="party-bottombar">
                             <div className="party-bottombar-title">정당 공식 홈페이지 바로가기</div>

@@ -208,18 +208,38 @@
     }
 }
 
-@media (max-width: 1024px) {
-  :root {
-    font-size: 15px;
-  }
+/* 루트 폰트 사이즈: 데스크탑 최소 16px, 반응형 최소 12px 보장 */
+:root {
+  /* 기본 폰트 크기(데스크탑 기준) */
+  font-size: 16px;
 }
+
+/* 브레이크포인트별 폰트 조정 (통일된 기준: 768 / 480 / 290) */
 @media (max-width: 768px) {
   :root {
-    font-size: 13px;
+    /* 태블릿 / 작은 화면에서 약간 축소 (최소 12px 보장) */
+    font-size: 14px;
   }
 }
 @media (max-width: 480px) {
   :root {
-    font-size: 11px;
+    /* 모바일: 최소 12px */
+    font-size: 12px;
   }
+}
+@media (max-width: 290px) {
+  :root {
+    /* 초소형 화면에서도 12px 유지 */
+    font-size: 12px;
+  }
+}
+
+/* 보조 안전장치: html에 clamp를 적용해 브라우저 크기에 따라 폰트가 지나치게 작아지지 않도록 함
+   - 최소 12px, 권장범위(가변) 최대 18px */
+html {
+  font-size: clamp(12px, 1vw + 12px, 18px);
+}
+body {
+  /* rem 기반 스타일을 프로젝트 전체에서 일관되게 쓰기 위해 body 기본값은 1rem으로 둠 */
+  font-size: 1rem;
 }
