@@ -18,11 +18,6 @@
     }
 }
 
-@media (max-width: 480px) {
-    .favorites-page .news-grid {
-    }
-}
-
 @media (max-width: 290px) {
     .favorites-page .news-grid {
         gap: 8px;

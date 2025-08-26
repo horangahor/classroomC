@@ -8,7 +8,7 @@ const fs = require('fs');
 const path = require('path');
 const {insertMember, } = require('../database/memberQuery');
 const router = express.Router();
-const {insertNews} = require('../database/newsQuery');
+const {insertNews} = require('../database/newsfavQuery');
 
 
 // 파일 리더
