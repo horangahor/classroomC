@@ -52,6 +52,8 @@ const sendEmail = (email, code) => {
 
 // 비밀번호 리셋용 메일
 const sendPwMail = (email,code) => {
+  console.log("sendPwMail 보냄");
+  
   const verificationUrl = `http://localhost:5173/resetPw?token=${code}`; // 이걸 비밀번호 변경할 수 있도록 바꿔야할 듯, 프론트 입력창으로
   const mailOptions = {
     from: NODEMAILER_USER,
