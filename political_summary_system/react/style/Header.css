@@ -221,6 +221,60 @@
     display: inline-block;
 }
 
+/* ===== 헤더 2줄 구조 ===== */
+.header-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: var(--bg-primary);
+    border-bottom: 2px solid var(--border-light);
+}
+.header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 8px 16px 0 16px;
+    gap: 8px;
+}
+.header-bottom {
+    width: 100%;
+    padding: 0 16px 8px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 기존 #header, .logo, .nav-menu, .search-container 등은 .header-top, .header-bottom에 맞게 조정 필요 */
+
+@media (max-width: 768px) {
+    .header-top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        padding: 4px 8px 0 8px;
+    }
+    .header-bottom {
+        padding: 0 8px 6px 8px;
+    }
+}
+@media (max-width: 480px) {
+    .header-top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+        padding: 2px 4px 0 4px;
+    }
+    .header-bottom {
+        padding: 0 4px 4px 4px;
+    }
+}
+
 /* ===== 반응형 디자인 (통합된 브레이크포인트: 768 / 480 / 290) ===== */
 @media (max-width: 768px) {
     #header {

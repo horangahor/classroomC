@@ -117,9 +117,9 @@
 }
 
 .region-info-name {
-    font-size: 1.5rem;
+    font-size: 24px;
     margin-bottom: 10px;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .region-info-desc {
@@ -151,7 +151,7 @@
     position: absolute;
     top: 8px;
     right: 12px;
-    font-size: 2rem;
+    font-size: 40px;
     background: none;
     border: none;
     cursor: pointer;
@@ -159,6 +159,11 @@
     line-height: 1;
     color: #333;
     z-index: 2;
+}
+
+.region-info-close img {
+    width: 40px;
+    height: 40px;
 }
 
 
@@ -191,7 +196,7 @@
     padding: 16px 10px;
     transition: box-shadow 0.2s, transform 0.2s;
     margin-left: 0;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .person-card:hover {
@@ -217,7 +222,7 @@
     background: none;
     border: none;
     color: var(--text-primary, #0f172a);
-    font-size: 1.1rem;
+    font-size: 20px;
     font-weight: 600;
     cursor: pointer;
     padding: 0;
@@ -232,7 +237,7 @@
 
 .person-job {
     color: var(--text-secondary, #475569);
-    font-size: 0.95rem;
+    font-size: 18px;
     font-weight: 400;
 }
 
@@ -244,22 +249,17 @@
 
 /* ===== 지역 뉴스 리스트 및 뉴스 카드 스타일 ===== */
 .region-news-list {
-    margin-top: 32px;
+    margin-top: 20px;
     width: 100%;
     background: var(--custom-color-white);
     border-radius: 16px;
     padding: 24px 20px 12px 20px;
-    box-shadow: 0 2px 12px rgba(80, 80, 120, 0.07);
     max-height: 340px;
     /* 내부 스크롤을 위한 높이 제한 */
     overflow-y: auto;
     /* 내부 스크롤 활성화 */
 }
 
-/* ===== 뉴스 리스트 스크롤바 스타일 ===== */
-.region-news-list::-webkit-scrollbar {
-    width: 8px;
-}
 
 .region-news-list::-webkit-scrollbar-track {
     background: #f7f8fa;
@@ -276,11 +276,11 @@
 }
 
 .region-news-title {
-    font-size: 1.18rem;
-    font-weight: 600;
+    font-size: 24px;
+    font-weight: 500;
     color: var(--main-dark);
-    margin-bottom: 18px;
     letter-spacing: -0.5px;
+    margin-top: 10px;
 }
 
 .region-news-card {
@@ -316,7 +316,6 @@ a:visited,
 
 .region-news-meta {
     display: flex;
-    gap: 12px;
     font-size: 0.98rem;
     color: #6a6a8b;
     margin-bottom: 6px;
@@ -822,10 +821,7 @@ a:visited,
 }
 
 /* 인물 카드 */
-.person-card {
-    background-color: var(--card-bg);
-    border-color: var(--border-light);
-}
+
 
 .person-card:hover {
     box-shadow: var(--shadow-md);
@@ -856,9 +852,6 @@ a:visited,
 }
 
 /* 지역 뉴스 목록 & 카드 */
-.region-news-list {
-    background-color: var(--card-bg);
-}
 
 .region-news-title {
     color: var(--text-title);

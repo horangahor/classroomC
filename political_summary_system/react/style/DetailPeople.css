@@ -1,0 +1,435 @@
+/* Detail.css - 인물 상세 페이지 스타일: 카드, 이미지, 정보, 반응형 규칙 요약 */
+
+/* ===== 폰트 및 컬러 변수 불러오기 ===== */
+@import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
+@import './colors.css';
+
+/* ===== 전체 컨테이너 및 카드 레이아웃 ===== */
+
+/* 전역 폰트 및 스타일 초기화 */
+* {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    font-style: normal;
+}
+
+/* 상세페이지 전체 배경 및 메인 컨테이너 */
+.detailpeople-page-bg {
+  min-height: 100vh;
+  background: var(--bg-secondary, #f7f8fa);
+  padding-top: 90px;
+}
+
+.detailpeople-main-bg {
+  background: var(--bg-primary, #fff);
+  border-radius: 24px;
+  max-width: 700px;
+  margin: 0 auto 40px auto;
+  padding: 40px 32px 32px 32px;
+  border: 1.5px solid var(--border-light, #e2e8f0);
+  box-sizing: border-box;
+}
+
+/* ===== 타이틀/서브타이틀/공약 리스트 ===== */
+
+/* 상단 돌아가기 버튼 */
+.detailpeople-back-btn {
+  background: none;
+  border: none;
+  color: var(--political-blue, #1e40af);
+  font-size: 1rem;
+  margin-bottom: 24px;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* 상세 페이지 메인 컨테이너 - 이미지와 정보를 가로로 배치하는 플렉스 레이아웃 */
+.detail-container {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2xl);
+  padding: var(--space-2xl);
+  min-height: 300px;
+}
+
+/* 상세 페이지 이미지 - 정치인 프로필 사진 */
+.detail-img {
+  width: 300px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 0 !important;
+  margin-bottom: 0;
+  border: 2px solid var(--bg-primary);
+  flex-shrink: 0;
+}
+
+/* 상세 정보 영역 - 정치인의 텍스트 정보를 담는 컨테이너 */
+.detail-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.detailpeople-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  justify-content: flex-start;
+  position: relative;
+  min-height: 220px;
+  padding: 24px 0;
+}
+
+.people-img.detail {
+  width: 180px;
+  height: 220px;
+  border-radius: 12px !important;
+  border: 3px solid var(--political-blue, #1e40af) !important;
+  object-fit: cover;
+  background: #f1f5f9;
+  margin: 0 32px 0 0;
+  box-shadow: 0 4px 16px 0 rgba(30,64,175,0.08);
+  align-self: flex-start;
+  flex-shrink: 0;
+}
+
+.detail-people-info {
+  flex: 1 1 0;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 12px;
+}
+
+/* ===== 카드/버튼/공약 등 상세 스타일 ===== */
+
+.detailpeople-main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 8px 0 4px 0;
+  border-bottom: 1px solid var(--border-light, #e2e8f0);
+}
+.detailpeople-main:last-child {
+  border-bottom: none;
+}
+.detailpeople-label {
+  font-weight: 600;
+  color: var(--political-blue, #1e40af);
+  font-size: 1rem;
+}
+.detailpeople-value {
+  font-size: 1.05rem;
+  color: var(--text-primary, #22223b);
+  word-break: break-all;
+}
+
+.detailpeople-extra {
+  margin-top: 18px;
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 16px 18px 12px 18px;
+  border: 1px solid var(--border-light, #e2e8f0);
+}
+.detailpeople-extra-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--political-blue, #1e40af);
+  margin-bottom: 10px;
+}
+.detailpeople-extra-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.person-detail-value {
+  background: #e0e7ef;
+  color: #334155;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 0.98rem;
+  margin-bottom: 4px;
+  word-break: break-all;
+}
+
+/* 주요 필드 그리드 레이아웃 및 공약(pledge) 스타일 추가 */
+.detailpeople-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 18px 32px;
+  margin-bottom: 24px;
+}
+
+/* 인물 이미지 크기 확대 및 뒤로가기 버튼 스타일 개선 */
+.people-img.detail {
+  width: 180px;
+  height: 220px;
+  border-radius: 12px !important;
+  border: 3px solid var(--political-blue, #1e40af) !important;
+  object-fit: cover;
+  background: #f1f5f9;
+  margin-bottom: 0;
+  box-shadow: 0 4px 16px 0 rgba(30,64,175,0.08);
+}
+
+/* 목록으로 버튼: 배경 없이 글씨만 컬러, hover 효과 */
+.people-back-btn {
+  background: none;
+  color: var(--political-blue, #1e40af);
+  border: none;
+  border-radius: 0;
+  font-size: 1.08rem;
+  font-weight: 600;
+  padding: 0 0 8px 0;
+  margin-bottom: 24px;
+  cursor: pointer;
+  box-shadow: none;
+  transition: color 0.18s;
+  border-bottom: 2px solid transparent;
+}
+.people-back-btn:hover {
+  color: #233876;
+  border-bottom: 2px solid #233876;
+}
+
+/* 정당별 이미지 border 색상 (DetailPeople 전용) */
+.detailpeople-affiliation-국민의힘 .people-img.detail {
+  border-color: #e61e2b !important;
+}
+.detailpeople-affiliation-더불어민주당 .people-img.detail {
+  border-color: #1877c9 !important;
+}
+.detailpeople-affiliation-정의당 .people-img.detail {
+  border-color: #ffcb08 !important;
+}
+.detailpeople-affiliation-무소속 .people-img.detail {
+  border-color: #222 !important;
+}
+
+/* ================= 통합 오버라이드: Detail.css (중복 정의 정리) ================ */
+
+.detailpeople-page-bg,
+.detailpeople-main-bg {
+  background-color: var(--bg-secondary);
+}
+
+.detailpeople-main-bg {
+  background-color: var(--bg-primary);
+  border-color: var(--border-light);
+}
+
+.detail-img,
+.people-img.detail {
+  background-color: var(--image-bg);
+  border-color: var(--political-blue);
+}
+
+.detailpeople-extra,
+.person-detail-value {
+  background-color: var(--bg-muted);
+}
+
+.detailpeople-label {
+  color: var(--political-blue);
+}
+
+.detailpeople-value {
+  color: var(--text-primary);
+}
+
+/* ========================================================================== */
+
+/* ===== 반응형 디자인 (이미지 크기 보정 포함) ===== */
+@media (max-width: 1024px) {
+  .detail-people-container {
+    flex-direction: column;
+    gap: 18px;
+    align-items: center;
+  }
+  /* 데스크탑 -> 태블릿 전환 시 이미지 약간 축소 */
+  .detail-img {
+    width: 240px;
+    height: 320px;
+  }
+  .people-img.detail {
+    width: 160px;
+    height: 200px;
+  }
+  .detail-people-info {
+    font-size: 0.98rem;
+  }
+}
+@media (max-width: 768px) {
+  .detailpeople-main-bg {
+    padding: 12px 10px; /* 패딩 축소 */
+    max-width: calc(100% - 20px);
+    margin: 0 auto 24px auto;
+  }
+  .detail-container {
+    padding: 12px;
+    gap: 16px;
+    flex-direction: column;
+  }
+  /* 태블릿에서 이미지 크기 더 줄임(레이아웃 보존) */
+  .detail-img {
+    width: 200px;
+    height: 260px;
+  }
+  .people-img.detail {
+    width: 140px;
+    height: 180px;
+  }
+  .detailpeople-back-btn,
+  .people-back-btn {
+    display: inline-block;
+    width: auto;
+    white-space: normal; /* 줄바꿈 허용 */
+    word-break: break-word;
+    font-size: 0.98rem;
+    margin-bottom: 12px;
+    padding: 0;
+  }
+
+  .detail-wrapper {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .detail-image {
+    max-height: 360px;
+  }
+}
+@media (max-width: 480px) {
+  .detail-container,
+  .detailpeople-container,
+  .detail-people-container {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px;
+    padding: 8px !important;
+    box-sizing: border-box;
+  }
+  .detail-img,
+  .people-img.detail {
+    order: 0;
+    width: 100% !important;
+    max-width: 220px !important;
+    height: auto !important;
+    object-fit: cover;
+    margin: 0 auto 8px auto;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    flex-shrink: 0;
+  }
+  .detail-info,
+  .detail-people-info {
+    order: 1;
+    width: 100% !important;
+    padding: 0 6px !important;
+    box-sizing: border-box;
+    text-align: left !important;
+  }
+  .detailpeople-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px 12px;
+  }
+  .detailpeople-main-bg {
+    padding: 8px 8px !important;
+    max-width: calc(100% - 16px) !important;
+  }
+  .detailpeople-main,
+  .detailpeople-extra { width: 100% !important; box-sizing: border-box; }
+  .detail-wrapper {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 6px;
+  }
+  .detail-image {
+    order: -1;
+    width: 100%;
+    margin: 0 auto;
+    max-height: 220px;
+    object-fit: contain;
+  }
+  .detail-content {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+}
+@media (max-width: 290px) {
+  /* 보강: 가능한 클래스 이름 변형들을 모두 포함하여 강제로 세로 스택 적용 */
+  .detail-container,
+  .detailpeople-container,
+  .detail-people-container {
+    display: flex !important;
+    flex-direction: column !important; /* 좌우 분할을 없애고 세로로 쌓음 */
+    align-items: stretch !important;   /* 이미지/텍스트가 컨테이너 폭을 사용하도록 */
+    gap: 10px;
+    padding: 6px !important;
+    box-sizing: border-box;
+  }
+
+  /* 사진은 상단에 중앙으로 표시, 폭 제한을 걸어 넘치지 않게 함 */
+  .detail-img,
+  .people-img.detail {
+    order: 0;
+    width: 100% !important;      /* 컨테이너 폭에 맞춰 축소 */
+    max-width: 220px !important; /* 너무 커지지 않도록 제한 */
+    height: auto !important;
+    object-fit: cover;
+    margin: 0 auto 8px auto; /* 위에 이미지, 아래에 텍스트 간격 확보 */
+    border-radius: 12px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    flex-shrink: 0;
+  }
+
+  /* 텍스트 컨테이너는 전체 너비를 차지하게 하여 이미지 아래로 내려가게 함 */
+  .detail-info,
+  .detail-people-info,
+  .detail-people-info {
+    order: 1;
+    width: 100% !important;
+    padding: 0 6px !important;
+    box-sizing: border-box;
+    text-align: left !important;
+  }
+
+  /* 그리드 항목도 단일 컬럼으로 변경하여 가로 오버플로우 방지 */
+  .detailpeople-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px 12px;
+  }
+
+  .detailpeople-main-bg {
+    padding: 8px 8px !important;
+    max-width: calc(100% - 16px) !important;
+  }
+
+  .detailpeople-main,
+  .detailpeople-extra { width: 100% !important; box-sizing: border-box; }
+
+  .detail-wrapper {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 6px;
+  }
+
+  /* 이미지가 텍스트 위로 오도록 강제, 중앙 정렬 */
+  .detail-image {
+    order: -1;
+    width: 100%;
+    margin: 0 auto;
+    max-height: 220px;
+    object-fit: contain;
+  }
+
+  .detail-content {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+}

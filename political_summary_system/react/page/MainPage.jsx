@@ -1,4 +1,3 @@
-
 import React, { useRef, useEffect, useState, useCallback } from 'react'
 import axios from 'axios'
 import { ReactComponent as KrMap } from '../assets/kr.svg'
@@ -355,7 +354,15 @@ const MainPage = () => {
             {/* 지역 선택 시: 정치인/뉴스 정보 박스 */}
             {selectedRegion && (
               <div className="region-info-box fade-in">
-
+                <button
+                  className="region-info-close"
+                  aria-label="닫기"
+                  onClick={() => {
+                    setSelectedRegion(null);
+                    setPeople([]);
+                  }}
+                ><img src= "https://img.icons8.com/?size=100&id=9433&format=png&color=000000"/>
+                </button>
                 <p className="region-info-name">{getRegionName(selectedRegion)}</p>
 
                 <p className='region-info-name'>정치인 정보</p>
@@ -401,9 +408,9 @@ const MainPage = () => {
                 <small className="region-info-desc">
                   {people.length}명의 정치인이 표시되고 있습니다.
                 </small>
+                  <h4 className="region-news-title">지역 뉴스</h4>
                 {/* 지역별 뉴스 출력 */}
                 <div className="region-news-list">
-                  <h4 className="region-news-title">지역 뉴스</h4>
                   {regionNews.length > 0 ? (
                     regionNews.map(newsItem => {
                       // 내용 필드 추출: description, summary, content, body 등 우선순위
@@ -411,14 +418,14 @@ const MainPage = () => {
                       return (
                         <div key={newsItem.id} className="region-news-card">
                           <a href={newsItem.url} target="_blank" rel="noopener noreferrer" className="region-news-link">
-                            <div className="region-news-meta">
-                              <span className="region-news-source">{newsItem.source || newsItem.media}</span>
-                              <span className="region-news-date">{newsItem.date || newsItem.pubDate}</span>
-                            </div>
                             <div className="region-news-title-txt">{newsItem.title}</div>
                             {content && (
                               <div className="region-news-content">{content}</div>
                             )}
+                            <div className="region-news-meta">
+                              <span className="region-news-source">{newsItem.source || newsItem.media}</span>
+                              <span className="region-news-date">{newsItem.date || newsItem.pubDate}</span>
+                            </div>
                           </a>
                         </div>
                       )
