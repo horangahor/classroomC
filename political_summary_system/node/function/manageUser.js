@@ -65,7 +65,8 @@ async function update(id, name, phnum, cpw, npw) { // req, res를 제거하고 �
 // 회원탈퇴 기능
 async function remove(req, session) {
     const { pw } = req.body;
-        const result = await deleteuser(session.id, session.name , pw);
+    const hashed_pw = crypto.createHash('sha256').update(pw).digest('base64');
+        const result = await deleteuser(session.id, session.name , hashed_pw);
 }
 
 module.exports = {join, login, update, remove};
