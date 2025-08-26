@@ -20,7 +20,7 @@ const Login = () => {
     const { name, value } = e.target
     setFormData(prev => ({
       ...prev,
-      [name]: value
+      [name]: value 
     }))
   }
 
@@ -76,6 +76,9 @@ const Login = () => {
           </button>
         </form>
 
+        <div className="join-link">
+          <p>비밀번호를 잊으셨나요?<Link to="/findpassword">비밀번호 찾기</Link></p>
+        </div>
         <div className="join-link">
           <p>계정이 없으신가요? <Link to="/join">회원가입</Link></p>
         </div>

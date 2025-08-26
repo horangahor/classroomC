@@ -10,6 +10,7 @@ import MainPage from '../page/MainPage'
 
 import Join from '../page/Join'
 import Login from '../page/Login'
+import FindPassword from '../page/FindPassword'
 import MyPage from '../page/MyPage'
 import UpdateUser from '../page/UpdateUser'
 import DeleteUser from '../page/DeleteUser'
@@ -37,6 +38,7 @@ function App() {
 
               <Route path="/join" element={<Join />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/findpassword" element={<FindPassword />} />
               <Route path="/mypage" element={<MyPage />} />
               <Route path="/updateuser" element={<UpdateUser />} />
               <Route path="/deleteuser" element={<DeleteUser />} />
