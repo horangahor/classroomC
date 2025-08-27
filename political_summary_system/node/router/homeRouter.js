@@ -32,11 +32,11 @@ router.get('/', getSession);
 
 router.post('/join', async (req, res) => {
     try{
-        const code = await generateRandomNumber(10);
-        const {id} = req.body;
+        const code = await generateRandomNumber(10); // 난수 코드 만들기 (튜플에 저장되는 임시 code column)
+        const {id} = req.body; 
 
-        const result = await join(req, code); // 여기서 가계정을 만듦 
-        sendEmail(id , code);
+        const result = await join(req, code); // 여기서 가계정을 만듦 이 때, isVerified = 'N' 값이 되어 있음 
+        sendEmail(id , code);                 // 계정을 활성화하는 email 보내기
         res.send("회원가입 페이지입니다.");
     }
     catch(err){
@@ -155,15 +155,20 @@ router.post('/favor', async (req, res) => {
 router.post('/find', async (req, res)=> {
     console.log(req.body);
     
-    const { email, name } = req.body;
-    const code = generateRandomNumber(10); // 튜플을 인식하는 임시 코드를 발급
-    await giveCodeToTuple(email, name, code); // 튜플에 임시 코드 부여
-    await sendPwMail(email,code);
-    res.send("hi");
+    try{
+        const { email, name } = req.body;
+        const code = generateRandomNumber(10); // 튜플을 인식하는 임시 코드를 발급
+        await giveCodeToTuple(email, name, code); // 튜플에 임시 코드 부여 , 패스키
+        await sendPwMail(email,code); // 비밀 번호 변경 메일 보내기 
+        res.status(200).send("성공");
+    }
+    catch(err){
+        res.status(500).send(err);
+    }
 })
 //문제는 비밀번호 변경 메일의 주소를 외워서 아무나 접근할 수 있다면?
 // => 코드를 발급해줬으니까 코드를 발급받은 대상이 없다면 실패하도록?
-
+// 똑같이 유효기간은 존재하지 않음 , 비밀번호 변경 메일은 계속해서 보낼 수 있음
 
 router.get('/favorites', async (req, res) => {
     try {
