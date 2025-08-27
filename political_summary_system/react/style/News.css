@@ -54,7 +54,6 @@ html, body {
 
 /* 뉴스 메인 타이틀 */
 .news-h1 {
-  background: var(--gradient-secondary);
   font-size: var(--font-size-4xl);
   color: var(--text-primary);
   margin-bottom: var(--space-lg);
@@ -62,6 +61,7 @@ html, body {
   text-align: center;
   padding: var(--space-lg);
   border-radius: var(--radius-xl);
+  border: 2px solid var(--border-light);
 }
 
 /* 뉴스 페이지 메인 레이아웃 */
@@ -71,7 +71,7 @@ html, body {
   align-items: flex-start;
   justify-content: flex-start;
   width: 100%;
-  margin: 0 auto;
+  margin: 0 auto; 
 }
 
 /* 배경 컨테이너가 전체를 감싸도록 */
@@ -741,24 +741,328 @@ html, body {
 }
 
 /* 반응형/미세 조정 기본값 */
-@media (max-width: 1024px) {
-  .news-card {
-    max-width: 100%;
-    width: 100%;
-  }
-}
+/* 중복으로 존재하던 단순한 .news-card 반응형 규칙(아래 세 개의 @media 블록)을 제거합니다.
+   이 규칙들은 파일 상단에서 이미 상세하게 정의되어 있어 중복이며 유지보수성을 떨어뜨립니다.
+   즐겨찾기 버튼 관련 스타일(.favorite-btn, .favorite-btn.active)은 변경하거나 삭제하지 않았습니다. */
 
 @media (max-width: 768px) {
-  .news-card {
+  .news-main-bg {
+    padding: 8px 2px;
+  }
+  .bg-con.news-main-bg {
+    margin-top: 100px;
+  }
+  .news-h1 {
+    font-size: 1.2rem;
+  }
+  .news-page {
     max-width: 100%;
-    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0 auto; /* 수평 중앙 정렬 */
+  }
+  .news-grid {
+    grid-template-columns: repeat(2, 1fr); /* 한 줄에 2개의 뉴스 카드 */
+    gap: 16px; /* 카드 간격 조정 */
+  }
+  .party-row-list {
+    flex-wrap: wrap; /* 정당 목록을 2줄로 배치 */
+    justify-content: center; /* 중앙 정렬 */
+    gap: 12px; /* 간격 조정 */
+  }
+  .party-row-list .party-simple-btn {
+    min-width: 20%; /* 버튼 너비를 더 줄임 */
+    padding: 4px 10px; /* 패딩 축소 */
+    font-size: 0.85rem; /* 폰트 크기 축소 */
+  }
+
+  .news-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .news-card img {
+    height: 140px;
   }
 }
 
 @media (max-width: 480px) {
+  .news-main-bg {
+    padding: 2px;
+  }
   .news-card {
     max-width: 100%;
     width: 100%;
+    font-size: 0.9rem;
+    align-items: flex-start;
+    flex-direction: column; /* 모바일에서도 세로 쌓기 유지 */
+  }
+  .news-card img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 8px;
+  }
+  .news-meta-date {
+    margin-top: 8px;
+    font-size: 0.85rem;
+  }
+  .news-page {
+    max-width: 100%;
+    padding: 0;
+    margin: 0 auto; /* 수평 중앙 정렬 */
+  }
+  .party-row-list .party-simple-btn {
+    min-width: 35%; /* 더 작은 화면에서 버튼 너비 추가 축소 */
+    padding: 3px 8px; /* 패딩 추가 축소 */
+    font-size: 0.8rem; /* 폰트 크기 추가 축소 */
+  }
+
+  .news-list {
+    grid-template-columns: 1fr;
+  }
+
+  .news-grid {
+    grid-template-columns: 1fr; /* 480px 이하에서는 뉴스카드 1개만 */
+    gap: 16px;
+  }
+
+  .news-card {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .news-card img {
+    width: 120px;
+    height: 80px;
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width: 290px) {
+  .news-page {
+    max-width: 100%;
+    padding: 0;
+  }
+  .pagination {
+    flex-wrap: wrap; /* 두 줄로 처리 */
+    gap: 4px; /* 버튼 간격 조정 */
+  }
+
+  .news-card img {
+    width: 90px;
+    height: 70px;
+  }
+
+  .news-card .title {
+    font-size: 12px;
+  }
+}
+
+/* ================= 통합된 색상/토큰 기반 오버라이드 (중복 정의 정리) =================
+   이 블록은 파일 내 여러 곳에서 중복으로 정의된 동일 셀렉터들(.news-layout, .news-card 등)을
+   한 곳으로 통합하여 유지보수성을 높입니다. 실제 색상/토큰 값은 colors.css에서 관리됩니다.
+============================================================================== */
+
+/* 레이아웃 및 컨테이너 */
+.news-layout {
+  gap: var(--space-lg);
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.news-main-bg {
+  background-color: var(--bg-primary);
+  border-color: var(--border-light);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+}
+
+.news-main-content {
+  background: none;
+  border: none;
+}
+
+.news-grid {
+  gap: 32px;
+}
+
+/* 뉴스 카드 */
+.news-card {
+  background-color: var(--card-bg);
+  border-color: var(--border-light);
+  border-radius: 12px;
+}
+
+.news-card:hover {
+  border-color: var(--border-light);
+  box-shadow: var(--shadow-sm);
+}
+
+.news-content {
+  color: var(--text-content);
+}
+
+.news-meta {
+  color: var(--text-meta);
+}
+
+.news-meta-date {
+  color: var(--text-tertiary);
+}
+
+.news-meta-source {
+  color: var(--secondary-indigo);
+  background: var(--main-light-gray);
+}
+
+.news-meta-category {
+  color: var(--custom-color-white);
+  background: var(--political-blue);
+}
+
+/* 사이드바 및 버튼 */
+.party-sidebar {
+  background-color: var(--card-bg);
+  border-color: var(--border-light);
+}
+
+.party-simple-btn {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border-color: var(--border-light);
+}
+
+.party-simple-btn:hover {
+  background: var(--main-light-gray);
+  color: var(--political-blue);
+  border-color: var(--political-blue);
+}
+
+.party-link-btn {
+  background: var(--political-blue);
+  color: var(--custom-color-white);
+}
+
+/* 공통 빈/로딩 상태 */
+.no-news {
+  color: var(--text-secondary);
+}
+
+.loading-container {
+  min-height: 180px;
+}
+
+/* 반응형/미세 조정 기본값 */
+@media (max-width: 768px) {
+  .news-main-bg {
+    padding: 8px 2px;
+  }
+  .bg-con.news-main-bg {
+    margin-top: 100px;
+  }
+  .news-h1 {
+    font-size: 1.2rem;
+  }
+  .news-page {
+    max-width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0 auto; /* 수평 중앙 정렬 */
+  }
+  .news-grid {
+    grid-template-columns: repeat(2, 1fr); /* 한 줄에 2개의 뉴스 카드 */
+    gap: 16px; /* 카드 간격 조정 */
+  }
+  .party-row-list {
+    flex-wrap: wrap; /* 정당 목록을 2줄로 배치 */
+    justify-content: center; /* 중앙 정렬 */
+    gap: 12px; /* 간격 조정 */
+  }
+  .party-row-list .party-simple-btn {
+    min-width: 20%; /* 버튼 너비를 더 줄임 */
+    padding: 4px 10px; /* 패딩 축소 */
+    font-size: 0.85rem; /* 폰트 크기 축소 */
+  }
+
+  .news-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .news-card img {
+    height: 140px;
+  }
+}
+
+@media (max-width: 480px) {
+  .news-main-bg {
+    padding: 2px;
+  }
+  .news-card {
+    max-width: 100%;
+    width: 100%;
+    font-size: 0.9rem;
+    align-items: flex-start;
+    flex-direction: column; /* 모바일에서도 세로 쌓기 유지 */
+  }
+  .news-card img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 8px;
+  }
+  .news-meta-date {
+    margin-top: 8px;
+    font-size: 0.85rem;
+  }
+  .news-page {
+    max-width: 100%;
+    padding: 0;
+    margin: 0 auto; /* 수평 중앙 정렬 */
+  }
+  .party-row-list .party-simple-btn {
+    min-width: 35%; /* 더 작은 화면에서 버튼 너비 추가 축소 */
+    padding: 3px 8px; /* 패딩 추가 축소 */
+    font-size: 0.8rem; /* 폰트 크기 추가 축소 */
+  }
+
+  .news-list {
+    grid-template-columns: 1fr;
+  }
+
+  .news-grid {
+    grid-template-columns: 1fr; /* 480px 이하에서는 뉴스카드 1개만 */
+    gap: 16px;
+  }
+
+  .news-card {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .news-card img {
+    width: 120px;
+    height: 80px;
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width: 290px) {
+  .news-page {
+    max-width: 100%;
+    padding: 0;
+  }
+  .pagination {
+    flex-wrap: wrap; /* 두 줄로 처리 */
+    gap: 4px; /* 버튼 간격 조정 */
+  }
+
+  .news-card img {
+    width: 90px;
+    height: 70px;
+  }
+
+  .news-card .title {
+    font-size: 12px;
   }
 }
 

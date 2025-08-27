@@ -1,6 +1,6 @@
 const express = require('express');
 const { join, login, update, remove } = require("../function/manageUser");
-const { getNewsList , favor, getFavor } = require("../database/newsQuery");
+const { getNewsList , favor, getFavor, getFavoriteNewsByUser } = require("../database/newsfavQuery");
 const { sendEmail, generateRandomNumber , sendPwMail } = require("../function/sendMail");
 const { confirmQuery, giveCodeToTuple, changePwWithCode } = require("../database/userQuery");
 const sessionStore = require("../server");
@@ -164,6 +164,22 @@ router.post('/find', async (req, res)=> {
 //문제는 비밀번호 변경 메일의 주소를 외워서 아무나 접근할 수 있다면?
 // => 코드를 발급해줬으니까 코드를 발급받은 대상이 없다면 실패하도록?
 
+
+router.get('/favorites', async (req, res) => {
+    try {
+        const userId = req.session.user?.id || req.query.uid;
+        console.log('[favorites API] userId:', userId);
+        if (!userId) {
+            return res.status(401).json({ error: '로그인 필요' });
+        }
+        const newsList = await getFavoriteNewsByUser(userId);
+        console.log('[favorites API] newsList:', newsList);
+        res.json(newsList);
+    } catch (err) {
+        console.error("/favorites API 에러", err);
+        res.status(500).json({ error: '서버 에러' });
+    }
+});
 
 // 프론트에서 resetPw 페이지의 입력을 처리하는 라우터
 router.post('/resetPw', async (req, res)=>{
