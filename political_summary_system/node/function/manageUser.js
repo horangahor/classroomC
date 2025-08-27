@@ -1,5 +1,4 @@
 const { loginUser, registerUser, updateuser, deleteuser } = require('../database/userQuery');
-const jwt = require("jsonwebtoken");
 const crypto = require('crypto');
 
 // 회원가입
