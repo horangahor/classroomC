@@ -15,9 +15,15 @@ const Favorites = () => {
         setError(null);
         try {
             const userRes = await axios.get('http://localhost:8000/favorites', { withCredentials: true });
+            if (userRes.data && userRes.data.errorCode) {
+                throw new Error(userRes.data.message || '즐겨찾기 조회 실패');
+            }
             if (Array.isArray(userRes.data)) {
                 setFavoriteNews(userRes.data);
                 setFavorites(userRes.data.map(n => n.news_identifier));
+            } else if (userRes.data && userRes.data.success && userRes.data.data) {
+                setFavoriteNews(userRes.data.data);
+                setFavorites(userRes.data.data.map(n => n.news_identifier));
             } else {
                 setFavoriteNews([]);
                 setFavorites([]);

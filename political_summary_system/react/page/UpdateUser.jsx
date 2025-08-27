@@ -112,12 +112,20 @@ const UpdateUser = () => {
             })
             .then ((res) =>{
                 // 수정 처리 로직 (실제로는 API 호출)
-                alert(res.data.message || '회원정보가 수정되었습니다!')
-                navigate('/mypage')
+                // 백엔드가 표준화된 응답을 보낼 수 있으므로 확인
+                if (res.data && res.data.errorCode) {
+                    alert(res.data.message || '회원정보 수정에 실패했습니다.');
+                } else if (res.data && res.data.success === false) {
+                    alert(res.data.message || '회원정보 수정에 실패했습니다.');
+                } else {
+                    alert(res.data.message || '회원정보가 수정되었습니다!')
+                    navigate('/mypage')
+                }
             })
             .catch((err)=>{
                 console.error(err);
-                alert(err.response?.data?.message || "회원정보 수정에 실패했습니다.")
+                const serverMsg = err.response?.data?.message;
+                alert(serverMsg || err.message || "회원정보 수정에 실패했습니다.")
             })
     }
 

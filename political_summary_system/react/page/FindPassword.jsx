@@ -12,22 +12,24 @@ const FindPassword = () => {
         e.preventDefault();
         setLoading(true);
         setMessage('');
-        // 실제 비밀번호 찾기 API 연동 필요
         try {
-            axios.post(import.meta.env.VITE_FIND_SERVER, {
-                email : email,
-                name : name
-            })
-                 .then((res)=>{
-                    
-                 })
-                 .catch((err)=>{
+            const res = await axios.post(import.meta.env.VITE_FIND_SERVER, {
+                email: email,
+                name: name
+            });
 
-                 })
-            // 예시: await axios.post('/api/find-password', { name, email });
-            setMessage('비밀번호 찾기 요청이 접수되었습니다. 이메일을 확인해 주세요.');
+            // 백엔드 표준 응답 처리
+            if (res.data && res.data.errorCode) {
+                setMessage(res.data.message || '요청에 실패했습니다.');
+            } else if (res.data && res.data.success === false) {
+                setMessage(res.data.message || '요청에 실패했습니다.');
+            } else {
+                setMessage(res.data?.message || '비밀번호 찾기 요청이 접수되었습니다. 이메일을 확인해 주세요.');
+            }
         } catch (err) {
-            setMessage('비밀번호 찾기 요청에 실패했습니다. 다시 시도해 주세요.');
+            console.error(err);
+            const serverMsg = err.response?.data?.message;
+            setMessage(serverMsg || '비밀번호 찾기 요청에 실패했습니다. 다시 시도해 주세요.');
         } finally {
             setLoading(false);
         }

@@ -61,13 +61,23 @@ export const AuthProvider = ({ children }) => {
             });
 
             console.log("로그인 응답:", response);
-            
+
+            // 백엔드가 표준화된 에러 오브젝트를 반환할 수 있으므로 검사
+            if (response.data && (response.data.errorCode || response.data.success === false)) {
+                return { success: false, message: response.data.message || '로그인 실패' };
+            }
+
             // 로그인 성공 후 세션 다시 확인
             await checkSession();
-            
-            return { success: true, message: '로그인 성공!' };
+            return { success: true, message: response.data?.message || '로그인 성공!' };
         } catch (error) {
             console.error('로그인 오류:', error);
+            // 서버가 에러 객체를 반환한 경우 메시지 우선 사용
+            const serverMessage = error.response?.data?.message;
+            const serverCode = error.response?.data?.errorCode;
+            if (serverMessage) {
+                return { success: false, message: serverMessage, errorCode: serverCode };
+            }
             return { 
                 success: false, 
                 message: error.response?.status === 401 ? '로그인 실패' : '서버 오류가 발생했습니다.' 
