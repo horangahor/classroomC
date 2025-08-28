@@ -1,6 +1,9 @@
 // 이곳은 사용자들의 정보를 관리하는 페이지입니다.
 // 여기는 쿼리문만 써요.
 const pool = require("./db");
+const crypto = require("crypto");
+
+
 
 async function loginUser(id, hashed_pw){
     const conn = await pool.getConnection();
@@ -142,9 +145,18 @@ async function changePwWithCode(token, pw){
     
     const conn = await pool.getConnection();
     try{
+        const [salt_re] = await conn.execute(
+            "select salt from user where code = ? "
+            ,[token]
+        )
+        const salt = salt_re[0].salt;
+
+        const salted_pw = salt + pw;
+        const hashed_pw = crypto.createHash('sha256').update(salted_pw).digest('base64');
+
         const [result] = await conn.execute(
             "update user set code = null, upw = ?  where code = ? "
-            ,[pw, token ]
+            ,[hashed_pw, token ]
         )
         return result;
     }

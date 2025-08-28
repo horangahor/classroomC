@@ -192,8 +192,7 @@ router.get('/favorites', async (req, res) => {
 router.post('/resetPw', async (req, res)=>{
     try{
         const {token, pw} = req.body;
-        const hashed_pw = crypto.createHash('sha256').update(pw).digest('base64');
-        await changePwWithCode(token,hashed_pw); // 코드 가지고 비번 바꾸기 
+        await changePwWithCode(token,pw); // 코드 가지고 비번 바꾸기 
 
         res.send("변경 성공")
     }
