@@ -28,9 +28,10 @@ const getSearchResults = async (req, res) => {
         const limitNum = parseInt(limit, 10);
         const offset = (parseInt(page, 10) - 1) * limitNum;
         const searchResults = await searchPostsInDB(query, limitNum, offset);
-        res.status(200).json(searchResults);
+        res.status(200).json({ success: true, data: searchResults });
     } catch (error) {
-        res.status(500).json({ message: "서버 내부에서 오류가 발생했습니다." });
+        console.error('search error', error);
+        res.status(500).json({ errorCode: 'SERVER_ERROR', message: "서버 내부에서 오류가 발생했습니다." });
     }
 };
 

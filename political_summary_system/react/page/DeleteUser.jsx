@@ -50,12 +50,18 @@ const DeleteUser = () => {
                 )
                 .then(async(res) => {
                     console.log("이건은 response", res);
-                    alert('회원탈퇴가 완료되었습니다.');
+                    if (res.data && res.data.errorCode) {
+                        alert(res.data.message || '회원탈퇴에 실패했습니다.');
+                        return;
+                    }
+                    alert(res.data?.message || '회원탈퇴가 완료되었습니다.');
                     await logout();
                     navigate('/');
                 })
                 .catch((err) => {
                     console.error(err);
+                    const serverMsg = err.response?.data?.message;
+                    alert(serverMsg || '회원탈퇴 중 오류가 발생했습니다.');
                 })
         }
     }

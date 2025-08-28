@@ -49,6 +49,19 @@ async function getMember() {
     }
 }
 
+// 새로 추가: id로 단일 정치인 조회
+async function getMemberById(id) {
+    const conn = await pool.getConnection();
+    try {
+        const [results] = await conn.execute(
+            "select * from member where id = ?",
+            [id]
+        );
+        return results[0] || null;
+    } finally {
+        conn.release();
+    }
+}
 
 
-module.exports = { insertMember, removeMember, getMember };
+module.exports = { insertMember, removeMember, getMember, getMemberById };

@@ -55,10 +55,27 @@ const SearchResult = () => {
                     headers: { 'Accept': 'application/json' },
                     signal,
                 });
-                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                if (!res.ok) {
+                    // try to parse JSON error body
+                    let errBody = null;
+                    try { errBody = await res.json(); } catch (e) { /* ignore */ }
+                    if (errBody && (errBody.errorCode || errBody.message)) {
+                        throw new Error(errBody.message || `Error ${res.status}`);
+                    }
+                    throw new Error(`HTTP ${res.status}`);
+                }
                 const data = await res.json();
-                setResults(data.results || []);
-                setTotal(typeof data.total === 'number' ? data.total : (data.results ? data.results.length : 0));
+                // 지원하는 응답 형식들 처리: new -> { success: true, data: { total, results } }, old -> { total, results } 또는 { results: [...] }
+                if (data && data.errorCode) {
+                    throw new Error(data.message || '검색 중 오류가 발생했습니다.');
+                }
+                if (data && data.success && data.data) {
+                    setResults(data.data.results || []);
+                    setTotal(typeof data.data.total === 'number' ? data.data.total : (data.data.results ? data.data.results.length : 0));
+                } else {
+                    setResults(data.results || data || []);
+                    setTotal(typeof data.total === 'number' ? data.total : (data.results ? data.results.length : (Array.isArray(data) ? data.length : 0)));
+                }
             } catch (err) {
                 if (err.name === 'AbortError') return; // 정상적인 취소
                 console.error('search error', err);

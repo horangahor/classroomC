@@ -46,12 +46,17 @@ const Join = () => {
             })
             .then ((res) =>{
                 console.log('회원가입 데이터:', formData)
-                alert('이메일을 확인해서 인증하기');
-                nav('/');
+                if (res.data && res.data.errorCode) {
+                    alert(res.data.message || '회원가입에 실패했습니다.');
+                } else {
+                    alert(res.data.message || '이메일을 확인해서 인증하기');
+                    nav('/');
+                }
             })
             .catch((err)=>{
                 console.error(err);
-                
+                const serverMsg = err.response?.data?.message;
+                alert(serverMsg || '회원가입 중 오류가 발생했습니다.');
             })
 
     }

@@ -1,10 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const { getMemberInfo } = require("../function/manageMember");
+const { getMemberInfo, getMemberByIdHandler } = require("../function/manageMember");
 const pool = require("../database/db") // DB 연결 모듈
 
 // GET: 회원 목록 조회
 router.get("/members", getMemberInfo);
+
+// GET: 단일 인물 조회
+router.get('/members/:id', getMemberByIdHandler);
 
 // DELETE: 세션 기반 회원 삭제
 router.delete("/members", async (req, res) => {

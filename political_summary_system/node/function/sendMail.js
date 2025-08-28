@@ -26,7 +26,7 @@ const transporter = nodemailer.createTransport({
 });
 
 // 회원가입 인증용 메일
-const sendEmail = (email, code) => {
+const sendEmail = async (email, code) => {
   console.log("sendEmail의", code);
   const verificationUrl = `http://localhost:8000/confirm?token=${code}`;
   const mailOptions = {
@@ -37,21 +37,20 @@ const sendEmail = (email, code) => {
            <a href="${verificationUrl}">인증하기</a>`, // 메일 내용
   };
 
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log(`Email sent: ${info.response}`);
-    }
-  });
-
-  return code;
+  try {
+    const info = await transporter.sendMail(mailOptions);
+    console.log(`Email sent: ${info.response}`);
+    return { success: true, message: 'Email sent' };
+  } catch (error) {
+    console.error('sendEmail error', error);
+    return { errorCode: 'MAIL_ERROR', message: '이메일 전송에 실패했습니다.' };
+  }
 };
 
 
 
 // 비밀번호 리셋용 메일
-const sendPwMail = (email,code) => {
+const sendPwMail = async (email,code) => {
   console.log("sendPwMail 보냄");
   
   const verificationUrl = `http://localhost:5173/resetPw?token=${code}`; // 이걸 비밀번호 변경할 수 있도록 바꿔야할 듯, 프론트 입력창으로
@@ -63,15 +62,14 @@ const sendPwMail = (email,code) => {
            <a href="${verificationUrl}">변경하기</a>`, // 메일 내용
   };
 
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log(`Email sent: ${info.response}`);
-    }
-  });
-
-  return code;
+  try {
+    const info = await transporter.sendMail(mailOptions);
+    console.log(`Email sent: ${info.response}`);
+    return { success: true, message: 'Email sent' };
+  } catch (error) {
+    console.error('sendPwMail error', error);
+    return { errorCode: 'MAIL_ERROR', message: '이메일 전송에 실패했습니다.' };
+  }
 };
 
 module.exports = { generateRandomNumber, sendEmail, sendPwMail };

@@ -17,10 +17,16 @@ const ResetPassword = () => {
             return;
         }
         try {
-            await axios.post(import.meta.env.VITE_RESETPW_SERVER, { token, pw });
-            setMessage('비밀번호가 성공적으로 변경되었습니다.');
+            const res = await axios.post(import.meta.env.VITE_RESETPW_SERVER, { token, pw });
+            if (res.data && res.data.errorCode) {
+                setMessage(res.data.message || '비밀번호 변경에 실패했습니다.');
+            } else {
+                setMessage(res.data?.message || '비밀번호가 성공적으로 변경되었습니다.');
+            }
         } catch (err) {
-            setMessage('비밀번호 변경에 실패했습니다.');
+            console.error(err);
+            const serverMsg = err.response?.data?.message;
+            setMessage(serverMsg || '비밀번호 변경에 실패했습니다.');
         }
     };
 
