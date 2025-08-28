@@ -2,12 +2,12 @@
 // 여기는 쿼리문만 써요.
 const pool = require("./db");
 
-async function loginUser(id, pw){
+async function loginUser(id, hashed_pw){
     const conn = await pool.getConnection();
     try {
         const [results] = await conn.execute(
             "select * from user WHERE uid = ? and upw = ? and isVerified='Y'",
-            [id, pw]
+            [id, hashed_pw]
         );
         return results;
     }
@@ -17,12 +17,32 @@ async function loginUser(id, pw){
 
 }
 
-async function registerUser(id, pw, name, phnum, code){
+async function findSalt(id){
+    const conn = await pool.getConnection();
+    try{
+            const [result_salt] = await conn.execute(
+            "select salt from user WHERE uid = ? and isVerified='Y'",
+            [id]
+        );
+        const salt = result_salt[0].salt;
+
+        return salt;
+    }catch(err){
+        console.error(err);
+    }
+    finally{
+        conn.release();
+    }
+}
+
+
+
+async function registerUser(id, pw, name, phnum, code , salt){
     const conn = await pool.getConnection();
     try{
         const [results] = await conn.execute(
-            "insert into user values(? , ? , ? , ?, 'F', ? )",
-            [id , pw , name , phnum, code]
+            "insert into user values(? , ? , ? , ?, 'F', ? , ? )",
+            [id , pw , name , phnum, code, salt]
         );
         return results;
     }
@@ -137,4 +157,4 @@ async function changePwWithCode(token, pw){
 }
 
 
-module.exports = { loginUser, registerUser, updateuser, deleteuser, confirmQuery, giveCodeToTuple, changePwWithCode };
+module.exports = { loginUser, registerUser, updateuser, deleteuser, confirmQuery, giveCodeToTuple, changePwWithCode, findSalt };
