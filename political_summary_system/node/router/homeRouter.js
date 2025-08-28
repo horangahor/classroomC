@@ -2,7 +2,7 @@ const express = require('express');
 const { join, login, update, remove } = require("../function/manageUser");
 const { getNewsList , favor, getFavor, getFavoriteNewsByUser } = require("../database/newsfavQuery");
 const { sendEmail, generateRandomNumber , sendPwMail } = require("../function/sendMail");
-const { confirmQuery, giveCodeToTuple, changePwWithCode } = require("../database/userQuery");
+const { confirmQuery, giveCodeToTuple, changePwWithCode, findSalt } = require("../database/userQuery");
 const sessionStore = require("../server");
 const crypto = require('crypto');
 const router = express.Router();
@@ -33,9 +33,11 @@ router.get('/', getSession);
 router.post('/join', async (req, res) => {
     try{
         const code = await generateRandomNumber(10); // 난수 코드 만들기 (튜플에 저장되는 임시 code column)
+        const salt = await generateRandomNumber(5);
         const {id} = req.body; 
+        
 
-        const result = await join(req, code); // 여기서 가계정을 만듦 이 때, isVerified = 'N' 값이 되어 있음 
+        const result = await join(req, code, salt); // 여기서 가계정을 만듦 이 때, isVerified = 'N' 값이 되어 있음 
         sendEmail(id , code);                 // 계정을 활성화하는 email 보내기
         res.send("회원가입 페이지입니다.");
     }

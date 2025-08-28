@@ -1,13 +1,17 @@
-const { loginUser, registerUser, updateuser, deleteuser } = require('../database/userQuery');
+const { loginUser, registerUser, updateuser, deleteuser, findSalt } = require('../database/userQuery');
 const crypto = require('crypto');
 
 // 회원가입
-async function join(req, code) {
+async function join(req, code, salt) {
     // 요청데이터 가져오기(body)
-    try {
-        const { id, pw, name, phnum } = req.body;
-        const hashed_pw = crypto.createHash('sha256').update(pw).digest('base64');
-        const result = await registerUser(id, hashed_pw, name, phnum, code);
+    console.log(req);
+    const { id, pw, name, phnum } = req.body;
+    const salted_pw = salt + pw;
+    
+    const hashed_pw = crypto.createHash('sha256').update(salted_pw).digest('base64');
+    
+    try{
+    const result = await registerUser(id, hashed_pw, name, phnum, code, salt);
 
         // registerUser의 결과 형태에 따라 성공 여부 판단
         if (result && result.affectedRows > 0) {
@@ -23,24 +27,41 @@ async function join(req, code) {
 
 // 로그인 기능 (DB 결과를 그대로 반환하여 기존 라우터와 호환)
 async function login(req) {
-    try {
-        const { id, pw } = req.body;
-        const hashed_pw = crypto.createHash('sha256').update(pw).digest('base64');
-        const [result] = await loginUser(id, hashed_pw);
-        return result;
-    } catch (err) {
-        console.error('login error', err);
-        return { errorCode: 'SERVER_ERROR', message: '서버 오류가 발생했습니다.' };
-    }
+    
+    const { id, pw } = req.body;
+    const salt = await findSalt(id);
+    const salted_pw = salt + pw;
+    const hashed_pw = crypto.createHash('sha256').update(salted_pw).digest('base64');
+    const [result] = await loginUser(id, hashed_pw);
+    // console.log(result);
+
+
+    return result;
+
+
+    // 토큰 발급
+    // if (result){
+    //     const token = jwt.sign(
+    //         { id : result.uid , name : result.uname , phnum : result.uphnum },
+    //         "mysecretkey",
+    //         { expiresIn : "5m" });
+    //     return token;
+    // }
+    // else{
+    //     return result;
+    // }
 }
 
 // 회원정보 수정 기능
 async function update(id, name, phnum, cpw, npw) { // req, res를 제거하고 필요한 인자만 받습니다.
     try {
-
-        const hashed_cpw = crypto.createHash('sha256').update(cpw).digest('base64');
+        const salt = await findSalt(id);
+        const salted_cpw = salt + cpw;
+        const salted_npw = salt + npw;
         
-        const hashed_npw = crypto.createHash('sha256').update(npw).digest('base64');
+        const hashed_cpw = crypto.createHash('sha256').update(salted_cpw).digest('base64');
+        
+        const hashed_npw = crypto.createHash('sha256').update(salted_npw).digest('base64');
         // 쿼리 함수 호출
         const result = await updateuser(id, name, phnum,hashed_cpw,hashed_npw);
         
