@@ -32,11 +32,11 @@ router.get('/', getSession);
 
 router.post('/join', async (req, res) => {
     try{
-        const code = await generateRandomNumber(10);
+        const code = await generateRandomNumber(10); // 난수 코드 만들기 (튜플에 저장되는 임시 code colum)
         const {id} = req.body;
 
-        const result = await join(req, code); // 여기서 가계정을 만듦 
-        sendEmail(id , code);
+        const result = await join(req, code); // 여기서 가계정을 만듦 이 때, isVerified = 'N' 값이 되어있음
+        sendEmail(id , code);                 // 계정을 활성화하는 email 보내기
         res.send("회원가입 페이지입니다.");
     }
     catch(err){

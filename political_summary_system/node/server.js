@@ -3,6 +3,10 @@ const express = require("express");
 const cors = require("cors"); // CORS 정책 관련 HTTP 헤더를 자동으로 설정
 const session = require('express-session') // 세션을 사용하기 위한 모듈
 const app = express();
+
+
+
+// 세션은 서버의 램에 저장
 const MemoryStore = require('express-session').MemoryStore;
 
 // 2. 라우터 가져오기 (페이지 주소 그룹 불러오기)
